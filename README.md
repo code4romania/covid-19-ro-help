@@ -2,11 +2,9 @@
 
 [![GitHub contributors](https://img.shields.io/github/contributors/code4romania/NEW_REPO_SLUG_HERE.svg?style=for-the-badge)](https://github.com/code4romania/NEW_REPO_SLUG_HERE/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/NEW_REPO_SLUG_HERE.svg?style=for-the-badge)](https://github.com/code4romania/NEW_REPO_SLUG_HERE/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
 
-Insert bullets description of the project if available.
+This project is the result of the 2019 Civic Labs research. You can view the knowledge base of the project, as well as the prototype, on the [Aid Management Hub](https://civiclabs.ro/ro/solutions/aid-management-hub) Civic Labs page.
 
-[See the project live](insert_link_here)
-
-Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project.
+Aid Management Hub is a platform meant to help NGOs organize their activities during an emergency situation. Initially prototyped with an earthquake in mind, this project was pushed at the forefront of our [Tech for Social Good](https://tfsg.code4.ro/ro/) development program during the COVID-19 pandemic. 
 
 [Contributing](#contributing) | [Built with](#built-with) | [Repos and projects](#repos-and-projects) | [Deployment](#deployment) | [Feedback](#feedback) | [License](#license) | [About Code4Ro](#about-code4ro)
 
@@ -18,7 +16,11 @@ You can also list any pending features and planned improvements for the project 
 
 ## Built With
 
+Django
+
 ### Programming languages
+
+Python 3
 
 ### Platforms
 
@@ -33,14 +35,6 @@ You can also list any pending features and planned improvements for the project 
 Mention all related repos and projects.
 
 ## Deployment
-
-Guide users through getting your code up and running on their own system. In this section you can talk about:
-1. Installation process
-2. Software dependencies
-3. Latest releases
-4. API references
-
-Describe and show how to build your code and run the tests.
 
 ## Feedback
 
