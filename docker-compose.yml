@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: dockerize -wait tcp://db:5432 -timeout 90s
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/opt/aid-management-hub
+
+  db:
+    image: "postgres:12"
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
+volumes:
+  database-data:
