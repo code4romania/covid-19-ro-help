@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django_extensions.db.models import TimeStampedModel
 
 
 class URGENCY:
@@ -48,7 +49,7 @@ class KIND:
         return [KIND.RESOURCE, KIND.VOLUNTEER, KIND.MONEY]
 
 
-class NGO(models.Model):
+class NGO(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254,)
     description = models.CharField(_("Description"), max_length=2048)
     email = models.EmailField(_("Email"), )
@@ -62,7 +63,7 @@ class NGO(models.Model):
         return self.name
 
 
-class NGONeed(models.Model):
+class NGONeed(TimeStampedModel):
     ngo = models.ForeignKey(NGO, on_delete=models.CASCADE)
 
     description = models.CharField(_("Description"), max_length=4096)
@@ -74,7 +75,7 @@ class NGONeed(models.Model):
         return f"{self.ngo.name}: {self.urgency} {self.kind}"
 
 
-class PersonalRequest(models.Model):
+class PersonalRequest(TimeStampedModel):
     ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, null=True, blank=True)
 
     name = models.CharField(_("Name"), max_length=254,)
