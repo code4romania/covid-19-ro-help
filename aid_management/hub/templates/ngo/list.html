@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+<style>
+    
+</style>
+
+{% block content %}
+<h2>NGOs</h2>
+<ul>
+    {% for ngo in object_list %}
+    <li>
+        <div class="container">
+            {{ ngo.name }}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
