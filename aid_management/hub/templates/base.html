@@ -11,19 +11,29 @@
     <title>RO Help</title>
 </head>
 <body>
-<div class="container">
-    {% include "header.html" %}
-</div>
+
+{% include "header.html" %}
+
+
+<hr class="is-marginless">
+
 <div class="container">
     {% include "top_logo_section.html" %}
 </div>
 
 
-{% block content %}
-{% endblock %}
+<div class="container">
+    {% include "loret.html" %}
+</div>
 
-{% block footer %}
-{% endblock %}
+<hr class="is-marginless">
+
+<div class="container">
+    {% include "bottom_logo_section.html" %}
+</div>
+
+{% include "footer.html" %}
+
 
 </body>
 </html>
