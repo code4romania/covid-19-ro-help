@@ -1,11 +1,9 @@
-{% block header %}
-
 {% load static %}
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="">
-      <img src="{% static "images/logo.png" %}" alt="RO Help logo">
+    <a class="navbar-item" href="{% url 'home' %}">
+      <img src="{% static "images/logo.svg" %}" alt="RO Help logo" width=100" height="300">
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -37,10 +35,10 @@
         Link
       </a>
 
+      <hr class="navbar-divider">
+
       </div>
     </div>
 
   </div>
 </nav>
-
-{% endblock header %}
