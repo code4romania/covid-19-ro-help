@@ -7,7 +7,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aid_management.settings.dev")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ro_help.settings.dev")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
