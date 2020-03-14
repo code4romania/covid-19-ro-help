@@ -26,7 +26,7 @@ class KIND:
 
 class NGO(models.Model):
     name = models.CharField(_("Name"), max_length=254,)
-    description = models.CharField(_("Description"), )
+    description = models.CharField(_("Description"), max_length=1024)
     email = models.EmailField(_("Email"), )
     phone = models.CharField(_("Phone"), max_length=15)
     avatar = models.ImageField(_("Avatar"), max_length=15)
