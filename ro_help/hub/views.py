@@ -19,3 +19,13 @@ class NGOListView(ListView):
         }
 
         return ngos.filter(**filters)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        ngos = context["object_list"]
+
+        context["counties"] = ngos.order_by("county").values_list("county", flat=True).distinct("county")
+        context["cities"] = ngos.order_by("city").values_list("city", flat=True).distinct("city")
+
+        return context
