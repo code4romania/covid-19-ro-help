@@ -1,3 +1,33 @@
 .logo {
     padding: 1rem;
 }
+
+.footer {
+    background-color: #004890;
+
+    > .container > .columns {
+		justify-content: space-between;
+	}
+
+	.footer-links {
+
+        .links-header {
+            text-transform: uppercase;
+            font-weight: 700;
+            margin: 0 0 1rem;
+        }
+
+        .links-item {
+            margin: 0 0 .75rem;
+
+            a {
+                color: $grey-dark;
+
+                &:hover {
+                    color: $info;
+                }
+            }
+        }
+    }
+}
+
