@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 
-<style>
-    
-</style>
-
 {% block content %}
-<h2>NGOs</h2>
-<ul>
-    {% for ngo in object_list %}
-    <li>
-        <div class="container">
-            {{ ngo.name }}
+<section class="section">
+    <div class="container">
+        <div class="columns is-multiline">
+            {% for ngo in object_list %}
+                <div class="card column is-3-desktop is-3-tablet is-6-mobile">
+                    <div class="box card-content">
+                        <div class="content">
+                            <p class="title is-4">{{ ngo.name }}</p>
+                        </div>
+
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="{{ ngo.avatar }}" alt="{{ ngo.name }}">
+                            </figure>
+                        </div>
+
+                        <footer class="card-footer">
+                            <a class="has-background-success has-text-white card-footer-item has-text-weight-bold">Doneaza</a>
+                        </footer>
+
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    </li>
-    {% endfor %}
-</ul>
+    </div>
+</section>
 {% endblock %}
