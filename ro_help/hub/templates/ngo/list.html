@@ -1,18 +1,151 @@
 {% extends 'base.html' %}
+{% load spurl %}
 
-<style>
-    
-</style>
 
 {% block content %}
-<h2>NGOs</h2>
-<ul>
-    {% for ngo in object_list %}
-    <li>
-        <div class="container">
-            {{ ngo.name }}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Doneaza in siguranta</h1>
+        <p class="subtitle">
+            Alege dintre organizatiile verificate de mai jos catre cine sa direrectionezi ajutorul tau si ele
+            vor gestiona donatiile tale astfel incat ele sa ajunga la cei care au cea mai mare nevoie de ele.
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="columns">
+            <div class="column is-4">
+                <section class="hero {% if current_kind == 'money' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                <a href="{% spurl base='{{ request.get_full_path }}' set_query='kind=money' %}">
+                                    Vreau sa ajut cu bani
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="column is-4">
+                    <section class="hero {% if current_kind == 'resource' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                <a href="{% spurl base='{{ request.get_full_path }}' set_query='kind=resource' %}">
+                                    Vreau sa ajut cu resurse
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="column is-4">
+                <section class="hero {% if current_kind == 'volunteer' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                <a href="{% spurl base='{{ request.get_full_path }}' set_query='kind=volunteer' %}">
+                                    Vreau sa voluntariez
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-    </li>
-    {% endfor %}
-</ul>
+    </div>
+
+    <div class="container">
+        <div class="columns">
+            <div class="column is-1">
+                <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>Judet</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' %}" class="dropdown-item">
+                                    -
+                                </a>
+                            </div>
+                            {% for county in counties %}
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='county={{ county }}' remove_query_param='city' %}"
+                                       class="dropdown-item {% if county == current_county %}is-active{% endif %}">
+                                        {{ county }}
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-1">
+                <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>Oras</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                        <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' %}" class="dropdown-item">
+                                    -
+                                </a>
+                            </div>
+                            {% for city in cities %}
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='city={{ city }}' %}"
+                                       class="dropdown-item {% if city == current_city %}is-active{% endif %}">
+                                        {{ city }}
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns is-multiline">
+            {% for ngo in object_list %}
+                <div class="card column is-4-desktop is-4-tablet is-6-mobile">
+                    <div class="box card-content">
+                        <div class="content">
+                            <p class="title is-4">{{ ngo.name }}</p>
+                        </div>
+
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="{{ ngo.avatar }}" alt="{{ ngo.name }}">
+                            </figure>
+                        </div>
+
+                        <footer class="card-footer">
+                            <a class="has-background-success has-text-white card-footer-item has-text-weight-bold">Doneaza</a>
+                        </footer>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}
