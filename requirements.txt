@@ -4,3 +4,5 @@ django-environ==0.4.5
 psycopg2==2.8.4
 
 Pillow==7.0.0
+
+django-spurl==0.6.6

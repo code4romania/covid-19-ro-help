@@ -13,9 +13,9 @@ class NGOListView(ListView):
         ngos = NGO.objects.all()
 
         filters = {
-            name: self.kwargs[name]
+            name: self.request.GET[name]
             for name in self.allow_filters
-            if name in self.kwargs
+            if name in self.request.GET
         }
 
         return ngos.filter(**filters)
@@ -23,9 +23,15 @@ class NGOListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        ngos = context["object_list"]
+        context["counties"] = NGO.objects.order_by("county").values_list("county", flat=True).distinct("county")
 
-        context["counties"] = ngos.order_by("county").values_list("county", flat=True).distinct("county")
-        context["cities"] = ngos.order_by("city").values_list("city", flat=True).distinct("city")
+        cities = NGO.objects.order_by("city")
+        if self.request.GET.get("county"):
+            cities = cities.filter(county=self.request.GET.get("county"))
+
+        context["cities"] = cities.values_list("city", flat=True).distinct("city")
+
+        context["current_county"] = self.request.GET.get("county")
+        context["current_city"] = self.request.GET.get("city")
 
         return context

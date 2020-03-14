@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load spurl %}
+
 
 {% block content %}
 <section class="section">
@@ -16,9 +18,15 @@
                     </div>
                     <div class="dropdown-menu" role="menu">
                         <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' %}" class="dropdown-item">
+                                    -
+                                </a>
+                            </div>
                             {% for county in counties %}
                                 <div class="dropdown-item">
-                                    <a href="#" class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='county={{ county }}' remove_query_param='city' %}"
+                                       class="dropdown-item {% if county == current_county %}is-active{% endif %}">
                                         {{ county }}
                                     </a>
                                 </div>
@@ -41,9 +49,15 @@
 
                     <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                         <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' %}" class="dropdown-item">
+                                    -
+                                </a>
+                            </div>
                             {% for city in cities %}
                                 <div class="dropdown-item">
-                                    <a href="#" class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='city={{ city }}' %}"
+                                       class="dropdown-item {% if city == current_city %}is-active{% endif %}">
                                         {{ city }}
                                     </a>
                                 </div>

@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    "spurl",
+
     "hub",
 ]
 
@@ -124,7 +126,5 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "../", "static"),
-    '/var/www/static/',
 ]
 
-print(STATICFILES_DIRS)
