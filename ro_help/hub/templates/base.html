@@ -23,7 +23,9 @@
 
 
 <div class="container">
-    {% include "loret.html" %}
+    {% block content %}
+        {% include "loret.html" %}
+    {% endblock %}
 </div>
 
 <hr class="is-marginless">
