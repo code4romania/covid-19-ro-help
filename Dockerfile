@@ -9,18 +9,18 @@ RUN pip3 install --upgrade pip setuptools \
     && wget -qO- https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz | tar -zxf - -C /usr/bin \
     && chown root:root /usr/bin/dockerize
 
-WORKDIR /opt/aid-management-hub
+WORKDIR /opt/ro_help
 
 ARG ENVIRONMENT=dev
-ENV DJANGO_SETTINGS_MODULE=aid_management.settings.${ENVIRONMENT}
+ENV DJANGO_SETTINGS_MODULE=ro_help.settings.${ENVIRONMENT}
 
 # Copy just the requirements for caching
-COPY ./requirements* /opt/aid-management-hub/
+COPY ./requirements* /opt/ro_help/
 RUN pip3 install -r requirements-${ENVIRONMENT}.txt
 
-COPY ./ /opt/aid-management-hub
+COPY ./ /opt/ro_help
 
-WORKDIR /opt/aid-management-hub/aid_management
+WORKDIR /opt/ro_help/ro_help
 
-ENTRYPOINT ["/opt/aid-management-hub/docker-entrypoint"]
+ENTRYPOINT ["/opt/ro_help/docker-entrypoint"]
 EXPOSE 8000
