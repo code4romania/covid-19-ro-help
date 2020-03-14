@@ -8,3 +8,4 @@ urlpatterns = [
 
     path("ngos", NGOListView.as_view(), name="ngos"),
 ]
+
