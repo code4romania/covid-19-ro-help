@@ -1,0 +1,16 @@
+{% extends 'ngo/base.html' %}
+{% load spurl %}
+
+
+{% block left-side-view %}
+<section class="section">
+    {{ ngo.name }}
+</section>
+{% endblock %}
+
+{% block content %}
+    {% url "ngos" as ngos %}
+    {% with current_url=ngos %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}

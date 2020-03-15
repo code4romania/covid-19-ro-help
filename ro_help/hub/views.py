@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from hub.models import NGO
 
@@ -39,4 +39,15 @@ class NGOListView(ListView):
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
 
+        return context
+
+
+class NGODetailView(DetailView):
+    template_name = 'ngo/detail.html'
+    context_object_name = 'ngo'
+    model = NGO
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["current_kind"] = self.request.GET.get("kind", "money")
         return context
