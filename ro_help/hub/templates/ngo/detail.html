@@ -1,10 +1,156 @@
 {% extends 'ngo/base.html' %}
 {% load spurl %}
 
-
 {% block left-side-view %}
 <section class="section">
-    {{ ngo.name }}
+    <div class="container">
+        <div class="columns">
+            <div class="column is-2">
+                <div class="box">
+                    <div class="container">
+                        <figure class="image is-4by3">
+                            <img src="{{ ngo.avatar }}" alt="Placeholder image">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-8">
+                <footer>
+                    <div class="content">
+                        <h1>{{ ngo.name }}</h1>
+                        <p>{{ ngo.email }}</p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="container">
+        <div class="content">
+            <h3>Despre organizatie</h3>
+        </div>
+        <div class="content">
+            <p>{{ ngo.description }}</p>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if ngo.needs.money %}
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Doneaza bani
+                    </p>
+                    <a href="#donate-money" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+
+                <div id="donate-money" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
+                    <div class="card-content">
+                        <div class="container">
+                            <h4>Doneaza prin PayPal:</h4>
+                            <div class="columns">
+                                <div class="column is-8-desktop">
+                                    100 eur
+                                </div>
+
+                                <div class="column is-2-desktop ">
+                                    <button class="button has-background-primary is-medium">Doneaza</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <h4>Doneaza prin Netopia:</h4>
+                            <div class="columns">
+                                <div class="column is-8-desktop">
+                                    100 eur
+                                </div>
+
+                                <div class="column is-2-desktop ">
+                                    <button class="button has-background-primary is-medium">Doneaza</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <h4>Doneaza prin transfer bancar:</h4>
+                            TODO: add from ngo model
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if ngo.needs.resource %}
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Doneaza resurse
+                    </p>
+                    <a href="#donate-resources" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+
+                <div id="donate-resources" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
+                    <div class="card-content">
+                        {% for need in ngo.needs.resource %}
+                            <div class="container">
+                                <h3 class="is-size-5 has-text-weight-bold">{{ need.title }}</h3>
+                                <p>{{ need.description }}</p>
+                                <div class="content has-text-centered">
+                                    <button class="button is-medium has-background-success has-text-weight-bold has-text-white">Pot sa ajut eu</button>
+                                </div>
+                            </div>
+                            <hr />
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if ngo.needs.volunteer %}
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Implica-te ca voluntar
+                    </p>
+                    <a href="#donate-volunteer" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+
+                <div id="donate-volunteer" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
+                    <div class="card-content">
+                        <p>
+                            TODO: need some text here
+                        </p>
+                        <div class="content has-text-centered">
+                            <button class="button is-medium has-background-success has-text-weight-bold has-text-white">Pot sa ajut eu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    // Return an array of bulmaCollapsible instances (empty if no DOM node found)
+    const bulmaCollapsibleInstances = bulmaCollapsible.attach('.is-collapsible');
+</script>
+
 </section>
 {% endblock %}
 

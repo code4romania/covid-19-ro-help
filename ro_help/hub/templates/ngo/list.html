@@ -69,6 +69,7 @@
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="columns is-multiline">
             {% for ngo in object_list %}
@@ -84,9 +85,11 @@
                             </figure>
                         </div>
 
+                        {% url 'ngo-detail' ngo.pk as ngo_url %}
+
                         <footer class="card-footer">
                             <a class="has-background-success has-text-white card-footer-item has-text-weight-bold"
-                               href="{% url 'ngo-detail' ngo.pk %}">Doneaza</a>
+                               href="{% spurl base='{{ ngo_url }}' set_query='kind={{ current_kind }}' %}">Doneaza</a>
                         </footer>
 
                     </div>

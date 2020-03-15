@@ -9,53 +9,62 @@ import django_extensions.db.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0002_auto_20200314_1306'),
+        ("hub", "0002_auto_20200314_1306"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='ngo',
-            options={'get_latest_by': 'modified', 'ordering': ('-modified', '-created')},
+            name="ngo", options={"get_latest_by": "modified", "ordering": ("-modified", "-created")},
         ),
         migrations.AlterModelOptions(
-            name='ngoneed',
-            options={'get_latest_by': 'modified', 'ordering': ('-modified', '-created')},
+            name="ngoneed", options={"get_latest_by": "modified", "ordering": ("-modified", "-created")},
         ),
         migrations.AlterModelOptions(
-            name='personalrequest',
-            options={'get_latest_by': 'modified', 'ordering': ('-modified', '-created')},
+            name="personalrequest", options={"get_latest_by": "modified", "ordering": ("-modified", "-created")},
         ),
         migrations.AddField(
-            model_name='ngo',
-            name='created',
-            field=django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, default=datetime.datetime(2020, 3, 14, 14, 56, 21, 530557, tzinfo=utc), verbose_name='created'),
+            model_name="ngo",
+            name="created",
+            field=django_extensions.db.fields.CreationDateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(2020, 3, 14, 14, 56, 21, 530557, tzinfo=utc),
+                verbose_name="created",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='ngo',
-            name='modified',
-            field=django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified'),
+            model_name="ngo",
+            name="modified",
+            field=django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name="modified"),
         ),
         migrations.AddField(
-            model_name='ngoneed',
-            name='created',
-            field=django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, default=datetime.datetime(2020, 3, 14, 14, 56, 26, 599041, tzinfo=utc), verbose_name='created'),
+            model_name="ngoneed",
+            name="created",
+            field=django_extensions.db.fields.CreationDateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(2020, 3, 14, 14, 56, 26, 599041, tzinfo=utc),
+                verbose_name="created",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='ngoneed',
-            name='modified',
-            field=django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified'),
+            model_name="ngoneed",
+            name="modified",
+            field=django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name="modified"),
         ),
         migrations.AddField(
-            model_name='personalrequest',
-            name='created',
-            field=django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, default=datetime.datetime(2020, 3, 14, 14, 56, 32, 612102, tzinfo=utc), verbose_name='created'),
+            model_name="personalrequest",
+            name="created",
+            field=django_extensions.db.fields.CreationDateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(2020, 3, 14, 14, 56, 32, 612102, tzinfo=utc),
+                verbose_name="created",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='personalrequest',
-            name='modified',
-            field=django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified'),
+            model_name="personalrequest",
+            name="modified",
+            field=django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name="modified"),
         ),
     ]

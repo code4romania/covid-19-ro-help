@@ -5,22 +5,19 @@ from hub.models import NGO
 
 class NGOListView(ListView):
     # TODO: add requests_count to filters
-    allow_filters = ['county', 'city']
+    allow_filters = ["county", "city"]
 
-    template_name = 'ngo/list.html'
+    template_name = "ngo/list.html"
 
     def get_queryset(self):
         ngos = NGO.objects.all()
 
-        filters = {
-            name: self.request.GET[name]
-            for name in self.allow_filters
-            if name in self.request.GET
-        }
+        filters = {name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
 
-        filters['ngoneed__kind'] = self.request.GET.get('kind', 'money')
+        filters["needs__kind"] = self.request.GET.get("kind", "money")
+        filters["needs__resolved_on"] = None
 
-        return ngos.order_by('name').filter(**filters).distinct("name")
+        return ngos.order_by("name").filter(**filters).distinct("name")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -29,7 +26,7 @@ class NGOListView(ListView):
         context["current_city"] = self.request.GET.get("city")
         context["current_kind"] = self.request.GET.get("kind", "money")
 
-        ngos = NGO.objects.filter(ngoneed__kind=context['current_kind'])
+        ngos = NGO.objects.filter(needs__kind=context["current_kind"])
 
         context["counties"] = ngos.order_by("county").values_list("county", flat=True).distinct("county")
 
@@ -43,8 +40,8 @@ class NGOListView(ListView):
 
 
 class NGODetailView(DetailView):
-    template_name = 'ngo/detail.html'
-    context_object_name = 'ngo'
+    template_name = "ngo/detail.html"
+    context_object_name = "ngo"
     model = NGO
 
     def get_context_data(self, **kwargs):

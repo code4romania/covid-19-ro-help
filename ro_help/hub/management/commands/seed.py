@@ -5,10 +5,12 @@ from faker import Faker
 
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 from hub.models import NGO, NGONeed, KIND, URGENCY
 
 fake = Faker()
+
 
 def random_avatar():
     try:
@@ -18,42 +20,43 @@ def random_avatar():
         return "https://source.unsplash.com/random"
 
 
-NGOS = [
-    {
-        "name": "Habitat for Humanity",
-        "email": "habitat@habitat.ro",
-        "description": """
+NGOS = (
+    [
+        {
+            "name": "Habitat for Humanity",
+            "email": "habitat@habitat.ro",
+            "description": """
         O locuință decentă poate rupe cercul sărăciei. Credem cu tărie în acest lucru din 1976, de când lucrăm pentru 
         viziunea noastră: o lume în care toți oamenii au posibilitatea să locuiască decent. Cu sprijinul nostru,
         peste 6 milioane de oameni din peste 70 de țări au un loc mai bun în care să trăiască, o casă nouă sau una
         complet renovată.Suntem o asociație creștină, non-profit, ce lucrăm alături de oameni de pretutindeni, 
         din toate păturile sociale, rasele, religiile și naționalitățile pentru a elimina locuirea precară.
         """,
-        "phone": "+40722644394",
-        "address": "Str. Naum Râmniceanu, nr. 45 A, et.1, ap. 3, sector 1, Bucureşti 011616",
-        "city": "Bucureşti",
-        "county": "Sector 1",
-        "avatar": "http://www.habitat.ro/wp-content/uploads/2014/11/logo.png",
-    },
-    {
-        "name": "Crucea Rosie",
-        "email": "matei@crucearosie.ro",
-        "description": """
+            "phone": "+40722644394",
+            "address": "Str. Naum Râmniceanu, nr. 45 A, et.1, ap. 3, sector 1, Bucureşti 011616",
+            "city": "Bucureşti",
+            "county": "Sector 1",
+            "avatar": "http://www.habitat.ro/wp-content/uploads/2014/11/logo.png",
+        },
+        {
+            "name": "Crucea Rosie",
+            "email": "matei@crucearosie.ro",
+            "description": """
          Crucea Rosie Romana asista persoanele vulnerabile in situatii de dezastre si de criza. Prin programele si 
          activitatile sale in beneficiul societatii, contribuie la prevenirea si alinarea suferintei sub toate formele,
           protejeaza sanatatea si viata, promoveaza respectul fata de demnitatea umana, fara nicio discriminare bazata 
           pe nationalitate, rasa, sex, religie, varsta, apartenenta sociala sau politica.
         """,
-        "phone": "+40213176006",
-        "address": "Strada Biserica Amzei, nr. 29, Sector 1, Bucuresti",
-        "city": "Bucuresti",
-        "county": "Sector 1",
-        "avatar": "https://crucearosie.ro/themes/redcross/images/emblema_crr_desktop.png",
-    },
-    {
-        "name": "MKBT: Make Better",
-        "email": "contact@mkbt.ro",
-        "description": """
+            "phone": "+40213176006",
+            "address": "Strada Biserica Amzei, nr. 29, Sector 1, Bucuresti",
+            "city": "Bucuresti",
+            "county": "Sector 1",
+            "avatar": "https://crucearosie.ro/themes/redcross/images/emblema_crr_desktop.png",
+        },
+        {
+            "name": "MKBT: Make Better",
+            "email": "contact@mkbt.ro",
+            "description": """
         MKBT: Make Better has been working for urban development and regeneration in Romania since April 2014. 
         That is to say that we are drafting, validating and coordinating processes for local development and urban 
         regeneration in order to help as many cities become their best possible version and the best home for their inhabitants.
@@ -63,38 +66,45 @@ NGOS = [
         solutions are therefore grounded in international best practice, while at the same time capitalizing – in a
          sustainable and harmonious manner – on local know how and resources.
         """,
-        "phone": "+40213176006",
-        "address": "Str. Popa Petre, Nr. 23, Sector 2, 020802, Bucharest, Romania.",
-        "city": "Bucuresti",
-        "county": "Sector 2",
-        "avatar": "http://mkbt.ro/wp-content/uploads/2015/08/MKBT-logo-alb.png",
-    },
-] + [
-    {
-        "name": fake.name(),
-        "email": fake.email(),
-        "description": fake.text(),
-        "phone": fake.phone_number(),
-        "address": fake.address(),
-        "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
-        "county": random.choice(["Arad", "Timis", "Bihor", "Cluj", "Sector 1", "Sector 2"]),
-        "avatar": random_avatar(),
-    } for _ in range(20)
-]
+            "phone": "+40213176006",
+            "address": "Str. Popa Petre, Nr. 23, Sector 2, 020802, Bucharest, Romania.",
+            "city": "Bucuresti",
+            "county": "Sector 2",
+            "avatar": "http://mkbt.ro/wp-content/uploads/2015/08/MKBT-logo-alb.png",
+        },
+    ]
+    + [
+        {
+            "name": fake.name(),
+            "email": fake.email(),
+            "description": fake.text(),
+            "phone": fake.phone_number(),
+            "address": fake.address(),
+            "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
+            "county": random.choice(["Arad", "Timis", "Bihor", "Cluj", "Sector 1", "Sector 2"]),
+            "avatar": random_avatar(),
+        }
+        for _ in range(20)
+    ]
+)
 
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         if not User.objects.filter(username="admin").exists():
-            User.objects.create_user('admin', 'admin@admin.com', 'admin', is_staff=True, is_superuser=True)
+            User.objects.create_user("admin", "admin@admin.com", "admin", is_staff=True, is_superuser=True)
 
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)
 
             for _ in range(3):
-                NGONeed.objects.create(**{
-                    "ngo": ngo,
-                    "kind": random.choice(KIND.to_list()),
-                    "urgency": random.choice(URGENCY.to_list()),
-                    "description": fake.text(),
-                })
+                NGONeed.objects.create(
+                    **{
+                        "ngo": ngo,
+                        "kind": random.choice(KIND.to_list()),
+                        "urgency": random.choice(URGENCY.to_list()),
+                        "description": fake.text(),
+                        "title": fake.text(),
+                        "resolved_on": random.choice([None, timezone.now()]),
+                    }
+                )
