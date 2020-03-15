@@ -52,7 +52,7 @@ class KIND:
 class NGO(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
     description = models.CharField(_("Description"), max_length=2048)
-    email = models.EmailField(_("Email"), )
+    email = models.EmailField(_("Email"),)
     phone = models.CharField(_("Phone"), max_length=30)
     avatar = models.ImageField(_("Avatar"), max_length=300)
     address = models.CharField(_("Address"), max_length=400)
