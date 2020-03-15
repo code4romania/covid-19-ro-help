@@ -8,16 +8,16 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Build the Docker image
-      if: github.ref == 'refs/heads/develop'
+      if: github.ref == 'refs/heads/master'
       run: |
         docker build . \
         --file ./Dockerfile \
         --tag ${{ secrets.DOCKER_HUB_ORGANIZATION }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
 
     - name: Login to docker registry
-      if: github.ref == 'refs/heads/develop'
+      if: github.ref == 'refs/heads/master'
       run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Push to docker registry
-      if: github.ref == 'refs/heads/develop'
+      if: github.ref == 'refs/heads/master'
       run: docker push ${{ secrets.DOCKER_HUB_ORGANIZATION }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
