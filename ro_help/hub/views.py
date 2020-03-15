@@ -18,7 +18,8 @@ class NGOListView(ListView):
             if name in self.request.GET
         }
 
-        filters['ngoneed__kind'] = self.request.GET.get('kind', 'money')
+        filters['needs__kind'] = self.request.GET.get('kind', 'money')
+        filters['needs__resolved_on'] = None
 
         return ngos.order_by('name').filter(**filters).distinct("name")
 
@@ -29,7 +30,7 @@ class NGOListView(ListView):
         context["current_city"] = self.request.GET.get("city")
         context["current_kind"] = self.request.GET.get("kind", "money")
 
-        ngos = NGO.objects.filter(ngoneed__kind=context['current_kind'])
+        ngos = NGO.objects.filter(needs__kind=context['current_kind'])
 
         context["counties"] = ngos.order_by("county").values_list("county", flat=True).distinct("county")
 
