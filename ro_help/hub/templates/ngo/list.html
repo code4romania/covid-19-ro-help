@@ -17,16 +17,16 @@
     </h1>
     <div class="columns is-mobile">
         <div class="column is-narrow filter-dropdown">
-            <div class="dropdown">
+            <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
-                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu1">
                         <span>Judet</span>
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
                     </button>
                 </div>
-                <div class="dropdown-menu" role="menu">
+                <div class="dropdown-menu" id="dropdown-menu1" role="menu">
                     <div class="dropdown-content">
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' %}"
@@ -50,7 +50,7 @@
         <div class="column is-narrow filter-dropdown">
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
-                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
                         <span>Oras</span>
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -58,7 +58,7 @@
                     </button>
                 </div>
 
-                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                <div class="dropdown-menu" id="dropdown-menu2" role="menu">
                     <div class="dropdown-content">
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' %}"
