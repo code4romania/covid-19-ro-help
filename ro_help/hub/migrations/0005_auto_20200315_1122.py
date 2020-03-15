@@ -7,18 +7,24 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0004_auto_20200315_1118'),
+        ("hub", "0004_auto_20200315_1118"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ngoneed',
-            name='ngo',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='needs', to='hub.NGO'),
+            model_name="ngoneed",
+            name="ngo",
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="needs", to="hub.NGO"),
         ),
         migrations.AlterField(
-            model_name='personalrequest',
-            name='ngo',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='requests', to='hub.NGO'),
+            model_name="personalrequest",
+            name="ngo",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="requests",
+                to="hub.NGO",
+            ),
         ),
     ]

@@ -8,49 +8,83 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='NGO',
+            name="NGO",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=254, verbose_name='Name')),
-                ('description', models.CharField(max_length=2048, verbose_name='Description')),
-                ('email', models.EmailField(max_length=254, verbose_name='Email')),
-                ('phone', models.CharField(max_length=15, verbose_name='Phone')),
-                ('avatar', models.ImageField(max_length=300, upload_to='', verbose_name='Avatar')),
-                ('address', models.CharField(max_length=400, verbose_name='Address')),
-                ('city', models.CharField(max_length=100, verbose_name='City')),
-                ('county', models.CharField(max_length=50, verbose_name='County')),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("name", models.CharField(max_length=254, verbose_name="Name")),
+                ("description", models.CharField(max_length=2048, verbose_name="Description")),
+                ("email", models.EmailField(max_length=254, verbose_name="Email")),
+                ("phone", models.CharField(max_length=15, verbose_name="Phone")),
+                ("avatar", models.ImageField(max_length=300, upload_to="", verbose_name="Avatar")),
+                ("address", models.CharField(max_length=400, verbose_name="Address")),
+                ("city", models.CharField(max_length=100, verbose_name="City")),
+                ("county", models.CharField(max_length=50, verbose_name="County")),
             ],
         ),
         migrations.CreateModel(
-            name='PersonalRequest',
+            name="PersonalRequest",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=254, verbose_name='Name')),
-                ('email', models.EmailField(blank=True, max_length=254, null=True, verbose_name='Email')),
-                ('phone', models.CharField(max_length=15, verbose_name='Phone')),
-                ('city', models.CharField(max_length=100, verbose_name='City')),
-                ('county', models.CharField(max_length=50, verbose_name='County')),
-                ('address', models.CharField(blank=True, max_length=400, null=True, verbose_name='Address')),
-                ('organization', models.CharField(blank=True, max_length=400, null=True, verbose_name='Organization')),
-                ('description', models.CharField(max_length=1024, verbose_name='Description')),
-                ('kind', models.CharField(choices=[('resource', 'resource'), ('volunteer', 'volunteer'), ('money', 'money')], default='resource', max_length=10, verbose_name='Kind')),
-                ('urgency', models.CharField(choices=[('critical', 'critical'), ('high', 'high'), ('medium', 'medium'), ('low', 'low')], default='low', max_length=10, verbose_name='Urgency')),
-                ('ngo', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='hub.NGO')),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("name", models.CharField(max_length=254, verbose_name="Name")),
+                ("email", models.EmailField(blank=True, max_length=254, null=True, verbose_name="Email")),
+                ("phone", models.CharField(max_length=15, verbose_name="Phone")),
+                ("city", models.CharField(max_length=100, verbose_name="City")),
+                ("county", models.CharField(max_length=50, verbose_name="County")),
+                ("address", models.CharField(blank=True, max_length=400, null=True, verbose_name="Address")),
+                ("organization", models.CharField(blank=True, max_length=400, null=True, verbose_name="Organization")),
+                ("description", models.CharField(max_length=1024, verbose_name="Description")),
+                (
+                    "kind",
+                    models.CharField(
+                        choices=[("resource", "resource"), ("volunteer", "volunteer"), ("money", "money")],
+                        default="resource",
+                        max_length=10,
+                        verbose_name="Kind",
+                    ),
+                ),
+                (
+                    "urgency",
+                    models.CharField(
+                        choices=[("critical", "critical"), ("high", "high"), ("medium", "medium"), ("low", "low")],
+                        default="low",
+                        max_length=10,
+                        verbose_name="Urgency",
+                    ),
+                ),
+                (
+                    "ngo",
+                    models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to="hub.NGO"),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='NGONeed',
+            name="NGONeed",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.CharField(max_length=4096, verbose_name='Description')),
-                ('kind', models.CharField(choices=[('resource', 'resource'), ('volunteer', 'volunteer'), ('money', 'money')], default='resource', max_length=10, verbose_name='Kind')),
-                ('urgency', models.CharField(choices=[('critical', 'critical'), ('high', 'high'), ('medium', 'medium'), ('low', 'low')], default='low', max_length=10, verbose_name='Urgency')),
-                ('ngo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='hub.NGO')),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("description", models.CharField(max_length=4096, verbose_name="Description")),
+                (
+                    "kind",
+                    models.CharField(
+                        choices=[("resource", "resource"), ("volunteer", "volunteer"), ("money", "money")],
+                        default="resource",
+                        max_length=10,
+                        verbose_name="Kind",
+                    ),
+                ),
+                (
+                    "urgency",
+                    models.CharField(
+                        choices=[("critical", "critical"), ("high", "high"), ("medium", "medium"), ("low", "low")],
+                        default="low",
+                        max_length=10,
+                        verbose_name="Urgency",
+                    ),
+                ),
+                ("ngo", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="hub.NGO")),
             ],
         ),
     ]
