@@ -3,64 +3,68 @@
 
 
 {% block content %}
-<section class="section">
+<section class="section donate-view">
     <div class="container">
-        <h1 class="title">Doneaza in siguranta</h1>
-        <p class="subtitle">
+        <h1 class="donate-title">Donează în siguranță</h1>
+        <p class="donate-subtitle">
             Alege dintre organizatiile verificate de mai jos catre cine sa direrectionezi ajutorul tau si ele
             vor gestiona donatiile tale astfel incat ele sa ajunga la cei care au cea mai mare nevoie de ele.
         </p>
     </div>
 
     <div class="container">
-        <div class="columns">
-            <div class="column is-4">
-                <section class="hero {% if current_kind == 'money' %}has-background-info{% else%}has-background-light{% endif %} is-small">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
-                                <a href="{% spurl base='{{ current_url }}' set_query='kind=money' %}">
+        <div class="columns is-multiline">
+            <div class="column is-4 filter">
+                <section class="{% if current_kind == 'money' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                        <div class="columns">
+                            <div class="column has-text-centered">
+                                <a href="{% spurl base='{{ current_url }}' set_query='kind=money' %}" class="has-text-black">
                                     Vreau sa ajut cu bani
                                 </a>
-                            </h1>
+                            </div>
                         </div>
-                    </div>
                 </section>
             </div>
 
-            <div class="column is-4">
-                <section class="hero {% if current_kind == 'resource' %}has-background-info{% else%}has-background-light{% endif %} is-small">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
-                                <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' %}">
+            <div class="column is-4 filter">
+                <section class="{% if current_kind == 'resource' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                        <div class="columns">
+                            <div class="column has-text-centered">
+                                <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' %}" class="has-text-black">
                                     Vreau sa ajut cu resurse
-                                </a>
-                            </h1>
+                                </a></div>
                         </div>
-                    </div>
                 </section>
             </div>
 
-            <div class="column is-4">
-                <section class="hero {% if current_kind == 'volunteer' %}has-background-info{% else%}has-background-light{% endif %} is-small">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
-                                <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' %}">
+            <div class="column is-4 filter">
+                <section class="{% if current_kind == 'volunteer' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                        <div class="columns">
+                            <div class="column has-text-centered">
+                                <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' %}" class="has-text-black">
                                     Vreau sa voluntariez
                                 </a>
-                            </h1>
+                            </div>
                         </div>
-                    </div>
                 </section>
             </div>
         </div>
     </div>
 
     <div class="container">
-        {% block left-side-view %}
-        {% endblock %}
+        <div class="columns">
+
+            <div class="column">
+                {% block left-side-view %}
+                {% endblock %}
+            </div>
+
+            <div class="column">
+                {% block right-side-view %}
+                {% endblock %}
+            </div>
+
+        </div>
     </div>
 
 </section>
