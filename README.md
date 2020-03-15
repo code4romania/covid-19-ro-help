@@ -1,6 +1,6 @@
 # Project name
 
-[![GitHub contributors](https://img.shields.io/github/contributors/code4romania/NEW_REPO_SLUG_HERE.svg?style=for-the-badge)](https://github.com/code4romania/NEW_REPO_SLUG_HERE/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/NEW_REPO_SLUG_HERE.svg?style=for-the-badge)](https://github.com/code4romania/NEW_REPO_SLUG_HERE/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
+[![GitHub contributors](https://img.shields.io/github/contributors/code4romania/ro-help.svg?style=for-the-badge)](https://github.com/code4romania/ro-help/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/ro-help.svg?style=for-the-badge)](https://github.com/code4romania/ro-help/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
 
 This project is the result of the 2019 Civic Labs research. You can view the knowledge base of the project, as well as the prototype, on the [Aid Management Hub](https://civiclabs.ro/ro/solutions/aid-management-hub) Civic Labs page.
 
