@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <nav class="level">
 
@@ -6,7 +7,10 @@
     <div class="level-right">
 
         <div class="level-item">
-            <span>Un proiect incubat în programul </span>
+            <span>
+                {% trans "Project incubated by" %}
+            </span>
+
             <span class="logo">
                 <a href="https://code4.ro/ro/" target="_blank" rel="noopener noreferrer">
                     <img src="{% static "images/code4romania-taskforce.svg" %}" alt="Code for Romania Task Force logo" width=100" height="100">

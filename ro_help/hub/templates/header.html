@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <div class="container">
   <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -17,23 +18,36 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end has-text-centered-touch">
       <a class="navbar-item">
-        Despre site
+        {% trans "About" %}
       </a>
 
       <a class="navbar-item">
-        Link
+        {% trans "Link" %}
       </a>
 
       <a class="navbar-item">
-        Link
+        {% trans "Link" %}
       </a>
 
       <a class="navbar-item">
-        Link
+        {% trans "Link" %}
       </a>
 
       <a class="navbar-item">
-        Link
+        {% get_available_languages as LANGUAGES %}
+        {% get_current_language as LANGUAGE_CODE %}
+
+        {% for language in LANGUAGES %}
+          {% if language.0 != LANGUAGE_CODE %}
+            <form class="d-inline" action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ redirect_to }}"/>
+              <input type="hidden" name="language" value="{{ language.0 }}"/>
+              <input class="button is-success" type="submit" value="{{ language.0 | upper }}"/>
+            </form>
+          {% endif %}
+        {% endfor %}
+
       </a>
 
       <hr class="navbar-divider">

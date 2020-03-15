@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-15 19:51+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
+
+#: hub/admin.py:16
+msgid "active"
+msgstr "active"
+
+#: hub/models.py:53 hub/models.py:103
+msgid "Name"
+msgstr "Nume"
+
+#: hub/models.py:54 hub/models.py:87 hub/models.py:110
+msgid "Description"
+msgstr "Descriere"
+
+#: hub/models.py:55 hub/models.py:104
+msgid "Email"
+msgstr "Email"
+
+#: hub/models.py:56 hub/models.py:105
+msgid "Phone"
+msgstr "Telefon"
+
+#: hub/models.py:57
+msgid "Avatar"
+msgstr "Avatar"
+
+#: hub/models.py:58 hub/models.py:108
+msgid "Address"
+msgstr "Adresa"
+
+#: hub/models.py:59 hub/models.py:106 hub/templates/ngo/list.html:61
+msgid "City"
+msgstr "Oras"
+
+#: hub/models.py:60 hub/models.py:107 hub/templates/ngo/list.html:29
+msgid "County"
+msgstr "Judet"
+
+#: hub/models.py:86
+msgid "Title"
+msgstr ""
+
+#: hub/models.py:89 hub/models.py:112
+msgid "Kind"
+msgstr ""
+
+#: hub/models.py:90 hub/models.py:113
+msgid "Urgency"
+msgstr ""
+
+#: hub/models.py:92
+msgid "Resolved on"
+msgstr ""
+
+#: hub/models.py:109
+msgid "Organization"
+msgstr ""
+
+#: hub/templates/bottom_logo_section.html:11
+msgid "Project incubated by"
+msgstr ""
+
+#: hub/templates/footer.html:23
+msgid ""
+"An independent, non-partisan, non-political, non-govermental organization."
+msgstr ""
+
+#: hub/templates/header.html:37
+msgid "About"
+msgstr ""
+
+#: hub/templates/header.html:41 hub/templates/header.html:45
+#: hub/templates/header.html:49 hub/templates/header.html:53
+msgid "Link"
+msgstr ""
+
+#: hub/templates/ngo/base.html:10
+msgid "Donate safely"
+msgstr "Doneaza in siguranta"
+
+#: hub/templates/ngo/base.html:13
+msgid ""
+"Direct your aid towards one of the verified organizations below. They will "
+"manage the aid and resources you provide them with so that the people most "
+"in need receive them."
+msgstr ""
+
+#: hub/templates/ngo/base.html:24
+msgid "I want to help with money"
+msgstr "Vreau sa ajut cu bani"
+
+#: hub/templates/ngo/base.html:36
+msgid "I want to help with resources"
+msgstr ""
+
+#: hub/templates/ngo/base.html:47
+msgid "I want to volunteer"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:35
+msgid "About the organization"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:47
+msgid "Donate money"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:59
+msgid "Donate via PayPal"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:66 hub/templates/ngo/detail.html:79
+msgid "Donate"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:72
+msgid "Donate via Netopia"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:85
+msgid "Donate via Wire"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:97
+msgid "Donate resources"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:113 hub/templates/ngo/detail.html:142
+msgid "I can help"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:127
+msgid "Join as volunteer"
+msgstr ""
+
+#: hub/templates/ngo/list.html:12
+msgid "NGOs that manage"
+msgstr ""
+
+#: hub/templates/ngo/list.html:14
+msgid "financial aid"
+msgstr ""
+
+#: hub/templates/ngo/list.html:17
+msgid "resource aid"
+msgstr ""
+
+#: hub/templates/ngo/list.html:19
+msgid "volunteers"
+msgstr ""
+
+#: hub/templates/ngo/list.html:111
+msgid "donate"
+msgstr ""
+
+#: hub/templates/ngo/list.html:123
+msgid "Useful instruments"
+msgstr ""
+
+#: hub/templates/top_logo_section.html:12
+msgid "A project develop by"
+msgstr ""
+
+#: hub/templates/top_logo_section.html:23
+msgid "Partnership with"
+msgstr ""
