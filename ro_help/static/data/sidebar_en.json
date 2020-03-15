@@ -1,0 +1,30 @@
+[
+  {
+    "app": "Știri oficiale add-on",
+    "call_to_action": "Instalează-ți add-on-ul de depistat știri false",
+    "description": "eneneneneneenenen",
+    "button_text": "eneneneneneenenen",
+    "color": ""
+  },
+  {
+    "app": "Știri oficiale",
+    "call_to_action": "Informează-te din surse oficiale",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, duis pretium.",
+    "button_text": "Cele mai noi informații oficiale",
+    "color": ""
+  },
+  {
+    "app": "Ce mă fac",
+    "call_to_action": "Alfă ce ai de făcut în orice situație",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, duis pretium.",
+    "button_text": "Ceva cu arbori decizionali",
+    "color": ""
+  },
+  {
+    "app": "Date la zi",
+    "call_to_action": "Vizualizări șmechere",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, duis pretium.",
+    "button_text": "Vezi situația curentă",
+    "color": ""
+  }
+]

@@ -63,6 +63,17 @@
 
             <div class="column is-narrow">
                 {% block right-side-view %}
+                    <div class="container ngo-list">
+                        <h1 class="donate-title">{% trans "Useful instruments" %}</h1>
+                        {% for project in info %}
+                            <p>{{ project.app }}</p>
+                            <p>{{ project.call_to_action }}</p>
+                            <p>{{ project.description }}</p>
+                            <p>{{ project.button_text }}</p>
+                            <p>{{ project.color }}</p>
+                            <hr />
+                        {% endfor %}
+                    </div>
                 {% endblock %}
             </div>
 

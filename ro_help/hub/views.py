@@ -1,4 +1,7 @@
+import json
+
 from django.views.generic import ListView, DetailView
+from django.utils import translation
 
 from hub.models import NGO
 
@@ -36,6 +39,10 @@ class NGOListView(ListView):
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
 
+        # TODO: extract in a common class
+        with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
+            context["info"] = json.loads(info.read())
+
         return context
 
 
@@ -47,4 +54,9 @@ class NGODetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["current_kind"] = self.request.GET.get("kind", "money")
+
+        # TODO: extract in a common class
+        with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
+            context["info"] = json.loads(info.read())
+
         return context
