@@ -6,3 +6,4 @@ psycopg2==2.8.4
 Pillow==7.0.0
 
 django-spurl==0.6.6
+django-admin-autocomplete-filter==0.4
