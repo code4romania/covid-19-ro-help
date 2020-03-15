@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+from django.utils.translation import ugettext_lazy as _
+
 import environ
 
 root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
@@ -59,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "ro_help.urls"
@@ -107,9 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = "ro"
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, "../", "locale"),
+)
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
+LANGUAGE_CODE = "ro"
 
 LANGUAGES = (
     ("en", "English"),

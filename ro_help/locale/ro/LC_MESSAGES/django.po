@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-15 18:51+0000\n"
+"POT-Creation-Date: 2020-03-15 19:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,13 +47,13 @@ msgstr "Avatar"
 msgid "Address"
 msgstr "Adresa"
 
-#: hub/models.py:59 hub/models.py:106 hub/templates/ngo/list.html:44
+#: hub/models.py:59 hub/models.py:106 hub/templates/ngo/list.html:61
 msgid "City"
-msgstr ""
+msgstr "Oras"
 
-#: hub/models.py:60 hub/models.py:107 hub/templates/ngo/list.html:14
+#: hub/models.py:60 hub/models.py:107 hub/templates/ngo/list.html:29
 msgid "County"
-msgstr ""
+msgstr "Judet"
 
 #: hub/models.py:86
 msgid "Title"
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Organization"
 msgstr ""
 
-#: hub/templates/bottom_logo_section.html:10
+#: hub/templates/bottom_logo_section.html:11
 msgid "Project incubated by"
 msgstr ""
 
@@ -84,28 +84,35 @@ msgid ""
 "An independent, non-partisan, non-political, non-govermental organization."
 msgstr ""
 
-#: hub/templates/header.html:22
+#: hub/templates/header.html:37
 msgid "About"
 msgstr ""
 
-#: hub/templates/header.html:26 hub/templates/header.html:30
-#: hub/templates/header.html:34 hub/templates/header.html:38
+#: hub/templates/header.html:41 hub/templates/header.html:45
+#: hub/templates/header.html:49 hub/templates/header.html:53
 msgid "Link"
 msgstr ""
 
 #: hub/templates/ngo/base.html:10
 msgid "Donate safely"
+msgstr "Doneaza in siguranta"
+
+#: hub/templates/ngo/base.html:13
+msgid ""
+"Direct your aid towards one of the verified organizations below. They will "
+"manage the aid and resources you provide them with so that the people most "
+"in need receive them."
 msgstr ""
 
-#: hub/templates/ngo/base.html:25
+#: hub/templates/ngo/base.html:24
 msgid "I want to help with money"
-msgstr ""
+msgstr "Vreau sa ajut cu bani"
 
-#: hub/templates/ngo/base.html:37
+#: hub/templates/ngo/base.html:36
 msgid "I want to help with resources"
 msgstr ""
 
-#: hub/templates/ngo/base.html:48
+#: hub/templates/ngo/base.html:47
 msgid "I want to volunteer"
 msgstr ""
 
@@ -122,7 +129,6 @@ msgid "Donate via PayPal"
 msgstr ""
 
 #: hub/templates/ngo/detail.html:66 hub/templates/ngo/detail.html:79
-#: hub/templates/ngo/list.html:93
 msgid "Donate"
 msgstr ""
 
@@ -144,6 +150,30 @@ msgstr ""
 
 #: hub/templates/ngo/detail.html:127
 msgid "Join as volunteer"
+msgstr ""
+
+#: hub/templates/ngo/list.html:12
+msgid "NGOs that manage"
+msgstr ""
+
+#: hub/templates/ngo/list.html:14
+msgid "financial aid"
+msgstr ""
+
+#: hub/templates/ngo/list.html:17
+msgid "resource aid"
+msgstr ""
+
+#: hub/templates/ngo/list.html:19
+msgid "volunteers"
+msgstr ""
+
+#: hub/templates/ngo/list.html:111
+msgid "donate"
+msgstr ""
+
+#: hub/templates/ngo/list.html:123
+msgid "Useful instruments"
 msgstr ""
 
 #: hub/templates/top_logo_section.html:12
