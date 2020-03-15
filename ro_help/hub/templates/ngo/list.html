@@ -115,14 +115,8 @@
 </div>
 {% endblock %}
 
-{% block right-side-view %}
-<div class="container ngo-list">
-    <h1 class="donate-title">{% trans "Useful instruments" %}</h1>
-</div>
-{% endblock %}
-
 {% block content %}
-{% with current_url=request.get_full_path %}
-{{ block.super }}
-{% endwith %}
+    {% with current_url=request.get_full_path %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock %}
