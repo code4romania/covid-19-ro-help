@@ -1,5 +1,7 @@
 {% extends 'ngo/base.html' %}
 {% load spurl %}
+{% load i18n %}
+
 
 {% block left-side-view %}
 <section class="section">
@@ -30,7 +32,7 @@
 
     <div class="container">
         <div class="content">
-            <h3>Despre organizatie</h3>
+            <h3>{% trans "About the organization" %}</h3>
         </div>
         <div class="content">
             <p>{{ ngo.description }}</p>
@@ -42,7 +44,7 @@
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Doneaza bani
+                        {% trans "Donate money" %}
                     </p>
                     <a href="#donate-money" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
                         <span class="icon">
@@ -54,33 +56,33 @@
                 <div id="donate-money" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
                     <div class="card-content">
                         <div class="container">
-                            <h4>Doneaza prin PayPal:</h4>
+                            <h4>{% trans "Donate via PayPal" %}:</h4>
                             <div class="columns">
                                 <div class="column is-8-desktop">
                                     100 eur
                                 </div>
 
                                 <div class="column is-2-desktop ">
-                                    <button class="button has-background-primary is-medium">Doneaza</button>
+                                    <button class="button has-background-primary is-medium">{% trans "Donate" %}</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="container">
-                            <h4>Doneaza prin Netopia:</h4>
+                            <h4>{% trans "Donate via Netopia" %}:</h4>
                             <div class="columns">
                                 <div class="column is-8-desktop">
                                     100 eur
                                 </div>
 
                                 <div class="column is-2-desktop ">
-                                    <button class="button has-background-primary is-medium">Doneaza</button>
+                                    <button class="button has-background-primary is-medium">{% trans "Donate" %}</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="container">
-                            <h4>Doneaza prin transfer bancar:</h4>
+                            <h4>{% trans "Donate via Wire" %}:</h4>
                             TODO: add from ngo model
                         </div>
                     </div>
@@ -92,7 +94,7 @@
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Doneaza resurse
+                        {% trans "Donate resources" %}
                     </p>
                     <a href="#donate-resources" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
                         <span class="icon">
@@ -108,7 +110,7 @@
                                 <h3 class="is-size-5 has-text-weight-bold">{{ need.title }}</h3>
                                 <p>{{ need.description }}</p>
                                 <div class="content has-text-centered">
-                                    <button class="button is-medium has-background-success has-text-weight-bold has-text-white">Pot sa ajut eu</button>
+                                    <button class="button is-medium has-background-success has-text-weight-bold has-text-white">{% trans "I can help" %}</button>
                                 </div>
                             </div>
                             <hr />
@@ -122,7 +124,7 @@
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Implica-te ca voluntar
+                        {% trans "Join as volunteer" %}
                     </p>
                     <a href="#donate-volunteer" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
                         <span class="icon">
@@ -137,7 +139,7 @@
                             TODO: need some text here
                         </p>
                         <div class="content has-text-centered">
-                            <button class="button is-medium has-background-success has-text-weight-bold has-text-white">Pot sa ajut eu</button>
+                            <button class="button is-medium has-background-success has-text-weight-bold has-text-white">{% trans "I can help" %}</button>
                         </div>
                     </div>
                 </div>

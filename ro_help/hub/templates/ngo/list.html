@@ -1,33 +1,36 @@
 {% extends 'ngo/base.html' %}
 {% load spurl %}
+{% load i18n %}
 
 
 {% block left-side-view %}
 <div class="container ngo-list">
-    <h1 class="donate-title">Organizațiile care gestionează
+    <h1 class="donate-title">
+        {% trans "NGOs that manage" %}
         {% if current_kind == 'money' %}
-        spijin financiar
+            {% trans "financial aid" %}
         {% else %}
         {% if current_kind == 'resource' %}
-        donații în resurse
+            {% trans "resource aid" %}
         {% else %}
-        voluntari
+            {% trans "volunteers" %}
         {% endif %}
         {% endif %}
     </h1>
+
     <div class="columns is-mobile">
         <div class="column is-narrow filter-dropdown">
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu1">
-                        <span>Judet</span>
+                        <span>{% trans "County" %}</span>
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
                     </button>
                 </div>
+
                 <div class="dropdown-menu" id="dropdown-menu1" role="menu">
-                <div class="dropdown-menu" role="menu">
                     <div class="dropdown-content">
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' %}"
@@ -52,8 +55,7 @@
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                        <span>Oras</span>
+                        <span>{% trans "City" %}</span>
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
@@ -61,7 +63,6 @@
                 </div>
 
                 <div class="dropdown-menu" id="dropdown-menu2" role="menu">
-                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                     <div class="dropdown-content">
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' %}"
@@ -104,7 +105,7 @@
 
                 <footer class="card-footer">
                     <a class="has-background-success has-text-white card-footer-item has-text-weight-bold"
-                        href="{% spurl base='{{ ngo_url }}' set_query='kind={{ current_kind }}' %}">Doneaza</a>
+                        href="{% spurl base='{{ ngo_url }}' set_query='kind={{ current_kind }}' %}">{% trans "donate" %}</a>
                 </footer>
 
             </div>
@@ -116,7 +117,7 @@
 
 {% block right-side-view %}
 <div class="container ngo-list">
-    <h1 class="donate-title">Useful instruments</h1>
+    <h1 class="donate-title">{% trans "Useful instruments" %}</h1>
 </div>
 {% endblock %}
 
