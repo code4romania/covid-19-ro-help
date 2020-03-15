@@ -50,9 +50,9 @@ class KIND:
 
 
 class NGO(TimeStampedModel):
-    name = models.CharField(_("Name"), max_length=254,)
+    name = models.CharField(_("Name"), max_length=254)
     description = models.CharField(_("Description"), max_length=2048)
-    email = models.EmailField(_("Email"), )
+    email = models.EmailField(_("Email"),)
     phone = models.CharField(_("Phone"), max_length=30)
     avatar = models.ImageField(_("Avatar"), max_length=300)
     address = models.CharField(_("Address"), max_length=400)
@@ -63,20 +63,42 @@ class NGO(TimeStampedModel):
         return self.name
 
 
-class NGONeed(TimeStampedModel):
-    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE)
+class NGONeedQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(resolved_on=None)
 
+    def resolved(self):
+        return self.exclude(resolved_on=None)
+
+    def money(self):
+        return self.active().filter(kind=KIND.MONEY)
+
+    def resource(self):
+        return self.active().filter(kind=KIND.RESOURCE)
+
+    def volunteer(self):
+        return self.active().filter(kind=KIND.VOLUNTEER)
+
+
+class NGONeed(TimeStampedModel):
+    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, related_name="needs")
+
+    title = models.CharField(_("Title"), max_length=254)
     description = models.CharField(_("Description"), max_length=4096)
 
     kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
     urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
+
+    resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
+
+    objects = NGONeedQuerySet.as_manager()
 
     def __str__(self):
         return f"{self.ngo.name}: {self.urgency} {self.kind}"
 
 
 class PersonalRequest(TimeStampedModel):
-    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, null=True, blank=True)
+    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, null=True, blank=True, related_name="requests")
 
     name = models.CharField(_("Name"), max_length=254,)
     email = models.EmailField(_("Email"), null=True, blank=True)
