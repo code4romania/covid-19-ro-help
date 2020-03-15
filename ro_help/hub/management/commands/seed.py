@@ -5,6 +5,7 @@ from faker import Faker
 
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 from hub.models import NGO, NGONeed, KIND, URGENCY
 
@@ -97,4 +98,6 @@ class Command(BaseCommand):
                     "kind": random.choice(KIND.to_list()),
                     "urgency": random.choice(URGENCY.to_list()),
                     "description": fake.text(),
+                    "title": fake.text(),
+                    "resolved_on": random.choice([None, timezone.now()]),
                 })
