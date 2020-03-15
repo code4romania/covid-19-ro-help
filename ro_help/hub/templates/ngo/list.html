@@ -3,105 +3,122 @@
 
 
 {% block left-side-view %}
-<section class="section">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-1">
-                <div class="dropdown is-hoverable">
-                    <div class="dropdown-trigger">
-                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                            <span>Judet</span>
-                            <span class="icon is-small">
-                                <i class="fas fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="dropdown-menu" role="menu">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' %}" class="dropdown-item">
-                                    -
-                                </a>
-                            </div>
-                            {% for county in counties %}
-                                <div class="dropdown-item">
-                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='county={{ county }}' remove_query_param='city' %}"
-                                       class="dropdown-item {% if county == current_county %}is-active{% endif %}">
-                                        {{ county }}
-                                    </a>
-                                </div>
-                            {% endfor %}
+<div class="container ngo-list">
+    <h1 class="donate-title">Organizațiile care gestionează
+        {% if current_kind == 'money' %}
+        spijin financiar
+        {% else %}
+        {% if current_kind == 'resource' %}
+        donații în resurse
+        {% else %}
+        voluntari
+        {% endif %}
+        {% endif %}
+    </h1>
+    <div class="columns is-mobile">
+        <div class="column is-narrow filter-dropdown">
+            <div class="dropdown">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        <span>Judet</span>
+                        <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" role="menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-item">
+                            <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' %}"
+                                class="dropdown-item">
+                                -
+                            </a>
                         </div>
+                        {% for county in counties %}
+                        <div class="dropdown-item">
+                            <a href="{% spurl base='{{ request.get_full_path }}' set_query='county={{ county }}' remove_query_param='city' %}"
+                                class="dropdown-item {% if county == current_county %}is-active{% endif %}">
+                                {{ county }}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-narrow filter-dropdown">
+            <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        <span>Oras</span>
+                        <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-item">
+                            <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' %}"
+                                class="dropdown-item">
+                                -
+                            </a>
+                        </div>
+                        {% for city in cities %}
+                        <div class="dropdown-item">
+                            <a href="{% spurl base='{{ request.get_full_path }}' set_query='city={{ city }}' %}"
+                                class="dropdown-item {% if city == current_city %}is-active{% endif %}">
+                                {{ city }}
+                            </a>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
 
-            <div class="column is-1">
-                <div class="dropdown is-hoverable">
-                    <div class="dropdown-trigger">
-                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                            <span>Oras</span>
-                            <span class="icon is-small">
-                                <i class="fas fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                    </div>
+        </div>
+    </div>
+</div>
 
-                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' %}" class="dropdown-item">
-                                    -
-                                </a>
-                            </div>
-                            {% for city in cities %}
-                                <div class="dropdown-item">
-                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='city={{ city }}' %}"
-                                       class="dropdown-item {% if city == current_city %}is-active{% endif %}">
-                                        {{ city }}
-                                    </a>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
+<div class="container">
+    <div class="columns is-multiline">
+        {% for ngo in object_list %}
+        <div class="card column is-4-desktop is-4-tablet is-6-mobile">
+            <div class="box card-content">
+                <div class="content">
+                    <p class="title is-4">{{ ngo.name }}</p>
                 </div>
+
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <img src="{{ ngo.avatar }}" alt="{{ ngo.name }}">
+                    </figure>
+                </div>
+
+                {% url 'ngo-detail' ngo.pk as ngo_url %}
+
+                <footer class="card-footer">
+                    <a class="has-background-success has-text-white card-footer-item has-text-weight-bold"
+                        href="{% spurl base='{{ ngo_url }}' set_query='kind={{ current_kind }}' %}">Doneaza</a>
+                </footer>
 
             </div>
         </div>
+        {% endfor %}
     </div>
+</div>
+{% endblock %}
 
-    <div class="container">
-        <div class="columns is-multiline">
-            {% for ngo in object_list %}
-                <div class="card column is-4-desktop is-4-tablet is-6-mobile">
-                    <div class="box card-content">
-                        <div class="content">
-                            <p class="title is-4">{{ ngo.name }}</p>
-                        </div>
-
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="{{ ngo.avatar }}" alt="{{ ngo.name }}">
-                            </figure>
-                        </div>
-
-                        {% url 'ngo-detail' ngo.pk as ngo_url %}
-
-                        <footer class="card-footer">
-                            <a class="has-background-success has-text-white card-footer-item has-text-weight-bold"
-                               href="{% spurl base='{{ ngo_url }}' set_query='kind={{ current_kind }}' %}">Doneaza</a>
-                        </footer>
-
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+{% block right-side-view %}
+<div class="container ngo-list">
+    <h1 class="donate-title">Useful instruments</h1>
+</div>
 {% endblock %}
 
 {% block content %}
-    {% with current_url=request.get_full_path %}
-        {{ block.super }}
-    {% endwith %}
+{% with current_url=request.get_full_path %}
+{{ block.super }}
+{% endwith %}
 {% endblock %}
