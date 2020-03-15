@@ -67,6 +67,9 @@ class NGONeedQuerySet(models.QuerySet):
     def active(self):
         return self.filter(resolved_on=None)
 
+    def resolved(self):
+        return self.exclude(resolved_on=None)
+
     def money(self):
         return self.active().filter(kind=KIND.MONEY)
 
