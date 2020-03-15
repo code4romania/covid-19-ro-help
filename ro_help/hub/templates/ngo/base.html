@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% load spurl %}
+{% load i18n %}
 
 
 {% block content %}
 <section class="section donate-view">
     <div class="container">
-        <h1 class="donate-title">Donează în siguranță</h1>
+        <h1 class="donate-title">
+            {% trans "Donate safely" %}
+        </h1>
         <p class="donate-subtitle">
-            Alege dintre organizatiile verificate de mai jos catre cine sa direrectionezi ajutorul tau si ele
-            vor gestiona donatiile tale astfel incat ele sa ajunga la cei care au cea mai mare nevoie de ele.
+            {% trans "Direct your aid towards one of the verified organizations below.
+            They will manage the aid and resources you provide them with so that the people most in need receive them." %}
         </p>
     </div>
 
@@ -19,7 +22,7 @@
                         <div class="columns">
                             <div class="column has-text-centered">
                                 <a href="{% spurl base='{{ current_url }}' set_query='kind=money' %}" class="has-text-black">
-                                    Vreau sa ajut cu bani
+                                    {% trans "I want to help with money" %}
                                 </a>
                             </div>
                         </div>
@@ -31,7 +34,7 @@
                         <div class="columns">
                             <div class="column has-text-centered">
                                 <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' %}" class="has-text-black">
-                                    Vreau sa ajut cu resurse
+                                    {% trans "I want to help with resources" %}
                                 </a></div>
                         </div>
                 </section>
@@ -42,7 +45,7 @@
                         <div class="columns">
                             <div class="column has-text-centered">
                                 <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' %}" class="has-text-black">
-                                    Vreau sa voluntariez
+                                    {% trans "I want to volunteer" %}
                                 </a>
                             </div>
                         </div>
