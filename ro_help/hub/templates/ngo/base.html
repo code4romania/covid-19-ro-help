@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load spurl %}
+
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Doneaza in siguranta</h1>
+        <p class="subtitle">
+            Alege dintre organizatiile verificate de mai jos catre cine sa direrectionezi ajutorul tau si ele
+            vor gestiona donatiile tale astfel incat ele sa ajunga la cei care au cea mai mare nevoie de ele.
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="columns">
+            <div class="column is-4">
+                <section class="hero {% if current_kind == 'money' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                <a href="{% spurl base='{{ current_url }}' set_query='kind=money' %}">
+                                    Vreau sa ajut cu bani
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="column is-4">
+                <section class="hero {% if current_kind == 'resource' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' %}">
+                                    Vreau sa ajut cu resurse
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="column is-4">
+                <section class="hero {% if current_kind == 'volunteer' %}has-background-info{% else%}has-background-light{% endif %} is-small">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' %}">
+                                    Vreau sa voluntariez
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% block left-side-view %}
+        {% endblock %}
+    </div>
+</section>
+{% endblock %}
