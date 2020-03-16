@@ -8,36 +8,53 @@ import django_extensions.db.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0005_auto_20200315_1122'),
+        ("hub", "0005_auto_20200315_1122"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ngoneed',
-            name='kind',
-            field=models.CharField(choices=[('resource', 'resource'), ('volunteer', 'volunteer'), ('money', 'money')], default='money', max_length=10, verbose_name='Kind'),
+            model_name="ngoneed",
+            name="kind",
+            field=models.CharField(
+                choices=[("resource", "resource"), ("volunteer", "volunteer"), ("money", "money")],
+                default="money",
+                max_length=10,
+                verbose_name="Kind",
+            ),
         ),
         migrations.AlterField(
-            model_name='personalrequest',
-            name='kind',
-            field=models.CharField(choices=[('resource', 'resource'), ('volunteer', 'volunteer'), ('money', 'money')], default='money', max_length=10, verbose_name='Kind'),
+            model_name="personalrequest",
+            name="kind",
+            field=models.CharField(
+                choices=[("resource", "resource"), ("volunteer", "volunteer"), ("money", "money")],
+                default="money",
+                max_length=10,
+                verbose_name="Kind",
+            ),
         ),
         migrations.CreateModel(
-            name='NGOHelper',
+            name="NGOHelper",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, verbose_name='created')),
-                ('modified', django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified')),
-                ('name', models.CharField(max_length=254, verbose_name='Name')),
-                ('email', models.EmailField(max_length=254, verbose_name='Email')),
-                ('message', models.CharField(max_length=2048, verbose_name='Messaeg')),
-                ('phone', models.CharField(blank=True, max_length=30, null=True, verbose_name='Phone')),
-                ('ngo_need', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='helpers', to='hub.NGONeed')),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                (
+                    "created",
+                    django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, verbose_name="created"),
+                ),
+                (
+                    "modified",
+                    django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name="modified"),
+                ),
+                ("name", models.CharField(max_length=254, verbose_name="Name")),
+                ("email", models.EmailField(max_length=254, verbose_name="Email")),
+                ("message", models.CharField(max_length=2048, verbose_name="Messaeg")),
+                ("phone", models.CharField(blank=True, max_length=30, null=True, verbose_name="Phone")),
+                (
+                    "ngo_need",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, related_name="helpers", to="hub.NGONeed"
+                    ),
+                ),
             ],
-            options={
-                'ordering': ('-modified', '-created'),
-                'get_latest_by': 'modified',
-                'abstract': False,
-            },
+            options={"ordering": ("-modified", "-created"), "get_latest_by": "modified", "abstract": False,},
         ),
     ]

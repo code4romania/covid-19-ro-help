@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0007_auto_20200316_1853'),
+        ("hub", "0007_auto_20200316_1853"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ngohelper',
-            name='read',
-            field=models.BooleanField(blank=True, null=True, verbose_name='Read on'),
+            model_name="ngohelper",
+            name="read",
+            field=models.BooleanField(blank=True, null=True, verbose_name="Read on"),
         ),
     ]
