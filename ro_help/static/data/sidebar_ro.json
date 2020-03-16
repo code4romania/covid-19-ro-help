@@ -1,30 +1,44 @@
 [
   {
     "app": "Știri oficiale add-on",
-    "call_to_action": "Instalează-ți add-on-ul de depistat știri false",
+    "call_to_action": "Instalează-ți add-on-ul de browser de depistat știri false",
     "description": "",
-    "button_text": "",
-    "color": ""
+    "button_text": "Instalează-ți add-on-ul",
+    "color": "#05d6c8"
   },
   {
     "app": "Știri oficiale",
-    "call_to_action": "Informează-te din surse oficiale",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, duis pretium.",
-    "button_text": "Cele mai noi informații oficiale",
-    "color": ""
+    "call_to_action": "Ia-ți știrile de unde trebuie",
+    "description": "Știri pe surse, cum s-ar zice",
+    "button_text": "Hai la știri odată!",
+    "color": "#05d6c8"
   },
   {
     "app": "Ce mă fac",
-    "call_to_action": "Alfă ce ai de făcut în orice situație",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, duis pretium.",
-    "button_text": "Ceva cu arbori decizionali",
-    "color": ""
+    "call_to_action": "Află ce ai de făcut în orice situație ",
+    "description": "",
+    "button_text": "Ghiduri pentru cetățeni",
+    "color": "#ffdd57"
   },
   {
     "app": "Date la zi",
-    "call_to_action": "Vizualizări șmechere",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, duis pretium.",
+    "call_to_action": "Really cool visuals",
+    "description": "Statistici șmechere care arată frumos și sunt responsive",
     "button_text": "Vezi situația curentă",
-    "color": ""
+    "color": "#f5bcd6"
+  },
+  {
+    "app": "Diaspora Hub",
+    "call_to_action": "Locuiești în diaspora?",
+    "description": "",
+    "button_text": "Intră în aplicația ta",
+    "color": "#38b6ff"
+  },
+  {
+    "app": "Stăm acasă",
+    "call_to_action": "Ești în auto-izolare?",
+    "description": "",
+    "button_text": "Intră-n aplicația ta",
+    "color": "#ffbc57"
   }
 ]
