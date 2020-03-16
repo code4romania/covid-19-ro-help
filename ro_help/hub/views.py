@@ -11,8 +11,8 @@ from hub.models import NGO, NGONeed, NGOHelper, KIND
 
 
 class NGOListView(ListView):
-    # TODO: add requests_count to filters
     allow_filters = ["county", "city"]
+    paginate_by = 9
 
     template_name = "ngo/list.html"
 
