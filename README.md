@@ -1,18 +1,24 @@
-# Project name
+# RO help
 
 [![GitHub contributors](https://img.shields.io/github/contributors/code4romania/ro-help.svg?style=for-the-badge)](https://github.com/code4romania/ro-help/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/ro-help.svg?style=for-the-badge)](https://github.com/code4romania/ro-help/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
 
 This project is the result of the 2019 Civic Labs research. You can view the knowledge base of the project, as well as the prototype, on the [Aid Management Hub](https://civiclabs.ro/ro/solutions/aid-management-hub) Civic Labs page.
 
-Aid Management Hub is a platform meant to help NGOs organize their activities during an emergency situation. Initially prototyped with an earthquake in mind, this project was pushed at the forefront of our [Tech for Social Good](https://tfsg.code4.ro/ro/) development program during the COVID-19 pandemic. 
+Aid Management Hub is a platform meant to help NGOs organize their activities during an emergency situation. Initially prototyped with an earthquake in mind, this project was pushed at the forefront of our [Tech for Social Good](https://tfsg.code4.ro/ro/) development program during the COVID-19 pandemic.
 
-[Contributing](#contributing) | [Built with](#built-with) | [Repos and projects](#repos-and-projects) | [Deployment](#deployment) | [Feedback](#feedback) | [License](#license) | [About Code4Ro](#about-code4ro)
+[See the project live](https://rohelp.ro/)
+
+Objective: Safe and coherent collection of aid.
+
+How: The application shows verified and validated NGOs for the collection and distribution of resources.
+
+Concept developed as part of the Civic Labs program of Code for Romania.
+
+[Contributing](#contributing) | [Built with](#built-with) | [Deployment](#deployment) | [Feedback](#feedback) | [License](#license) | [About Code4Ro](#about-code4ro)
 
 ## Contributing
 
 This project is built by amazing volunteers and you can be one of them! Here's a list of ways in [which you can contribute to this project](.github/CONTRIBUTING.md).
-
-You can also list any pending features and planned improvements for the project here.
 
 ## Built With
 
@@ -21,18 +27,6 @@ Django
 ### Programming languages
 
 Python 3
-
-### Platforms
-
-### Frontend framework
-
-### Package managers
-
-### Database technology & provider
-
-## Repos and projects
-
-Mention all related repos and projects.
 
 ## Deployment
 
