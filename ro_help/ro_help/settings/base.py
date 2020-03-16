@@ -36,7 +36,7 @@ SECRET_KEY = "v*2$eed@gagp7f%kvb=zl%30c-(*gl9qppn0vv%sku#q7o&p64"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com"]
 
 
 # Application definition
