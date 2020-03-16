@@ -42,7 +42,7 @@ class KIND:
 
     @classmethod
     def default(cls):
-        return KIND.RESOURCE
+        return KIND.MONEY
 
     @classmethod
     def to_list(cls):
@@ -51,7 +51,7 @@ class KIND:
 
 class NGO(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
-    description = models.CharField(_("Description"), max_length=2048)
+    description = models.TextField(_("Description"))
     email = models.EmailField(_("Email"),)
     phone = models.CharField(_("Phone"), max_length=30)
     avatar = models.ImageField(_("Avatar"), max_length=300)
@@ -84,7 +84,7 @@ class NGONeed(TimeStampedModel):
     ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, related_name="needs")
 
     title = models.CharField(_("Title"), max_length=254)
-    description = models.CharField(_("Description"), max_length=4096)
+    description = models.TextField(_("Description"))
 
     kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
     urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
@@ -97,6 +97,17 @@ class NGONeed(TimeStampedModel):
         return f"{self.ngo.name}: {self.urgency} {self.kind}"
 
 
+class NGOHelper(TimeStampedModel):
+    ngo_need = models.ForeignKey(NGONeed, on_delete=models.CASCADE, related_name="helpers")
+
+    name = models.CharField(_("Name"), max_length=254)
+    email = models.EmailField(_("Email"),)
+    message = models.TextField(_("Message"))
+    phone = models.CharField(_("Phone"), max_length=30, null=True, blank=True)
+
+    read = models.BooleanField(_("Read on"), null=True, blank=True)
+
+
 class PersonalRequest(TimeStampedModel):
     ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, null=True, blank=True, related_name="requests")
 
@@ -107,7 +118,7 @@ class PersonalRequest(TimeStampedModel):
     county = models.CharField(_("County"), max_length=50)
     address = models.CharField(_("Address"), max_length=400, null=True, blank=True)
     organization = models.CharField(_("Organization"), max_length=400, null=True, blank=True)
-    description = models.CharField(_("Description"), max_length=1024)
+    description = models.TextField(_("Description"))
 
     kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
     urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
