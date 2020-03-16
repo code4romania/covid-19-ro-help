@@ -16,6 +16,16 @@
     </div>
 
     <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="container">
         <div class="columns is-multiline">
             <div class="column is-4 filter">
                 <div class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
