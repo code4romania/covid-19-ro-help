@@ -32,7 +32,7 @@
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
-                    <a href="{% spurl base='{{ current_url }}' set_query='kind=money' %}" class="has-text-black">
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=money' remove_query_param='page' %}" class="has-text-black">
                         <div class="card-content">{% trans "I want to help with money" %}</div>
                     </a>
                 </div>
@@ -43,7 +43,7 @@
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
-                    <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' %}" class="has-text-black">
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' remove_query_param='page' %}" class="has-text-black">
                         <div class="card-content">{% trans "I want to help with resources" %}</div>
                     </a>
                 </div>
@@ -54,7 +54,7 @@
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
-                    <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' %}" class="has-text-black">
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' remove_query_param='page' %}" class="has-text-black">
                         <div class="card-content">{% trans "I want to volunteer" %}</div>
                     </a>
                 </div>
