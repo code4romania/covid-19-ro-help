@@ -1,11 +1,15 @@
 {% extends 'ngo/base.html' %}
+{% load static %}
 {% load spurl %}
 {% load i18n %}
 
 
 {% block left-side-view %}
-<div class="container ngo-list">
+<div class="container">
     <h1 class="donate-title">
+        <span>
+            <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+        </span>
         {% trans "NGOs that manage" %}
         {% if current_kind == 'money' %}
             {% trans "financial aid" %}
@@ -89,8 +93,8 @@
 <div class="container">
     <div class="columns is-multiline">
         {% for ngo in object_list %}
-        <div class="card column is-4-desktop is-4-tablet is-6-mobile">
-            <div class="box card-content">
+        <div class="column is-4-desktop is-4-tablet is-6-mobile">
+            <div class="box card-content has-text-centered">
                 <div class="content">
                     <p class="title is-4">{{ ngo.name }}</p>
                 </div>

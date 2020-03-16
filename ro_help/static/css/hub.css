@@ -2,33 +2,14 @@
     padding: 1rem;
 }
 
+.covid-logo {
+    padding: 0.5rem;
+    width: 30px;
+    height: 30px;
+}
+
 .footer {
     background-color: #004890;
-
-    > .container > .columns {
-		justify-content: space-between;
-	}
-
-	.footer-links {
-
-        .links-header {
-            text-transform: uppercase;
-            font-weight: 700;
-            margin: 0 0 1rem;
-        }
-
-        .links-item {
-            margin: 0 0 .75rem;
-
-            a {
-                color: $grey-dark;
-
-                &:hover {
-                    color: $info;
-                }
-            }
-        }
-    }
 }
 
 .donate-title {
@@ -41,15 +22,44 @@
     padding-bottom: 3rem;
 }
 
+.main-content {
+    margin-top: 5rem;
+}
+
 .filter {
     margin-bottom: 1rem;
 }
 
 .filter-dropdown {
-    margin: 1rem:
+    margin: 1rem;
 }
 
-.ngo-list {
-    margin-top: 5rem;
+.tool {
+    margin-bottom: 1rem;
 }
+
+.card {
+    
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.card-active {
+    background-color: #bfd1e3;
+    color: #00478f;
+}
+
+.card-content {
+    padding: 1rem;
+    flex-grow: 100;
+}
+
+.card-content-narrow {
+    padding: 0.5rem;
+}
+
+.call-to-action {
+    padding: 1rem;
+}
+
 
