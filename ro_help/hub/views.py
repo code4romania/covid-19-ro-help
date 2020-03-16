@@ -70,11 +70,11 @@ class NGOHelperCreateView(SuccessMessageMixin, CreateView):
     template_name = "ngo/detail.html"
     model = NGOHelper
     fields = ["name", "email", "message", "phone"]
-    success_message = _('TODO: add a success message')
+    success_message = _("TODO: add a success message")
 
     def get_object(self, queryset=None):
         # return from local cache, if any
-        if hasattr(self, 'need'):
+        if hasattr(self, "need"):
             return self.need
 
         ngo = NGO.objects.filter(pk=self.kwargs["ngo"]).first()
@@ -111,4 +111,4 @@ class NGOHelperCreateView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('ngo-detail', kwargs={"pk": self.kwargs["ngo"]})
+        return reverse("ngo-detail", kwargs={"pk": self.kwargs["ngo"]})

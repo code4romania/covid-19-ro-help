@@ -6,28 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0006_auto_20200316_1832'),
+        ("hub", "0006_auto_20200316_1832"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ngo',
-            name='description',
-            field=models.TextField(verbose_name='Description'),
+            model_name="ngo", name="description", field=models.TextField(verbose_name="Description"),
+        ),
+        migrations.AlterField(model_name="ngohelper", name="message", field=models.TextField(verbose_name="Message"),),
+        migrations.AlterField(
+            model_name="ngoneed", name="description", field=models.TextField(verbose_name="Description"),
         ),
         migrations.AlterField(
-            model_name='ngohelper',
-            name='message',
-            field=models.TextField(verbose_name='Message'),
-        ),
-        migrations.AlterField(
-            model_name='ngoneed',
-            name='description',
-            field=models.TextField(verbose_name='Description'),
-        ),
-        migrations.AlterField(
-            model_name='personalrequest',
-            name='description',
-            field=models.TextField(verbose_name='Description'),
+            model_name="personalrequest", name="description", field=models.TextField(verbose_name="Description"),
         ),
     ]
