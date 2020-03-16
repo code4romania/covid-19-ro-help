@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load spurl %}
 {% load i18n %}
 
 
 {% block content %}
-<section class="section donate-view">
+<section class="section">
     <div class="container">
         <h1 class="donate-title">
             {% trans "Donate safely" %}
@@ -17,61 +18,73 @@
     <div class="container">
         <div class="columns is-multiline">
             <div class="column is-4 filter">
-                <section class="{% if current_kind == 'money' %}has-background-info{% else%}has-background-light{% endif %} is-small">
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <a href="{% spurl base='{{ current_url }}' set_query='kind=money' %}" class="has-text-black">
-                                    {% trans "I want to help with money" %}
-                                </a>
-                            </div>
-                        </div>
-                </section>
+                <div class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
+                    <span class="call-to-action" style="background-color: #bfd1e3;">
+                        <i class="far fa-check-circle"></i>
+                    </span>
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=money' %}" class="has-text-black">
+                        <div class="card-content">{% trans "I want to help with money" %}</div>
+                    </a>
+                </div>
             </div>
 
             <div class="column is-4 filter">
-                <section class="{% if current_kind == 'resource' %}has-background-info{% else%}has-background-light{% endif %} is-small">
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' %}" class="has-text-black">
-                                    {% trans "I want to help with resources" %}
-                                </a></div>
-                        </div>
-                </section>
+                <div class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
+                    <span class="call-to-action" style="background-color: #bfd1e3;">
+                        <i class="far fa-check-circle"></i>
+                    </span>
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' %}" class="has-text-black">
+                        <div class="card-content">{% trans "I want to help with resources" %}</div>
+                    </a>
+                </div>
             </div>
 
             <div class="column is-4 filter">
-                <section class="{% if current_kind == 'volunteer' %}has-background-info{% else%}has-background-light{% endif %} is-small">
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' %}" class="has-text-black">
-                                    {% trans "I want to volunteer" %}
-                                </a>
-                            </div>
-                        </div>
-                </section>
+                <div class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
+                    <span class="call-to-action" style="background-color: #bfd1e3;">
+                        <i class="far fa-check-circle"></i>
+                    </span>
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' %}" class="has-text-black">
+                        <div class="card-content">{% trans "I want to volunteer" %}</div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container ">
+        
         <div class="columns">
-
-            <div class="column">
+            <div class="column main-content">
                 {% block left-side-view %}
                 {% endblock %}
             </div>
 
-            <div class="column is-narrow">
+            <div class="column is-narrow is-one-third main-content">
                 {% block right-side-view %}
-                    <div class="container ngo-list">
-                        <h1 class="donate-title">{% trans "Useful instruments" %}</h1>
+                    <div class="container">
+                        
+                        <h1 class="donate-title">
+                            <span>
+                                <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                            </span>
+                            {% trans "Useful instruments" %}
+                        </h1>
+
                         {% for project in info %}
-                            <p>{{ project.app }}</p>
-                            <p>{{ project.call_to_action }}</p>
-                            <p>{{ project.description }}</p>
-                            <p>{{ project.button_text }}</p>
-                            <p>{{ project.color }}</p>
-                            <hr />
+                        <div class="tool">
+                            <div class="is-flex">
+                                <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
+                                <h1 class="card-content is-size-5" style="background-color: #f0f0f0;">{{ project.call_to_action }}</h1>
+                            </div>
+                            <div class="card-content" style="background-color: #fafafa;">
+                                {% if project.description %}
+                                <p class="call-to-action">{{project.description}}</p>
+                                {% endif %}
+                                <button class="button is-fullwidth is-white has-text-centered has-text-weight-bold" style="background-color: {{ project.color }};">{{ project.button_text }}</button>
+                            </div>
+                        </div>
+
                         {% endfor %}
                     </div>
                 {% endblock %}
