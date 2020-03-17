@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.models import TimeStampedModel
 
@@ -49,21 +50,44 @@ class KIND:
         return [KIND.RESOURCE, KIND.VOLUNTEER, KIND.MONEY]
 
 
+class COUNTY:
+    counties = ["ALBA", "ARGES", "ARAD", "BACAU", "BIHOR", "BISTRITA-NASAUD", "BRAILA", "BRASOV", "BOTOSANI", "BUZAU", "CLUJ", "CALARASI", "CARAS-SEVERIN", "CONSTANTA", "COVASNA", "DAMBOVITA", "DOLJ", "GORJ", "GALATI", "GIURGIU",
+                "HUNEDOARA", "HARGHITA", "IALOMITA", "IASI", "MEHEDINTI", "MARAMURES", "MURES", "NEAMT", "OLT", "PRAHOVA", "SIBIU", "SALAJ", "SATU-MARE", "SUCEAVA", "TULCEA", "TIMIS", "TELEORMAN", "VALCEA", "VRANCEA", "VASLUI", "ILFOV", "BUCURESTI", "SECTOR 1", "SECTOR 2", "SECTOR 3", "SECTOR 4", "SECTOR 5", "SECTOR 6"]
+
+    @classmethod
+    def to_choices(cls):
+        return [(x, x) for x in cls.counties]
+
+    @classmethod
+    def default(cls):
+        return cls.counties[0]
+
+    @classmethod
+    def to_list(cls):
+        return cls.counties
+
+
 class NGO(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
+    users = models.ManyToManyField(User, related_name="ngos")
     description = models.TextField(_("Description"))
     email = models.EmailField(_("Email"),)
     phone = models.CharField(_("Phone"), max_length=30)
     avatar = models.ImageField(_("Avatar"), max_length=300)
     address = models.CharField(_("Address"), max_length=400)
     city = models.CharField(_("City"), max_length=100)
-    county = models.CharField(_("County"), max_length=50)
+    county = models.CharField(
+        _("County"), choices=COUNTY.to_choices(), max_length=50)
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "ONG-uri"
+
 
 class NGONeedQuerySet(models.QuerySet):
+
     def active(self):
         return self.filter(resolved_on=None)
 
@@ -81,13 +105,16 @@ class NGONeedQuerySet(models.QuerySet):
 
 
 class NGONeed(TimeStampedModel):
-    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, related_name="needs")
+    ngo = models.ForeignKey(
+        NGO, on_delete=models.CASCADE, related_name="needs")
 
     title = models.CharField(_("Title"), max_length=254)
     description = models.TextField(_("Description"))
 
-    kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
-    urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
+    kind = models.CharField(_("Kind"), choices=KIND.to_choices(
+    ), default=KIND.default(), max_length=10)
+    urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(
+    ), default=URGENCY.default(), max_length=10)
 
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
 
@@ -96,9 +123,16 @@ class NGONeed(TimeStampedModel):
     def __str__(self):
         return f"{self.ngo.name}: {self.urgency} {self.kind}"
 
+    class Meta:
+        verbose_name_plural = "Nevoi ONG"
+        verbose_name = "Nevoie ONG"
+
+
+
 
 class NGOHelper(TimeStampedModel):
-    ngo_need = models.ForeignKey(NGONeed, on_delete=models.CASCADE, related_name="helpers")
+    ngo_need = models.ForeignKey(
+        NGONeed, on_delete=models.CASCADE, related_name="helpers")
 
     name = models.CharField(_("Name"), max_length=254)
     email = models.EmailField(_("Email"),)
@@ -109,19 +143,25 @@ class NGOHelper(TimeStampedModel):
 
 
 class PersonalRequest(TimeStampedModel):
-    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, null=True, blank=True, related_name="requests")
+    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE,
+                            null=True, blank=True, related_name="requests")
 
     name = models.CharField(_("Name"), max_length=254,)
     email = models.EmailField(_("Email"), null=True, blank=True)
     phone = models.CharField(_("Phone"), max_length=15)
     city = models.CharField(_("City"), max_length=100)
-    county = models.CharField(_("County"), max_length=50)
-    address = models.CharField(_("Address"), max_length=400, null=True, blank=True)
-    organization = models.CharField(_("Organization"), max_length=400, null=True, blank=True)
+    county = models.CharField(
+        _("County"), choices=COUNTY.to_choices(), max_length=50)
+    address = models.CharField(
+        _("Address"), max_length=400, null=True, blank=True)
+    organization = models.CharField(
+        _("Organization"), max_length=400, null=True, blank=True)
     description = models.TextField(_("Description"))
 
-    kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
-    urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
+    kind = models.CharField(_("Kind"), choices=KIND.to_choices(
+    ), default=KIND.default(), max_length=10)
+    urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(
+    ), default=URGENCY.default(), max_length=10)
 
     def __str__(self):
         return self.name

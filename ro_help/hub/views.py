@@ -19,7 +19,8 @@ class NGOListView(ListView):
     def get_queryset(self):
         ngos = NGO.objects.all()
 
-        filters = {name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
+        filters = {name: self.request.GET[
+            name] for name in self.allow_filters if name in self.request.GET}
 
         filters["needs__kind"] = self.request.GET.get("kind", KIND.default())
         filters["needs__resolved_on"] = None
@@ -33,15 +34,18 @@ class NGOListView(ListView):
         context["current_city"] = self.request.GET.get("city")
         context["current_kind"] = self.request.GET.get("kind", KIND.default())
 
-        ngos = NGO.objects.filter(needs__kind=context["current_kind"], needs__resolved_on=None).distinct("name")
+        ngos = NGO.objects.filter(
+            needs__kind=context["current_kind"], needs__resolved_on=None).distinct("name")
 
-        context["counties"] = ngos.order_by("county").values_list("county", flat=True).distinct("county")
+        context["counties"] = ngos.order_by("county").values_list(
+            "county", flat=True).distinct("county")
 
         cities = ngos.order_by("city")
         if self.request.GET.get("county"):
             cities = cities.filter(county=self.request.GET.get("county"))
 
-        context["cities"] = cities.values_list("city", flat=True).distinct("city")
+        context["cities"] = cities.values_list(
+            "city", flat=True).distinct("city")
 
         # TODO: extract in a common class
         with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
