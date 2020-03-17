@@ -1,16 +1,27 @@
 import json
 
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import Http404
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.messages.views import SuccessMessageMixin
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic import ListView, DetailView, CreateView
 
 from hub.models import NGO, NGONeed, NGOHelper, KIND
 
 
-class NGOListView(ListView):
+class NGOKindFilterMixin:
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["current_kind"] = self.request.GET.get("kind", KIND.default())
+
+        with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
+            context["info"] = json.loads(info.read())
+
+        return context
+
+
+class NGOListView(NGOKindFilterMixin, ListView):
     allow_filters = ["county", "city"]
     paginate_by = 9
 
@@ -31,7 +42,6 @@ class NGOListView(ListView):
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
-        context["current_kind"] = self.request.GET.get("kind", KIND.default())
 
         ngos = NGO.objects.filter(needs__kind=context["current_kind"], needs__resolved_on=None).distinct("name")
 
@@ -43,30 +53,16 @@ class NGOListView(ListView):
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
 
-        # TODO: extract in a common class
-        with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
-            context["info"] = json.loads(info.read())
-
         return context
 
 
-class NGODetailView(DetailView):
+class NGODetailView(NGOKindFilterMixin, DetailView):
     template_name = "ngo/detail.html"
     context_object_name = "ngo"
     model = NGO
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["current_kind"] = self.request.GET.get("kind", KIND.default())
 
-        # TODO: extract in a common class
-        with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
-            context["info"] = json.loads(info.read())
-
-        return context
-
-
-class NGOHelperCreateView(SuccessMessageMixin, CreateView):
+class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
     template_name = "ngo/detail.html"
     model = NGOHelper
     fields = ["name", "email", "message", "phone"]
@@ -91,11 +87,6 @@ class NGOHelperCreateView(SuccessMessageMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["current_kind"] = self.request.GET.get("kind", KIND.default())
-
-        # TODO: extract in a common class
-        with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
-            context["info"] = json.loads(info.read())
 
         need = self.get_object()
         if not need:
