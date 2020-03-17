@@ -4,7 +4,7 @@ DEBUG = TEMPLATE_DEBUG = True
 
 INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
-ALLOWED_HOSTS += ["localhost"]
+ALLOWED_HOSTS += ["localhost", "192.168.99.100"]
 
 AUTH_PASSWORD_VALIDATORS = []
 

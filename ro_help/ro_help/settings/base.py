@@ -43,6 +43,9 @@ ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
+    "material.theme.red",
+    "material",
+    "material.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
