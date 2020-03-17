@@ -82,7 +82,7 @@ NGOS = (
             "phone": fake.phone_number(),
             "address": fake.address(),
             "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
-            "county": random.choice(["Arad", "Timis", "Bihor", "Cluj", "Sector 1", "Sector 2"]),
+            "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
             "avatar": random_avatar(),
         }
         for _ in range(20)
@@ -117,3 +117,4 @@ class Command(BaseCommand):
                         "resolved_on": random.choice([None, timezone.now()]),
                     }
                 )
+

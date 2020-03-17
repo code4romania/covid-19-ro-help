@@ -42,6 +42,7 @@ ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    "hub",
     "material.admin",
     "material.admin.default",
     # "django.contrib.admin",
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "admin_auto_filters",
     "spurl",
-    "hub",
 ]
 
 MIDDLEWARE = [

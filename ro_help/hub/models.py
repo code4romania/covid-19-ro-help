@@ -107,7 +107,7 @@ class NGONeedQuerySet(models.QuerySet):
 
 class NGONeed(TimeStampedModel):
     ngo = models.ForeignKey(
-        NGO, on_delete=models.CASCADE, related_name="needs")
+        NGO, on_delete=models.CASCADE, related_name="needs", verbose_name=_("NGO"))
 
     title = models.CharField(_("Title"), max_length=254)
     description = models.TextField(_("Description"))
@@ -139,6 +139,9 @@ class NGOHelper(TimeStampedModel):
     phone = models.CharField(_("Phone"), max_length=30, null=True, blank=True)
 
     read = models.BooleanField(_("Read on"), default=False)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name_plural = _("NGO Helper")

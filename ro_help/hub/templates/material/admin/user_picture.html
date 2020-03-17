@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block user_profile %}
+    {% if profile_picture %}
+        <img class="login-logo" src="{{ profile_picture }}">
+    {% else %}
+        <img class="login-logo" src="{% static 'material/admin/images/login-logo-'|add:current_theme|add:'.jpg' %}">
+    {% endif %}
+
+    {% if profile_bg %}
+        <img width="500" height="212" src="{{ profile_bg }}">
+    {% else %}
+        <img src="{% static 'material/admin/images/login-bg-'|add:current_theme|add:'.jpg' %}">
+    {% endif %}
+    <div class="card-title text-center" style="width: 100%">
+        <center>
+        <small>{% firstof user.get_short_name user.get_username %}</small><br>
+          <strong>{{user.ngos.all|join:","}}</strong></center>
+    </div>
+{% endblock %}
