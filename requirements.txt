@@ -1,7 +1,7 @@
 Django==3.0.4
 django-environ==0.4.5
-
-psycopg2==2.8.4
+django-material>=1.6.3,<2.0.0
+psycopg2-binary==2.8.4
 
 Pillow==7.0.0
 
