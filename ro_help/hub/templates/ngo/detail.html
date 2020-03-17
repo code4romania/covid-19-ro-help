@@ -108,7 +108,7 @@
                         {% include "shared/pagination.html" with page_obj=resource_page_obj %}
 
                         {% for need in resource_page_obj %}
-                            {% include "shared/need_form.html" %}
+                            {% include "shared/need_form.html" with page=resource_page_obj.number %}
                             <hr />
                         {% endfor %}
                     </div>
@@ -134,7 +134,7 @@
                         <p>
                             TODO: need some text here
                         </p>
-                        {% include "shared/need_form.html" with need=ngo.needs.volunteer.0 %}
+                        {% include "shared/need_form.html" with need=ngo.needs.volunteer.0 page=1 %}
                         <hr />
                     </div>
                 </div>
