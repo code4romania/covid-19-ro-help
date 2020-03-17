@@ -8,7 +8,7 @@ from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView, DetailView, CreateView
 
-from hub.models import NGO, NGONeed, NGOHelper, KIND
+from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest
 
 
 class NGOKindFilterMixin:
@@ -122,3 +122,13 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
 
     def get_success_url(self):
         return reverse("ngo-detail", kwargs={"pk": self.kwargs["ngo"]})
+
+
+class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
+    template_name = "ngo/register_request.html"
+    model = RegisterNGORequest
+    fields = ["name", "coverage", "email", "contact_name", "contact_phone", "email", "social_link", "description"]
+    success_message = _("TODO: add a success message")
+
+    def get_success_url(self):
+        return reverse("ngos")

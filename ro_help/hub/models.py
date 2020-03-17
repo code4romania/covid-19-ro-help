@@ -129,7 +129,7 @@ class PersonalRequest(TimeStampedModel):
 
 class RegisterNGORequest(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
-    coverage = models.CharField(_("Coverage"), max_length=254)
+    coverage = models.CharField(_("Coverage"), max_length=254, help_text=_("Country or county/city selection"))
     email = models.EmailField(_("Email"), null=True, blank=True)
 
     contact_name = models.CharField(_("Contact person's name"), max_length=254)
@@ -138,6 +138,6 @@ class RegisterNGORequest(TimeStampedModel):
     has_netopia_contract = models.BooleanField(_("Has contract with Netopia"), default=False)
     social_link = models.CharField(_("Link to website or Facebook"), max_length=512, null=True, blank=True)
 
-    description = models.CharField(
+    description = models.TextField(
         _("Description"), max_length=500, help_text=_("Organization's short description - max 500 chars.")
     )
