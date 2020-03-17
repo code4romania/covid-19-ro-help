@@ -97,7 +97,7 @@ class Command(BaseCommand):
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)
 
-            for _ in range(3):
+            for _ in range(20):
                 NGONeed.objects.create(
                     **{
                         "ngo": ngo,

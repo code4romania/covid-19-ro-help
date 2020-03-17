@@ -105,43 +105,10 @@
 
                 <div id="donate-resources" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
                     <div class="card-content">
-                        {% for need in ngo.needs.resource %}
-                            <div class="container">
-                                <h3 class="is-size-5 has-text-weight-bold">{{ need.title }}</h3>
-                                <p>{{ need.description }}</p>
-                                {% if current_need is not None and current_need.pk == need.pk %}
-                                    <form method="post">
-                                        {% csrf_token %}
+                        {% include "shared/pagination.html" with page_obj=resource_page_obj %}
 
-                                        {{ form.non_field_errors }}
-
-                                        {% for hidden_field in form.hidden_fields %}
-                                            {{ hidden_field.errors }}
-                                            {{ hidden_field }}
-                                        {% endfor %}
-
-                                        <table border="1">
-                                            {% for field in form.visible_fields %}
-                                            <tr>
-                                                <th>{{ field.label_tag }}</th>
-                                                <td>
-                                                  {{ field.errors }}
-                                                  {{ field }}
-                                                  {{ field.help_text }}
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
-                                        </table>
-                                        <input type="submit" value="Create">
-                                    </form>
-                                {% else %}
-                                    {% url 'ngo-helper-create' ngo.pk need.pk as base %}
-                                    <div class="content has-text-centered">
-                                        <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
-                                           href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' remove_query_param='page' %}">{% trans "I can help" %}</a>
-                                    </div>
-                                {% endif %}
-                            </div>
+                        {% for need in resource_page_obj %}
+                            {% include "shared/need_form.html" with page=resource_page_obj.number %}
                             <hr />
                         {% endfor %}
                     </div>
@@ -167,40 +134,8 @@
                         <p>
                             TODO: need some text here
                         </p>
-                        {% with ngo.needs.volunteer.0 as need %}
-                            {% if current_need is not None and current_need.pk == need.pk %}
-                                <form method="post">
-                                    {% csrf_token %}
-
-                                    {{ form.non_field_errors }}
-
-                                    {% for hidden_field in form.hidden_fields %}
-                                        {{ hidden_field.errors }}
-                                        {{ hidden_field }}
-                                    {% endfor %}
-
-                                    <table border="1">
-                                        {% for field in form.visible_fields %}
-                                        <tr>
-                                            <th>{{ field.label_tag }}</th>
-                                            <td>
-                                              {{ field.errors }}
-                                              {{ field }}
-                                              {{ field.help_text }}
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </table>
-                                    <input type="submit" value="Create">
-                                </form>
-                            {% else %}
-                                {% url 'ngo-helper-create' ngo.pk need.pk as base %}
-                                <div class="content has-text-centered">
-                                    <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
-                                       href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' remove_query_param='page' %}">{% trans "I can help" %}</a>
-                                </div>
-                            {% endif %}
-                        {% endwith %}
+                        {% include "shared/need_form.html" with need=ngo.needs.volunteer.0 page=1 %}
+                        <hr />
                     </div>
                 </div>
             </div>
