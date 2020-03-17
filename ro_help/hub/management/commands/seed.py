@@ -98,7 +98,8 @@ class Command(BaseCommand):
 
         admin_user= User.objects.get(username="admin")
         admin_group, _ = Group.objects.get_or_create(name="Admin")
-        ngo_group, _ = Group.objects.get_or_create(name="Admin")
+        ngo_group, _ = Group.objects.get_or_create(name="ONG")
+
         admin_user.groups.add(admin_group)
         admin_user.save()
 
