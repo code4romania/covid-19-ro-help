@@ -4,7 +4,7 @@ import requests
 from faker import Faker
 
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.utils import timezone
 
 from hub.models import NGO, NGONeed, KIND, URGENCY
@@ -14,7 +14,8 @@ fake = Faker()
 
 def random_avatar():
     try:
-        image = requests.get("https://source.unsplash.com/random", allow_redirects=False)
+        image = requests.get(
+            "https://source.unsplash.com/random", allow_redirects=False)
         return image.headers["Location"]
     except:
         return "https://source.unsplash.com/random"
@@ -90,9 +91,16 @@ NGOS = (
 
 
 class Command(BaseCommand):
+
     def handle(self, *args, **kwargs):
         if not User.objects.filter(username="admin").exists():
             User.objects.create_user("admin", "admin@admin.com", "admin", is_staff=True, is_superuser=True)
+
+        admin_user= User.objects.get(username="admin")
+        admin_group, _ = Group.objects.get_or_create(name="Admin")
+        ngo_group, _ = Group.objects.get_or_create(name="Admin")
+        admin_user.groups.add(admin_group)
+        admin_user.save()
 
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)

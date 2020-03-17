@@ -144,12 +144,12 @@ MATERIAL_ADMIN_SITE = {
     'HEADER':  _('RO help'),  # Admin site header
     'TITLE':  _('RO help'),  # Admin site title
     'FAVICON':  'path/to/favicon',  # Admin site favicon (path to static should be specified)
-    'MAIN_BG_COLOR':  'red',  # Admin site main color, css color should be specified
-    'MAIN_HOVER_COLOR':  'red',  # Admin site main hover color, css color should be specified
-    # 'PROFILE_PICTURE':  'path/to/image',  # Admin site profile picture (path to static should be specified)
-    # 'PROFILE_BG':  'path/to/image',  # Admin site profile background (path to static should be specified)
-    # 'LOGIN_LOGO':  'path/to/image',  # Admin site logo on login page (path to static should be specified)
-    # 'LOGOUT_BG':  'path/to/image',  # Admin site background on login/logout pages (path to static should be specified)
+    'MAIN_BG_COLOR':  '#fd4b49',  # Admin site main color, css color should be specified
+    'MAIN_HOVER_COLOR':  '#fe9695',  # Admin site main hover color, css color should be specified
+    'PROFILE_PICTURE':  'images/logo.png',  # Admin site profile picture (path to static should be specified)
+    'PROFILE_BG':  'images/admin_background.svg',  # Admin site profile background (path to static should be specified)
+    'LOGIN_LOGO':  'images/logo.png',  # Admin site logo on login page (path to static should be specified)
+    'LOGOUT_BG':  'images/admin_background.svg',  # Admin site background on login/logout pages (path to static should be specified)
     'SHOW_THEMES':  False,  #  Show default admin themes button
     'TRAY_REVERSE': True,  # Hide object-tools and additional-submit-line by default
     'NAVBAR_REVERSE': True,  # Hide side navbar by default

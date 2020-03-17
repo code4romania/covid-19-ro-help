@@ -51,8 +51,8 @@ class KIND:
 
 
 class COUNTY:
-    counties = ["ALBA", "ARGES", "ARAD", "BACAU", "BIHOR", "BISTRITA-NASAUD", "BRAILA", "BRASOV", "BOTOSANI", "BUZAU", "CLUJ", "CALARASI", "CARAS-SEVERIN", "CONSTANTA", "COVASNA", "DAMBOVITA", "DOLJ", "GORJ", "GALATI", "GIURGIU",
-                "HUNEDOARA", "HARGHITA", "IALOMITA", "IASI", "MEHEDINTI", "MARAMURES", "MURES", "NEAMT", "OLT", "PRAHOVA", "SIBIU", "SALAJ", "SATU-MARE", "SUCEAVA", "TULCEA", "TIMIS", "TELEORMAN", "VALCEA", "VRANCEA", "VASLUI", "ILFOV", "BUCURESTI", "SECTOR 1", "SECTOR 2", "SECTOR 3", "SECTOR 4", "SECTOR 5", "SECTOR 6"]
+    counties = ["ALBA", "ARGES", "ARAD", "BACAU", "BIHOR", "BISTRITA-NASAUD", "BRAILA", "BRASOV", "BOTOSANI", "BUCURESTI", "BUZAU", "CLUJ", "CALARASI", "CARAS-SEVERIN", "CONSTANTA", "COVASNA", "DAMBOVITA", "DOLJ", "GORJ", "GALATI", "GIURGIU",
+                "HUNEDOARA", "HARGHITA", "IALOMITA", "IASI", "ILFOV", "MEHEDINTI", "MARAMURES", "MURES", "NEAMT", "OLT", "PRAHOVA", "SIBIU", "SALAJ", "SATU-MARE", "SECTOR 1", "SECTOR 2", "SECTOR 3", "SECTOR 4", "SECTOR 5", "SECTOR 6", "SUCEAVA", "TULCEA", "TIMIS", "TELEORMAN", "VALCEA", "VRANCEA", "VASLUI"]
 
     @classmethod
     def to_choices(cls):
@@ -83,7 +83,8 @@ class NGO(TimeStampedModel):
         return self.name
 
     class Meta:
-        verbose_name_plural = "ONG-uri"
+        verbose_name_plural = _("NGOs")
+        verbose_name = _("NGO")
 
 
 class NGONeedQuerySet(models.QuerySet):
@@ -124,10 +125,8 @@ class NGONeed(TimeStampedModel):
         return f"{self.ngo.name}: {self.urgency} {self.kind}"
 
     class Meta:
-        verbose_name_plural = "Nevoi ONG"
-        verbose_name = "Nevoie ONG"
-
-
+        verbose_name_plural = _("NGO needs")
+        verbose_name = _("NGO need")
 
 
 class NGOHelper(TimeStampedModel):
@@ -139,8 +138,11 @@ class NGOHelper(TimeStampedModel):
     message = models.TextField(_("Message"))
     phone = models.CharField(_("Phone"), max_length=30, null=True, blank=True)
 
-    read = models.BooleanField(_("Read on"), null=True, blank=True)
+    read = models.BooleanField(_("Read on"), default=False)
 
+    class Meta:
+        verbose_name_plural = _("NGO Helper")
+        verbose_name = _("NGO Helpers")
 
 class PersonalRequest(TimeStampedModel):
     ngo = models.ForeignKey(NGO, on_delete=models.CASCADE,
