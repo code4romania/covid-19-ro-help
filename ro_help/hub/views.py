@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core import paginator
 from django.http import Http404
 from django.urls import reverse
 from django.utils import translation
@@ -11,12 +12,30 @@ from hub.models import NGO, NGONeed, NGOHelper, KIND
 
 
 class NGOKindFilterMixin:
+    paginated_by = 3
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["current_kind"] = self.request.GET.get("kind", KIND.default())
 
         with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
             context["info"] = json.loads(info.read())
+
+        ngo = kwargs.get("ngo", context.get("ngo"))
+        if not ngo:
+            return context
+
+        page = self.request.GET.get("page")
+        needs = ngo.needs.resource()
+        needs_paginator = paginator.Paginator(needs, self.paginated_by)
+
+        # Catch invalid page numbers
+        try:
+            needs_page_obj = needs_paginator.page(page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            needs_page_obj = needs_paginator.page(1)
+
+        context["resource_page_obj"] = needs_page_obj
 
         return context
 
@@ -86,11 +105,11 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
         return need
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
         need = self.get_object()
         if not need:
             raise Http404(_("Missing or invalid NGO need."))
+
+        context = super().get_context_data(**{**kwargs, **{"ngo": need.ngo}})
 
         context["ngo"] = need.ngo
         context["current_need"] = need

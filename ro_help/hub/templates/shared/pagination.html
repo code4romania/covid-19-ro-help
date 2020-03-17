@@ -1,0 +1,21 @@
+{% load spurl %}
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="{% spurl base='{{ request.get_full_path }}' set_query='page=1' %}">&laquo; first</a>
+            <a href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.previous_page_number }}' %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.next_page_number }}' %}">next</a>
+            <a href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.num_pages }}' %}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
