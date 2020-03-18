@@ -127,7 +127,7 @@ class NGONeed(TimeStampedModel):
     urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(
     ), default=URGENCY.default(), max_length=10)
 
-    resource_tags = models.ManyToManyField("ResourceTag", related_name="needs")
+    resource_tags = models.ManyToManyField("ResourceTag", blank=True, related_name="needs")
 
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
     closed_on = models.DateTimeField(_("Closed on"), null=True, blank=True)
