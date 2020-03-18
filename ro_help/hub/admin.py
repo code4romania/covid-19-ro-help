@@ -91,7 +91,7 @@ class NGONeedAdmin(admin.ModelAdmin):
     list_per_page = 25
 
     list_display = ("title", "ngo", "urgency", "kind", "created",
-                    "responses", "new_responses", "resolved_on", "closed_on")
+                    "responses", "resolved_on", "closed_on")
     list_filter = (NGOFilter, ActiveNGONeedFilter, "urgency",
                    "kind", "ngo__city", "ngo__county")
     readonly_fields = ["resolved_on", "closed_on"]
@@ -131,20 +131,15 @@ class NGONeedAdmin(admin.ModelAdmin):
             return {'ngo': user.ngos.all()[0].pk}
 
     def responses(self, obj):
-        if obj.helpers.exists():
-            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{obj.helpers.count()}</a></span>"
-            return format_html(html)
-        return 0
+        all_helpers = obj.helpers.count()
+        new_helpers = obj.helpers.filter(read=False).count()
+        if new_helpers:
+            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{all_helpers} ({new_helpers} new)</a></span>"
+        else:
+            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{all_helpers}</a></span>"
+        return format_html(html)
 
-    responses.short_description = _("Responses")
-
-    def new_responses(self, obj):
-        if obj.helpers.filter(read=False).exists():
-            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{obj.helpers.filter(read=False).count()}</a></span>"
-            return format_html(html)
-        return 0
-
-    new_responses.short_description = _("Unread")
+    responses.short_description = _("Helpers")
 
     def resolve_need(self, request, queryset):
         c = 0
