@@ -141,8 +141,8 @@ STATICFILES_DIRS = [
 
 
 MATERIAL_ADMIN_SITE = {
-    'HEADER':  _('RO help'),  # Admin site header
-    'TITLE':  _('RO help'),  # Admin site title
+    'HEADER':  _('COVID-19 RO HELP'),  # Admin site header
+    'TITLE':  _('RO HELP'),  # Admin site title
     'FAVICON':  'path/to/favicon',  # Admin site favicon (path to static should be specified)
     'MAIN_BG_COLOR':  '#fd4b49',  # Admin site main color, css color should be specified
     'MAIN_HOVER_COLOR':  '#fe9695',  # Admin site main hover color, css color should be specified
