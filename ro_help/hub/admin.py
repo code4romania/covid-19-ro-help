@@ -5,7 +5,7 @@ from django.utils.html import format_html
 from django.utils import timezone
 from admin_auto_filters.filters import AutocompleteFilter
 
-from .models import NGO, NGONeed, PersonalRequest, NGOHelper, ResourceTag
+from .models import NGO, NGONeed, PersonalRequest, NGOHelper, ResourceTag, RegisterNGORequest
 
 
 class NGOFilter(AutocompleteFilter):
@@ -132,7 +132,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 
     def responses(self, obj):
         if obj.helpers.exists():
-            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{obj.helpers.count()}  </a></span>"
+            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{obj.helpers.count()}</a></span>"
             return format_html(html)
         return 0
 
@@ -140,7 +140,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 
     def new_responses(self, obj):
         if obj.helpers.filter(read=False).exists():
-            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{obj.helpers.filter(read=False).count()}  </a></span>"
+            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{obj.helpers.filter(read=False).count()}</a></span>"
             return format_html(html)
         return 0
 
@@ -161,7 +161,6 @@ class NGONeedAdmin(admin.ModelAdmin):
 
     resolve_need.short_description = _("Resolve need")
 
-
     def close_need(self, request, queryset):
         c = 0
         for need in queryset:
@@ -177,36 +176,17 @@ class NGONeedAdmin(admin.ModelAdmin):
 
     close_need.short_description = _("Close need")
 
-# @admin.register(NGOHelper)
-# class NGOHelperAdmin(admin.ModelAdmin):
-#     list_per_page = 25
-
-#     list_display = ("need", "name", "email", "message", "phone", "read")
-#     list_filter = ("read",)
-#     search_fields = (
-#         "ngo_need__title",
-#         "name",
-#         "email"
-#     )
-
-#     class Media:
-#         pass
-
-#     def get_queryset(self, request):
-#         user = request.user
-#         qs = super(NGOHelperAdmin, self).get_queryset(request)
-#         if 'Admin' not in user.groups.values_list('name', flat=True):
-#             return qs.filter(ngo_need__ngo__users__in=[user])
-#         else:
-#             return qs
-
-#     def need(self, obj):
-#         return obj.ngo_need.title
 
 @admin.register(ResourceTag)
 class ResourceTagAdmin(admin.ModelAdmin):
-    pass
+    icon_name = "filter_vintage"
+
 
 @admin.register(PersonalRequest)
 class PersonalRequestAdmin(admin.ModelAdmin):
-    pass
+    icon_name = "face"
+
+
+@admin.register(RegisterNGORequest)
+class RegisterNGORequestAdmin(admin.ModelAdmin):
+    icon_name = "add_circle"
