@@ -7,7 +7,7 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User, Group
 from django.utils import timezone
 
-from hub.models import NGO, NGONeed, KIND, URGENCY
+from hub.models import NGO, NGONeed, KIND, URGENCY, ResourceTag
 
 fake = Faker()
 
@@ -89,6 +89,7 @@ NGOS = (
     ]
 )
 
+RESOURCE_TAGS = ['apa', 'ceai', 'manusi de protectie']
 
 class Command(BaseCommand):
 
@@ -102,6 +103,9 @@ class Command(BaseCommand):
 
         admin_user.groups.add(admin_group)
         admin_user.save()
+
+        for resource in RESOURCE_TAGS:
+            r, _ = ResourceTag.objects.get_or_create(name=resource)
 
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)

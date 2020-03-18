@@ -5,7 +5,7 @@ from django.utils.html import format_html
 from django.utils import timezone
 from admin_auto_filters.filters import AutocompleteFilter
 
-from .models import NGO, NGONeed, PersonalRequest, NGOHelper
+from .models import NGO, NGONeed, PersonalRequest, NGOHelper, ResourceTag
 
 
 class NGOFilter(AutocompleteFilter):
@@ -18,7 +18,7 @@ class ActiveNGONeedFilter(SimpleListFilter):
     parameter_name = "ngoneed__resolved_on"
 
     def lookups(self, request, model_admin):
-        return [("active", "active"), ("resolved", "resolved")]
+        return [("active", "active"), ("resolved", "resolved"), ("closed", "closed")]
 
     def queryset(self, request, queryset):
         value = str(self.value()).lower() if self.value() else ""
@@ -28,6 +28,9 @@ class ActiveNGONeedFilter(SimpleListFilter):
 
         if value == "resolved":
             return queryset.resolved()
+
+        if value == "closed":
+            return queryset.closed()
 
         return queryset
 
@@ -62,13 +65,18 @@ class NGOAdmin(admin.ModelAdmin):
                 return ["users"]
         return []
 
+
 class NGOHelperInline(admin.TabularInline):
     model = NGOHelper
     fields = ("name", "email", "message", "phone", "read")
     can_delete = False
+    can_add = False
     verbose_name_plural = _("Helpers")
     readonly_fields = ["name", "email", "message", "phone"]
     extra = 0
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
     # def get_readonly_fields(self, request, obj=None):
     #     # if obj:
@@ -77,19 +85,18 @@ class NGOHelperInline(admin.TabularInline):
     #     return ["name", "email", "message", "phone"]
 
 
-
 @admin.register(NGONeed)
 class NGONeedAdmin(admin.ModelAdmin):
     icon_name = 'transfer_within_a_station'
     list_per_page = 25
 
     list_display = ("title", "ngo", "urgency", "kind", "created",
-                    "responses", "new_responses", "resolved_on")
+                    "responses", "new_responses", "resolved_on", "closed_on")
     list_filter = (NGOFilter, ActiveNGONeedFilter, "urgency",
                    "kind", "ngo__city", "ngo__county")
-    readonly_fields = ["resolved_on"]
+    readonly_fields = ["resolved_on", "closed_on"]
     inlines = [NGOHelperInline]
-    actions = ["close_need"]
+    actions = ["resolve_need", "close_need"]
     search_fields = (
         "ngo__name",
         "ngo__email",
@@ -139,17 +146,33 @@ class NGONeedAdmin(admin.ModelAdmin):
 
     new_responses.short_description = _("Unread")
 
-    def close_need(self, request, queryset):
-        closed = 0
+    def resolve_need(self, request, queryset):
+        c = 0
         for need in queryset:
             need.resolved_on = timezone.now()
             need.save()
-            closed += 1
+            c += 1
 
-        if closed == 1:
-            user_msg = f"{closed} need closed"
+        if c == 1:
+            user_msg = f"{c} need resolved"
         else:
-            user_msg = f"{closed} needs closed"
+            user_msg = f"{c} needs resolved"
+        return self.message_user(request, user_msg, level=messages.INFO)
+
+    resolve_need.short_description = _("Resolve need")
+
+
+    def close_need(self, request, queryset):
+        c = 0
+        for need in queryset:
+            need.closed_on = timezone.now()
+            need.save()
+            c += 1
+
+        if c == 1:
+            user_msg = f"{c} need closed"
+        else:
+            user_msg = f"{c} needs closed"
         return self.message_user(request, user_msg, level=messages.INFO)
 
     close_need.short_description = _("Close need")
@@ -180,6 +203,9 @@ class NGONeedAdmin(admin.ModelAdmin):
 #     def need(self, obj):
 #         return obj.ngo_need.title
 
+@admin.register(ResourceTag)
+class ResourceTagAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(PersonalRequest)
 class PersonalRequestAdmin(admin.ModelAdmin):

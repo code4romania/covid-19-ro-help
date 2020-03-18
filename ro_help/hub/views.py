@@ -64,7 +64,7 @@ class NGOListView(NGOKindFilterMixin, ListView):
         context["current_city"] = self.request.GET.get("city")
 
         ngos = NGO.objects.filter(
-            needs__kind=context["current_kind"], needs__resolved_on=None).distinct("name")
+            needs__kind=context["current_kind"], needs__resolved_on=None, needs__closed_on=None).distinct("name")
 
         context["counties"] = ngos.order_by("county").values_list(
             "county", flat=True).distinct("county")
