@@ -87,13 +87,23 @@ class NGO(TimeStampedModel):
         verbose_name = _("NGO")
 
 
+class ResourceTag(TimeStampedModel):
+    name = models.CharField(_("Name"), max_length=30)
+
+    def __str__(self):
+        return self.name
+
+
 class NGONeedQuerySet(models.QuerySet):
 
     def active(self):
-        return self.filter(resolved_on=None)
+        return self.filter(resolved_on=None).filter(closed_on=None)
 
     def resolved(self):
         return self.exclude(resolved_on=None)
+
+    def closed(self):
+        return self.exclude(closed_on=None)
 
     def money(self):
         return self.active().filter(kind=KIND.MONEY)
@@ -117,7 +127,10 @@ class NGONeed(TimeStampedModel):
     urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(
     ), default=URGENCY.default(), max_length=10)
 
+    resource_tags = models.ManyToManyField("ResourceTag", related_name="needs")
+
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
+    closed_on = models.DateTimeField(_("Closed on"), null=True, blank=True)
 
     objects = NGONeedQuerySet.as_manager()
 
@@ -147,6 +160,7 @@ class NGOHelper(TimeStampedModel):
         verbose_name_plural = _("NGO Helper")
         verbose_name = _("NGO Helpers")
 
+
 class PersonalRequest(TimeStampedModel):
     ngo = models.ForeignKey(NGO, on_delete=models.CASCADE,
                             null=True, blank=True, related_name="requests")
@@ -174,14 +188,18 @@ class PersonalRequest(TimeStampedModel):
 
 class RegisterNGORequest(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
-    coverage = models.CharField(_("Coverage"), max_length=254, help_text=_("Country or county/city selection"))
+    coverage = models.CharField(_("Coverage"), max_length=254, help_text=_(
+        "Country or county/city selection"))
     email = models.EmailField(_("Email"), null=True, blank=True)
 
     contact_name = models.CharField(_("Contact person's name"), max_length=254)
-    contact_phone = models.CharField(_("Contact person's phone"), max_length=15)
+    contact_phone = models.CharField(
+        _("Contact person's phone"), max_length=15)
 
-    has_netopia_contract = models.BooleanField(_("Has contract with Netopia"), default=False)
-    social_link = models.CharField(_("Link to website or Facebook"), max_length=512, null=True, blank=True)
+    has_netopia_contract = models.BooleanField(
+        _("Has contract with Netopia"), default=False)
+    social_link = models.CharField(
+        _("Link to website or Facebook"), max_length=512, null=True, blank=True)
 
     description = models.TextField(
         _("Description"), max_length=500, help_text=_("Organization's short description - max 500 chars.")
