@@ -19,7 +19,3 @@ jobs:
       - name: Check formatting with black
         run: |
           black --line-length 120 --target-version py37 --check .
-      - name: Run tests
-        env:
-          DJANGO_SETTINGS_MODULE: ro_help.settings.dev
-        run: pytest ro_help
