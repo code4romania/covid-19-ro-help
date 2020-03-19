@@ -1,63 +1,61 @@
 {% load static %}
 {% load i18n %}
-
-<div class="container">
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="{% url 'home' %}">
-      <img src="{% static "images/logo.svg" %}" alt="Code for Romania logo" width=100" height="100">
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-end has-text-centered-touch">
-      <a class="navbar-item">
-        {% trans "About" %}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{% url 'home' %}">
+        <img src="{% static "images/logo.svg" %}" alt="Code for Romania logo" width=100" height="100">
       </a>
 
-      <a class="navbar-item">
-        {% trans "Link" %}
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </a>
+    </div>
 
-      <a class="navbar-item">
-        {% trans "Link" %}
-      </a>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-end has-text-centered-touch">
+        <a class="navbar-item">
+          {% trans "About" %}
+        </a>
 
-      <a class="navbar-item">
-        {% trans "Link" %}
-      </a>
+        <a class="navbar-item">
+          {% trans "Link" %}
+        </a>
 
-      <a class="navbar-item">
-        {% get_available_languages as LANGUAGES %}
-        {% get_current_language as LANGUAGE_CODE %}
+        <a class="navbar-item">
+          {% trans "Link" %}
+        </a>
 
-        {% for language in LANGUAGES %}
+        <a class="navbar-item">
+          {% trans "Link" %}
+        </a>
+
+        <a class="navbar-item">
+          {% get_available_languages as LANGUAGES %}
+          {% get_current_language as LANGUAGE_CODE %}
+
+          {% for language in LANGUAGES %}
           {% if language.0 != LANGUAGE_CODE %}
-            <form class="d-inline" action="{% url 'set_language' %}" method="post">
-              {% csrf_token %}
-              <input name="next" type="hidden" value="{{ redirect_to }}"/>
-              <input type="hidden" name="language" value="{{ language.0 }}"/>
-              <input class="button is-success" type="submit" value="{{ language.0 | upper }}"/>
-            </form>
+          <form class="d-inline" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}" />
+            <input type="hidden" name="language" value="{{ language.0 }}" />
+            <input class="button is-success" type="submit" value="{{ language.0 | upper }}" />
+          </form>
           {% endif %}
-        {% endfor %}
+          {% endfor %}
 
-      </a>
+        </a>
 
-      <hr class="navbar-divider">
+        <hr class="navbar-divider">
 
       </div>
     </div>
 
   </div>
+  </div>
+
 </nav>
-</div>
-
-
-

@@ -4,143 +4,147 @@
 
 
 {% block left-side-view %}
-<section class="section">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-2">
-                <div class="box">
-                    <div class="container">
-                        <figure class="image is-4by3">
-                            <img src="{{ ngo.avatar }}" alt="Placeholder image">
-                        </figure>
-                    </div>
+<div class="container">
+    <div class="columns">
+        <div class="column is-2">
+            <div class="box">
+                <div class="container">
+                    <figure class="image is-4by3">
+                        <img src="{{ ngo.avatar }}" alt="Placeholder image">
+                    </figure>
                 </div>
             </div>
+        </div>
 
-            <div class="column is-8">
-                <footer>
-                    <div class="content">
-                        <h1>{{ ngo.name }}</h1>
-                        <p>{{ ngo.email }}</p>
+        <div class="column is-8">
+            <footer>
+                <div class="content">
+                    <h1>{{ ngo.name }}</h1>
+                    <p>{{ ngo.email }}</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="container">
+    <h3>{% trans "About the organization" %}</h3>
+
+    <p>{{ ngo.description }}</p>
+</div>
+
+
+<div class="container">
+    {% if ngo.needs.money %}
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                {% trans "Donate money" %}
+            </p>
+            <a href="#donate-money" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+                aria-label="more options">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </a>
+        </header>
+
+        <div id="donate-money" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
+            <div class="card-content">
+                <div class="container">
+                    <h4>{% trans "Donate via PayPal" %}:</h4>
+                    <div class="columns">
+                        <div class="column is-8-desktop">
+                            100 eur
+                        </div>
+
+                        <div class="column is-2-desktop ">
+                            <button class="button has-background-primary is-medium">{% trans "Donate" %}</button>
+                        </div>
                     </div>
-                </footer>
+                </div>
+
+                <div class="container">
+                    <h4>{% trans "Donate via Netopia" %}:</h4>
+                    <div class="columns">
+                        <div class="column is-8-desktop">
+                            100 eur
+                        </div>
+
+                        <div class="column is-2-desktop ">
+                            <button class="button has-background-primary is-medium">{% trans "Donate" %}</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <h4>{% trans "Donate via Wire" %}:</h4>
+                    TODO: add from ngo model
+                </div>
             </div>
         </div>
     </div>
 
-    <hr />
+    {% endif %}
 
-    <div class="container">
-        <div class="content">
-            <h3>{% trans "About the organization" %}</h3>
-        </div>
-        <div class="content">
-            <p>{{ ngo.description }}</p>
+    {% if ngo.needs.resource %}
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                {% trans "Donate resources" %}
+            </p>
+            <a href="#donate-resources" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+                aria-label="more options">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </a>
+        </header>
+
+        <div id="donate-resources" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
+            <div class="card-content">
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=resource_page_obj %}
+                </div>
+
+                {% for need in resource_page_obj %}
+                <div class="container">
+                    {% include "shared/need_form.html" with page=resource_page_obj.number %}
+                </div>
+                <hr />
+                {% endfor %}
+            </div>
         </div>
     </div>
+    {% endif %}
 
-    <div class="container">
-        {% if ngo.needs.money %}
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        {% trans "Donate money" %}
-                    </p>
-                    <a href="#donate-money" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
-                        <span class="icon">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </header>
+    {% if ngo.needs.volunteer %}
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                {% trans "Join as volunteer" %}
+            </p>
+            <a href="#donate-volunteer" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+                aria-label="more options">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </a>
+        </header>
 
-                <div id="donate-money" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
-                    <div class="card-content">
-                        <div class="container">
-                            <h4>{% trans "Donate via PayPal" %}:</h4>
-                            <div class="columns">
-                                <div class="column is-8-desktop">
-                                    100 eur
-                                </div>
-
-                                <div class="column is-2-desktop ">
-                                    <button class="button has-background-primary is-medium">{% trans "Donate" %}</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container">
-                            <h4>{% trans "Donate via Netopia" %}:</h4>
-                            <div class="columns">
-                                <div class="column is-8-desktop">
-                                    100 eur
-                                </div>
-
-                                <div class="column is-2-desktop ">
-                                    <button class="button has-background-primary is-medium">{% trans "Donate" %}</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container">
-                            <h4>{% trans "Donate via Wire" %}:</h4>
-                            TODO: add from ngo model
-                        </div>
-                    </div>
-                </div>
+        <div id="donate-volunteer" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
+            <div class="card-content">
+                <p>
+                    TODO: need some text here
+                </p>
+                {% include "shared/need_form.html" with need=ngo.needs.volunteer.0 page=1 %}
+                <hr />
             </div>
-        {% endif %}
-
-        {% if ngo.needs.resource %}
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        {% trans "Donate resources" %}
-                    </p>
-                    <a href="#donate-resources" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
-                        <span class="icon">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </header>
-
-                <div id="donate-resources" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
-                    <div class="card-content">
-                        {% include "shared/pagination.html" with page_obj=resource_page_obj %}
-
-                        {% for need in resource_page_obj %}
-                            {% include "shared/need_form.html" with page=resource_page_obj.number %}
-                            <hr />
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-
-        {% if ngo.needs.volunteer %}
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        {% trans "Join as volunteer" %}
-                    </p>
-                    <a href="#donate-volunteer" data-action="collapse" class="card-header-icon is-hidden-fullscreen" aria-label="more options">
-                        <span class="icon">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </header>
-
-                <div id="donate-volunteer" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
-                    <div class="card-content">
-                        <p>
-                            TODO: need some text here
-                        </p>
-                        {% include "shared/need_form.html" with need=ngo.needs.volunteer.0 page=1 %}
-                        <hr />
-                    </div>
-                </div>
-            </div>
-        {% endif %}
+        </div>
     </div>
+    {% endif %}
 </div>
 
 <script>
@@ -148,12 +152,11 @@
     const bulmaCollapsibleInstances = bulmaCollapsible.attach('.is-collapsible');
 </script>
 
-</section>
 {% endblock %}
 
 {% block content %}
-    {% url "ngos" as ngos %}
-    {% with current_url=ngos %}
-        {{ block.super }}
-    {% endwith %}
+{% url "ngos" as ngos %}
+{% with current_url=ngos %}
+{{ block.super }}
+{% endwith %}
 {% endblock %}

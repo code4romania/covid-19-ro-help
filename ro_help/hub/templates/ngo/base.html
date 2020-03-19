@@ -5,8 +5,8 @@
 
 
 {% block content %}
-<section class="section">
-    <div class="container">
+<div id="the_entire_page" class="container">
+    <div id="donate_safely" class="container">
         <h1 class="donate-title">
             {% trans "Donate safely" %}
         </h1>
@@ -15,46 +15,52 @@
         </p>
     </div>
 
-    <div class="container">
+    <div id="messages" class="container">
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
         </ul>
         {% endif %}
     </div>
 
-    <div class="container">
+    <div id="aid_types" class="container">
         <div class="columns is-multiline">
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
+                <div
+                    class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
-                    <a href="{% spurl base='{{ current_url }}' set_query='kind=money' remove_query_param='page' %}" class="has-text-black">
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=money' remove_query_param='page' %}"
+                        class="has-text-black">
                         <div class="card-content">{% trans "I want to help with money" %}</div>
                     </a>
                 </div>
             </div>
 
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
+                <div
+                    class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
-                    <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' remove_query_param='page' %}" class="has-text-black">
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' remove_query_param='page' %}"
+                        class="has-text-black">
                         <div class="card-content">{% trans "I want to help with resources" %}</div>
                     </a>
                 </div>
             </div>
 
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
+                <div
+                    class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
-                    <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' remove_query_param='page' %}" class="has-text-black">
+                    <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' remove_query_param='page' %}"
+                        class="has-text-black">
                         <div class="card-content">{% trans "I want to volunteer" %}</div>
                     </a>
                 </div>
@@ -62,46 +68,45 @@
         </div>
     </div>
 
-    <div class="container ">
-        
-        <div class="columns">
-            <div class="column main-content">
-                {% block left-side-view %}
-                {% endblock %}
-            </div>
+    <div id="left_and_right_views" class="columns">
 
-            <div class="column is-narrow is-one-third main-content">
-                {% block right-side-view %}
-                    <div class="container">
-                        
-                        <h1 class="donate-title">
-                            <span>
-                                <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
-                            </span>
-                            {% trans "Useful instruments" %}
-                        </h1>
+        <div class="column main-content is-paddingless">
+            {% block left-side-view %}
+            {% endblock %}
+        </div>
 
-                        {% for project in info %}
-                        <div class="tool">
-                            <div class="is-flex">
-                                <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
-                                <h1 class="card-content is-size-5" style="background-color: #f0f0f0;">{{ project.call_to_action }}</h1>
-                            </div>
-                            <div class="card-content" style="background-color: #fafafa;">
-                                {% if project.description %}
-                                <p class="call-to-action">{{project.description}}</p>
-                                {% endif %}
-                                <button class="button is-fullwidth is-white has-text-centered has-text-weight-bold" style="background-color: {{ project.color }};">{{ project.button_text }}</button>
-                            </div>
-                        </div>
+        <div id="right_sidebar" class="column is-narrow is-one-third main-content">
+            {% block right-side-view %}
+            <div class="container">
 
-                        {% endfor %}
+                <h1 class="donate-title">
+                    <span>
+                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                    </span>
+                    {% trans "Useful instruments" %}
+                </h1>
+
+                {% for project in info %}
+                <div class="tool">
+                    <div class="is-flex">
+                        <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
+                        <h1 class="card-content is-size-5" style="background-color: #f0f0f0;">
+                            {{ project.call_to_action }}</h1>
                     </div>
-                {% endblock %}
-            </div>
+                    <div class="card-content" style="background-color: #fafafa;">
+                        {% if project.description %}
+                        <p class="call-to-action">{{project.description}}</p>
+                        {% endif %}
+                        <button class="button is-fullwidth is-white has-text-centered has-text-weight-bold"
+                            style="background-color: {{ project.color }};">{{ project.button_text }}</button>
+                    </div>
+                </div>
 
+                {% endfor %}
+            </div>
+            {% endblock %}
         </div>
     </div>
 
-</section>
+</div>
 {% endblock %}
