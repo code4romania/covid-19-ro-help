@@ -19,7 +19,8 @@ import environ
 root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    USE_S3=(bool, False),
 )
 environ.Env.read_env(f"{root}/.env")  # reading .env file
 
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     "hub",
     "material.admin",
     "material.admin.default",
-    # "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -135,10 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-
-
-
-USE_S3 = env('USE_S3') == 'TRUE'
+USE_S3 = env('USE_S3')
 
 if USE_S3:
     # aws settings
@@ -163,16 +160,11 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-
 # SMTP
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_CONFIG = env.email_url('EMAIL_URL', default='smtp://user:password@localhost:25')
+vars().update(EMAIL_CONFIG)
 
-EMAIL_HOST = env("EMAIL_HOST")
-EMAIL_PORT = env("EMAIL_PORT")
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-EMAIL_USE_SSL = env("EMAIL_USE_SSL")
 DEFAULT_FROM_EMAIL = "noreply@rohelp.ro"
 
 
