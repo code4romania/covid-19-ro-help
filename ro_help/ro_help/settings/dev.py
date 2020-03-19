@@ -8,7 +8,7 @@ ALLOWED_HOSTS += ["localhost", "192.168.99.100"]
 
 AUTH_PASSWORD_VALIDATORS = []
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Add debug toolbar
 if DEBUG:

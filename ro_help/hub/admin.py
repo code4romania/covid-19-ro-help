@@ -40,7 +40,7 @@ class ActiveNGONeedFilter(SimpleListFilter):
 
 @admin.register(NGO)
 class NGOAdmin(admin.ModelAdmin):
-    icon_name = 'home_work'
+    icon_name = "home_work"
     list_per_page = 25
 
     list_display = ("name", "email", "phone", "city", "county", "created")
@@ -88,13 +88,11 @@ class NGOHelperInline(admin.TabularInline):
 
 @admin.register(NGONeed)
 class NGONeedAdmin(admin.ModelAdmin):
-    icon_name = 'transfer_within_a_station'
+    icon_name = "transfer_within_a_station"
     list_per_page = 25
 
-    list_display = ("title", "ngo", "urgency", "kind", "created",
-                    "responses", "resolved_on", "closed_on")
-    list_filter = (NGOFilter, ActiveNGONeedFilter, "urgency",
-                   "kind", "ngo__city", "ngo__county")
+    list_display = ("title", "ngo", "urgency", "kind", "created", "responses", "resolved_on", "closed_on")
+    list_filter = (NGOFilter, ActiveNGONeedFilter, "urgency", "kind", "ngo__city", "ngo__county")
     readonly_fields = ["resolved_on", "closed_on"]
     inlines = [NGOHelperInline]
     actions = ["resolve_need", "close_need"]
@@ -121,7 +119,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
             try:
-                form.base_fields['ngo'].queryset = user.ngos
+                form.base_fields["ngo"].queryset = user.ngos
             except NGO.DoesNotExist:
                 pass
 
@@ -130,7 +128,7 @@ class NGONeedAdmin(admin.ModelAdmin):
     def get_changeform_initial_data(self, request):
         user = request.user
         if user.ngos.count() == 1:
-            return {'ngo': user.ngos.first().pk}
+            return {"ngo": user.ngos.first().pk}
 
     def responses(self, obj):
         all_helpers = obj.helpers.count()
@@ -185,5 +183,3 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         return self.message_user(request, user_msg, level=messages.INFO)
 
     create_account.short_description = _("Create account")
-
-

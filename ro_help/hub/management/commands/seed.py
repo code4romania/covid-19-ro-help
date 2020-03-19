@@ -15,8 +15,7 @@ fake = Faker()
 
 def random_avatar():
     try:
-        image = requests.get(
-            "https://source.unsplash.com/random", allow_redirects=False)
+        image = requests.get("https://source.unsplash.com/random", allow_redirects=False)
         return image.headers["Location"]
     except:
         return "https://source.unsplash.com/random"
@@ -91,7 +90,7 @@ NGOS = (
 )
 
 
-RESOURCE_TAGS = ['apa', 'ceai', 'manusi de protectie']
+RESOURCE_TAGS = ["apa", "ceai", "manusi de protectie"]
 
 
 class Command(BaseCommand):
@@ -136,4 +135,3 @@ class Command(BaseCommand):
                         "resolved_on": random.choice([None, timezone.now()]),
                     }
                 )
-

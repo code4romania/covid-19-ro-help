@@ -7,14 +7,16 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0017_auto_20200318_1004'),
+        ("hub", "0017_auto_20200318_1004"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='registerngorequest',
-            name='registered_on',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now, verbose_name='Registered on'),
+            model_name="registerngorequest",
+            name="registered_on",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now, verbose_name="Registered on"
+            ),
             preserve_default=False,
         ),
     ]

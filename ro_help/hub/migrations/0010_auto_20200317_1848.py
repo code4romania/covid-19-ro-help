@@ -16,9 +16,7 @@ def upper_county(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0009_auto_20200317_1833'),
+        ("hub", "0009_auto_20200317_1833"),
     ]
 
-    operations = [
-        migrations.RunPython(upper_county)
-    ]
+    operations = [migrations.RunPython(upper_county)]
