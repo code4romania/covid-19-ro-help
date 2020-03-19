@@ -200,7 +200,6 @@ class RegisterNGORequest(TimeStampedModel):
         _("Description"), max_length=500, help_text=_("Organization's short description - max 500 chars.")
     )
     contact_name = models.CharField(_("Contact person's name"), max_length=254)
-   
     email = models.EmailField(_("Email"), default="")
     contact_phone = models.CharField(
         _("Contact person's phone"), max_length=15)
