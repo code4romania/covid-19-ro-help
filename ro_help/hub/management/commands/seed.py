@@ -7,7 +7,8 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User, Group
 from django.utils import timezone
 
-from hub.models import NGO, NGONeed, KIND, URGENCY, ResourceTag
+from hub.models import NGO, NGONeed, KIND, URGENCY, ResourceTag, ADMIN_GROUP_NAME, NGO_GROUP_NAME
+
 
 fake = Faker()
 
@@ -89,26 +90,40 @@ NGOS = (
     ]
 )
 
+
 RESOURCE_TAGS = ['apa', 'ceai', 'manusi de protectie']
 
-class Command(BaseCommand):
 
+class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         if not User.objects.filter(username="admin").exists():
             User.objects.create_user("admin", "admin@admin.com", "admin", is_staff=True, is_superuser=True)
 
-        admin_user= User.objects.get(username="admin")
-        admin_group, _ = Group.objects.get_or_create(name="Admin")
-        ngo_group, _ = Group.objects.get_or_create(name="ONG")
+        if not User.objects.filter(username="user").exists():
+            User.objects.create_user("user", "user@user.com", "user", is_staff=True)
+
+        admin_user = User.objects.get(username="admin")
+        ngo_user = User.objects.get(username="user")
+
+        admin_group, _ = Group.objects.get_or_create(name=ADMIN_GROUP_NAME)
+        ngo_group, _ = Group.objects.get_or_create(name=NGO_GROUP_NAME)
 
         admin_user.groups.add(admin_group)
         admin_user.save()
 
+        ngo_user.groups.add(ngo_group)
+        ngo_user.save()
+
         for resource in RESOURCE_TAGS:
-            r, _ = ResourceTag.objects.get_or_create(name=resource)
+            ResourceTag.objects.get_or_create(name=resource)
 
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)
+
+            owner = random.choice([ngo_user, admin_user, None])
+            if owner:
+                ngo.users.add(owner)
+                ngo.save()
 
             for _ in range(20):
                 NGONeed.objects.create(
