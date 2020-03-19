@@ -166,6 +166,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # SMTP
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
 EMAIL_CONFIG = env.email_url(
     "EMAIL_URL", default="smtp://user:password@localhost:25")
 vars().update(EMAIL_CONFIG)

@@ -142,11 +142,12 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
         data["ngo"] = ngo
         html_content = html.render(data)
 
-        subject, from_email, to = "[RO HELP] Mesaj nou", "noreply@rohelp.ro", ngo.email
+        for user in ngo.users.all():
+            subject, from_email, to = "[RO HELP] Mesaj nou", "noreply@rohelp.ro", user.email
 
-        msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
+            msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
         return super().get_success_message(cleaned_data)
 
 
