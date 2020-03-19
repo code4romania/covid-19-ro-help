@@ -188,19 +188,28 @@ class PersonalRequest(TimeStampedModel):
 
 class RegisterNGORequest(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
-    coverage = models.CharField(_("Coverage"), max_length=254, help_text=_(
-        "Country or county/city selection"))
-    email = models.EmailField(_("Email"), null=True, blank=True)
-
-    contact_name = models.CharField(_("Contact person's name"), max_length=254)
-    contact_phone = models.CharField(
-        _("Contact person's phone"), max_length=15)
-
-    has_netopia_contract = models.BooleanField(
-        _("Has contract with Netopia"), default=False)
-    social_link = models.CharField(
-        _("Link to website or Facebook"), max_length=512, null=True, blank=True)
-
     description = models.TextField(
         _("Description"), max_length=500, help_text=_("Organization's short description - max 500 chars.")
     )
+    contact_name = models.CharField(_("Contact person's name"), max_length=254)
+   
+    email = models.EmailField(_("Email"), default="")
+    contact_phone = models.CharField(
+        _("Contact person's phone"), max_length=15)
+    has_netopia_contract = models.BooleanField(
+        _("Has contract with Netopia"), default=False)
+    avatar = models.ImageField(_("Avatar"), max_length=300)
+    address = models.CharField(_("Address"), max_length=400)
+    city = models.CharField(_("City"), max_length=100)
+    county = models.CharField(
+        _("County"), choices=COUNTY.to_choices(), max_length=50)
+
+    social_link = models.CharField(
+        _("Link to website or Facebook"), max_length=512, null=True, blank=True)
+
+
+    active = models.BooleanField(_("Active"), default=False)
+    resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
+
+    def __str__(self):
+        return self.name

@@ -1,11 +1,12 @@
 {% extends 'ngo/base.html' %}
 {% load static %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 
 {% block left-side-view %}
 <div class="container">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         {{ form.non_field_errors }}
@@ -15,7 +16,8 @@
         {{ hidden_field }}
         {% endfor %}
 
-        <table border="1">
+        {{ form|crispy }}
+        <!-- <table class="table">
             {% for field in form.visible_fields %}
             <tr>
                 <th>{{ field.label_tag }}</th>
@@ -26,7 +28,7 @@
                 </td>
             </tr>
             {% endfor %}
-        </table>
+        </table> -->
         <input type="submit" value="Create">
     </form>
 </div>
