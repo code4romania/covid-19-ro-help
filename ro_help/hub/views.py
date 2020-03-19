@@ -14,6 +14,7 @@ from django.template.loader import get_template
 from django.template import Context
 
 from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest
+from hub.forms import NGOHelperForm, NGORegisterRequestForm
 
 
 class NGOKindFilterMixin:
@@ -93,7 +94,8 @@ class NGODetailView(NGOKindFilterMixin, DetailView):
 class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
     template_name = "ngo/detail.html"
     model = NGOHelper
-    fields = ["name", "email", "message", "phone"]
+    form_class = NGOHelperForm
+    # fields = ["name", "email", "message", "phone"]
     success_message = _("TODO: add a success message")
 
     def get_object(self, queryset=None):
@@ -149,8 +151,7 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
 class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
     template_name = "ngo/register_request.html"
     model = RegisterNGORequest
-    fields = ["name", "county", "city", "address", "avatar", "email", "contact_name",
-              "contact_phone", "email", "social_link", "description", "has_netopia_contract"]
+    form_class = NGORegisterRequestForm
     success_message = _("TODO: add a success message")
 
     def get_success_url(self):
