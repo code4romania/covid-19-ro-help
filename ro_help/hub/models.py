@@ -218,6 +218,7 @@ class RegisterNGORequest(TimeStampedModel):
 
     active = models.BooleanField(_("Active"), default=False)
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
+    registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
     def __str__(self):
         return self.name

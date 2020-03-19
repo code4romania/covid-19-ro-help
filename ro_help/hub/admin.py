@@ -190,7 +190,7 @@ from django.core.mail import EmailMultiAlternatives
 @admin.register(RegisterNGORequest)
 class RegisterNGORequestAdmin(admin.ModelAdmin):
     icon_name = "add_circle"
-    list_display = ["name", "county", "city", "active", "resolved_on"]
+    list_display = ["name", "county", "city", "active", "registered_on","resolved_on"]
     actions = ["create_account"]
     readonly_fields = ["active", "resolved_on"]
 
