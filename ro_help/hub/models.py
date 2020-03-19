@@ -1,7 +1,15 @@
-from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User, Group
+from django.db import models, transaction
+from django.utils import timezone
+from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
+
 from django_extensions.db.models import TimeStampedModel
+
+
+ADMIN_GROUP_NAME = "Admin"
+NGO_GROUP_NAME = "ONG"
 
 
 class URGENCY:
@@ -214,10 +222,57 @@ class RegisterNGORequest(TimeStampedModel):
     social_link = models.CharField(
         _("Link to website or Facebook"), max_length=512, null=True, blank=True)
 
-
     active = models.BooleanField(_("Active"), default=False)
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
+
+    def create_ngo_owner(self, request, ngo_group):
+        user, created = User.objects.get_or_create(username=self.email)
+
+        if not created:
+            return user
+
+        user.first_name = " ".join(self.contact_name.split(" ")[0:-1])
+        user.last_name = self.contact_name.split(" ")[-1]
+        user.email = self.email
+        user.set_password(get_random_string())
+        user.is_staff = True
+        user.groups.add(ngo_group)
+        user.save()
+
+        reset_form = PasswordResetForm({'email': user.email})
+        assert reset_form.is_valid()
+
+        reset_form.save(
+            request=request,
+            use_https=request.is_secure(),
+            subject_template_name='registration/password_reset_subject.txt',
+            email_template_name='registration/password_reset_email.html',
+        )
+
+        return user
+
+    @transaction.atomic
+    def activate(self, request, ngo_group=None):
+        ngo_group = ngo_group or Group.objects.get(name=NGO_GROUP_NAME)
+
+        ngo, _ = NGO.objects.get_or_create(
+            name=self.name,
+            description=self.description,
+            email=self.email,
+            phone=self.contact_phone,
+            avatar=self.avatar,
+            address=self.address,
+            city=self.city,
+            county=self.county
+        )
+
+        owner = self.create_ngo_owner(request, ngo_group)
+        ngo.users.add(owner)
+
+        self.resolved_on = timezone.now()
+        self.active = True
+        self.save()
 
     def __str__(self):
         return self.name
