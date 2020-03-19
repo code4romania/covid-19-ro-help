@@ -1,6 +1,6 @@
 {% load spurl %}
 {% load i18n %}
-
+{% load crispy_forms_tags %}
 
 <div class="container">
     <h3 class="is-size-5 has-text-weight-bold">{{ need.title }}</h3>
@@ -16,20 +16,9 @@
         {{ hidden_field.errors }}
         {{ hidden_field }}
         {% endfor %}
-
-        <table border="1">
-            {% for field in form.visible_fields %}
-            <tr>
-                <th>{{ field.label_tag }}</th>
-                <td>
-                    {{ field.errors }}
-                    {{ field }}
-                    {{ field.help_text }}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        <input type="submit" value="Create">
+        {{form|crispy}}
+        
+        <input type="submit" class="button is-primary" value="Trimite">
     </form>
     {% else %}
     {% url 'ngo-helper-create' ngo.pk need.pk as base %}
