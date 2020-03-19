@@ -20,7 +20,7 @@
         <a class="pagination-next"
             href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.next_page_number }}' %}">next</a>
         <a class="pagination-next"
-            href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.num_pages }}' %}">last
+            href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.paginator.num_pages }}' %}">last
             &raquo;</a>
         {% endif %}
     </span>
