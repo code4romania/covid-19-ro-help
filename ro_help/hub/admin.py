@@ -1,8 +1,12 @@
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import format_html
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.utils.crypto import get_random_string
 from admin_auto_filters.filters import AutocompleteFilter
 
 from .models import NGO, NGONeed, PersonalRequest, NGOHelper, ResourceTag, RegisterNGORequest
@@ -177,11 +181,64 @@ class ResourceTagAdmin(admin.ModelAdmin):
     icon_name = "filter_vintage"
 
 
-@admin.register(PersonalRequest)
-class PersonalRequestAdmin(admin.ModelAdmin):
-    icon_name = "face"
+# @admin.register(PersonalRequest)
+# class PersonalRequestAdmin(admin.ModelAdmin):
+#     icon_name = "face"
 
 
+from django.core.mail import EmailMultiAlternatives
 @admin.register(RegisterNGORequest)
 class RegisterNGORequestAdmin(admin.ModelAdmin):
     icon_name = "add_circle"
+    list_display = ["name", "county", "city", "active", "resolved_on"]
+    actions = ["create_account"]
+    readonly_fields = ["active", "resolved_on"]
+
+    def create_account(self, request, queryset):
+        c = 0
+        ngo_group = Group.objects.get(name="ONG")
+        for ngo in queryset:
+            if ngo.resolved_on == None:
+                user, created = User.objects.get_or_create(username=ngo.email)
+                if created:
+                    user.first_name = " ".join(ngo.contact_name.split(" ")[0:-1])
+                    user.last_name = ngo.contact_name.split(" ")[-1]
+                    user.email = ngo.email
+                    user.set_password(get_random_string())
+                    user.is_staff = True
+                    user.groups.add(ngo_group)
+                    user.save()
+                    reset_form = PasswordResetForm({'email': user.email})
+                    assert reset_form.is_valid()
+                    reset_form.save(
+                        request=request,
+                        use_https=request.is_secure(),
+                        subject_template_name='registration/password_reset_subject.txt',
+                        email_template_name='registration/password_reset_email.html',
+                    )
+                new_ngo, created = NGO.objects.get_or_create(
+                    name=ngo.name,
+                    description=ngo.description,
+                    email=ngo.email,
+                    phone=ngo.contact_phone,
+                    avatar=ngo.avatar,
+                    address=ngo.address,
+                    city=ngo.city,
+                    county=ngo.county
+                    )
+                new_ngo.users.add(user)   
+                c += 1
+
+                ngo.resolved_on = timezone.now()
+                ngo.active = True
+                ngo.save()
+
+        if c == 1:
+            user_msg = f"{c} ngo activated"
+        else:
+            user_msg = f"{c} ngos activated"
+        return self.message_user(request, user_msg, level=messages.INFO)
+
+    create_account.short_description = _("Create account")
+
+

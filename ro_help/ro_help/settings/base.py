@@ -26,7 +26,6 @@ environ.Env.read_env(f"{root}/.env")  # reading .env file
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -53,6 +52,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "admin_auto_filters",
     "spurl",
+    "crispy_forms",
+    "django_crispy_bulma",
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,17 @@ STATICFILES_DIRS = [
 ]
 
 
+# SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_USE_SSL = env("EMAIL_USE_SSL")
+DEFAULT_FROM_EMAIL = "noreply@rohelp.ro"
+
+
 MATERIAL_ADMIN_SITE = {
     'HEADER':  _('COVID-19 RO HELP'),  # Admin site header
     'TITLE':  _('RO HELP'),  # Admin site title
@@ -162,3 +174,9 @@ MATERIAL_ADMIN_SITE = {
         'hub': 'contact_mail',
     }
 }
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = (
+    "bulma",
+)
+
+CRISPY_TEMPLATE_PACK = "bulma"

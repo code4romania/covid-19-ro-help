@@ -1,12 +1,17 @@
 import json
 
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.models import User, Group
 from django.core import paginator
 from django.http import Http404
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView, DetailView, CreateView
+
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
 
 from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest
 
@@ -131,8 +136,24 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
 class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
     template_name = "ngo/register_request.html"
     model = RegisterNGORequest
-    fields = ["name", "coverage", "email", "contact_name", "contact_phone", "email", "social_link", "description"]
+    fields = ["name", "county", "city", "address", "avatar", "email", "contact_name",
+              "contact_phone", "email", "social_link", "description", "has_netopia_contract"]
     success_message = _("TODO: add a success message")
 
     def get_success_url(self):
-        return reverse("ngos")
+        return reverse("ngos-register-request")
+
+    def get_success_message(self, cleaned_data):
+        print('*******')
+        print(cleaned_data)
+
+        html = get_template('mail/new_ngo.html')
+        html_content = html.render(cleaned_data)
+        for admin in User.objects.filter(groups__name="Admin"):
+            print('***sending email to', admin)
+            subject, from_email, to = '[RO HELP] ONG nou', 'noreply@rohelp.ro', admin.email
+            msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+        return super().get_success_message(cleaned_data)
+
