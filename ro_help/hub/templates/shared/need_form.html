@@ -16,6 +16,7 @@
         {{ hidden_field.errors }}
         {{ hidden_field }}
         {% endfor %}
+        <input type="hidden" value="{{need.pk}}" name="need-pk">
         {{form|crispy}}
         
         <input type="submit" class="button is-primary" value="Trimite">

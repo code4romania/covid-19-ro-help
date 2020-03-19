@@ -132,6 +132,19 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
     def get_success_url(self):
         return reverse("ngo-detail", kwargs={"pk": self.kwargs["ngo"]})
 
+    def get_success_message(self, cleaned_data):
+        html = get_template('mail/new_helper.html')
+        data = cleaned_data
+        ngo = NGO.objects.get(pk=self.kwargs['ngo'])
+        data['ngo'] = ngo
+        html_content = html.render(data)
+
+        subject, from_email, to = '[RO HELP] Mesaj nou', 'noreply@rohelp.ro', ngo.email
+        msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+        return super().get_success_message(cleaned_data)
+
 
 class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
     template_name = "ngo/register_request.html"
@@ -144,13 +157,9 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
         return reverse("ngos-register-request")
 
     def get_success_message(self, cleaned_data):
-        print('*******')
-        print(cleaned_data)
-
         html = get_template('mail/new_ngo.html')
         html_content = html.render(cleaned_data)
         for admin in User.objects.filter(groups__name="Admin"):
-            print('***sending email to', admin)
             subject, from_email, to = '[RO HELP] ONG nou', 'noreply@rohelp.ro', admin.email
             msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
