@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0014_auto_20200317_2302'),
+        ("hub", "0014_auto_20200317_2302"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ngoneed',
-            name='closed_on',
-            field=models.DateTimeField(blank=True, null=True, verbose_name='Closed on'),
+            model_name="ngoneed",
+            name="closed_on",
+            field=models.DateTimeField(blank=True, null=True, verbose_name="Closed on"),
         ),
     ]

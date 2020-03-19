@@ -70,7 +70,8 @@ class NGOListView(NGOKindFilterMixin, ListView):
         context["current_city"] = self.request.GET.get("city")
 
         ngos = NGO.objects.filter(
-            needs__kind=context["current_kind"], needs__resolved_on=None, needs__closed_on=None).distinct("name")
+            needs__kind=context["current_kind"], needs__resolved_on=None, needs__closed_on=None
+        ).distinct("name")
 
         context["counties"] = ngos.order_by("county").values_list(
             "county", flat=True).distinct("county")
@@ -135,13 +136,14 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
         return reverse("ngo-detail", kwargs={"pk": self.kwargs["ngo"]})
 
     def get_success_message(self, cleaned_data):
-        html = get_template('mail/new_helper.html')
+        html = get_template("mail/new_helper.html")
         data = cleaned_data
-        ngo = NGO.objects.get(pk=self.kwargs['ngo'])
-        data['ngo'] = ngo
+        ngo = NGO.objects.get(pk=self.kwargs["ngo"])
+        data["ngo"] = ngo
         html_content = html.render(data)
 
-        subject, from_email, to = '[RO HELP] Mesaj nou', 'noreply@rohelp.ro', ngo.email
+        subject, from_email, to = "[RO HELP] Mesaj nou", "noreply@rohelp.ro", ngo.email
+
         msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
@@ -158,12 +160,13 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
         return reverse("ngos-register-request")
 
     def get_success_message(self, cleaned_data):
-        html = get_template('mail/new_ngo.html')
+
+        html = get_template("mail/new_ngo.html")
         html_content = html.render(cleaned_data)
         for admin in User.objects.filter(groups__name="Admin"):
-            subject, from_email, to = '[RO HELP] ONG nou', 'noreply@rohelp.ro', admin.email
-            msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
+            subject, from_email, to = "[RO HELP] ONG nou", "noreply@rohelp.ro", admin.email
+            msg = EmailMultiAlternatives(
+                subject, html_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
         return super().get_success_message(cleaned_data)
-

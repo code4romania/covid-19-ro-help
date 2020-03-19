@@ -16,9 +16,7 @@ def upper_county(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0008_ngohelper_read'),
+        ("hub", "0008_ngohelper_read"),
     ]
 
-    operations = [
-        migrations.RunPython(upper_county)
-    ]
+    operations = [migrations.RunPython(upper_county)]

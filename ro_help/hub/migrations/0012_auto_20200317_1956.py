@@ -8,21 +8,17 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('hub', '0011_auto_20200317_1859'),
+        ("hub", "0011_auto_20200317_1859"),
     ]
 
     operations = [
+        migrations.AlterModelOptions(name="ngo", options={"verbose_name_plural": "ONG-uri"},),
         migrations.AlterModelOptions(
-            name='ngo',
-            options={'verbose_name_plural': 'ONG-uri'},
-        ),
-        migrations.AlterModelOptions(
-            name='ngoneed',
-            options={'verbose_name': 'Nevoie ONG', 'verbose_name_plural': 'Nevoi ONG'},
+            name="ngoneed", options={"verbose_name": "Nevoie ONG", "verbose_name_plural": "Nevoi ONG"},
         ),
         migrations.AddField(
-            model_name='ngo',
-            name='users',
-            field=models.ManyToManyField(related_name='ngos', to=settings.AUTH_USER_MODEL),
+            model_name="ngo",
+            name="users",
+            field=models.ManyToManyField(related_name="ngos", to=settings.AUTH_USER_MODEL),
         ),
     ]
