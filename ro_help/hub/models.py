@@ -82,6 +82,14 @@ class NGO(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    def get_avatar(self):
+        if self.avatar:
+            if "http" in str(self.avatar):
+                return str(self.avatar)
+            return f"{self.avatar.url}"
+        else:
+            return None
+
     class Meta:
         verbose_name_plural = _("NGOs")
         verbose_name = _("NGO")
