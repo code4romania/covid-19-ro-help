@@ -59,8 +59,56 @@ class KIND:
 
 
 class COUNTY:
-    counties = ["ALBA", "ARGES", "ARAD", "BACAU", "BIHOR", "BISTRITA-NASAUD", "BRAILA", "BRASOV", "BOTOSANI", "BUCURESTI", "BUZAU", "CLUJ", "CALARASI", "CARAS-SEVERIN", "CONSTANTA", "COVASNA", "DAMBOVITA", "DOLJ", "GORJ", "GALATI", "GIURGIU",
-                "HUNEDOARA", "HARGHITA", "IALOMITA", "IASI", "ILFOV", "MEHEDINTI", "MARAMURES", "MURES", "NEAMT", "OLT", "PRAHOVA", "SIBIU", "SALAJ", "SATU-MARE", "SECTOR 1", "SECTOR 2", "SECTOR 3", "SECTOR 4", "SECTOR 5", "SECTOR 6", "SUCEAVA", "TULCEA", "TIMIS", "TELEORMAN", "VALCEA", "VRANCEA", "VASLUI"]
+    counties = [
+        "ALBA",
+        "ARGES",
+        "ARAD",
+        "BACAU",
+        "BIHOR",
+        "BISTRITA-NASAUD",
+        "BRAILA",
+        "BRASOV",
+        "BOTOSANI",
+        "BUCURESTI",
+        "BUZAU",
+        "CLUJ",
+        "CALARASI",
+        "CARAS-SEVERIN",
+        "CONSTANTA",
+        "COVASNA",
+        "DAMBOVITA",
+        "DOLJ",
+        "GORJ",
+        "GALATI",
+        "GIURGIU",
+        "HUNEDOARA",
+        "HARGHITA",
+        "IALOMITA",
+        "IASI",
+        "ILFOV",
+        "MEHEDINTI",
+        "MARAMURES",
+        "MURES",
+        "NEAMT",
+        "OLT",
+        "PRAHOVA",
+        "SIBIU",
+        "SALAJ",
+        "SATU-MARE",
+        "SECTOR 1",
+        "SECTOR 2",
+        "SECTOR 3",
+        "SECTOR 4",
+        "SECTOR 5",
+        "SECTOR 6",
+        "SUCEAVA",
+        "TULCEA",
+        "TIMIS",
+        "TELEORMAN",
+        "VALCEA",
+        "VRANCEA",
+        "VASLUI",
+    ]
 
     @classmethod
     def to_choices(cls):
@@ -84,8 +132,7 @@ class NGO(TimeStampedModel):
     avatar = models.ImageField(_("Avatar"), max_length=300)
     address = models.CharField(_("Address"), max_length=400)
     city = models.CharField(_("City"), max_length=100)
-    county = models.CharField(
-        _("County"), choices=COUNTY.to_choices(), max_length=50)
+    county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
 
     def __str__(self):
         return self.name
@@ -111,7 +158,6 @@ class ResourceTag(TimeStampedModel):
 
 
 class NGONeedQuerySet(models.QuerySet):
-
     def active(self):
         return self.filter(resolved_on=None).filter(closed_on=None)
 
@@ -132,16 +178,13 @@ class NGONeedQuerySet(models.QuerySet):
 
 
 class NGONeed(TimeStampedModel):
-    ngo = models.ForeignKey(
-        NGO, on_delete=models.CASCADE, related_name="needs", verbose_name=_("NGO"))
+    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, related_name="needs", verbose_name=_("NGO"))
 
     title = models.CharField(_("Title"), max_length=254)
     description = models.TextField(_("Description"))
 
-    kind = models.CharField(_("Kind"), choices=KIND.to_choices(
-    ), default=KIND.default(), max_length=10)
-    urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(
-    ), default=URGENCY.default(), max_length=10)
+    kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
+    urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
 
     resource_tags = models.ManyToManyField("ResourceTag", blank=True, related_name="needs")
 
@@ -159,8 +202,7 @@ class NGONeed(TimeStampedModel):
 
 
 class NGOHelper(TimeStampedModel):
-    ngo_need = models.ForeignKey(
-        NGONeed, on_delete=models.CASCADE, related_name="helpers")
+    ngo_need = models.ForeignKey(NGONeed, on_delete=models.CASCADE, related_name="helpers")
 
     name = models.CharField(_("Name"), max_length=254)
     email = models.EmailField(_("Email"),)
@@ -178,25 +220,19 @@ class NGOHelper(TimeStampedModel):
 
 
 class PersonalRequest(TimeStampedModel):
-    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE,
-                            null=True, blank=True, related_name="requests")
+    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, null=True, blank=True, related_name="requests")
 
     name = models.CharField(_("Name"), max_length=254,)
     email = models.EmailField(_("Email"), null=True, blank=True)
     phone = models.CharField(_("Phone"), max_length=15)
     city = models.CharField(_("City"), max_length=100)
-    county = models.CharField(
-        _("County"), choices=COUNTY.to_choices(), max_length=50)
-    address = models.CharField(
-        _("Address"), max_length=400, null=True, blank=True)
-    organization = models.CharField(
-        _("Organization"), max_length=400, null=True, blank=True)
+    county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
+    address = models.CharField(_("Address"), max_length=400, null=True, blank=True)
+    organization = models.CharField(_("Organization"), max_length=400, null=True, blank=True)
     description = models.TextField(_("Description"))
 
-    kind = models.CharField(_("Kind"), choices=KIND.to_choices(
-    ), default=KIND.default(), max_length=10)
-    urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(
-    ), default=URGENCY.default(), max_length=10)
+    kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
+    urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
 
     def __str__(self):
         return self.name
@@ -209,18 +245,14 @@ class RegisterNGORequest(TimeStampedModel):
     )
     contact_name = models.CharField(_("Contact person's name"), max_length=254)
     email = models.EmailField(_("Email"), default="")
-    contact_phone = models.CharField(
-        _("Contact person's phone"), max_length=15)
-    has_netopia_contract = models.BooleanField(
-        _("Has contract with Netopia"), default=False)
+    contact_phone = models.CharField(_("Contact person's phone"), max_length=15)
+    has_netopia_contract = models.BooleanField(_("Has contract with Netopia"), default=False)
     avatar = models.ImageField(_("Avatar"), max_length=300)
     address = models.CharField(_("Address"), max_length=400)
     city = models.CharField(_("City"), max_length=100)
-    county = models.CharField(
-        _("County"), choices=COUNTY.to_choices(), max_length=50)
+    county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
 
-    social_link = models.CharField(
-        _("Link to website or Facebook"), max_length=512, null=True, blank=True)
+    social_link = models.CharField(_("Link to website or Facebook"), max_length=512, null=True, blank=True)
 
     active = models.BooleanField(_("Active"), default=False)
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
@@ -240,14 +272,14 @@ class RegisterNGORequest(TimeStampedModel):
         user.groups.add(ngo_group)
         user.save()
 
-        reset_form = PasswordResetForm({'email': user.email})
+        reset_form = PasswordResetForm({"email": user.email})
         assert reset_form.is_valid()
 
         reset_form.save(
             request=request,
             use_https=request.is_secure(),
-            subject_template_name='registration/password_reset_subject.txt',
-            email_template_name='registration/password_reset_email.html',
+            subject_template_name="registration/password_reset_subject.txt",
+            email_template_name="registration/password_reset_email.html",
         )
 
         return user
@@ -264,7 +296,7 @@ class RegisterNGORequest(TimeStampedModel):
             avatar=self.avatar,
             address=self.address,
             city=self.city,
-            county=self.county
+            county=self.county,
         )
 
         owner = self.create_ngo_owner(request, ngo_group)

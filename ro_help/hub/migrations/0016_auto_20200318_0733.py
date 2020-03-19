@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0015_ngoneed_closed_on'),
+        ("hub", "0015_ngoneed_closed_on"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='registerngorequest',
-            name='active',
-            field=models.BooleanField(default=False, verbose_name='Active'),
+            model_name="registerngorequest",
+            name="active",
+            field=models.BooleanField(default=False, verbose_name="Active"),
         ),
         migrations.AddField(
-            model_name='registerngorequest',
-            name='resolved_on',
-            field=models.DateTimeField(blank=True, null=True, verbose_name='Resolved on'),
+            model_name="registerngorequest",
+            name="resolved_on",
+            field=models.DateTimeField(blank=True, null=True, verbose_name="Resolved on"),
         ),
         migrations.AlterField(
-            model_name='ngoneed',
-            name='resource_tags',
-            field=models.ManyToManyField(blank=True, related_name='needs', to='hub.ResourceTag'),
+            model_name="ngoneed",
+            name="resource_tags",
+            field=models.ManyToManyField(blank=True, related_name="needs", to="hub.ResourceTag"),
         ),
     ]
