@@ -1,4 +1,5 @@
 {% extends 'ngo/base.html' %}
+{% load static %}
 {% load spurl %}
 {% load i18n %}
 
@@ -29,10 +30,13 @@
 
 <hr />
 
-<div class="container">
-    <h3>{% trans "About the organization" %}</h3>
+<div class="section">
+    <div class="content">
+        <h3>{% trans "About the organization" %}</h3>
 
     <p>{{ ngo.description }}</p>
+    </div>
+    
 </div>
 
 
@@ -40,9 +44,12 @@
     {% if ngo.needs.money %}
     <div class="card">
         <header class="card-header">
-            <p class="card-header-title">
-                {% trans "Donate money" %}
-            </p>
+            <div class="card-header-title is-flex is-size-4 is-paddingless">
+                <span class="call-to-action" style="background-color: #31C85B">
+                    <i class="fas fa-dollar-sign"></i>
+                </span>
+                <span class="card-content-narrow">{% trans "Donate money" %}</span>
+            </div>
             <a href="#donate-money" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                 aria-label="more options">
                 <span class="icon">
@@ -52,37 +59,50 @@
         </header>
 
         <div id="donate-money" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
-            <div class="card-content">
-                <div class="container">
-                    <h4>{% trans "Donate via PayPal" %}:</h4>
-                    <div class="columns">
-                        <div class="column is-8-desktop">
-                            100 eur
-                        </div>
+            <div class="card-content donation-card">
 
-                        <div class="column is-2-desktop ">
-                            <button class="button has-background-primary is-medium">{% trans "Donate" %}</button>
+                <div class="container">
+                    <div class="is-size-5 is-flex">
+                        <figure class="call-to-action image is-96x96">
+                            <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                        </figure>
+                        <div class="call-to-action has-text-weight-semibold">{% trans "Donate via Netopia" %}:</div>
+                    </div>
+                    
+                    <div class="columns is-mobile">
+                        <div class="column is-two-thirds-desktop is-half-mobile">
+                            <div class="control">
+                                <input class="input is-success" type="text" placeholder="100 eur">
+                              </div>
+                        </div>
+                        <div class="column is-one-third-desktop is-half-mobile">
+                            <button class="button is-success is-fullwidth">{% trans "Donate" %}</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="container">
-                    <h4>{% trans "Donate via Netopia" %}:</h4>
-                    <div class="columns">
-                        <div class="column is-8-desktop">
-                            100 eur
-                        </div>
+                    <div class="is-size-5 is-flex">
+                        <figure class="call-to-action image is-96x96">
+                            <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                        </figure>
+                        <div class="call-to-action has-text-weight-semibold">{% trans "Donate via transfer" %}:</div>
+                    </div>
+                    
+                    <div class="content">
+                        <p>Nume: Asociația Habitat for Humanity</p>
+                        <p>Sediu: Piata Unirii 16,Bucuresti</p>
+                        <p>CIF: RO22556447</p>
+                        <p>CUI: 323265</p>
 
-                        <div class="column is-2-desktop ">
-                            <button class="button has-background-primary is-medium">{% trans "Donate" %}</button>
-                        </div>
+                        <p>Cont RON: RO38BTRLRONCRT0505050505</p>
+                        <p>Cont EUR: RO38BTRLRONCRT0505050505</p>
+                        <p>Cont USD: RO38BTRLRONCRT0505050505</p>
+
+                        <p>Banca: Raiffeisen Bank</p>
                     </div>
                 </div>
 
-                <div class="container">
-                    <h4>{% trans "Donate via Wire" %}:</h4>
-                    TODO: add from ngo model
-                </div>
             </div>
         </div>
     </div>
@@ -92,9 +112,12 @@
     {% if ngo.needs.resource %}
     <div class="card">
         <header class="card-header">
-            <p class="card-header-title">
-                {% trans "Donate resources" %}
-            </p>
+            <div class="card-header-title is-flex is-size-4 is-paddingless">
+                <span class="call-to-action" style="background-color: #05d6c8">
+                    <i class="fas fa-box-open"></i>
+                </span>
+                <span class="card-content-narrow">{% trans "Donate resources" %}</span>
+            </div>
             <a href="#donate-resources" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                 aria-label="more options">
                 <span class="icon">
@@ -104,7 +127,7 @@
         </header>
 
         <div id="donate-resources" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
-            <div class="card-content">
+            <div class="card-content donation-card">
                 <div class="container">
                     {% include "shared/pagination.html" with page_obj=resource_page_obj %}
                 </div>
@@ -113,8 +136,8 @@
                 <div class="container">
                     {% include "shared/need_form.html" with page=resource_page_obj.number %}
                 </div>
-                <hr />
                 {% endfor %}
+            
             </div>
         </div>
     </div>
@@ -123,9 +146,12 @@
     {% if ngo.needs.volunteer %}
     <div class="card">
         <header class="card-header">
-            <p class="card-header-title">
-                {% trans "Join as volunteer" %}
-            </p>
+            <div class="card-header-title is-flex is-size-4 is-paddingless">
+                <span class="call-to-action" style="background-color: #FFB800">
+                    <i class="fas fa-people-carry"></i>
+                </span>
+                <span class="card-content-narrow">{% trans "Join as volunteer" %}</span>
+            </div>
             <a href="#donate-volunteer" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                 aria-label="more options">
                 <span class="icon">
@@ -135,7 +161,7 @@
         </header>
 
         <div id="donate-volunteer" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
-            <div class="card-content">
+            <div class="card-content donation-card">
                 <p>
                     TODO: need some text here
                 </p>

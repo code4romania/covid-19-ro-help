@@ -1,31 +1,39 @@
+{% load static %}
 {% load spurl %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-<div class="container">
-    <h3 class="is-size-5 has-text-weight-bold">{{ need.title }}</h3>
-    <p>{{ need.description }}</p>
 
-    {% if current_need is not None and current_need.pk == need.pk %}
-    <form method="post">
-        {% csrf_token %}
-
-        {{ form.non_field_errors }}
-
-        {% for hidden_field in form.hidden_fields %}
-        {{ hidden_field.errors }}
-        {{ hidden_field }}
-        {% endfor %}
-        <input type="hidden" value="{{need.pk}}" name="need-pk">
-        {{form|crispy}}
-        
-        <input type="submit" class="button is-primary" value="Trimite">
-    </form>
-    {% else %}
-    {% url 'ngo-helper-create' ngo.pk need.pk as base %}
-    <div class="content has-text-centered">
-        <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
-           href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' set_query='page={{ page }}' %}">{% trans "I can help" %}</a>
-    </div>
-    {% endif %}
+<div class="is-size-5 is-flex">
+    <figure class="call-to-action image is-96x96">
+        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
+    </figure>
+    <div class="call-to-action has-text-weight-semibold">{{ need.title }}</div>
 </div>
+
+<div class="content">
+    {{ need.description }}
+</div>
+
+{% if current_need is not None and current_need.pk == need.pk %}
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+    {% endfor %}
+    <input type="hidden" value="{{need.pk}}" name="need-pk">
+    {{form|crispy}}
+
+    <input type="submit" class="button is-primary" value="Trimite">
+</form>
+{% else %}
+{% url 'ngo-helper-create' ngo.pk need.pk as base %}
+<div class="content has-text-centered">
+    <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
+        href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' set_query='page={{ page }}' %}">{% trans "I can help" %}</a>
+</div>
+{% endif %}
