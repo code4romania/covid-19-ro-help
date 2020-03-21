@@ -4,11 +4,15 @@
 {% load crispy_forms_tags %}
 
 
-<div class="is-size-5 is-flex">
-    <figure class="call-to-action image is-96x96">
-        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
-    </figure>
-    <div class="call-to-action has-text-weight-semibold">{{ need.title }}</div>
+<div class="container donate-hero">
+    <span class="donate-hero-img">
+         <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
+    </span>
+    <div>
+        <div class="title">
+            {{ need.title }}
+        </div>
+    </div>
 </div>
 
 <div class="content">
