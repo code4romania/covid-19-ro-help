@@ -111,7 +111,7 @@
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
                                class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
-                                {{ county }}
+                                {{ urgency }}
                             </a>
                         </div>
                         {% endfor %}
