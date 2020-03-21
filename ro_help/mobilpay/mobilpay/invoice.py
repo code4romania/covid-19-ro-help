@@ -6,7 +6,6 @@ from mobilpay.mobilpay.payment.invoice.invoice_item import InvoiceItem
 
 
 class Invoice:
-
     def __init__(self, node=None):
         self.ERROR_INVALID_PARAMETER = 0x11110001
         self.ERROR_INVALID_CURRENCY = 0x11110002
@@ -36,13 +35,17 @@ class Invoice:
 
         self._currency = invoice_node.getAttribute("currency")
         if self._currency is None:
-            raise Exception("Invoice.load_from_xml failed; currency attribute is missing",
-                            self.ERROR_LOAD_FROM_XML_CURRENCY_ATTR_MISSING)
+            raise Exception(
+                "Invoice.load_from_xml failed; currency attribute is missing",
+                self.ERROR_LOAD_FROM_XML_CURRENCY_ATTR_MISSING,
+            )
 
         self._amount = invoice_node.getAttribute("amount")
         if self._amount is None:
             raise Exception(
-                "Invoice.load_from_xml failed; amount attribute is missing", self.ERROR_LOAD_FROM_XML_AMOUNT_ATTR_MISSING)
+                "Invoice.load_from_xml failed; amount attribute is missing",
+                self.ERROR_LOAD_FROM_XML_AMOUNT_ATTR_MISSING,
+            )
 
         self._amount = Decimal(invoice_node.getAttribute("amount"))
 
@@ -54,11 +57,9 @@ class Invoice:
         if self._installments is not None:
             self._installments = invoice_node.getAttribute("installments")
 
-        self._selectedInstallments = invoice_node.getAttribute(
-            "selected_installments")
+        self._selectedInstallments = invoice_node.getAttribute("selected_installments")
         if self._selectedInstallments is not None:
-            self._selectedInstallments = invoice_node.getAttribute(
-                "selected_installments")
+            self._selectedInstallments = invoice_node.getAttribute("selected_installments")
 
         details_node = invoice_node.getElementsByTagName("details")
         if len(details_node) == 1:
@@ -110,10 +111,9 @@ class Invoice:
         invoice_node.setAttribute("currency", self._currency)
 
         if Decimal(self._amount) > 0:
-            setlocale(LC_ALL, 'EN_US.UTF-8')
+            setlocale(LC_ALL, "EN_US.UTF-8")
 
-            invoice_node.setAttribute(
-                "amount", '{:.2f}'.format(Decimal(self._amount)))
+            invoice_node.setAttribute("amount", "{:.2f}".format(Decimal(self._amount)))
 
         if self._token_id is not None:
             invoice_node.setAttribute("token_id", self._token_id)
@@ -122,26 +122,22 @@ class Invoice:
             invoice_node.setAttribute("installments", str(self._installments))
 
         if self._selectedInstallments is not None and len(self._selectedInstallments) > 0:
-            invoice_node.setAttribute(
-                "selected_installments", str(self._selectedInstallments))
+            invoice_node.setAttribute("selected_installments", str(self._selectedInstallments))
 
         if self._details is not None:
             xml_elem = document.createElement("details")
-            xml_text = document.createCDATASection(
-                quote(self._details, encoding="utf-8"))
+            xml_text = document.createCDATASection(quote(self._details, encoding="utf-8"))
             xml_elem.appendChild(xml_text)
             invoice_node.appendChild(xml_elem)
 
         contact_info = document.createElement("contact_info")
 
         if self._billingAddress is not None:
-            xml_elem = self._billingAddress.create_xml_element(
-                document, "billing")
+            xml_elem = self._billingAddress.create_xml_element(document, "billing")
             contact_info.appendChild(xml_elem)
 
         if self._shippingAddress is not None:
-            xml_elem = self._shippingAddress.create_xml_element(
-                document, "shipping")
+            xml_elem = self._shippingAddress.create_xml_element(document, "shipping")
             contact_info.appendChild(xml_elem)
 
         invoice_node.appendChild(contact_info)
@@ -188,5 +184,4 @@ class Invoice:
         self._details = details
 
     def __str__(self):
-        return """{0},{1},{2},{3}""" \
-            .format(self._currency, self._selectedInstallments, self._details, self._amount)
+        return """{0},{1},{2},{3}""".format(self._currency, self._selectedInstallments, self._details, self._amount)

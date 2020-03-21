@@ -15,6 +15,7 @@ from mobilpay.mobilpay.payment.request.crc import Crc
 from mobilpay.mobilpay.payment.request.card import Card
 from mobilpay.mobilpay.payment.request.base_request import BaseRequest
 from django.conf import settings
+
 # implementation example
 
 
@@ -55,7 +56,6 @@ def get_and_send_request(base_url, order):
         # shipping_address.set_email("contact@netopia.com")
         # shipping_address.set_mobile_phone("8989989")
 
-
         # obj_pm_req_card.get_invoice().set_shipping_address(shipping_address)
 
         """encoded data and env_key"""
@@ -67,5 +67,3 @@ def get_and_send_request(base_url, order):
 
     except Exception as e:
         raise Exception(e)
-
-

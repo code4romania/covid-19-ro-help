@@ -2,7 +2,7 @@ from xml.dom.minidom import parse
 
 
 def load_from_xml():
-    f = open("/Users/0dmg/Desktop/Git/NETOPIA/python/request.xml", 'r')
+    f = open("/Users/0dmg/Desktop/Git/NETOPIA/python/request.xml", "r")
     doc = parse(f)
     f.close()
     return doc

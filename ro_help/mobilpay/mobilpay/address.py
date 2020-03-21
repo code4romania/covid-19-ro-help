@@ -41,10 +41,8 @@ class Address:
         try:
             self._firstName = self._check_node(billing_node, "first_name")
             self._lastName = self._check_node(billing_node, "last_name")
-            self._fiscalNumber = self._check_node(
-                billing_node, "fiscal_number")
-            self._identityNumber = self._check_node(
-                billing_node, "identity_number")
+            self._fiscalNumber = self._check_node(billing_node, "fiscal_number")
+            self._identityNumber = self._check_node(billing_node, "identity_number")
             self._country = self._check_node(billing_node, "country")
             self._city = self._check_node(billing_node, "city")
             self._zipCode = self._check_node(billing_node, "zip_code")
@@ -62,48 +60,39 @@ class Address:
     def create_xml_element(self, document, name):
 
         if not isinstance(document, Document):
-            raise Exception("ERROR: Invalid document type",
-                            self.ERROR_INVALID_PARAMETER)
+            raise Exception("ERROR: Invalid document type", self.ERROR_INVALID_PARAMETER)
 
         if self._type is None:
-            raise Exception("ERROR: Invalid address type",
-                            self.ERROR_INVALID_ADDRESS_TYPE)
+            raise Exception("ERROR: Invalid address type", self.ERROR_INVALID_ADDRESS_TYPE)
 
         if self._type.lower() != self.TYPE_PERSON.lower() and self._type.lower() != self.TYPE_COMPANY.lower():
-            raise Exception("ERROR: Invalid address type",
-                            self.ERROR_INVALID_ADDRESS_TYPE_VALUE)
+            raise Exception("ERROR: Invalid address type", self.ERROR_INVALID_ADDRESS_TYPE_VALUE)
 
         xml_address = document.createElement(name)
         xml_address.setAttribute("type", self._type)
 
-        temp = self._create_and_encode_element(
-            document, "first_name", self._firstName)
+        temp = self._create_and_encode_element(document, "first_name", self._firstName)
         if temp is not None:
             xml_address.appendChild(temp)
-        temp = self._create_and_encode_element(
-            document, "last_name", self._lastName)
+        temp = self._create_and_encode_element(document, "last_name", self._lastName)
         if temp is not None:
             xml_address.appendChild(temp)
-        temp = self._create_and_encode_element(
-            document, "country", self._country)
+        temp = self._create_and_encode_element(document, "country", self._country)
         if temp is not None:
             xml_address.appendChild(temp)
         temp = self._create_and_encode_element(document, "city", self._city)
         if temp is not None:
             xml_address.appendChild(temp)
-        temp = self._create_and_encode_element(
-            document, "zip_code", self._zipCode)
+        temp = self._create_and_encode_element(document, "zip_code", self._zipCode)
         if temp is not None:
             xml_address.appendChild(temp)
-        temp = self._create_and_encode_element(
-            document, "address", self._address)
+        temp = self._create_and_encode_element(document, "address", self._address)
         if temp is not None:
             xml_address.appendChild(temp)
         temp = self._create_and_encode_element(document, "email", self._email)
         if temp is not None:
             xml_address.appendChild(temp)
-        temp = self._create_and_encode_element(
-            document, "mobile_phone", self._mobile_phone)
+        temp = self._create_and_encode_element(document, "mobile_phone", self._mobile_phone)
         if temp is not None:
             xml_address.appendChild(temp)
         temp = self._create_and_encode_element(document, "bank", self._bank)
@@ -112,12 +101,10 @@ class Address:
         temp = self._create_and_encode_element(document, "iban", self._iban)
         if temp is not None:
             xml_address.appendChild(temp)
-        temp = self._create_and_encode_element(
-            document, "fiscal_number", self._fiscalNumber)
+        temp = self._create_and_encode_element(document, "fiscal_number", self._fiscalNumber)
         if temp is not None:
             xml_address.appendChild(temp)
-        temp = self._create_and_encode_element(
-            document, "identity_number", self._identityNumber)
+        temp = self._create_and_encode_element(document, "identity_number", self._identityNumber)
         if temp is not None:
             xml_address.appendChild(temp)
 
@@ -128,8 +115,7 @@ class Address:
         field = document.createElement(name)
 
         if field_text is not None:
-            text = document.createCDATASection(
-                quote(field_text, encoding="utf-8"))
+            text = document.createCDATASection(quote(field_text, encoding="utf-8"))
             field.appendChild(text)
 
             return field
@@ -142,19 +128,47 @@ class Address:
                 return unquote(tmp_node[0].firstChild.nodeValue, encoding="UTF-8")
 
     def __str__(self):
-        return "[ppiFirstName=" + str(self._firstName) + "]," + \
-               "[ppiLastName=" + str(self._lastName) + "]," + \
-               "[ppiCountry=" + str(self._country) + "]," + \
-               "[ppiCountry=" + str(self._county) + "]," + \
-               "[ppiCity=" + str(self._city) + "]," + \
-               "[ppiPostalCode=" + str(self._zipCode) + "]," + \
-               "[ppiAddress=" + str(self._address) + "]," + \
-               "[ppiEmail=" + str(self._email) + "]," + \
-               "[ppiPhone=" + str(self._mobile_phone) + "]," + \
-               "[ppiBank=" + str(self._bank) + "]," + \
-               "[ppiIBAN=" + str(self._iban) + "]," + \
-               "[ppiFiscalNumber=" + str(self._fiscalNumber) + "]," + \
-               "[ppiIdentityNumber=" + str(self._identityNumber) + "],"
+        return (
+            "[ppiFirstName="
+            + str(self._firstName)
+            + "],"
+            + "[ppiLastName="
+            + str(self._lastName)
+            + "],"
+            + "[ppiCountry="
+            + str(self._country)
+            + "],"
+            + "[ppiCountry="
+            + str(self._county)
+            + "],"
+            + "[ppiCity="
+            + str(self._city)
+            + "],"
+            + "[ppiPostalCode="
+            + str(self._zipCode)
+            + "],"
+            + "[ppiAddress="
+            + str(self._address)
+            + "],"
+            + "[ppiEmail="
+            + str(self._email)
+            + "],"
+            + "[ppiPhone="
+            + str(self._mobile_phone)
+            + "],"
+            + "[ppiBank="
+            + str(self._bank)
+            + "],"
+            + "[ppiIBAN="
+            + str(self._iban)
+            + "],"
+            + "[ppiFiscalNumber="
+            + str(self._fiscalNumber)
+            + "],"
+            + "[ppiIdentityNumber="
+            + str(self._identityNumber)
+            + "],"
+        )
 
     def set_type(self, billing_type):
         self._type = billing_type

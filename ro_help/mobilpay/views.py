@@ -12,18 +12,14 @@ def initialize_payment(request, order):
     ngo = NGO.objects.get(name="Code4")
     order = PaymentOrder.objects.get(order_id=order)
     base_path = f"{request.scheme}://{request.META['HTTP_HOST']}"
-    data, env_key = get_and_send_request(
-        base_path,
-        order
-        )
+    data, env_key = get_and_send_request(base_path, order)
 
-    return render(request, "mobilpay/initialize_payment.html", {
-        "data": data,
-        "env_key": env_key,
-        "base_path": base_path,
-        "ngo": ngo,
-        "order": order,
-        })
+    return render(
+        request,
+        "mobilpay/initialize_payment.html",
+        {"data": data, "env_key": env_key, "base_path": base_path, "ngo": ngo, "order": order,},
+    )
+
 
 def response(request, order):
     order = PaymentOrder.objects.get(order_id=order)
@@ -54,8 +50,7 @@ def confirm(request, order):
 
                 in cazul in care decriptarea nu este reusita, raspunsul v-a contine o eroare si mesajul acesteia
                 """
-                obj_pm_request = Request().factory_from_encrypted(
-                    unquote(env_key), unquote(env_data), private_key_path)
+                obj_pm_request = Request().factory_from_encrypted(unquote(env_key), unquote(env_data), private_key_path)
 
                 """obiectul notify contine metode pentru setarea si citirea proprietatilor"""
                 notify = obj_pm_request.get_notify()
@@ -111,7 +106,7 @@ def confirm(request, order):
                     else:
                         error_type = Request.CONFIRM_ERROR_TYPE_PERMANENT
                         error_code = Request.ERROR_CONFIRM_INVALID_ACTION
-                        error_message = 'mobilpay_refference_action paramaters is invalid'
+                        error_message = "mobilpay_refference_action paramaters is invalid"
                 else:
                     """  # update DB, SET status = "rejected"""
                     error_message = notify.errorMessage
@@ -123,11 +118,11 @@ def confirm(request, order):
         else:
             error_type = Request.CONFIRM_ERROR_TYPE_PERMANENT
             error_code = Request.ERROR_CONFIRM_INVALID_POST_PARAMETERS
-            error_message = 'mobilpay.ro posted invalid parameters'
+            error_message = "mobilpay.ro posted invalid parameters"
     else:
         error_type = Request.CONFIRM_ERROR_TYPE_PERMANENT
         error_code = Request.ERROR_CONFIRM_INVALID_POST_METHOD
-        error_message = 'invalid request method for payment confirmation'
+        error_message = "invalid request method for payment confirmation"
     payment_response.error_code = error_code
     payment_response.error_type = error_type
     payment_response.error_message = error_message
@@ -135,5 +130,3 @@ def confirm(request, order):
     crc = Crc(error_code, error_type, error_message).create_crc()
 
     return crc.toprettyxml(indent="\t", encoding="utf-8")
-
-

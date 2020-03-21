@@ -10,7 +10,7 @@ from .models import PaymentOrder, PaymentResponse
 @admin.register(PaymentOrder)
 class PaymentOrderAdmin(admin.ModelAdmin):
     icon_name = "filter_vintage"
-    list_display = ['order_id', 'ngo', 'first_name', 'last_name', 'amount']
+    list_display = ["order_id", "ngo", "first_name", "last_name", "amount"]
 
 
 @admin.register(PaymentResponse)
