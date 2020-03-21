@@ -27,7 +27,11 @@
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu1">
-                        <span>{% trans "County" %}</span>
+                        {% if current_county %}
+                            <span>{{ current_county }}</span>
+                        {% else %}
+                            <span>{% trans "County" %}</span>
+                        {% endif %}
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
@@ -59,7 +63,11 @@
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                        <span>{% trans "City" %}</span>
+                        {% if current_city %}
+                            <span>{{ current_city }}</span>
+                        {% else %}
+                            <span>{% trans "City" %}</span>
+                        {% endif %}
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
@@ -92,7 +100,11 @@
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu1">
-                        <span>{% trans "Urgency" %}</span>
+                        {% if current_urgency %}
+                            <span>{{ current_urgency }}</span>
+                        {% else %}
+                            <span>{% trans "Urgency" %}</span>
+                        {% endif %}
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
@@ -108,16 +120,20 @@
                             </a>
                         </div>
                         {% for urgency in urgencies %}
-                        <div class="dropdown-item">
-                            <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
-                               class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
-                                {{ urgency }}
-                            </a>
-                        </div>
+                            <div class="dropdown-item">
+                                <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
+                                   class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
+                                    {{ urgency }}
+                                </a>
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="column is-narrow filter-dropdown is-marginless">
+            <a href="{% url 'ngos' %}">{% trans "Reset filters" %}</a>
         </div>
     </div>
 </div>
@@ -132,7 +148,15 @@
 
                 <div class="content">
                     <span class="icon is-small">
-                        <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                        {% if need.kind == "money" %}
+                            <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                        {% else %}
+                            {% if need.kind == "resource" %}
+                                <i class="fas fa-hospital" aria-hidden="true"></i>
+                            {% else %}
+                                <i class="fas fa-user" aria-hidden="true"></i>
+                            {% endif %}
+                        {% endif %}
                     </span>
 
                     <p class="title is-4">{{ need.title|truncatechars:50 }}</p>
