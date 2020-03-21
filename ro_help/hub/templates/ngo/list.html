@@ -94,24 +94,28 @@
     {% include "shared/pagination.html" with page_obj=page_obj %}
 
     <div class="columns is-multiline">
-        {% for ngo in page_obj %}
+        {% for need in page_obj %}
         <div class="column is-4-desktop is-4-tablet is-6-mobile">
             <div class="box card-content has-text-centered">
+
                 <div class="content">
-                    <p class="title is-4">{{ ngo.name }}</p>
+                    <span class="icon is-small">
+                        <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                    </span>
+
+                    <p class="title is-4">{{ need.title|truncatechars:50 }}</p>
                 </div>
 
                 <div class="card-image">
                     <figure class="image is-4by3">
-                        <img src="{{ ngo.get_avatar }}" alt="{{ ngo.name }}">
+                        <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
                     </figure>
                 </div>
 
-                {% url 'ngo-detail' ngo.pk as ngo_url %}
-
+                {% url 'ngo-helper-create' need.ngo.pk need.pk as base %}
                 <footer class="card-footer">
-                    <a class="has-background-success has-text-white card-footer-item has-text-weight-bold"
-                        href="{% spurl base='{{ ngo_url }}' set_query='kind={{ current_kind }}' remove_query_param='page' %}">{% trans "donate" %}</a>
+                    <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
+                       href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">{% trans "I can help" %}</a>
                 </footer>
 
             </div>

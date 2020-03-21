@@ -133,5 +133,7 @@ class Command(BaseCommand):
                         "description": fake.text(),
                         "title": fake.text(),
                         "resolved_on": random.choice([None, timezone.now()]),
+                        "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
+                        "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
                     }
                 )
