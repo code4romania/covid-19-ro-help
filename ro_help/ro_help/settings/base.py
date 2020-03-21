@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "django_crispy_bulma",
     "storages",
-    "captcha"
+    "captcha",
 ]
 
 MIDDLEWARE = [
@@ -209,10 +209,16 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = ("bulma",)
 
 CRISPY_TEMPLATE_PACK = "bulma"
 
+ADMINS = [
+    ('Alexandra Stefanescu', 'alexandra.stefanescu@code4.ro'),
+    ('Costin Bleotu', 'costin.bleotu@code4.ro'),
+]
+
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 
-
-ADMINS = [
-    ('Alexandra Stefanescu', 'alexandra.stefanescu@code4.ro'),
-    ('Costin Bleotu', 'costin.bleotu@code4.ro')]
+if env("RECAPTCHA_PUBLIC_KEY"):
+    RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+    RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+else:
+    SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
