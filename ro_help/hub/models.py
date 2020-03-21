@@ -192,6 +192,9 @@ class NGONeed(TimeStampedModel):
     kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
     urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
 
+    city = models.CharField(_("City"), max_length=100)
+    county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
+
     resource_tags = models.ManyToManyField("ResourceTag", blank=True, related_name="needs")
 
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
