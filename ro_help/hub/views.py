@@ -78,6 +78,7 @@ class NGONeedListView(NGOKindFilterMixin, ListView):
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
+        context["current_urgency"] = self.request.GET.get("urgency")
 
         context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
 
