@@ -1,5 +1,6 @@
 body {
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 16px;
 }
 
 .logo {
@@ -43,7 +44,7 @@ body {
 }
 
 .card {
-    
+    margin-bottom: 1em;
     background-color: #f0f0f0;
     color: black;
 }
@@ -62,6 +63,10 @@ body {
     padding: 0.5rem;
 }
 
+.card-icon {
+    width:50px;
+}
+
 .call-to-action {
     padding: 1rem;
 }
@@ -70,3 +75,72 @@ body {
     background-color: white;
 }
 
+
+/* DETAIL PAGE */
+/* header */
+.detail-header {
+    display:flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.detail-header .title {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: normal;
+    color: #3D4F9F;
+}
+
+.detail-header .subtitle {
+    font-size: 16px;
+    color: #000;
+
+}
+.detail-header-img {
+    display: flex;
+    width: 115px;
+    height:auto;
+    margin-right: 1.25em;
+}
+
+.detail-desc {
+    margin: 2em 0;
+}
+
+.detail-desc-title {
+    font-weight: bold;
+    margin: 1em 0;
+    color: #000000;
+}
+
+/*
+.hero-body {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.hero-body > .title {
+    font-size: 32px;
+    line-height: 49px;
+    color: #1c1080;
+    font-weight: normal;
+    display: flex;
+}
+
+
+.hero-icon {
+    display: flex;
+    margin: 0 5px 0 0;
+    width: 115px;
+    height:auto;
+}
+
+.hero-body > .subtitle {
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
+
+
+
+ */
