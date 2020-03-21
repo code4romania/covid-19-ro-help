@@ -5,53 +5,39 @@
 
 
 {% block left-side-view %}
-<div class="container">
-    <div class="columns">
-        <div class="column is-2">
-            <div class="box">
-                <div class="container">
-                    <figure class="image is-4by3">
-                        <img src="{{ ngo.get_avatar }}" alt="Placeholder image">
-                    </figure>
-                </div>
-            </div>
-        </div>
-
-        <div class="column is-8">
-            <footer>
-                <div class="content">
-                    <h1>{{ ngo.name }}</h1>
-                    <p>{{ ngo.email }}</p>
-                </div>
-            </footer>
+<div class="container detail-header">
+    <span class="detail-header-img">
+        <img src="{{ ngo.get_avatar }}" alt="Placeholder image">
+    </span>
+    <div>
+        <h2 class="title">
+            {{ ngo.name }}
+        </h2>
+        <div class="subtitle">
+            {{ ngo.email }}
         </div>
     </div>
 </div>
 
-<hr />
+<hr/>
 
-<div class="section">
-    <div class="content">
-        <h3>{% trans "About the organization" %}</h3>
-
+<div class="container detail-desc">
+    <div class="detail-desc-title">{% trans "About the organization" %}</div>
     <p>{{ ngo.description }}</p>
-    </div>
-    
 </div>
-
 
 <div class="container">
     {% if money_page_obj %}
     <div class="card">
         <header class="card-header">
-            <div class="card-header-title is-flex is-size-4 is-paddingless">
-                <span class="call-to-action" style="background-color: #31C85B">
+            <div class="card-header-title is-paddingless">
+                <span class="card-icon" style="background-color: #31C85B">
                     <i class="fas fa-dollar-sign"></i>
                 </span>
-                <span class="card-content-narrow">{% trans "Donate money" %}</span>
+                <span>{% trans "Donate money" %}</span>
             </div>
             <a href="#donate-money" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
-                aria-label="more options">
+               aria-label="more options">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </span>
@@ -62,18 +48,23 @@
             <div class="card-content donation-card">
 
                 <div class="container">
-                    <div class="is-size-5 is-flex">
-                        <figure class="call-to-action image is-96x96">
-                            <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
-                        </figure>
-                        <div class="call-to-action has-text-weight-semibold">{% trans "Donate via Netopia" %}:</div>
+                    <div class="container donate-hero">
+                        <span class="donate-hero-img">
+                             <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
+                        </span>
+                        <div>
+                            <div class="title">
+                                {% trans "Donate via Netopia" %}:
+                            </div>
+                        </div>
                     </div>
-                    
+
+
                     <div class="columns is-mobile">
                         <div class="column is-two-thirds-desktop is-half-mobile">
                             <div class="control">
                                 <input class="input is-success" type="text" placeholder="100 eur">
-                              </div>
+                            </div>
                         </div>
                         <div class="column is-one-third-desktop is-half-mobile">
                             <button class="button is-success is-fullwidth">{% trans "Donate" %}</button>
@@ -82,13 +73,17 @@
                 </div>
 
                 <div class="container">
-                    <div class="is-size-5 is-flex">
-                        <figure class="call-to-action image is-96x96">
-                            <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
-                        </figure>
-                        <div class="call-to-action has-text-weight-semibold">{% trans "Donate via transfer" %}:</div>
+                    <div class="container donate-hero">
+                        <span class="donate-hero-img">
+                             <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
+                        </span>
+                        <div>
+                            <div class="title">
+                                {% trans "Donate via transfer" %}:
+                            </div>
+                        </div>
                     </div>
-                    
+
                     <div class="content">
                         <p>Nume: Asociația Habitat for Humanity</p>
                         <p>Sediu: Piata Unirii 16,Bucuresti</p>
@@ -112,14 +107,14 @@
     {% if resource_page_obj %}
     <div class="card">
         <header class="card-header">
-            <div class="card-header-title is-flex is-size-4 is-paddingless">
-                <span class="call-to-action" style="background-color: #05d6c8">
+            <div class="card-header-title is-paddingless">
+                <span class="card-icon" style="background-color: #05d6c8">
                     <i class="fas fa-box-open"></i>
                 </span>
-                <span class="card-content-narrow">{% trans "Donate resources" %}</span>
+                <span>{% trans "Donate resources" %}</span>
             </div>
             <a href="#donate-resources" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
-                aria-label="more options">
+               aria-label="more options">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </span>
@@ -133,15 +128,15 @@
                 </div>
 
                 {% if current_need.kind == 'resource' and resource_page_obj.number == 1%}
-                    {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
+                {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
                 {% endif %}
 
                 {% for need in resource_page_obj %}
-                    <div class="container">
-                        {% include "shared/need_form.html" with page=resource_page_obj.number %}
-                    </div>
+                <div class="container">
+                    {% include "shared/need_form.html" with page=resource_page_obj.number %}
+                </div>
                 {% endfor %}
-            
+
             </div>
         </div>
     </div>
@@ -150,14 +145,14 @@
     {% if volunteer_page_obj %}
     <div class="card">
         <header class="card-header">
-            <div class="card-header-title is-flex is-size-4 is-paddingless">
-                <span class="call-to-action" style="background-color: #FFB800">
+            <div class="card-header-title is-paddingless">
+                <span class="card-icon" style="background-color: #FFB800">
                     <i class="fas fa-people-carry"></i>
                 </span>
-                <span class="card-content-narrow">{% trans "Join as volunteer" %}</span>
+                <span>{% trans "Join as volunteer" %}</span>
             </div>
             <a href="#donate-volunteer" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
-                aria-label="more options">
+               aria-label="more options">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </span>
@@ -166,18 +161,19 @@
 
         <div id="donate-volunteer" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
             <div class="card-content donation-card">
+
                 <div class="container">
                     {% include "shared/pagination.html" with page_obj=resource_page_obj %}
                 </div>
 
                 {% if current_need.kind == 'volunteer' and resource_page_obj.number == 1%}
-                    {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
+                {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
                 {% endif %}
 
                 {% for need in resource_page_obj %}
-                    <div class="container">
-                        {% include "shared/need_form.html" %}
-                    </div>
+                <div class="container">
+                    {% include "shared/need_form.html" %}
+                </div>
                 {% endfor %}
             </div>
         </div>
