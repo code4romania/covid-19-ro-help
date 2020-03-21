@@ -134,6 +134,12 @@ class NGO(TimeStampedModel):
     city = models.CharField(_("City"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
 
+    # mobilpay_username = models.CharField(_("mobilpay Merchant identifier code"), max_length=20, null=True, blank=True)
+    # mobilpay_icc = models.CharField(_("mobilpay Merchant identifier code"), max_length=20, null=True, blank=True)
+    mobilpay_icc = models.CharField(_("mobilpay Merchant identifier code"), max_length=24, null=True, blank=True, help_text=_("XXXX-XXXX-XXXX-XXXX-XXXX"))
+    mobilpay_public_key = models.FileField(_("mobilpay Public key"), max_length=300, null=True, blank=True)
+    mobilpay_private_key = models.FileField(_("mobilpay Private key"), max_length=300, null=True, blank=True)
+    
     def __str__(self):
         return self.name
 

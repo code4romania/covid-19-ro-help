@@ -44,6 +44,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     "hub",
+    "mobilpay",
     "material.admin",
     "material.admin.default",
     "django.contrib.auth",
@@ -210,3 +211,6 @@ CRISPY_TEMPLATE_PACK = "bulma"
 
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+
+MOBILPAY_CONFIRM_URL = env("MOBILPAY_CONFIRM_URL")
+MOBILPAY_RETURN_URL = env("MOBILPAY_RETURN_URL")

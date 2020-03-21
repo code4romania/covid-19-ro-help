@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load spurl %}
+{% load i18n %}
+
+
+{% block content %}
+    {% trans "You are being redirected to payment website" %}
+    <form name="form" method="post" action="http://sandboxsecure.mobilpay.ro/">
+    <input type="hidden" name="env_key" value={{ env_key }} />
+    <input type="hidden" name="data" value={{ data }} />
+</form>
+
+
+<script>
+    (function() {
+        window.document.form.submit();
+        return;
+    })();
+</script>
+
+{% endblock content %}
