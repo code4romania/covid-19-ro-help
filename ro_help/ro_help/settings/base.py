@@ -212,3 +212,7 @@ CRISPY_TEMPLATE_PACK = "bulma"
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 
+
+ADMINS = [
+    ('Alexandra Stefanescu', 'alexandra.stefanescu@code4.ro'),
+    ('Costin Bleotu', 'costin.bleotu@code4.ro')]
