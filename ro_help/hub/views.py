@@ -59,18 +59,23 @@ class NGONeedListView(NGOKindFilterMixin, ListView):
 
     template_name = "ngo/list.html"
 
-    def get_queryset(self):
+    def get_needs(self):
         filters = {
             "kind": self.request.GET.get("kind", KIND.default()),
             "resolved_on": None,
         }
-        filters.update(**{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET})
 
         return NGONeed.objects.filter(**filters).order_by("created")
 
+    def get_queryset(self):
+        return self.get_needs().filter(**{
+            name: self.request.GET[name]
+            for name in self.allow_filters if name in self.request.GET
+        })
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        needs = self.get_queryset()
+        needs = self.get_needs()
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
@@ -83,7 +88,11 @@ class NGONeedListView(NGOKindFilterMixin, ListView):
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
 
-        context["urgencies"] = needs.values_list("urgency", flat=True).distinct("urgency")
+        urgencies = cities
+        if self.request.GET.get("city"):
+            urgencies = urgencies.filter(city=self.request.GET.get("city"))
+
+        context["urgencies"] = urgencies.order_by("urgency").values_list("urgency", flat=True).distinct("urgency")
 
         return context
 
