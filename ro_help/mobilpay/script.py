@@ -15,8 +15,7 @@ def parseElements(elements):
         all_elements[name] = {}
         all_elements[name]["optional"] = element.is_optional
         if hasattr(element.type, "elements"):
-            all_elements[name]["type"] = parseElements(
-                element.type.elements)
+            all_elements[name]["type"] = parseElements(element.type.elements)
         else:
             all_elements[name]["type"] = str(element.type)
 
@@ -52,21 +51,18 @@ username = "costinbleotu"
 # pass_hash = str(base64.b64encode(pass_hash.encode()), 'utf-8')
 
 pass_md5 = hashlib.md5(password.encode()).hexdigest()
-order = {
-    "amount": 10.00,
-    "id":  "TEST123",
-    "currency": "RON"
-}
+order = {"amount": 10.00, "id": "TEST123", "currency": "RON"}
 
 account = {
-    "user_name": username, "id": "TCE9-LS89-XVHG-16MN-5X9P",
+    "user_name": username,
+    "id": "TCE9-LS89-XVHG-16MN-5X9P",
     "confirm_url": "http://dev.rohelp.ro:8000/ro/mobilpay/response",
     "return3d_url": "http://dev.rohelp.ro:8000/ro/mobilpay/confirm",
-    "customer_ip": "127.0.0.1"
+    "customer_ip": "127.0.0.1",
 }
 hash_string = pass_md5.upper() + order["id"] + f"{order['amount']:.2f}" + order["currency"] + account["id"]
 print(hash_string)
-account["hash"] =  hashlib.sha1(hash_string.encode()).hexdigest().upper()
+account["hash"] = hashlib.sha1(hash_string.encode()).hexdigest().upper()
 print(account["hash"])
 # $string = strtoupper(md5($pass)).$request->order->id.$request->order->amount.$request->order->currency.$request->account->id
 # $request->account->hash = strtoupper(sha1($string))
@@ -76,16 +72,12 @@ print(account["hash"])
 # aplica si un sha1. Plus ca md5(parola) e facuta uppercase.
 # Intrucat voi faceti apelul asta pentru a obtine un link unde sa trimiteti userul, customer_ip nu e relevant, pune 127.0.0.1 or so, el va fi suprascris in procesul de plata cu cel adevarat.
 # URL - ul de confirm este cel unde primesti informari de la noi privitor la starea comenzii. La return este intors userul dupa plata. Mi - am dat seama ca pentru a putea citi informatiile la confirm veti avea nevoie de privatekey - ul acestui SAC. iar "desfacerea" IPNului - avand cheia - se face cu ajutorul functiei de la https:
-    # L50 si pe modelul de la
-    # https://github.com/mobilpay/python/blob/master/mobilpay/request.py#L68
-    # //github.com / mobilpay / python / blob / master / mobilpay / util / encrypt_data.py
+# L50 si pe modelul de la
+# https://github.com/mobilpay/python/blob/master/mobilpay/request.py#L68
+# //github.com / mobilpay / python / blob / master / mobilpay / util / encrypt_data.py
 
 
-doPay = client.service.doPay(
-    request={
-        "order": order,
-        "account": account
-    })
+doPay = client.service.doPay(request={"order": order, "account": account})
 
 
 # "confirm_url" : False, "type": "String(value)"},

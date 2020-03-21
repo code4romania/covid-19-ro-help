@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0019_auto_20200320_2249'),
+        ("hub", "0019_auto_20200320_2249"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ngo',
-            name='mobilpay_icc',
-            field=models.CharField(blank=True, help_text='XXXX-XXXX-XXXX-XXXX-XXXX', max_length=24, null=True, verbose_name='mobilpay Merchant identifier code'),
+            model_name="ngo",
+            name="mobilpay_icc",
+            field=models.CharField(
+                blank=True,
+                help_text="XXXX-XXXX-XXXX-XXXX-XXXX",
+                max_length=24,
+                null=True,
+                verbose_name="mobilpay Merchant identifier code",
+            ),
         ),
     ]

@@ -29,13 +29,13 @@ class BaseRequest:
     ERROR_LOAD_FROM_XML_ORDER_ID_ATTR_MISSING = 0x30000001
     ERROR_LOAD_FROM_XML_SIGNATURE_ELEM_MISSING = 0x30000002
 
-    ERROR_CONFIRM_LOAD_PRIVATE_KEY = 0x300000f0
-    ERROR_CONFIRM_FAILED_DECODING_DATA = 0x300000f1
-    ERROR_CONFIRM_FAILED_DECODING_ENVELOPE_KEY = 0x300000f2
-    ERROR_CONFIRM_FAILED_DECRYPT_DATA = 0x300000f3
-    ERROR_CONFIRM_INVALID_POST_METHOD = 0x300000f4
-    ERROR_CONFIRM_INVALID_POST_PARAMETERS = 0x300000f5
-    ERROR_CONFIRM_INVALID_ACTION = 0x300000f6
+    ERROR_CONFIRM_LOAD_PRIVATE_KEY = 0x300000F0
+    ERROR_CONFIRM_FAILED_DECODING_DATA = 0x300000F1
+    ERROR_CONFIRM_FAILED_DECODING_ENVELOPE_KEY = 0x300000F2
+    ERROR_CONFIRM_FAILED_DECRYPT_DATA = 0x300000F3
+    ERROR_CONFIRM_INVALID_POST_METHOD = 0x300000F4
+    ERROR_CONFIRM_INVALID_POST_PARAMETERS = 0x300000F5
+    ERROR_CONFIRM_INVALID_ACTION = 0x300000F6
 
     VERSION_QUERY_STRING = 0x01
     VERSION_XML = 0x02
@@ -112,20 +112,19 @@ class BaseRequest:
     _objReqNotify = None
 
     def __init__(self):
-        self._requestIdentifier = hashlib.md5(
-            str(int(random.random() * int(time.time()))).encode('utf-8')).hexdigest()
+        self._requestIdentifier = hashlib.md5(str(int(random.random() * int(time.time()))).encode("utf-8")).hexdigest()
 
     def _parse_from_xml(self, element):
         attr = element.getAttribute("id")
         if attr is None or len(str(attr)) == 0:
-            raise Exception(
-                "parse_from_xml failed -> empty order id ", self.ERROR_LOAD_FROM_XML_ORDER_ID_ATTR_MISSING)
+            raise Exception("parse_from_xml failed -> empty order id ", self.ERROR_LOAD_FROM_XML_ORDER_ID_ATTR_MISSING)
         self._orderId = attr
 
         elems = element.getElementsByTagName("signature")
         if len(elems) != 1:
             raise Exception(
-                "parse_from_xml failed -> signature is missing ", self.ERROR_LOAD_FROM_XML_SIGNATURE_ELEM_MISSING)
+                "parse_from_xml failed -> signature is missing ", self.ERROR_LOAD_FROM_XML_SIGNATURE_ELEM_MISSING
+            )
         signature = elems[0]
         self._signature = signature.firstChild.nodeValue
 
@@ -156,8 +155,7 @@ class BaseRequest:
                 if len(elems) != 1:
                     continue
 
-                self._params[param_name] = unquote(
-                    elems[0].firstChild.nodeValue)
+                self._params[param_name] = unquote(elems[0].firstChild.nodeValue)
 
         elems = element.getElementsByTagName("mobilpay")
         if len(elems) == 1:
@@ -174,11 +172,9 @@ class BaseRequest:
             self._outEnvKey = None
             error_message = "Error while loading X509 public key certificate! Reason:"
 
-            raise Exception(
-                error_message, self.ERROR_LOAD_X509_CERTIFICATE)
+            raise Exception(error_message, self.ERROR_LOAD_X509_CERTIFICATE)
 
-        src_data = self._xmlDoc.toprettyxml(
-            indent="\t", newl="\n", encoding="utf-8")
+        src_data = self._xmlDoc.toprettyxml(indent="\t", newl="\n", encoding="utf-8")
         result = Crypto.encrypt(src_data, public_key)
 
         if result is False:

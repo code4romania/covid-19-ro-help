@@ -33,52 +33,46 @@ class InvoiceItem:
 
         xml_temp = item_node.getElementsByTagName("code")
         if len(xml_temp) != 1:
-            raise Exception("load_from_xml -> Invalid code element",
-                            self.ERROR_LOAD_FROM_XML_CODE_ELEM_MISSING)
-        self._code = unquote(
-            xml_temp[0].firstChild.nodeValue, encoding="utf-8")
+            raise Exception("load_from_xml -> Invalid code element", self.ERROR_LOAD_FROM_XML_CODE_ELEM_MISSING)
+        self._code = unquote(xml_temp[0].firstChild.nodeValue, encoding="utf-8")
 
         xml_temp = item_node.getElementsByTagName("name")
         if len(xml_temp) != 1:
-            raise Exception("load_from_xml -> Invalid name element",
-                            self.ERROR_LOAD_FROM_XML_NAME_ELEM_MISSING)
-        self._name = unquote(
-            xml_temp[0].firstChild.nodeValue, encoding="utf-8")
+            raise Exception("load_from_xml -> Invalid name element", self.ERROR_LOAD_FROM_XML_NAME_ELEM_MISSING)
+        self._name = unquote(xml_temp[0].firstChild.nodeValue, encoding="utf-8")
 
         xml_temp = item_node.getElementsByTagName("measurement")
         if len(xml_temp) == 1:
-            self._measurement = unquote(
-                xml_temp[0].firstChild.nodeValue, encoding="UTF-8")
+            self._measurement = unquote(xml_temp[0].firstChild.nodeValue, encoding="UTF-8")
 
         xml_temp = item_node.getElementsByTagName("quantity")
         if len(xml_temp) != 1:
-            raise Exception(
-                "load_from_xml -> Invalid quantity element", self.ERROR_LOAD_FROM_XML_QUANTITY_ELEM_MISSING)
+            raise Exception("load_from_xml -> Invalid quantity element", self.ERROR_LOAD_FROM_XML_QUANTITY_ELEM_MISSING)
 
-        self._quantity = Decimal(
-            unquote(xml_temp[0].firstChild.nodeValue, encoding="UTF-8"))
+        self._quantity = Decimal(unquote(xml_temp[0].firstChild.nodeValue, encoding="UTF-8"))
 
         if self._quantity <= 0:
-            raise Exception("load_from_xml -> Invalid quantity value: " + str(self._quantity),
-                            self.ERROR_LOAD_FROM_XML_QUANTITY_ELEM_EMPTY)
+            raise Exception(
+                "load_from_xml -> Invalid quantity value: " + str(self._quantity),
+                self.ERROR_LOAD_FROM_XML_QUANTITY_ELEM_EMPTY,
+            )
 
         xml_temp = item_node.getElementsByTagName("price")
         if len(xml_temp) != 1:
-            raise Exception("load_from_xml -> Invalid price element",
-                            self.ERROR_LOAD_FROM_XML_PRICE_ELEM_MISSING)
+            raise Exception("load_from_xml -> Invalid price element", self.ERROR_LOAD_FROM_XML_PRICE_ELEM_MISSING)
 
-        self._price = Decimal(
-            unquote(xml_temp[0].firstChild.nodeValue, encoding="UTF-8"))
+        self._price = Decimal(unquote(xml_temp[0].firstChild.nodeValue, encoding="UTF-8"))
 
         if self._price < 0:
-            raise Exception("load_from_xml -> Invalid quantity value: " + str(self._price),
-                            self.ERROR_LOAD_FROM_XML_PRICE_ELEM_EMPTY)
+            raise Exception(
+                "load_from_xml -> Invalid quantity value: " + str(self._price),
+                self.ERROR_LOAD_FROM_XML_PRICE_ELEM_EMPTY,
+            )
 
         xml_temp = item_node.getElementsByTagName("vat")
 
         if len(xml_temp) != 1:
-            raise Exception("load_from_xml -> Invalid vat element",
-                            self.ERROR_LOAD_FROM_XML_VAT_ELEM_MISSING)
+            raise Exception("load_from_xml -> Invalid vat element", self.ERROR_LOAD_FROM_XML_VAT_ELEM_MISSING)
 
         self._vat = Decimal(unquote(xml_temp[0].firstChild.nodeValue))
 
@@ -92,27 +86,21 @@ class InvoiceItem:
         xml_item = document.createElement("item")
 
         if (
-                self._code is None or
-                self._name is None or
-                self._measurement is None or
-                self._quantity is None or
-                self._price is None or
-                self._vat is None
+            self._code is None
+            or self._name is None
+            or self._measurement is None
+            or self._quantity is None
+            or self._price is None
+            or self._vat is None
         ):
             raise Exception("Invalid property", self.ERROR_INVALID_PROPERTY)
 
-        xml_item.appendChild(self.create_cdata_element(
-            document, "code", self._code))
-        xml_item.appendChild(self.create_cdata_element(
-            document, "name", self._name))
-        xml_item.appendChild(self.create_cdata_element(
-            document, "measurement", self._measurement))
-        xml_item.appendChild(self.create_text_element(
-            document, "quantity", self._quantity))
-        xml_item.appendChild(self.create_text_element(
-            document, "price", self._price))
-        xml_item.appendChild(self.create_text_element(
-            document, "vat", self._vat))
+        xml_item.appendChild(self.create_cdata_element(document, "code", self._code))
+        xml_item.appendChild(self.create_cdata_element(document, "name", self._name))
+        xml_item.appendChild(self.create_cdata_element(document, "measurement", self._measurement))
+        xml_item.appendChild(self.create_text_element(document, "quantity", self._quantity))
+        xml_item.appendChild(self.create_text_element(document, "price", self._price))
+        xml_item.appendChild(self.create_text_element(document, "vat", self._vat))
 
         return xml_item
 
@@ -131,12 +119,19 @@ class InvoiceItem:
         return xml_elem
 
     def __str__(self):
-        return str(self._code) + " " + \
-            str(self._name) + " " + \
-            str(self._measurement) + " " + \
-            str(self._quantity) + " " + \
-            str(self._price) + " " + \
-            str(self._vat)
+        return (
+            str(self._code)
+            + " "
+            + str(self._name)
+            + " "
+            + str(self._measurement)
+            + " "
+            + str(self._quantity)
+            + " "
+            + str(self._price)
+            + " "
+            + str(self._vat)
+        )
 
     def get_total_amount(self):
         value = round(self._price * self._quantity, 2)

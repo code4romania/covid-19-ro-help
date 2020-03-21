@@ -15,5 +15,3 @@ try:
     raise MPException(ErrorCodes.INVALID_TYPE_EXCEPTION)
 except MPException as e:
     print("Received error with code:", e.code)
-
-

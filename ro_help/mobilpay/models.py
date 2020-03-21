@@ -11,10 +11,10 @@ import uuid
 
 
 class PaymentOrder(TimeStampedModel):
-    ngo = models.ForeignKey(
-        NGO, related_name="payment_orders", null=True, blank=True, on_delete=models.SET_NULL)
+    ngo = models.ForeignKey(NGO, related_name="payment_orders", null=True, blank=True, on_delete=models.SET_NULL)
     order_id = models.CharField(
-        _("Order ID"), max_length=100, blank=True, unique=True, default=uuid.uuid4, editable=False)
+        _("Order ID"), max_length=100, blank=True, unique=True, default=uuid.uuid4, editable=False
+    )
     first_name = models.CharField(_("First name"), max_length=254)
     last_name = models.CharField(_("Last name"), max_length=254)
     phone = models.CharField(_("Phone"), max_length=30)
@@ -34,11 +34,12 @@ class PaymentOrder(TimeStampedModel):
 
 class PaymentResponse(TimeStampedModel):
     payment_order = models.ForeignKey(
-        PaymentOrder, null=True, blank=True, related_name="responses", on_delete=models.SET_NULL)
+        PaymentOrder, null=True, blank=True, related_name="responses", on_delete=models.SET_NULL
+    )
     action = models.CharField(max_length=100, null=True, blank=True)
-    error_code= models.CharField(max_length=100, null=True, blank=True)
-    error_type= models.CharField(max_length=100, null=True, blank=True)
-    error_message= models.CharField(max_length=100, null=True, blank=True)
+    error_code = models.CharField(max_length=100, null=True, blank=True)
+    error_type = models.CharField(max_length=100, null=True, blank=True)
+    error_message = models.CharField(max_length=100, null=True, blank=True)
     date = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
     def __str__(self):

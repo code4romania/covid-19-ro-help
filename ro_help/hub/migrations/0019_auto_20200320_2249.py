@@ -6,23 +6,29 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0018_registerngorequest_registered_on'),
+        ("hub", "0018_registerngorequest_registered_on"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ngo',
-            name='mobilpay_icc',
-            field=models.CharField(blank=True, max_length=20, null=True, verbose_name='mobilpay Merchant identifier code'),
+            model_name="ngo",
+            name="mobilpay_icc",
+            field=models.CharField(
+                blank=True, max_length=20, null=True, verbose_name="mobilpay Merchant identifier code"
+            ),
         ),
         migrations.AddField(
-            model_name='ngo',
-            name='mobilpay_private_key',
-            field=models.FileField(blank=True, max_length=300, null=True, upload_to='', verbose_name='mobilpay Private key'),
+            model_name="ngo",
+            name="mobilpay_private_key",
+            field=models.FileField(
+                blank=True, max_length=300, null=True, upload_to="", verbose_name="mobilpay Private key"
+            ),
         ),
         migrations.AddField(
-            model_name='ngo',
-            name='mobilpay_public_key',
-            field=models.FileField(blank=True, max_length=300, null=True, upload_to='', verbose_name='mobilpay Public key'),
+            model_name="ngo",
+            name="mobilpay_public_key",
+            field=models.FileField(
+                blank=True, max_length=300, null=True, upload_to="", verbose_name="mobilpay Public key"
+            ),
         ),
     ]
