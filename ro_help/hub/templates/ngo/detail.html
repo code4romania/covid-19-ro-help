@@ -41,7 +41,7 @@
 
 
 <div class="container">
-    {% if ngo.needs.money %}
+    {% if money_page_obj %}
     <div class="card">
         <header class="card-header">
             <div class="card-header-title is-flex is-size-4 is-paddingless">
@@ -109,7 +109,7 @@
 
     {% endif %}
 
-    {% if ngo.needs.resource %}
+    {% if resource_page_obj %}
     <div class="card">
         <header class="card-header">
             <div class="card-header-title is-flex is-size-4 is-paddingless">
@@ -132,10 +132,14 @@
                     {% include "shared/pagination.html" with page_obj=resource_page_obj %}
                 </div>
 
+                {% if current_need.kind == 'resource' and resource_page_obj.number == 1%}
+                    {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
+                {% endif %}
+
                 {% for need in resource_page_obj %}
-                <div class="container">
-                    {% include "shared/need_form.html" with page=resource_page_obj.number %}
-                </div>
+                    <div class="container">
+                        {% include "shared/need_form.html" with page=resource_page_obj.number %}
+                    </div>
                 {% endfor %}
             
             </div>
@@ -143,7 +147,7 @@
     </div>
     {% endif %}
 
-    {% if ngo.needs.volunteer %}
+    {% if volunteer_page_obj %}
     <div class="card">
         <header class="card-header">
             <div class="card-header-title is-flex is-size-4 is-paddingless">
@@ -162,11 +166,19 @@
 
         <div id="donate-volunteer" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
             <div class="card-content donation-card">
-                <p>
-                    TODO: need some text here
-                </p>
-                {% include "shared/need_form.html" with need=ngo.needs.volunteer.0 page=1 %}
-                <hr />
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=resource_page_obj %}
+                </div>
+
+                {% if current_need.kind == 'volunteer' and resource_page_obj.number == 1%}
+                    {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
+                {% endif %}
+
+                {% for need in resource_page_obj %}
+                    <div class="container">
+                        {% include "shared/need_form.html" %}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

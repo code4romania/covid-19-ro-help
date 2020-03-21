@@ -15,25 +15,27 @@
     {{ need.description }}
 </div>
 
-{% if current_need is not None and current_need.pk == need.pk %}
-<form method="post">
-    {% csrf_token %}
+{% if current_form %}
+    <form method="post">
+        {% csrf_token %}
 
-    {{ form.non_field_errors }}
+        {{ current_form.non_field_errors }}
 
-    {% for hidden_field in form.hidden_fields %}
-    {{ hidden_field.errors }}
-    {{ hidden_field }}
-    {% endfor %}
-    <input type="hidden" value="{{need.pk}}" name="need-pk">
-    {{form|crispy}}
+        {% for hidden_field in current_form.hidden_fields %}
+            {{ hidden_field.errors }}
+            {{ hidden_field }}
+        {% endfor %}
 
-    <input type="submit" class="button is-primary" value="Trimite">
-</form>
+        <input type="hidden" value="{{ need.pk }}" name="need-pk">
+
+        {{ current_form|crispy }}
+
+        <input type="submit" class="button is-primary" value="Trimite">
+    </form>
 {% else %}
-{% url 'ngo-helper-create' ngo.pk need.pk as base %}
-<div class="content has-text-centered">
-    <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
-        href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' set_query='page={{ page }}' %}">{% trans "I can help" %}</a>
-</div>
+    {% url 'ngo-helper-create' ngo.pk need.pk as base %}
+    <div class="content has-text-centered">
+        <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
+            href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' set_query='page=1' %}">{% trans "I can help" %}</a>
+    </div>
 {% endif %}

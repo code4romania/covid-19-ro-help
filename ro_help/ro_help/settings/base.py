@@ -36,8 +36,7 @@ SECRET_KEY = "v*2$eed@gagp7f%kvb=zl%30c-(*gl9qppn0vv%sku#q7o&p64"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    ".rohelp-102801068.eu-central-1.elb.amazonaws.com", "dev.rohelp.ro", "rohelp.ro"]
+ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com", "dev.rohelp.ro", "rohelp.ro"]
 
 
 # Application definition
@@ -108,10 +107,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator", },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
 
@@ -168,8 +167,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # SMTP
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-EMAIL_CONFIG = env.email_url(
-    "EMAIL_URL", default="smtp://user:password@localhost:25")
+EMAIL_CONFIG = env.email_url("EMAIL_URL", default="smtp://user:password@localhost:25")
 vars().update(EMAIL_CONFIG)
 
 DEFAULT_FROM_EMAIL = "noreply@rohelp.ro"
@@ -213,6 +211,8 @@ ADMINS = [
     ('Alexandra Stefanescu', 'alexandra.stefanescu@code4.ro'),
     ('Costin Bleotu', 'costin.bleotu@code4.ro'),
 ]
+
+NO_REPLY_EMAIL = "noreply@rohelp.ro"
 
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")

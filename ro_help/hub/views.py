@@ -1,7 +1,8 @@
 import json
 
+from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from django.core import paginator
 from django.http import Http404
 from django.urls import reverse
@@ -11,9 +12,8 @@ from django.views.generic import ListView, DetailView, CreateView
 
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import Context
 
-from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest
+from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest, ADMIN_GROUP_NAME
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 
 
@@ -32,56 +32,56 @@ class NGOKindFilterMixin:
             return context
 
         page = self.request.GET.get("page")
-        needs = ngo.needs.resource()
-        needs_paginator = paginator.Paginator(needs, self.paginated_by)
 
-        # Catch invalid page numbers
-        try:
-            needs_page_obj = needs_paginator.page(page)
-        except (paginator.PageNotAnInteger, paginator.EmptyPage):
-            needs_page_obj = needs_paginator.page(1)
+        needs = ngo.needs.filter(resolved_on=None)
+        if "need" in kwargs:
+            needs = needs.exclude(pk=kwargs["need"].pk)
+            context["current_need"] = kwargs["need"]
 
-        context["resource_page_obj"] = needs_page_obj
+        for kind in KIND.to_list():
+            kind_needs = needs.filter(kind=kind)
+            needs_paginator = paginator.Paginator(kind_needs, self.paginated_by)
+
+            # Catch invalid page numbers
+            try:
+                needs_page_obj = needs_paginator.page(page)
+            except (paginator.PageNotAnInteger, paginator.EmptyPage):
+                needs_page_obj = needs_paginator.page(1)
+
+            context[f"{kind}_page_obj"] = needs_page_obj
 
         return context
 
 
-class NGOListView(NGOKindFilterMixin, ListView):
+class NGONeedListView(NGOKindFilterMixin, ListView):
     allow_filters = ["county", "city"]
     paginate_by = 9
 
     template_name = "ngo/list.html"
 
     def get_queryset(self):
-        ngos = NGO.objects.all()
+        filters = {
+            "kind": self.request.GET.get("kind", KIND.default()),
+            "resolved_on": None,
+        }
+        filters.update(**{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET})
 
-        filters = {name: self.request.GET[
-            name] for name in self.allow_filters if name in self.request.GET}
-
-        filters["needs__kind"] = self.request.GET.get("kind", KIND.default())
-        filters["needs__resolved_on"] = None
-
-        return ngos.order_by("name").filter(**filters).distinct("name")
+        return NGONeed.objects.filter(**filters).order_by("created")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        needs = self.get_queryset()
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
 
-        ngos = NGO.objects.filter(
-            needs__kind=context["current_kind"], needs__resolved_on=None, needs__closed_on=None
-        ).distinct("name")
+        context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
 
-        context["counties"] = ngos.order_by("county").values_list(
-            "county", flat=True).distinct("county")
-
-        cities = ngos.order_by("city")
+        cities = needs.order_by("city")
         if self.request.GET.get("county"):
             cities = cities.filter(county=self.request.GET.get("county"))
 
-        context["cities"] = cities.values_list(
-            "city", flat=True).distinct("city")
+        context["cities"] = cities.values_list("city", flat=True).distinct("city")
 
         return context
 
@@ -96,7 +96,6 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
     template_name = "ngo/detail.html"
     model = NGOHelper
     form_class = NGOHelperForm
-    # fields = ["name", "email", "message", "phone"]
     success_message = _("TODO: add a success message")
 
     def get_object(self, queryset=None):
@@ -104,7 +103,7 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
         if hasattr(self, "need"):
             return self.need
 
-        ngo = NGO.objects.filter(pk=self.kwargs["ngo"]).first()
+        ngo = self._get_ngo()
         if not ngo:
             return None
 
@@ -116,15 +115,25 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
 
         return need
 
+    def _get_ngo(self):
+        # return from local cache, if any
+        if hasattr(self, "ngo"):
+            return self.ngo
+
+        ngo = NGO.objects.filter(pk=self.kwargs["ngo"]).first()
+        if not ngo:
+            return None
+
+        self.ngo = ngo
+        return ngo
+
     def get_context_data(self, **kwargs):
         need = self.get_object()
         if not need:
             raise Http404(_("Missing or invalid NGO need."))
 
-        context = super().get_context_data(**{**kwargs, **{"ngo": need.ngo}})
-
+        context = super().get_context_data(**{**kwargs, **{"ngo": need.ngo, "need": need}})
         context["ngo"] = need.ngo
-        context["current_need"] = need
 
         return context
 
@@ -136,18 +145,19 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
         return reverse("ngo-detail", kwargs={"pk": self.kwargs["ngo"]})
 
     def get_success_message(self, cleaned_data):
+        ngo = self._get_ngo()
+        cleaned_data["ngo"] = ngo
+
         html = get_template("mail/new_helper.html")
-        data = cleaned_data
-        ngo = NGO.objects.get(pk=self.kwargs["ngo"])
-        data["ngo"] = ngo
-        html_content = html.render(data)
+        html_content = html.render(cleaned_data)
 
         for user in ngo.users.all():
-            subject, from_email, to = "[RO HELP] Mesaj nou", "noreply@rohelp.ro", user.email
+            subject, from_email, to = "[RO HELP] Mesaj nou", settings.NO_REPLY_EMAIL, user.email
 
             msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
+
         return super().get_success_message(cleaned_data)
 
 
@@ -161,13 +171,14 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
         return reverse("ngos-register-request")
 
     def get_success_message(self, cleaned_data):
-
         html = get_template("mail/new_ngo.html")
         html_content = html.render(cleaned_data)
-        for admin in User.objects.filter(groups__name="Admin"):
-            subject, from_email, to = "[RO HELP] ONG nou", "noreply@rohelp.ro", admin.email
-            msg = EmailMultiAlternatives(
-                subject, html_content, from_email, [to])
+
+        for admin in User.objects.filter(groups__name=ADMIN_GROUP_NAME):
+            subject, from_email, to = "[RO HELP] ONG nou", settings.NO_REPLY_EMAIL, admin.email
+
+            msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
+
         return super().get_success_message(cleaned_data)
