@@ -9,7 +9,7 @@
 {% block kind-kind-filters %}
 {% endblock%}
 
-<div class="container detail-header">
+<div class="container detail-header" xmlns="http://www.w3.org/1999/html">
     <span class="detail-header-img">
         <img src="{{ ngo.get_avatar }}" alt="Placeholder image">
     </span>
@@ -64,16 +64,18 @@
                     </div>
 
 
-                    <div class="columns is-mobile">
-                        <div class="column is-two-thirds-desktop is-half-mobile">
-                            <div class="control">
-                                <input class="input is-success" type="text" placeholder="100 eur">
+                    <form method="GET" action="{% url 'ngo-donate' ngo.pk %}">
+                        <div class="columns is-mobile">
+                            <div class="column is-two-thirds-desktop is-half-mobile">
+                                <div class="control">
+                                    <input class="input is-success" name="amount" type="text" placeholder="100 eur">
+                                </div>
+                            </div>
+                            <div class="column is-one-third-desktop is-half-mobile">
+                                <button class="button is-success is-fullwidth">{% trans "Donate" %}</button>
                             </div>
                         </div>
-                        <div class="column is-one-third-desktop is-half-mobile">
-                            <button class="button is-success is-fullwidth">{% trans "Donate" %}</button>
-                        </div>
-                    </div>
+                     </form>
                 </div>
 
                 <div class="container">

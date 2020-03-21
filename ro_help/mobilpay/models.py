@@ -1,13 +1,11 @@
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from django_extensions.db.models import TimeStampedModel
-from hub.models import NGO
-import hashlib
 import uuid
 
-# obj_pm_req_card.set_order_id(
-# hashlib.md5(str(int(random.random() *
-# int(time.time()))).encode('utf-8')).hexdigest())
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
+from django_extensions.db.models import TimeStampedModel
+
+from hub.models import NGO
 
 
 class PaymentOrder(TimeStampedModel):
