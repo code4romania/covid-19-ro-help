@@ -10,6 +10,8 @@ from django_extensions.db.models import TimeStampedModel
 
 ADMIN_GROUP_NAME = "Admin"
 NGO_GROUP_NAME = "ONG"
+DSU_GROUP_NAME = "DSU"
+FFC_GROUP_NAME = "FFC"
 
 
 class URGENCY:
@@ -269,6 +271,8 @@ class RegisterNGORequest(TimeStampedModel):
 
     social_link = models.CharField(_("Link to website or Facebook"), max_length=512, null=True, blank=True)
 
+    dsu_approved = models.BooleanField(_("DSU Approved"), default=False)
+    ffc_approved = models.BooleanField(_("FFC Approved"), default=False)
     active = models.BooleanField(_("Active"), default=False)
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
@@ -323,3 +327,8 @@ class RegisterNGORequest(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+
+class PendingRegisterNGORequest(RegisterNGORequest):
+    class Meta:
+        proxy = True

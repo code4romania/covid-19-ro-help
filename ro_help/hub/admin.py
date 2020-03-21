@@ -8,7 +8,18 @@ from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
-from .models import NGO, NGONeed, NGOHelper, ResourceTag, RegisterNGORequest, ADMIN_GROUP_NAME, NGO_GROUP_NAME
+from .models import (
+    NGO,
+    NGONeed,
+    NGOHelper,
+    ResourceTag,
+    RegisterNGORequest,
+    PendingRegisterNGORequest,
+    ADMIN_GROUP_NAME,
+    NGO_GROUP_NAME,
+    DSU_GROUP_NAME,
+    FFC_GROUP_NAME,
+)
 
 
 class NGOFilter(AutocompleteFilter):
@@ -172,6 +183,12 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
     actions = ["create_account"]
     readonly_fields = ["active", "resolved_on"]
 
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if not "Admin" in request.user.groups.values_list("name", flat=True):
+            del actions["create_account"]
+        return actions
+
     def create_account(self, request, queryset):
         queryset = queryset.filter(resolved_on=None)
         ngo_group = Group.objects.get(name=NGO_GROUP_NAME)
@@ -183,3 +200,31 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         return self.message_user(request, user_msg, level=messages.INFO)
 
     create_account.short_description = _("Create account")
+
+
+@admin.register(PendingRegisterNGORequest)
+class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
+    list_display = ["name", "county", "city", "dsu_approved", "ffc_approved", "registered_on", "resolved_on"]
+    actions = ["approve"]
+
+    def approve(self, request, queryset):
+        dsu = ffc = 0
+        if DSU_GROUP_NAME in request.user.groups.values_list("name", flat=True):
+            dsu = queryset.update(dsu_approved=True)
+        if FFC_GROUP_NAME in request.user.groups.values_list("name", flat=True):
+            ffc = queryset.update(ffc_approved=True)
+        user_msg = f"{dsu + ffc} ngo{pluralize(dsu + ffc, 's')} activated"
+        return self.message_user(request, user_msg, level=messages.INFO)
+
+    approve.short_description = _("Approve NGO")
+
+    def get_queryset(self, request):
+        user = request.user
+        if DSU_GROUP_NAME in user.groups.values_list("name", flat=True):
+            return self.model.objects.filter(dsu_approved=False)
+        if FFC_GROUP_NAME in user.groups.values_list("name", flat=True):
+            return self.model.objects.filter(ffc_approved=False)
+        return self.model.objects.filter(active=False)
+
+    def has_change_permission(self, request, obj=None):
+        return False
