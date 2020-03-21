@@ -68,10 +68,9 @@ class NGONeedListView(NGOKindFilterMixin, ListView):
         return NGONeed.objects.filter(**filters).order_by("created")
 
     def get_queryset(self):
-        return self.get_needs().filter(**{
-            name: self.request.GET[name]
-            for name in self.allow_filters if name in self.request.GET
-        })
+        return self.get_needs().filter(
+            **{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
