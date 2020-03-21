@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("hub", "0018_registerngorequest_registered_on"),
+        ("hub", "0020_auto_20200320_2353"),
     ]
 
     operations = [
