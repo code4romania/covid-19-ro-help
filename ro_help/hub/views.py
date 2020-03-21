@@ -54,7 +54,7 @@ class NGOKindFilterMixin:
 
 
 class NGONeedListView(NGOKindFilterMixin, ListView):
-    allow_filters = ["county", "city"]
+    allow_filters = ["county", "city", "urgency"]
     paginate_by = 9
 
     template_name = "ngo/list.html"
@@ -82,6 +82,8 @@ class NGONeedListView(NGOKindFilterMixin, ListView):
             cities = cities.filter(county=self.request.GET.get("county"))
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
+
+        context["urgencies"] = needs.values_list("urgency", flat=True).distinct("urgency")
 
         return context
 

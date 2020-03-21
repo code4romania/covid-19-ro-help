@@ -87,6 +87,38 @@
             </div>
 
         </div>
+
+        <div class="column is-narrow filter-dropdown is-marginless">
+            <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu1">
+                        <span>{% trans "Urgency" %}</span>
+                        <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="dropdown-menu" id="dropdown-menu1" role="menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-item">
+                            <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='urgency' remove_query_param='page' %}"
+                               class="dropdown-item">
+                                -
+                            </a>
+                        </div>
+                        {% for urgency in urgencies %}
+                        <div class="dropdown-item">
+                            <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
+                               class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
+                                {{ county }}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
