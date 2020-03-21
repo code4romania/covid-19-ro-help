@@ -113,8 +113,10 @@ class Command(BaseCommand):
         ngo_user.groups.add(ngo_group)
         ngo_user.save()
 
+        tags = []
         for resource in RESOURCE_TAGS:
-            ResourceTag.objects.get_or_create(name=resource)
+            tag, _ = ResourceTag.objects.get_or_create(name=resource)
+            tags.append(tag)
 
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)
@@ -125,7 +127,7 @@ class Command(BaseCommand):
                 ngo.save()
 
             for _ in range(20):
-                NGONeed.objects.create(
+                need = NGONeed.objects.create(
                     **{
                         "ngo": ngo,
                         "kind": random.choice(KIND.to_list()),
@@ -137,3 +139,6 @@ class Command(BaseCommand):
                         "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
                     }
                 )
+
+                for _ in range(len(RESOURCE_TAGS)):
+                    need.resource_tags.add(random.choice(tags))
