@@ -170,9 +170,15 @@
 
                 {% url 'ngo-helper-create' need.ngo.pk need.pk as base %}
                 <footer class="card-footer">
+                    <div>
+                        {% for tag in need.resource_tags.all %}
+                            <span class="tag">{{ tag }}</span>
+                        {% endfor%}
+                    </div>
                     <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
                        href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">{% trans "I can help" %}</a>
                 </footer>
+
 
             </div>
         </div>
