@@ -132,7 +132,7 @@
             </div>
         </div>
 
-        <div class="column is-narrow filter-dropdown is-marginless">
+        <div class="is-narrow filter-dropdown is-marginless">
             <a href="{% url 'ngos' %}">{% trans "Reset filters" %}</a>
         </div>
     </div>
@@ -143,44 +143,47 @@
 
     <div class="columns is-multiline">
         {% for need in page_obj %}
-        <div class="column is-4-desktop is-4-tablet is-6-mobile">
-            <div class="box card-content has-text-centered">
-
-                <div class="content">
-                    <span class="icon is-small">
-                        {% if need.kind == "money" %}
-                            <i class="fas fa-dollar-sign" aria-hidden="true"></i>
-                        {% else %}
-                            {% if need.kind == "resource" %}
-                                <i class="fas fa-hospital" aria-hidden="true"></i>
-                            {% else %}
-                                <i class="fas fa-user" aria-hidden="true"></i>
-                            {% endif %}
-                        {% endif %}
-                    </span>
-
-                    <p class="title is-4">{{ need.title|truncatechars:50 }}</p>
-                </div>
-
-                <div class="card-image">
-                    <figure class="image is-4by3">
-                        <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
-                    </figure>
-                </div>
-
-                {% url 'ngo-helper-create' need.ngo.pk need.pk as base %}
-                <footer class="card-footer">
-                    <div>
-                        {% for tag in need.resource_tags.all %}
-                            <span class="tag">{{ tag }}</span>
-                        {% endfor%}
-                    </div>
-                    <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
-                       href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">{% trans "I can help" %}</a>
-                </footer>
-
-
+        <div class="need is-flex container">
+            <div class="need-icon">
+                {% if need.kind == "money" %}
+                    <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                {% else %}
+                    {% if need.kind == "resource" %}
+                        <i class="fas fa-hospital" aria-hidden="true"></i>
+                    {% else %}
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                    {% endif %}
+                {% endif %}
             </div>
+
+            <div class="card-image need-logo is-hidden-mobile">
+               <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
+            </div>
+
+            <div class="card-info">
+                <div class="need-logo-name-wrapper is-flex">
+                    <div class="card-image need-logo is-hidden-tablet">
+                        <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
+                    </div>
+                    <div class="need-title is-hidden-tablet">{{need.ngo.name}}</div>
+                </div>
+                <div class="need-title is-hidden-mobile">{{need.ngo.name}}</div>
+                <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
+                <div class="tag-bar">
+                    {% for tag in need.resource_tags.all %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor%}
+                </div>
+            </div>
+            <div class="vr"></div>
+            <hr class="is-hidden-tablet" style="margin: 0 10%;"/>
+            {% url 'ngo-helper-create' need.ngo.pk need.pk as base %}
+
+            <div class="need-call2action">
+                <a class="button has-background-success has-text-weight-bold has-text-white need-button"
+                   href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">{% trans "I can help" %}</a>
+            </div>
+
         </div>
         {% endfor %}
     </div>
