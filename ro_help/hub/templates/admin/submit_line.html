@@ -1,0 +1,37 @@
+{% load i18n admin_urls static %}
+
+<link rel="stylesheet" href="{% static 'material/admin/css/submit_line.min.css' %}">
+
+<div class="submit-row">
+  
+
+  <div class="open-actions">
+    {% block submit-row %}
+
+      {% if show_save %}
+      <button type="submit" class="default waves-effect waves-light btn" name="_save">
+          {% trans 'Save' %}
+          <i class="material-icons right">save</i>
+      </button>
+      {% endif %}
+      {% if show_delete_link and original %}
+        {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+          <a href="{% add_preserved_filters delete_url %}"
+             class="deletelink waves-effect waves-light btn red">
+              {% trans "Delete" %}
+              <i class="material-icons right">delete_forever</i>
+          </a>
+      {% endif %}
+
+
+      {% if show_close %}
+
+          <a href="{% url opts|admin_urlname:'changelist' %}"
+              class="deletelink waves-effect waves-light btn red">
+            <i class="material-icons">close</i>
+            {% trans 'Close' %}
+          </a>
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

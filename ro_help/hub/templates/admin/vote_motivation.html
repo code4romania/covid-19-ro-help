@@ -1,0 +1,65 @@
+{% extends "admin/base_site.html" %} 
+{% load i18n l10n admin_urls static %}
+{% load crispy_forms_tags %} {% block theme %}
+
+<style>
+    :root {
+        --main-bg-color: #fd4b49;
+        --main-hover-color: #fe9695;
+    }
+</style>
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'material/admin/css/base_site-theme.min.css' %}"
+/>
+
+{% endblock %} {% block content %}
+
+<div id="content-main">
+    <div class="module">
+        <div class="app">
+            <div class="card">
+                <div class="card-content">
+                    {% for ong in queryset %}
+                        <h1>{{ong.name}}</h1>
+                    {% endfor %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <br />
+                        <div>
+                            {% for obj in queryset %}
+                            <input
+                                type="hidden"
+                                name="{{action_checkbox_name}}"
+                                value="{{ obj.pk|unlocalize }}"
+                            />
+                            {% endfor %}
+                            <input type="hidden" name="action" value="vote" />
+                            <input type="hidden" name="post" value="yes" />
+
+                            <button
+                                type="submit"
+                                class="waves-effect waves-light btn red"
+                            >
+                                {% trans 'Yes, I\'m sure' %}
+                                <i class="material-icons right"
+                                    >how_to_reg</i
+                                >
+                            </button>
+                            <a
+                                href="/admin/hub/pendingregisterngorequest/"
+                                class="cancel-link waves-effect waves-light btn yellow darken-3"
+                            >
+                                {% trans 'Back' %}
+                                <i class="material-icons right">backspace</i>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

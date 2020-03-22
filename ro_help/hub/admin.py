@@ -1,13 +1,15 @@
 from admin_auto_filters.filters import AutocompleteFilter
 
 from django.contrib import admin, messages
-from django.contrib.admin import SimpleListFilter
+from django.contrib.admin import SimpleListFilter, helpers
+from django.shortcuts import render
 from django.contrib.auth.models import Group
 from django.template.defaultfilters import pluralize
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
-
+from hub import utils
+from .forms import RegisterNGORequestVoteForm
 from .models import (
     NGO,
     NGONeed,
@@ -15,6 +17,7 @@ from .models import (
     ResourceTag,
     RegisterNGORequest,
     PendingRegisterNGORequest,
+    RegisterNGORequestVote,
     ADMIN_GROUP_NAME,
     NGO_GROUP_NAME,
     DSU_GROUP_NAME,
@@ -176,18 +179,48 @@ class ResourceTagAdmin(admin.ModelAdmin):
     icon_name = "filter_vintage"
 
 
+class RegisterNGORequestVoteInline(admin.TabularInline):
+    model = RegisterNGORequestVote
+    fields = ("entity", "vote", "motivation")
+    can_delete = False
+    can_add = False
+    verbose_name_plural = _("Votes")
+    readonly_fields = ["entity", "vote", "motivation"]
+    extra = 0
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+
 @admin.register(RegisterNGORequest)
 class RegisterNGORequestAdmin(admin.ModelAdmin):
     icon_name = "add_circle"
-    list_display = ["name", "county", "city", "active", "registered_on", "resolved_on"]
+    list_display = [
+        "name",
+        "county",
+        "city",
+        "voters",
+        "votes_yes",
+        "votes_no",
+        "votes_abstention",
+        "active",
+        "registered_on",
+        "resolved_on",
+    ]
     actions = ["create_account"]
     readonly_fields = ["active", "resolved_on"]
+    inlines = [RegisterNGORequestVoteInline]
 
     def get_actions(self, request):
         actions = super().get_actions(request)
         if not "Admin" in request.user.groups.values_list("name", flat=True):
             del actions["create_account"]
         return actions
+
+    def voters(self, obj):
+        return ",".join(obj.votes.values_list("entity", flat=True))
+
+    voters.short_description = _("Voters")
 
     def create_account(self, request, queryset):
         queryset = queryset.filter(resolved_on=None)
@@ -204,27 +237,72 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
 
 @admin.register(PendingRegisterNGORequest)
 class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
-    list_display = ["name", "county", "city", "dsu_approved", "ffc_approved", "registered_on", "resolved_on"]
-    actions = ["approve"]
+    list_display = ["name", "county", "city", "registered_on", "resolved_on"]
+    actions = ["vote"]
+    inlines = [RegisterNGORequestVoteInline]
 
-    def approve(self, request, queryset):
-        dsu = ffc = 0
-        if DSU_GROUP_NAME in request.user.groups.values_list("name", flat=True):
-            dsu = queryset.update(dsu_approved=True)
-        if FFC_GROUP_NAME in request.user.groups.values_list("name", flat=True):
-            ffc = queryset.update(ffc_approved=True)
-        user_msg = f"{dsu + ffc} ngo{pluralize(dsu + ffc, 's')} activated"
-        return self.message_user(request, user_msg, level=messages.INFO)
+    def vote(self, request, queryset):
+        if request.POST.get("post") == "yes":
+            authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
+            user = request.user
+            user_groups = user.groups.values_list("name", flat=True)
+            entity = list(set(authorized_groups).intersection(user_groups))[0]
 
-    approve.short_description = _("Approve NGO")
+            for ngo_request in queryset:
+                vote = RegisterNGORequestVote.objects.create(
+                    user=user,
+                    ngo_request=ngo_request,
+                    entity=entity,
+                    vote=request.POST.get("vote"),
+                    motivation=request.POST.get("motivation"),
+                )
+
+                notify_groups = list(set(authorized_groups) - set(user_groups))
+                e = 0
+                for group in Group.objects.filter(name__in=notify_groups):
+                    for user in group.user_set.all():
+                        e += utils.send_email(
+                            template="mail/new_vote.html",
+                            context={"vote": vote, "user": user},
+                            subject=_("[RO HELP] {} voted for {} ".format(entity, ngo_request.name)),
+                            to=user.email,
+                        )
+                self.message_user(
+                    request,
+                    _("Vote succesfully registered. {} email{} sent to others admins".format(e, pluralize(e, "s"))),
+                    level=messages.INFO,
+                )
+        else:
+            context = dict(
+                title=f"Vot ONG",
+                opts=self.model._meta,
+                queryset=queryset,
+                form=RegisterNGORequestVoteForm,
+                action_checkbox_name=helpers.ACTION_CHECKBOX_NAME,
+            )
+            return render(request, "admin/vote_motivation.html", context)
+
+    vote.short_description = _("Vote")
 
     def get_queryset(self, request):
         user = request.user
-        if DSU_GROUP_NAME in user.groups.values_list("name", flat=True):
-            return self.model.objects.filter(dsu_approved=False)
-        if FFC_GROUP_NAME in user.groups.values_list("name", flat=True):
-            return self.model.objects.filter(ffc_approved=False)
-        return self.model.objects.filter(active=False)
+        user_groups = user.groups.values_list("name", flat=True)
+        return self.model.objects.exclude(votes__entity__in=user_groups)
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+
+@admin.register(RegisterNGORequestVote)
+class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
+    list_display = ["ngo_request", "user", "vote", "motivation", "date"]
+
+    def get_queryset(self, request):
+        user = request.user
+        user_groups = user.groups.values_list("name", flat=True)
+        if "Admin" not in user_groups:
+            return self.model.objects.filter(entity__in=user_groups)
+        return self.model.objects.all()
 
     def has_change_permission(self, request, obj=None):
         return False

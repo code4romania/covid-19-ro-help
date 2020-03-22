@@ -125,6 +125,28 @@ class COUNTY:
         return cls.counties
 
 
+class VOTE:
+    YES = _("YES")
+    NO = _("NO")
+    ABSTENTION = _("ABSTENTION")
+
+    @classmethod
+    def to_choices(cls):
+        return [
+            (VOTE.YES, VOTE.YES),
+            (VOTE.NO, VOTE.NO),
+            (VOTE.ABSTENTION, VOTE.ABSTENTION),
+        ]
+
+    @classmethod
+    def default(cls):
+        return VOTE.ABSTENTION
+
+    @classmethod
+    def to_list(cls):
+        return [VOTE.YES, VOTE.NO, VOTE.ABSTENTION]
+
+
 class NGO(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
     users = models.ManyToManyField(User, related_name="ngos")
@@ -271,11 +293,18 @@ class RegisterNGORequest(TimeStampedModel):
 
     social_link = models.CharField(_("Link to website or Facebook"), max_length=512, null=True, blank=True)
 
-    dsu_approved = models.BooleanField(_("DSU Approved"), default=False)
-    ffc_approved = models.BooleanField(_("FFC Approved"), default=False)
     active = models.BooleanField(_("Active"), default=False)
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
+
+    def votes_yes(self):
+        return self.votes.filter(vote="YES").count()
+
+    def votes_no(self):
+        return self.votes.filter(vote="NO").count()
+
+    def votes_abstention(self):
+        return self.votes.filter(vote="ABSTENTION").count()
 
     def create_ngo_owner(self, request, ngo_group):
         user, created = User.objects.get_or_create(username=self.email)
@@ -332,3 +361,14 @@ class RegisterNGORequest(TimeStampedModel):
 class PendingRegisterNGORequest(RegisterNGORequest):
     class Meta:
         proxy = True
+
+
+class RegisterNGORequestVote(TimeStampedModel):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    ngo_request = models.ForeignKey("RegisterNGORequest", on_delete=models.CASCADE, related_name="votes")
+    entity = models.CharField(max_length=30)
+    vote = models.CharField(_("Vote"), choices=VOTE.to_choices(), default=VOTE.default(), max_length=10)
+    motivation = models.TextField(
+        _("Motvation"), max_length=500, null=True, blank=True, help_text=_("Motivate your decision")
+    )
+    date = models.DateTimeField(_("Date"), auto_now_add=True)
