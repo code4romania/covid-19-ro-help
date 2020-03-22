@@ -3,7 +3,7 @@ from admin_auto_filters.filters import AutocompleteFilter
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter, helpers
 from django.shortcuts import render
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.template.defaultfilters import pluralize
 from django.utils import timezone
 from django.utils.html import format_html
@@ -306,3 +306,17 @@ class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+    def get_form(self, request, obj=None, **kwargs):
+        user = request.user
+        form = super().get_form(request, obj, **kwargs)
+
+        if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
+            form.base_fields["user"].queryset = User.objects.filter(pk=user.pk)
+
+        return form
+
+    def get_changeform_initial_data(self, request):
+        user = request.user
+        if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
+            return {"user": user.pk}
