@@ -15,6 +15,7 @@ from django.template.loader import get_template
 
 from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest, ADMIN_GROUP_NAME
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
+from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
 
 
@@ -199,16 +200,15 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
 class NGODonateCreateView(SuccessMessageMixin, CreateView):
     template_name = "ngo/donate.html"
     model = PaymentOrder
-    fields = ["first_name", "last_name", "phone", "email", "address", "details", "amount"]
+    form_class = PaymentOrderForm
     success_message = _("TODO: add a success message")
 
     def get_success_url(self):
-        return reverse("ngos")
+        return reverse("mobilpay:initialize-payment", kwargs={"order": self.object.order_id})
 
     def get_initial(self):
-        return {
-            "amount": self.request.GET.get("amount", "0")
-        }
+        ngo = self.get_object()
+        return {"amount": self.request.GET.get("amount", "0"), "details": f"Donatie catre {ngo.name}"}
 
     def get_object(self, queryset=None):
         ngo = NGO.objects.filter(pk=self.kwargs["ngo"]).first()

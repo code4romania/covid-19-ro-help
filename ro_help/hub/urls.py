@@ -1,7 +1,13 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from hub.views import NGONeedListView, NGODetailView, NGOHelperCreateView, NGORegisterRequestCreateView, NGODonateCreateView
+from hub.views import (
+    NGONeedListView,
+    NGODetailView,
+    NGOHelperCreateView,
+    NGORegisterRequestCreateView,
+    NGODonateCreateView,
+)
 
 
 urlpatterns = [
