@@ -1,17 +1,17 @@
 import json
 
 from django.conf import settings
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.postgres.search import SearchVector
 from django.core import paginator
+from django.core.mail import EmailMultiAlternatives
 from django.http import Http404
+from django.template.loader import get_template
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView, DetailView, CreateView
-
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import get_template
 
 from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest, ADMIN_GROUP_NAME
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
@@ -77,9 +77,15 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         return NGONeed.objects.filter(**filters).order_by("created")
 
     def get_queryset(self):
-        return self.get_needs().filter(
+        needs = self.get_needs().filter(
             **{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
         )
+
+        if self.request.GET.get("q"):
+            vector = SearchVector("title") + SearchVector("ngo__name") + SearchVector("resource_tags__name")
+            needs = needs.annotate(search=vector).filter(search=self.request.GET.get("q"))
+
+        return needs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -88,6 +94,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
         context["current_urgency"] = self.request.GET.get("urgency")
+        context["current_search"] = self.request.GET.get("q", "")
 
         context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
 

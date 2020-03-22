@@ -6,11 +6,28 @@
 
 {% block content %}
 <div id="the_entire_page" class="container">
+
+    <div class="container">
+            <form action="{% url 'ngos' %}" method="GET">
+                <div class="columns">
+                    <div class="column is-10">
+                        <input class="input" type="text" name="q" value="{{ current_search }}">
+                    </div>
+
+                    <div class="column">
+                        <button class="button">Search</button>
+                    </div>
+                </div>
+            </form>
+    </div>
+
     <div id="donate_safely" class="container">
         <h1 class="donate-title">
             {% trans "Donate safely" %}
         </h1>
-        <p class="donate-subtitle">
+        <form action="{{ current_url }}" >
+            <form action="{{ current_url }}" >
+            <p class="donate-subtitle">
             {% trans "Direct your aid towards one of the verified organizations below. They will manage the aid and resources you provide them with so that the people most in need receive them." %}
         </p>
     </div>
