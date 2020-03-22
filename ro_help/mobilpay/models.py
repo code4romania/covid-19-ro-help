@@ -10,9 +10,11 @@ from hub.models import NGO
 
 class PaymentOrder(TimeStampedModel):
     ngo = models.ForeignKey(NGO, related_name="payment_orders", null=True, blank=True, on_delete=models.SET_NULL)
+
     order_id = models.CharField(
         _("Order ID"), max_length=100, blank=True, unique=True, default=uuid.uuid4, editable=False
     )
+
     first_name = models.CharField(_("First name"), max_length=254)
     last_name = models.CharField(_("Last name"), max_length=254)
     phone = models.CharField(_("Phone"), max_length=30)

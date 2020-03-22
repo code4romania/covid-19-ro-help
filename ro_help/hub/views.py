@@ -18,15 +18,22 @@ from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.models import PaymentOrder
 
 
+class InfoContextMixin:
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
+            context["info"] = json.loads(info.read())
+
+        return context
+
+
 class NGOKindFilterMixin:
     paginated_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["current_kind"] = self.request.GET.get("kind", KIND.default())
-
-        with open(f"static/data/sidebar_{translation.get_language()}.json") as info:
-            context["info"] = json.loads(info.read())
 
         ngo = kwargs.get("ngo", context.get("ngo"))
         if not ngo:
@@ -54,7 +61,7 @@ class NGOKindFilterMixin:
         return context
 
 
-class NGONeedListView(NGOKindFilterMixin, ListView):
+class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
     allow_filters = ["county", "city", "urgency"]
     paginate_by = 9
 
@@ -98,13 +105,13 @@ class NGONeedListView(NGOKindFilterMixin, ListView):
         return context
 
 
-class NGODetailView(NGOKindFilterMixin, DetailView):
+class NGODetailView(InfoContextMixin, NGOKindFilterMixin, DetailView):
     template_name = "ngo/detail.html"
     context_object_name = "ngo"
     model = NGO
 
 
-class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
+class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMixin, CreateView):
     template_name = "ngo/detail.html"
     model = NGOHelper
     form_class = NGOHelperForm
@@ -173,7 +180,7 @@ class NGOHelperCreateView(SuccessMessageMixin, NGOKindFilterMixin, CreateView):
         return super().get_success_message(cleaned_data)
 
 
-class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
+class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, CreateView):
     template_name = "ngo/register_request.html"
     model = RegisterNGORequest
     form_class = NGORegisterRequestForm
@@ -196,7 +203,7 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, CreateView):
         return super().get_success_message(cleaned_data)
 
 
-class NGODonateCreateView(SuccessMessageMixin, CreateView):
+class NGODonateCreateView(SuccessMessageMixin, InfoContextMixin, CreateView):
     template_name = "ngo/donate.html"
     model = PaymentOrder
     fields = ["first_name", "last_name", "phone", "email", "address", "details", "amount"]
