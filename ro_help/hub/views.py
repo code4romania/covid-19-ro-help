@@ -213,9 +213,7 @@ class NGODonateCreateView(SuccessMessageMixin, InfoContextMixin, CreateView):
         return reverse("ngos")
 
     def get_initial(self):
-        return {
-            "amount": self.request.GET.get("amount", "0")
-        }
+        return {"amount": self.request.GET.get("amount", "0")}
 
     def get_object(self, queryset=None):
         ngo = NGO.objects.filter(pk=self.kwargs["ngo"]).first()
