@@ -11,7 +11,7 @@
             <form action="{% url 'ngos' %}" method="GET">
                 <div class="columns">
                     <div class="column is-10">
-                        <input class="input" type="text" name="q" value="{{ current_search }}">
+                        <input class="input" type="text" name="q" value="{{ current_search }}" placeholder="{% trans 'Search...' %}">
                     </div>
 
                     <div class="column">
