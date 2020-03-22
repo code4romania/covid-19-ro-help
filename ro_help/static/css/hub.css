@@ -12,7 +12,7 @@ body {
 }
 
 .donate-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
     padding-bottom: 1rem;
 }
 
@@ -21,16 +21,23 @@ body {
     padding-bottom: 3rem;
 }
 
-.main-content {
-    margin-top: 5rem;
+.ngo-list-title {
+    font-size: 1.75em;
+    color: #3D4F9F;
 }
 
+.filter-container {
+    margin: 1em 0;
+}
 .filter {
     margin-bottom: 1rem;
 }
 
-.filter-dropdown {
-    margin: 1rem;
+.filter-dropdown button, .filter-dropdown button:hover{
+    border: 1px solid #1C1080;
+    color: #1C1080;
+    font-size: 1em;
+
 }
 
 .tool {
@@ -109,7 +116,7 @@ body {
 .donate-hero {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     margin: 2em 0 0.5em 0;
 }
 
@@ -195,7 +202,12 @@ body {
     }
 
     .need-icon {
-        padding: 2em;
+        padding: 1.5em;
+        color: #000;
+    }
+
+    .need-icon img {
+        height:2em;
     }
 
     .need-call2action {
