@@ -93,8 +93,8 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
                 + TrigramSimilarity("ngo__name", search_query)
                 + TrigramSimilarity("resource_tags__name", search_query),
             )
-            # .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
-            # .filter(Q(rank__gte=0.3))
+            .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
+            .filter(Q(rank__gte=0.3))
             .order_by("-rank")
         )
 
