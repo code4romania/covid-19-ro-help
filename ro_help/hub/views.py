@@ -78,23 +78,24 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         return NGONeed.objects.filter(**filters).order_by("created")
 
     def search(self, query, queryset):
-        search_query = SearchQuery(query)
+        # TODO: it should take into account selected language. Check only romanian for now.
+
+        search_query = SearchQuery(query, config="romanian_unaccent")
 
         vector = (
-            SearchVector("title", weight="A")
-            + SearchVector("ngo__name", weight="B",)
-            + SearchVector("resource_tags__name", weight="C")
+            SearchVector("title", weight="A", config="romanian_unaccent")
+            + SearchVector("ngo__name", weight="B", config="romanian_unaccent")
+            + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
         )
 
         return (
             queryset.annotate(
                 rank=SearchRank(vector, search_query),
-                similarity=TrigramSimilarity("title", search_query)
-                + TrigramSimilarity("ngo__name", search_query)
-                + TrigramSimilarity("resource_tags__name", search_query),
+                similarity=TrigramSimilarity("title", query)
+                + TrigramSimilarity("ngo__name", query)
+                + TrigramSimilarity("resource_tags__name", query),
             )
             .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
-            .filter(Q(rank__gte=0.3))
             .order_by("-rank")
         )
 
