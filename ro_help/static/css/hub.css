@@ -195,7 +195,12 @@ body {
     }
 
     .need-icon {
-        padding: 2em;
+        padding: 1.5em;
+        color: #000;
+    }
+
+    .need-icon img {
+        height:2em;
     }
 
     .need-call2action {

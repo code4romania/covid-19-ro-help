@@ -144,17 +144,21 @@
     <div class="columns is-multiline">
         {% for need in page_obj %}
         <div class="need is-flex container">
-            <div class="need-icon">
                 {% if need.kind == "money" %}
-                    <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                    <div class="need-icon" style="background-color: #31C85B">
+                        <i class="fas fa-dollar-sign icon"></i>
+                    </div>
                 {% else %}
                     {% if need.kind == "resource" %}
-                        <i class="fas fa-hospital" aria-hidden="true"></i>
+                        <div class="need-icon" style="background-color: #05d6c8">
+                            <i class="fas fa-box-open icon"></i>
+                        </div>
                     {% else %}
-                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <span class="need-icon" style="background-color: #FFB800">
+                                <i class="fas fa-people-carry icon"></i>
+                        </span>
                     {% endif %}
                 {% endif %}
-            </div>
 
             <div class="card-image need-logo is-hidden-mobile">
                <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
@@ -169,11 +173,14 @@
                 </div>
                 <div class="need-title is-hidden-mobile">{{need.ngo.name}}</div>
                 <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
-                <div class="tag-bar">
-                    {% for tag in need.resource_tags.all %}
-                    <span class="tag">{{ tag }}</span>
-                    {% endfor%}
-                </div>
+                {% if need.resource_tags.all  %}
+                    <div class="tag-bar">
+                        {% for tag in need.resource_tags.all %}
+                            <span class="tag">{{ tag }}</span>
+                        {% endfor%}
+                    </div>
+                {% endif %}
+
             </div>
             <div class="vr"></div>
             <hr class="is-hidden-tablet" style="margin: 0 10%;"/>
