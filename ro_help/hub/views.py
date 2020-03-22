@@ -3,9 +3,10 @@ import json
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, TrigramSimilarity, SearchRank, SearchQuery
 from django.core import paginator
 from django.core.mail import EmailMultiAlternatives
+from django.db.models import Q
 from django.http import Http404
 from django.template.loader import get_template
 from django.urls import reverse
@@ -76,14 +77,35 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
         return NGONeed.objects.filter(**filters).order_by("created")
 
+    def search(self, query, queryset):
+        # TODO: it should take into account selected language. Check only romanian for now.
+
+        search_query = SearchQuery(query, config="romanian_unaccent")
+
+        vector = (
+            SearchVector("title", weight="A", config="romanian_unaccent")
+            + SearchVector("ngo__name", weight="B", config="romanian_unaccent")
+            + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
+        )
+
+        return (
+            queryset.annotate(
+                rank=SearchRank(vector, search_query),
+                similarity=TrigramSimilarity("title", query)
+                + TrigramSimilarity("ngo__name", query)
+                + TrigramSimilarity("resource_tags__name", query),
+            )
+            .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
+            .order_by("-rank")
+        )
+
     def get_queryset(self):
         needs = self.get_needs().filter(
             **{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
         )
 
         if self.request.GET.get("q"):
-            vector = SearchVector("title") + SearchVector("ngo__name") + SearchVector("resource_tags__name")
-            needs = needs.annotate(search=vector).filter(search=self.request.GET.get("q"))
+            needs = self.search(self.request.GET.get("q"), needs)
 
         return needs
 
