@@ -3,8 +3,60 @@ body {
     font-size: 16px;
 }
 
-.logo {
-    padding: 1rem;
+.header-wrapper {
+    padding: 0 1.5rem ;
+}
+
+.border-b {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar-item {
+    font-size: 14px;
+}
+
+.navbar-item img {
+    max-height: none;
+}
+
+.developed-by {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.developed-by > span {
+    display: flex;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0.75em 0;
+}
+
+.developed-by > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+    min-height: 75px;
+}
+
+@media (max-width: 768px) {
+    .developed-by {
+        flex-direction: column;
+    }
+
+    .developed-by>div {
+        justify-content: space-between;
+        flex-direction: row;
+        min-height: 55px;
+        width: 100%;
+    }
+}
+
+.developed-by-logo {
+    padding-left: 0.5rem;
 }
 
 .footer {
@@ -29,11 +81,12 @@ body {
 .filter-container {
     margin: 1em 0;
 }
+
 .filter {
     margin-bottom: 1rem;
 }
 
-.filter-dropdown button, .filter-dropdown button:hover{
+.filter-dropdown button, .filter-dropdown button:hover {
     border: 1px solid #1C1080;
     color: #1C1080;
     font-size: 1em;
@@ -207,7 +260,7 @@ body {
     }
 
     .need-icon img {
-        height:2em;
+        height: 2em;
     }
 
     .need-call2action {
