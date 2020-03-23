@@ -306,7 +306,7 @@ msgid ""
 msgstr ""
 
 #: hub/templates/top_logo_section.html:12
-msgid "A project develop by"
+msgid "A project developed by"
 msgstr ""
 
 #: hub/templates/top_logo_section.html:23

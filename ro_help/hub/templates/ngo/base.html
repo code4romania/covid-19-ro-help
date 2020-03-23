@@ -5,29 +5,22 @@
 
 
 {% block content %}
-<div id="the_entire_page" class="container">
+<div class="container">
 
-    <div class="container">
-            <form action="{% url 'ngos' %}" method="GET">
-                <div class="columns">
-                    <div class="column is-10">
-                        <input class="input" type="text" name="q" value="{{ current_search }}" placeholder="{% trans 'Search...' %}">
-                    </div>
-
-                    <div class="column">
-                        <button class="button">Search</button>
-                    </div>
-                </div>
-            </form>
+    <div class="container" style="margin-bottom: 2em">
+        <form action="{% url 'ngos' %}" method="GET">
+            <div class="is-flex">
+                <input class="input search-input" type="text" name="q" value="{{ current_search }}" placeholder="{% trans 'Search...' %}">
+                <button class="button">Search</button>
+            </div>
+        </form>
     </div>
 
     <div id="donate_safely" class="container">
         <h1 class="donate-title">
             {% trans "Donate safely" %}
         </h1>
-        <form action="{{ current_url }}" >
-            <form action="{{ current_url }}" >
-            <p class="donate-subtitle">
+        <p class="donate-subtitle">
             {% trans "Direct your aid towards one of the verified organizations below. They will manage the aid and resources you provide them with so that the people most in need receive them." %}
         </p>
     </div>
@@ -37,7 +30,9 @@
 
         <ul class="messages">
             {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            <li
+                    {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+            </li>
             {% endfor %}
         </ul>
 
@@ -49,12 +44,12 @@
         <div class="columns is-multiline">
             <div class="column is-4 filter">
                 <div
-                    class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
+                        class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=money' remove_query_param='page' %}"
-                        class="has-text-black">
+                       class="has-text-black">
                         <div class="card-content">{% trans "I want to help with money" %}</div>
                     </a>
                 </div>
@@ -62,12 +57,12 @@
 
             <div class="column is-4 filter">
                 <div
-                    class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
+                        class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' remove_query_param='page' %}"
-                        class="has-text-black">
+                       class="has-text-black">
                         <div class="card-content">{% trans "I want to help with resources" %}</div>
                     </a>
                 </div>
@@ -75,12 +70,12 @@
 
             <div class="column is-4 filter">
                 <div
-                    class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
+                        class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' remove_query_param='page' %}"
-                        class="has-text-black">
+                       class="has-text-black">
                         <div class="card-content">{% trans "I want to volunteer" %}</div>
                     </a>
                 </div>
@@ -89,14 +84,14 @@
     </div>
     {% endblock %}
 
-    <div id="left_and_right_views" class="container columns">
+    <div class="columns">
 
-        <div class="column main-content">
+        <div class="column is-two-thirds">
             {% block left-side-view %}
             {% endblock %}
         </div>
 
-        <div id="right_sidebar" class="column is-narrow is-one-third main-content">
+        <div id="right_sidebar" class="column is-one-third">
             {% block right-side-view %}
             <div class="container">
 
@@ -119,7 +114,8 @@
                         <p class="call-to-action">{{project.description}}</p>
                         {% endif %}
                         <button class="button is-fullwidth is-white has-text-centered has-text-weight-bold"
-                            style="background-color: {{ project.color }};">{{ project.button_text }}</button>
+                                style="background-color: {{ project.color }};">{{ project.button_text }}
+                        </button>
                     </div>
                 </div>
 

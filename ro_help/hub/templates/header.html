@@ -1,61 +1,57 @@
 {% load static %}
 {% load i18n %}
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="container">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="{% url 'home' %}">
-        <img src="{% static "images/logo.svg" %}" alt="Code for Romania logo" width=100" height="100">
-      </a>
+<div class="h-padded-wrapper">
+    <div class="container border-b">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="{% url 'home' %}">
+                    <img src="{% static "images/logo.svg" %}" alt="Code for Romania logo" width="160" height="50">
+                </a>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-        data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                   data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-end has-text-centered-touch">
+                    <a class="navbar-item">
+                        {% trans "About" %}
+                    </a>
+
+                    <a class="navbar-item">
+                        {% trans "Link" %}
+                    </a>
+
+                    <a class="navbar-item">
+                        {% trans "Link" %}
+                    </a>
+
+                    <a class="navbar-item">
+                        {% trans "Link" %}
+                    </a>
+
+                    <a class="navbar-item">
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_current_language as LANGUAGE_CODE %}
+
+                        {% for language in LANGUAGES %}
+                        {% if language.0 != LANGUAGE_CODE %}
+                        <form class="d-inline" action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                            <input type="hidden" name="language" value="{{ language.0 }}"/>
+                            <input class="button is-success" type="submit" value="{{ language.0 | upper }}"/>
+                        </form>
+                        {% endif %}
+                        {% endfor %}
+
+                    </a>
+                </div>
+            </div>
+        </nav>
     </div>
+</div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-end has-text-centered-touch">
-        <a class="navbar-item">
-          {% trans "About" %}
-        </a>
-
-        <a class="navbar-item">
-          {% trans "Link" %}
-        </a>
-
-        <a class="navbar-item">
-          {% trans "Link" %}
-        </a>
-
-        <a class="navbar-item">
-          {% trans "Link" %}
-        </a>
-
-        <a class="navbar-item">
-          {% get_available_languages as LANGUAGES %}
-          {% get_current_language as LANGUAGE_CODE %}
-
-          {% for language in LANGUAGES %}
-          {% if language.0 != LANGUAGE_CODE %}
-          <form class="d-inline" action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ redirect_to }}" />
-            <input type="hidden" name="language" value="{{ language.0 }}" />
-            <input class="button is-success" type="submit" value="{{ language.0 | upper }}" />
-          </form>
-          {% endif %}
-          {% endfor %}
-
-        </a>
-
-        <hr class="navbar-divider">
-
-      </div>
-    </div>
-
-  </div>
-  </div>
-
-</nav>
