@@ -15,25 +15,16 @@
     <title>RO Help</title>
 </head>
 <body>
-
 {% include "header.html" %}
+{% include "developed-by.html" %}
 
-
-{% include "top_logo_section.html" %}
-
-
-<div id="main" class="section">
+<div id="main">
     {% block content %}
     {% endblock %}
 </div>
 
-<hr class="is-marginless">
 
-<div class="section is-paddingless">
-    {% include "bottom_logo_section.html" %}
-</div>
-
+{% include "incubated-by.html" %}
 {% include "footer.html" %}
-
 </body>
 </html>

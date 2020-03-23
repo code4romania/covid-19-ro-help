@@ -1,28 +1,33 @@
 {% load static %}
 {% load i18n %}
 
-<footer class="footer">
-      <div class="columns">
-          <div class="column is-4 has-text-light">
-              <ul class="footer-links">
-                  <li class="links-header has-text-weight-bold">LINKS</li>
-                  <li class="links-item">Link</li>
-                  <li class="links-item">Link</li>
-                  <li class="links-item">Link</li>
-                  <li class="links-item">Link</li>
-                  <li class="links-item">Link</li>
-              </ul>
-          </div>
-          <div class="column is-4 is-offset-4">
+<footer>
+    <div class="h-padded-wrapper">
+        <div class="container footer-content">
+            <div class="footer-lists">
+                <ul class="useful-links">
+
+                    <li class="footer-links-header">Link-uri utile</li>
+                    <li><a href="{% url 'home' %}">Despre proiect</a></li>
+                    <li><a href="https://stirioficiale.ro/informatii" target="_blank" rel="noopener noreferrer">Știri
+                        Oficiale</a></li>
+                    <li><a href="https://www.gov.ro/" target="_blank" rel="noopener noreferrer">Guvernul României</a></li>
+                    <li><a href="http://www.dsu.mai.gov.ro/" target="_blank" rel="noopener noreferrer">Departamentul pentru
+                        Situații de Urgență</a></li>
+                    <li><a href="http://www.code4.ro/" target="_blank" rel="noopener noreferrer">Code for Romania</a></li>
+
+                </ul>
+            </div>
+
+            <div class="code4-branding">
                 <a href="https://code4.ro/ro/" target="_blank" rel="noopener noreferrer">
-                    <img src="{% static "images/code4romania-gray.svg" %}" alt="Code for Romania grey logo" width=100" height="100">
+                    <img src="{% static "images/code4romania-gray.svg" %}" alt="Code for Romania grey logo" width=140">
                 </a>
-              <p class="has-text-light">© Code for Romania</p>
-              <p class="has-text-light">
-                  {% trans "An independent, non-partisan, non-political, non-govermental organization." %}
-              </p>
-          </div>
-      </div>
+                <p>© 2020 Code for Romania.</p>
+                <p>{% trans "An independent, non-partisan, non-political, non-govermental organization." %}</p>
+            </div>
+        </div>
+    </div>
 </footer>
 
 {% block extra-footer %}
