@@ -6,10 +6,7 @@
 
 {% block left-side-view %}
 <div class="container">
-    <h1 class="donate-title">
-        <span>
-            <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
-        </span>
+    <h2 class="ngo-list-title">
         {% trans "NGOs that manage" %}
         {% if current_kind == 'money' %}
             {% trans "financial aid" %}
@@ -20,8 +17,9 @@
             {% trans "volunteers" %}
         {% endif %}
         {% endif %}
-    </h1>
-
+    </h2>
+</div>
+<div class="container filter-container">
     <div class="columns is-mobile">
         <div class="column is-narrow filter-dropdown is-marginless">
             <div class="dropdown is-hoverable">
@@ -99,7 +97,7 @@
         <div class="column is-narrow filter-dropdown is-marginless">
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
-                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu1">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
                         {% if current_urgency %}
                             <span>{{ current_urgency }}</span>
                         {% else %}
@@ -111,7 +109,7 @@
                     </button>
                 </div>
 
-                <div class="dropdown-menu" id="dropdown-menu1" role="menu">
+                <div class="dropdown-menu" id="dropdown-menu3" role="menu">
                     <div class="dropdown-content">
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='urgency' remove_query_param='page' %}"
@@ -131,12 +129,17 @@
                 </div>
             </div>
         </div>
-
-        <div class="is-narrow filter-dropdown is-marginless">
-            <a href="{% url 'ngos' %}">{% trans "Reset filters" %}</a>
+        <div class="column is-hidden-mobile">
+            <a class="button" href="{% url 'ngos' %}">{% trans "Reset filters" %}</a>
         </div>
     </div>
+
+    <a class="button is-hidden-tablet" href="{% url 'ngos' %}">
+        {% trans "Reset filters" %}
+    </a>
+
 </div>
+
 
 <div class="container">
     {% include "shared/pagination.html" with page_obj=page_obj %}
@@ -145,7 +148,7 @@
         {% for need in page_obj %}
         <div class="need is-flex container">
                 {% if need.kind == "money" %}
-                    <div class="need-icon" style="background-color: #31C85B">
+                    <div class="need-icon" style="background-color: #F5BCD6;">
                         <i class="fas fa-dollar-sign icon"></i>
                     </div>
                 {% else %}

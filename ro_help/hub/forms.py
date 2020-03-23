@@ -33,3 +33,9 @@ class NGORegisterRequestForm(forms.ModelForm):
             "description",
         ]
         widgets = {"email": EmailInput()}
+
+
+class RegisterNGORequestVoteForm(forms.ModelForm):
+    class Meta:
+        model = models.RegisterNGORequestVote
+        fields = ("vote", "motivation")
