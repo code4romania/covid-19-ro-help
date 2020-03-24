@@ -11,7 +11,7 @@
         <form action="{% url 'ngos' %}" method="GET">
             <div class="is-flex">
                 <input class="input search-input" type="text" name="q" value="{{ current_search }}" placeholder="{% trans 'Search...' %}">
-                <button class="button">Search</button>
+                <button class="button">{% trans "Search" %}</button>
             </div>
         </form>
     </div>
