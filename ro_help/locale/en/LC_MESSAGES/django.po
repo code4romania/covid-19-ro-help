@@ -372,4 +372,12 @@ msgid "Date"
 msgstr ""
 
 msgid "Title"
+
+msgid "Do you represent a NGO or a Fund and could help?"
+msgstr ""
+
+msgid "Sign up to the platform and make it easy for those that want to help."
+msgstr ""
+
+msgid "I want my organisation to join!"
 msgstr ""

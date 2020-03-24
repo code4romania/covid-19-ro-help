@@ -381,3 +381,14 @@ msgstr ""
 
 msgid "Titlu"
 msgstr ""
+
+msgid "Do you represent a NGO or a Fund and could help?"
+msgstr "Reprezinți un ONG sau o Fundație și poți ajuta?"
+
+msgid "Sign up to the platform and make it easy for those that want to help."
+msgstr "Înscrie-te în platformă și contribuie cu sprijin pentru cei care vor la randul lor sa ajute."
+
+msgid "I want my organisation to join!"
+msgstr "Îmi înscriu organizația!"
+
+

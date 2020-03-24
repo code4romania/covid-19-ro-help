@@ -173,6 +173,9 @@ class NGO(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    def get_funders(self):
+        return self.payment_orders.filter(success=True)
+
     def get_avatar(self):
         if self.avatar:
             if "http" in str(self.avatar):
@@ -238,6 +241,21 @@ class NGONeed(TimeStampedModel):
     class Meta:
         verbose_name_plural = _("NGO needs")
         verbose_name = _("NGO need")
+
+
+class NGOReportItem(TimeStampedModel):
+    ngo = models.ForeignKey(NGO, on_delete=models.CASCADE, related_name="report_items")
+    date = models.DateField(_("Date"))
+    title = models.CharField(_("Title"), max_length=100)
+    file = models.FileField(_("Receipt"), null=True, blank=True)
+    amount = models.FloatField(_("Amount spent (RON)"))
+
+    def __str__(self):
+        return f"{self.title}: {self.amount}"
+
+    class Meta:
+        verbose_name_plural = _("NGO report items")
+        verbose_name = _("NGO report item")
 
 
 class NGOHelper(TimeStampedModel):

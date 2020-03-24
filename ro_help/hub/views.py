@@ -3,12 +3,7 @@ import json
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.postgres.search import (
-    SearchVector,
-    TrigramSimilarity,
-    SearchRank,
-    SearchQuery
-)
+from django.contrib.postgres.search import SearchVector, TrigramSimilarity, SearchRank, SearchQuery
 from django.core import paginator
 from django.db.models import Q
 from django.http import Http404
@@ -18,14 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView, DetailView, CreateView
 
 from hub import utils
-from hub.models import (
-    NGO,
-    NGONeed,
-    NGOHelper,
-    KIND,
-    RegisterNGORequest,
-    ADMIN_GROUP_NAME
-)
+from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest, ADMIN_GROUP_NAME
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
@@ -228,15 +216,15 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, Create
 
     def get_success_message(self, cleaned_data):
         authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
-        print('******')
-        print('******')
-        print('******')
-        print('******')
-        print('******')
-        print('******')
-        print('******')
-        print('******')
-        print('******')
+        print("******")
+        print("******")
+        print("******")
+        print("******")
+        print("******")
+        print("******")
+        print("******")
+        print("******")
+        print("******")
         for user in User.objects.filter(groups__name__in=authorized_groups):
             print(user)
             utils.send_email(

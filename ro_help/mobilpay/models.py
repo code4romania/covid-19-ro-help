@@ -23,6 +23,7 @@ class PaymentOrder(TimeStampedModel):
     details = models.TextField(_("Details"))
     amount = models.FloatField(_("Amount"))
     date = models.DateTimeField(_("Registered on"), auto_now_add=True)
+    success = models.BooleanField(default=False)
 
     def __str__(self):
         return f"[{self.ngo.name}] {self.first_name} {self.last_name} {self.amount}"
