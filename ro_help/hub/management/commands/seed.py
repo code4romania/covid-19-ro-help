@@ -7,7 +7,8 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User, Group
 from django.utils import timezone
 
-from hub.models import NGO, NGONeed, KIND, URGENCY, ResourceTag, ADMIN_GROUP_NAME, NGO_GROUP_NAME
+from hub.models import NGO, NGONeed, KIND, URGENCY, ResourceTag, ADMIN_GROUP_NAME, NGO_GROUP_NAME, NGOReportItem
+from mobilpay.models import PaymentOrder
 
 
 fake = Faker()
@@ -118,27 +119,48 @@ class Command(BaseCommand):
             tag, _ = ResourceTag.objects.get_or_create(name=resource)
             tags.append(tag)
 
-        for details in NGOS:
-            ngo, _ = NGO.objects.get_or_create(**details)
+        # for details in NGOS:
+        #     ngo, _ = NGO.objects.get_or_create(**details)
 
-            owner = random.choice([ngo_user, admin_user, None])
-            if owner:
-                ngo.users.add(owner)
-                ngo.save()
+        #     owner = random.choice([ngo_user, admin_user, None])
+        #     if owner:
+        #         ngo.users.add(owner)
+        #         ngo.save()
 
-            for _ in range(20):
-                need = NGONeed.objects.create(
-                    **{
-                        "ngo": ngo,
-                        "kind": random.choice(KIND.to_list()),
-                        "urgency": random.choice(URGENCY.to_list()),
-                        "description": fake.text(),
-                        "title": fake.text(),
-                        "resolved_on": random.choice([None, timezone.now()]),
-                        "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
-                        "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
-                    }
+        #     for _ in range(20):
+        #         need = NGONeed.objects.create(
+        #             **{
+        #                 "ngo": ngo,
+        #                 "kind": random.choice(KIND.to_list()),
+        #                 "urgency": random.choice(URGENCY.to_list()),
+        #                 "description": fake.text(),
+        #                 "title": fake.text(),
+        #                 "resolved_on": random.choice([None, timezone.now()]),
+        #                 "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
+        #                 "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
+        #             }
+        #         )
+
+        #         for _ in range(len(RESOURCE_TAGS)):
+        #             need.resource_tags.add(random.choice(tags))
+
+        for ngo in NGO.objects.all():
+            for i in range(random.choice([3,4,5,6,10])):
+                payment = PaymentOrder.objects.create(
+                    ngo=ngo,
+                    first_name=fake.name().split(" ")[0],
+                    last_name=fake.name().split(" ")[-1],
+                    phone=fake.phone_number(),
+                    email=fake.email,
+                    address=fake.address,
+                    details="ddd",
+                    amount=random.choice([100,200,300,400,500,150]),
+                    date=fake.date_between(start_date='-30y', end_date='today'),
+                    success=True)
+            for i in range(random.choice([3,4,5,6,10])):
+                report = NGOReportItem.objects.create(
+                        ngo=ngo,
+                        date=fake.date_between(start_date='-30y', end_date='today'),
+                        title=f"Achizitionat {random.choice(RESOURCE_TAGS)}",
+                        amount=random.choice([100,200,300,400,500,150]),
                 )
-
-                for _ in range(len(RESOURCE_TAGS)):
-                    need.resource_tags.add(random.choice(tags))
