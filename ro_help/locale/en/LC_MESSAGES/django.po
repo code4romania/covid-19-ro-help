@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-22 12:56+0000\n"
+"POT-Creation-Date: 2020-03-24 16:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,179 +18,251 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: hub/admin.py:31
+#: hub/admin.py:35
 msgid "active"
 msgstr ""
 
-#: hub/admin.py:92 hub/admin.py:155
+#: hub/admin.py:132 hub/admin.py:195
 msgid "Helpers"
 msgstr ""
 
-#: hub/admin.py:163
+#: hub/admin.py:203
 msgid "Resolve need"
 msgstr ""
 
-#: hub/admin.py:171
+#: hub/admin.py:211
 msgid "Close need"
 msgstr ""
 
-#: hub/admin.py:202
+#: hub/admin.py:224
+msgid "Votes"
+msgstr ""
+
+#: hub/admin.py:260
+msgid "Voters"
+msgstr ""
+
+#: hub/admin.py:272
 msgid "Create account"
 msgstr ""
 
-#: hub/admin.py:219
-msgid "Approve NGO"
+#: hub/admin.py:304
+msgid "[RO HELP] {} voted for {} "
 msgstr ""
 
-#: hub/models.py:129 hub/models.py:168 hub/models.py:224 hub/models.py:242
-#: hub/models.py:259
+#: hub/admin.py:309
+msgid "Vote succesfully registered. {} email{} sent to others admins"
+msgstr ""
+
+#: hub/admin.py:322 hub/models.py:388
+msgid "Vote"
+msgstr ""
+
+#: hub/models.py:129
+msgid "YES"
+msgstr ""
+
+#: hub/models.py:130
+msgid "NO"
+msgstr ""
+
+#: hub/models.py:131
+msgid "ABSTENTION"
+msgstr ""
+
+#: hub/models.py:151 hub/models.py:193 hub/models.py:264 hub/models.py:282
+#: hub/models.py:299
 msgid "Name"
 msgstr ""
 
-#: hub/models.py:131 hub/models.py:198 hub/models.py:249 hub/models.py:261
+#: hub/models.py:153 hub/models.py:223 hub/models.py:289 hub/models.py:301
 msgid "Description"
 msgstr ""
 
-#: hub/models.py:132 hub/models.py:225 hub/models.py:243 hub/models.py:264
+#: hub/models.py:154 hub/models.py:265 hub/models.py:283 hub/models.py:304
 #: mobilpay/models.py:21
 msgid "Email"
 msgstr ""
 
-#: hub/models.py:133 hub/models.py:227 hub/models.py:244 mobilpay/models.py:20
+#: hub/models.py:155 hub/models.py:267 hub/models.py:284 mobilpay/models.py:20
 msgid "Phone"
 msgstr ""
 
-#: hub/models.py:134 hub/models.py:267
+#: hub/models.py:156 hub/models.py:307
 msgid "Avatar"
 msgstr ""
 
-#: hub/models.py:135 hub/models.py:247 hub/models.py:268 mobilpay/models.py:22
+#: hub/models.py:157 hub/models.py:287 hub/models.py:308 mobilpay/models.py:22
 msgid "Address"
 msgstr ""
 
-#: hub/models.py:136 hub/models.py:203 hub/models.py:245 hub/models.py:269
-#: hub/templates/ngo/list.html:69
+#: hub/models.py:158 hub/models.py:228 hub/models.py:285 hub/models.py:309
+#: hub/templates/ngo/list.html:67
 msgid "City"
 msgstr ""
 
-#: hub/models.py:137 hub/models.py:204 hub/models.py:246 hub/models.py:270
-#: hub/templates/ngo/list.html:33
+#: hub/models.py:159 hub/models.py:229 hub/models.py:286 hub/models.py:310
+#: hub/templates/ngo/list.html:31
 msgid "County"
 msgstr ""
 
-#: hub/models.py:142
+#: hub/models.py:164
 msgid "mobilpay Merchant identifier code"
 msgstr ""
 
-#: hub/models.py:146
+#: hub/models.py:168
 msgid "XXXX-XXXX-XXXX-XXXX-XXXX"
 msgstr ""
 
-#: hub/models.py:148
+#: hub/models.py:170
 msgid "mobilpay Public key"
 msgstr ""
 
-#: hub/models.py:149
+#: hub/models.py:171
 msgid "mobilpay Private key"
 msgstr ""
 
-#: hub/models.py:163
+#: hub/models.py:188
 msgid "NGOs"
 msgstr ""
 
-#: hub/models.py:164 hub/models.py:195
+#: hub/models.py:189 hub/models.py:220
 msgid "NGO"
 msgstr ""
 
-#: hub/models.py:197
+#: hub/models.py:222 hub/models.py:249 hub/templates/ngo/detail.html:247
 msgid "Title"
 msgstr ""
 
-#: hub/models.py:200 hub/models.py:251
+#: hub/models.py:225 hub/models.py:291
 msgid "Kind"
 msgstr ""
 
-#: hub/models.py:201 hub/models.py:252 hub/templates/ngo/list.html:106
+#: hub/models.py:226 hub/models.py:292 hub/templates/ngo/list.html:104
 msgid "Urgency"
 msgstr ""
 
-#: hub/models.py:208 hub/models.py:277
+#: hub/models.py:233 hub/models.py:315
 msgid "Resolved on"
 msgstr ""
 
-#: hub/models.py:209
+#: hub/models.py:234
 msgid "Closed on"
 msgstr ""
 
-#: hub/models.py:217
+#: hub/models.py:242
 msgid "NGO needs"
 msgstr ""
 
-#: hub/models.py:218
+#: hub/models.py:243
 msgid "NGO need"
 msgstr ""
 
-#: hub/models.py:226
-msgid "Message"
+#: hub/models.py:248 hub/models.py:392 hub/templates/ngo/detail.html:246
+msgid "Date"
 msgstr ""
 
-#: hub/models.py:229
-msgid "Read on"
+#: hub/models.py:250
+msgid "Receipt"
 msgstr ""
 
-#: hub/models.py:235
-msgid "NGO Helper"
+#: hub/models.py:251
+msgid "Amount spent (RON)"
 msgstr ""
 
-#: hub/models.py:236
-msgid "NGO Helpers"
+#: hub/models.py:257
+msgid "NGO report items"
 msgstr ""
 
-#: hub/models.py:248
-msgid "Organization"
-msgstr ""
-
-#: hub/models.py:261
-msgid "Organization's short description - max 500 chars."
-msgstr ""
-
-#: hub/models.py:263
-msgid "Contact person's name"
-msgstr ""
-
-#: hub/models.py:265
-msgid "Contact person's phone"
+#: hub/models.py:258
+msgid "NGO report item"
 msgstr ""
 
 #: hub/models.py:266
-msgid "Has contract with Netopia"
+msgid "Message"
 msgstr ""
 
-#: hub/models.py:272
-msgid "Link to website or Facebook"
-msgstr ""
-
-#: hub/models.py:274
-msgid "DSU Approved"
+#: hub/models.py:269
+msgid "Read on"
 msgstr ""
 
 #: hub/models.py:275
-msgid "FFC Approved"
+msgid "NGO Helper"
 msgstr ""
 
 #: hub/models.py:276
+msgid "NGO Helpers"
+msgstr ""
+
+#: hub/models.py:288
+msgid "Organization"
+msgstr ""
+
+#: hub/models.py:301
+msgid "Organization's short description - max 500 chars."
+msgstr ""
+
+#: hub/models.py:303
+msgid "Contact person's name"
+msgstr ""
+
+#: hub/models.py:305
+msgid "Contact person's phone"
+msgstr ""
+
+#: hub/models.py:306
+msgid "Has contract with Netopia"
+msgstr ""
+
+#: hub/models.py:312
+msgid "Link to website or Facebook"
+msgstr ""
+
+#: hub/models.py:314
 msgid "Active"
 msgstr ""
 
-#: hub/models.py:278 mobilpay/models.py:25 mobilpay/models.py:43
+#: hub/models.py:316 mobilpay/models.py:25 mobilpay/models.py:44
 msgid "Registered on"
 msgstr ""
 
-#: hub/templates/bottom_logo_section.html:11
-msgid "Project incubated by"
+#: hub/models.py:390
+msgid "Motvation"
 msgstr ""
 
-#: hub/templates/footer.html:22
+#: hub/models.py:390
+msgid "Motivate your decision"
+msgstr ""
+
+#: hub/templates/admin/submit_line.html:13
+msgid "Save"
+msgstr ""
+
+#: hub/templates/admin/submit_line.html:21
+msgid "Delete"
+msgstr ""
+
+#: hub/templates/admin/submit_line.html:32
+msgid "Close"
+msgstr ""
+
+#: hub/templates/admin/vote_motivation.html:46
+msgid "Yes, I\\"
+msgstr ""
+
+#: hub/templates/admin/vote_motivation.html:55
+msgid "Back"
+msgstr ""
+
+#: hub/templates/developed-by.html:7
+msgid "A project developed by"
+msgstr ""
+
+#: hub/templates/developed-by.html:15
+msgid "Partnership with"
+msgstr ""
+
+#: hub/templates/footer.html:27
 msgid ""
 "An independent, non-partisan, non-political, non-govermental organization."
 msgstr ""
@@ -204,34 +276,38 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: hub/templates/ngo/base.html:14
+#: hub/templates/incubated-by.html:7
+msgid "Project incubated by"
+msgstr ""
+
+#: hub/templates/ngo/base.html:13
 msgid "Search..."
 msgstr ""
 
-#: hub/templates/ngo/base.html:26
+#: hub/templates/ngo/base.html:21
 msgid "Donate safely"
 msgstr ""
 
-#: hub/templates/ngo/base.html:31
+#: hub/templates/ngo/base.html:24
 msgid ""
 "Direct your aid towards one of the verified organizations below. They will "
 "manage the aid and resources you provide them with so that the people most "
 "in need receive them."
 msgstr ""
 
-#: hub/templates/ngo/base.html:58
+#: hub/templates/ngo/base.html:53
 msgid "I want to help with money"
 msgstr ""
 
-#: hub/templates/ngo/base.html:71
+#: hub/templates/ngo/base.html:66
 msgid "I want to help with resources"
 msgstr ""
 
-#: hub/templates/ngo/base.html:84
+#: hub/templates/ngo/base.html:79
 msgid "I want to volunteer"
 msgstr ""
 
-#: hub/templates/ngo/base.html:107
+#: hub/templates/ngo/base.html:102
 msgid "Useful instruments"
 msgstr ""
 
@@ -263,62 +339,94 @@ msgstr ""
 msgid "Join as volunteer"
 msgstr ""
 
-#: hub/templates/ngo/list.html:13
+#: hub/templates/ngo/detail.html:193
+msgid "Donations"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:208
+msgid "Firstname"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:209
+msgid "Lastname"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:210 hub/templates/ngo/detail.html:248
+msgid "Sum (RON)"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:231
+msgid "Reporting"
+msgstr ""
+
+#: hub/templates/ngo/list.html:10
 msgid "NGOs that manage"
 msgstr ""
 
-#: hub/templates/ngo/list.html:15
+#: hub/templates/ngo/list.html:12
 msgid "financial aid"
 msgstr ""
 
-#: hub/templates/ngo/list.html:18
+#: hub/templates/ngo/list.html:15
 msgid "resource aid"
 msgstr ""
 
-#: hub/templates/ngo/list.html:20
+#: hub/templates/ngo/list.html:17
 msgid "volunteers"
 msgstr ""
 
-#: hub/templates/ngo/list.html:136
+#: hub/templates/ngo/list.html:133 hub/templates/ngo/list.html:138
 msgid "Reset filters"
 msgstr ""
 
-#: hub/templates/ngo/list.html:179 hub/templates/shared/need_form.html:43
+#: hub/templates/ngo/list.html:194 hub/templates/shared/need_form.html:43
 msgid "I can help"
 msgstr ""
 
-#: hub/templates/registration/set_password.html:29
+#: hub/templates/register-ngo.html:11
+msgid "Do you represent a NGO or a Fund and could help?"
+msgstr ""
+
+#: hub/templates/register-ngo.html:14
+msgid "Sign up to the platform and make it easy for those that want to help."
+msgstr ""
+
+#: hub/templates/register-ngo.html:19
+msgid "I want my organisation to join!"
+msgstr ""
+
+#: hub/templates/registration/set_password.html:44
 msgid "New password:"
 msgstr ""
 
-#: hub/templates/registration/set_password.html:34
+#: hub/templates/registration/set_password.html:49
 msgid "Confirm password:"
 msgstr ""
 
-#: hub/templates/registration/set_password.html:37
+#: hub/templates/registration/set_password.html:52
 msgid "Set password"
 msgstr ""
 
-#: hub/templates/registration/set_password.html:48
+#: hub/templates/registration/set_password.html:63
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
 
-#: hub/templates/top_logo_section.html:12
-msgid "A project developed by"
-msgstr ""
-
-#: hub/templates/top_logo_section.html:23
-msgid "Partnership with"
-msgstr ""
-
-#: hub/views.py:126 hub/views.py:195 hub/views.py:218
+#: hub/views.py:147 hub/views.py:212 hub/views.py:241
 msgid "TODO: add a success message"
 msgstr ""
 
-#: hub/views.py:160
+#: hub/views.py:181
 msgid "Missing or invalid NGO need."
+msgstr ""
+
+#: hub/views.py:202
+msgid "[RO HELP] New message for {} "
+msgstr ""
+
+#: hub/views.py:231
+msgid "[RO HELP] New NGO"
 msgstr ""
 
 #: mobilpay/models.py:15
@@ -341,11 +449,11 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: mobilpay/models.py:31 mobilpay/models.py:49
+#: mobilpay/models.py:32 mobilpay/models.py:50
 msgid "Payment Orders"
 msgstr ""
 
-#: mobilpay/models.py:32 mobilpay/models.py:50
+#: mobilpay/models.py:33 mobilpay/models.py:51
 msgid "Payment Order"
 msgstr ""
 
@@ -353,31 +461,10 @@ msgstr ""
 msgid "You are being redirected to payment website"
 msgstr ""
 
-msgid "Donations"
+#: ro_help/settings/base.py:177
+msgid "COVID-19 RO HELP"
 msgstr ""
 
-msgid "Reporting"
-msgstr ""
-
-msgid "Firstname"
-msgstr ""
-
-msgid "Lastname"
-msgstr ""
-
-msgid "Sum (RON)"
-msgstr ""
-
-msgid "Date"
-msgstr ""
-
-msgid "Title"
-
-msgid "Do you represent a NGO or a Fund and could help?"
-msgstr ""
-
-msgid "Sign up to the platform and make it easy for those that want to help."
-msgstr ""
-
-msgid "I want my organisation to join!"
+#: ro_help/settings/base.py:178
+msgid "RO HELP"
 msgstr ""

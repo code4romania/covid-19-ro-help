@@ -242,18 +242,18 @@
             <div class="card-content donation-card">
                 <table class="donations-table">
                     <thead>
-                    <tr>
-                        <th>{% trans "Date" %}</th>
-                        <th>{% trans "Title" %}</th>
-                        <th>{% trans "Sum (RON)" %}</th>
-                    </tr>
+                        <tr>
+                            <th>{% trans "Date" %}</th>
+                            <th>{% trans "Title" %}</th>
+                            <th>{% trans "Sum (RON)" %}</th>
+                        </tr>
                     </thead>
                     <tbody>
                     {% for report in ngo.report_items.all %}
                     <tr>
                         <td>{{report.date}}</td>
                         <td>{{report.title}}</td>
-                        <td>{{report.amount}}</td>>
+                        <td>{{report.amount}}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
