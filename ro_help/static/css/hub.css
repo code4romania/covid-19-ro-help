@@ -351,3 +351,31 @@ footer {
 .search-input {
     margin-right: 1em
 }
+
+
+.small-card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 100%;
+    margin-right: 1em;
+}
+
+
+.donations-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.donations-table th {
+    background: #C2D0DE;
+    border: 1px solid white;
+    padding: 1em;
+}
+
+.donations-table td {
+    background: #F2F2F2;
+    border: 1px solid white;
+    padding: 1em;
+}

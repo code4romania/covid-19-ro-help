@@ -352,3 +352,24 @@ msgstr ""
 #: mobilpay/templates/mobilpay/initialize_payment.html:8
 msgid "You are being redirected to payment website"
 msgstr ""
+
+msgid "Donations"
+msgstr ""
+
+msgid "Reporting"
+msgstr ""
+
+msgid "Firstname"
+msgstr ""
+
+msgid "Lastname"
+msgstr ""
+
+msgid "Sum (RON)"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Title"
+msgstr ""
