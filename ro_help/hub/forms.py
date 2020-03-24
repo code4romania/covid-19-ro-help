@@ -28,11 +28,9 @@ class NGORegisterRequestForm(forms.ModelForm):
             "email",
             "contact_name",
             "contact_phone",
-            "email",
             "social_link",
             "description",
         ]
-        widgets = {"email": EmailInput()}
 
 
 class RegisterNGORequestVoteForm(forms.ModelForm):
