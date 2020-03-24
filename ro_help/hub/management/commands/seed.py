@@ -145,7 +145,7 @@ class Command(BaseCommand):
         #             need.resource_tags.add(random.choice(tags))
 
         for ngo in NGO.objects.all():
-            for i in range(random.choice([3,4,5,6,10])):
+            for i in range(random.choice([3, 4, 5, 6, 10])):
                 payment = PaymentOrder.objects.create(
                     ngo=ngo,
                     first_name=fake.name().split(" ")[0],
@@ -154,13 +154,14 @@ class Command(BaseCommand):
                     email=fake.email,
                     address=fake.address,
                     details="ddd",
-                    amount=random.choice([100,200,300,400,500,150]),
-                    date=fake.date_between(start_date='-30y', end_date='today'),
-                    success=True)
-            for i in range(random.choice([3,4,5,6,10])):
+                    amount=random.choice([100, 200, 300, 400, 500, 150]),
+                    date=fake.date_between(start_date="-30y", end_date="today"),
+                    success=True,
+                )
+            for i in range(random.choice([3, 4, 5, 6, 10])):
                 report = NGOReportItem.objects.create(
-                        ngo=ngo,
-                        date=fake.date_between(start_date='-30y', end_date='today'),
-                        title=f"Achizitionat {random.choice(RESOURCE_TAGS)}",
-                        amount=random.choice([100,200,300,400,500,150]),
+                    ngo=ngo,
+                    date=fake.date_between(start_date="-30y", end_date="today"),
+                    title=f"Achizitionat {random.choice(RESOURCE_TAGS)}",
+                    amount=random.choice([100, 200, 300, 400, 500, 150]),
                 )

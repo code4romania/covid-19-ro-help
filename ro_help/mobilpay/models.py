@@ -25,7 +25,6 @@ class PaymentOrder(TimeStampedModel):
     date = models.DateTimeField(_("Registered on"), auto_now_add=True)
     success = models.BooleanField(default=False)
 
-
     def __str__(self):
         return f"[{self.ngo.name}] {self.first_name} {self.last_name} {self.amount}"
 

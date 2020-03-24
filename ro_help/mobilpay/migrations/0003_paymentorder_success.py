@@ -6,13 +6,9 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mobilpay', '0002_auto_20200321_0105'),
+        ("mobilpay", "0002_auto_20200321_0105"),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='paymentorder',
-            name='success',
-            field=models.BooleanField(default=False),
-        ),
+        migrations.AddField(model_name="paymentorder", name="success", field=models.BooleanField(default=False),),
     ]
