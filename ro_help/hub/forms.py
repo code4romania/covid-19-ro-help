@@ -31,7 +31,7 @@ class NGORegisterRequestForm(forms.ModelForm):
             "social_link",
             "description",
         ]
-
+        widgets = {"email": EmailInput()}
 
 class RegisterNGORequestVoteForm(forms.ModelForm):
     class Meta:

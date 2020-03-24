@@ -1,11 +1,12 @@
 {% extends 'ngo/base.html' %}
 {% load static %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 
 {% block left-side-view %}
 <div class="container">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="register-form">
         {% csrf_token %}
 
         {{ form.non_field_errors }}
@@ -15,73 +16,9 @@
             {{ hidden_field }}
         {% endfor %}
 
-        <div>
-            {{ form.name.errors }}
-            <label for="{{ form.name.id_for_label }}">name</label>
-            {{ form.name }}
-        </div>
+        {{ form|crispy }}
 
-        <div>
-            {{ form.country.errors }}
-            <label for="{{ form.country.id_for_label }}">country</label>
-            {{ form.country }}
-        </div>
-
-        <div>
-            {{ form.city.errors }}
-            <label for="{{ form.city.id_for_label }}">country</label>
-            {{ form.city }}
-        </div>
-
-        <div>
-            {{ form.address.errors }}
-            <label for="{{ form.address.id_for_label }}">address</label>
-            {{ form.address }}
-        </div>
-
-        <div>
-            {{ form.avatar.errors }}
-            <label for="{{ form.avatar.id_for_label }}">address</label>
-            {{ form.avatar }}
-        </div>
-
-        <div>
-            {{ form.email.errors }}
-            <label for="{{ form.email.id_for_label }}">email</label>
-            {{ form.email }}
-        </div>
-
-        <div>
-            {{ form.contact_name.errors }}
-            <label for="{{ form.contact_name.id_for_label }}">contact name</label>
-            {{ form.contact_name }}
-        </div>
-
-        <div>
-            {{ form.contact_phone.errors }}
-            <label for="{{ form.contact_phone.id_for_label }}">contact phone</label>
-            {{ form.contact_phone }}
-        </div>
-
-        <div>
-            {{ form.contact_email.errors }}
-            <label for="{{ form.contact_email.id_for_label }}">contact email</label>
-            {{ form.contact_email }}
-        </div>
-
-        <div>
-            {{ form.social_link.errors }}
-            <label for="{{ form.social_link.id_for_label }}">social link</label>
-            {{ form.social_link }}
-        </div>
-
-        <div>
-            {{ form.description.errors }}
-            <label for="{{ form.description.id_for_label }}">description</label>
-            {{ form.description }}
-        </div>
-
-        <input type="submit" value="Create">
+        <input class="button is-success" type="submit" value="TRIMITE">
     </form>
 </div>
 {% endblock %}
