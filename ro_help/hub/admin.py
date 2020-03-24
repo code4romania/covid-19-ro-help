@@ -12,6 +12,7 @@ from hub import utils
 from .forms import RegisterNGORequestVoteForm
 from .models import (
     NGO,
+    NGOReportItem,
     NGONeed,
     NGOHelper,
     ResourceTag,
@@ -62,10 +63,7 @@ class NGOAdmin(admin.ModelAdmin):
         "city",
         "county",
     )
-    search_fields = (
-        "name",
-        "email",
-    )
+    search_fields = ("name", "email")
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -85,6 +83,45 @@ class NGOAdmin(admin.ModelAdmin):
             return ["users"]
 
         return []
+
+
+@admin.register(NGOReportItem)
+class NGOReportItemAdmin(admin.ModelAdmin):
+    icon_name = "receipt"
+    list_per_page = 25
+
+    list_display = ("date", "ngo", "title", "amount")
+    list_filter = ("date",)
+    search_fields = ("title", "ngo__name")
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+
+        user = request.user
+        authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
+        if not user.groups.filter(name__in=authorized_groups).exists():
+            print("da")
+            return qs.filter(ngo__pk__in=[user.ngos.values_list("pk", flat=True)])
+
+        return qs
+
+    def get_form(self, request, obj=None, **kwargs):
+        user = request.user
+        form = super().get_form(request, obj, **kwargs)
+
+        authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
+        if not user.groups.filter(name__in=authorized_groups).exists():
+            try:
+                form.base_fields["ngo"].queryset = user.ngos
+            except NGO.DoesNotExist:
+                pass
+
+        return form
+
+    def get_changeform_initial_data(self, request):
+        user = request.user
+        if user.ngos.count() == 1:
+            return {"ngo": user.ngos.first().pk}
 
 
 class NGOHelperInline(admin.TabularInline):
