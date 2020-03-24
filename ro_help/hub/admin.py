@@ -274,6 +274,7 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
 
 @admin.register(PendingRegisterNGORequest)
 class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
+    icon_name = "restore"
     list_display = ["name", "county", "city", "registered_on", "resolved_on"]
     actions = ["vote"]
     inlines = [RegisterNGORequestVoteInline]
@@ -332,6 +333,7 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
 
 @admin.register(RegisterNGORequestVote)
 class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
+    icon_name = "how_to_vote"
     list_display = ["ngo_request", "user", "vote", "motivation", "date"]
 
     def get_queryset(self, request):

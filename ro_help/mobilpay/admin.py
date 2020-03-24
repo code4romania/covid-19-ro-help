@@ -9,10 +9,10 @@ from .models import PaymentOrder, PaymentResponse
 
 @admin.register(PaymentOrder)
 class PaymentOrderAdmin(admin.ModelAdmin):
-    icon_name = "filter_vintage"
+    icon_name = "shopping_cart"
     list_display = ["order_id", "ngo", "first_name", "last_name", "amount"]
 
 
 @admin.register(PaymentResponse)
 class PaymentResponseAdmin(admin.ModelAdmin):
-    icon_name = "filter_vintage"
+    icon_name = "credit_card"

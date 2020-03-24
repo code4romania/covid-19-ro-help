@@ -47,5 +47,5 @@ class PaymentResponse(TimeStampedModel):
         return self.name
 
     class Meta:
-        verbose_name_plural = _("Payment Orders")
-        verbose_name = _("Payment Order")
+        verbose_name_plural = _("Payment responses")
+        verbose_name = _("Payment response")
