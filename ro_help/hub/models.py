@@ -173,6 +173,9 @@ class NGO(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    def get_funders(self):
+        return self.payment_orders.filter(success=True)
+
     def get_avatar(self):
         if self.avatar:
             if "http" in str(self.avatar):
