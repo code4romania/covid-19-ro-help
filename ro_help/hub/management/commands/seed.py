@@ -86,7 +86,7 @@ NGOS = (
             "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
             "avatar": random_avatar(),
         }
-        for _ in range(20)
+        for _ in range(2)
     ]
 )
 

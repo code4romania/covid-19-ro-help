@@ -8,13 +8,11 @@ from captcha.widgets import ReCaptchaV3
 class PaymentOrderForm(forms.ModelForm):
     captcha = ReCaptchaField(widget=ReCaptchaV3(
         attrs={"required_score": 0.85, }), label="")
-    # amount = forms.Input()
-    # amount.widget.attrs.update({'class': 'input'})
-    test = forms.CheckboxInput()
 
     class Meta:
         model = models.PaymentOrder
-        fields = ("amount", "test", "first_name", "last_name", "show_name", "phone", "email", "address")
+        test = forms.CheckboxInput()
+        fields = ("amount", "first_name", "last_name", "phone", "email", "address", "show_name")
         widgets = {
             "email": EmailInput(),
             "amount": forms.NumberInput(attrs={'class': 'input'}),
