@@ -21,6 +21,7 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
     USE_S3=(bool, False),
+    ALLOWED_HOSTS=(list, []),
 )
 environ.Env.read_env(f"{root}/.env")  # reading .env file
 
@@ -38,6 +39,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com", "dev.rohelp.ro", "rohelp.ro"]
 
+# TODO: should be replaced with ALLOWED_HOSTS once we go live
+ALLOWED_HOSTS += env.list("ALLOWED_HOSTS")
 
 # Application definition
 
