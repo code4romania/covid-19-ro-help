@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-24 22:59+0000\n"
+"POT-Creation-Date: 2020-03-25 15:03+0000\n"
 "PO-Revision-Date: 2020-03-25 00:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "2:1));\n"
 "X-Generator: Poedit 2.3\n"
 
-#: hub/admin.py:31
+#: hub/admin.py:35
 msgid "active"
 msgstr "activ"
 
@@ -27,11 +27,11 @@ msgstr "activ"
 msgid "Helpers"
 msgstr "Voluntari"
 
-#: hub/admin.py:163
+#: hub/admin.py:203
 msgid "Resolve need"
 msgstr "Rezolvă nevoia"
 
-#: hub/admin.py:171
+#: hub/admin.py:211
 msgid "Close need"
 msgstr "Închide nevoia"
 
@@ -57,7 +57,7 @@ msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:323 hub/models.py:397
+#: hub/admin.py:323 hub/models.py:398
 msgid "Vote"
 msgstr "Vot"
 
@@ -83,11 +83,11 @@ msgid "Description"
 msgstr "Descriere"
 
 #: hub/models.py:154 hub/models.py:269 hub/models.py:287 hub/models.py:308
-#: mobilpay/models.py:21
+#: mobilpay/models.py:23
 msgid "Email"
 msgstr "Email"
 
-#: hub/models.py:155 hub/models.py:271 hub/models.py:288 mobilpay/models.py:20
+#: hub/models.py:155 hub/models.py:271 hub/models.py:288 mobilpay/models.py:22
 msgid "Phone"
 msgstr "Telefon"
 
@@ -95,7 +95,7 @@ msgstr "Telefon"
 msgid "Avatar"
 msgstr "Avatar"
 
-#: hub/models.py:157 hub/models.py:291 hub/models.py:312 mobilpay/models.py:22
+#: hub/models.py:157 hub/models.py:291 hub/models.py:312 mobilpay/models.py:24
 msgid "Address"
 msgstr "Adresa"
 
@@ -129,7 +129,7 @@ msgstr "Cheie privată mobilpay"
 msgid "NGOs"
 msgstr "ONG-uri"
 
-#: hub/models.py:189 hub/models.py:224 mobilpay/models.py:12
+#: hub/models.py:189 hub/models.py:224 mobilpay/models.py:13
 msgid "NGO"
 msgstr "ONG"
 
@@ -141,7 +141,7 @@ msgstr "Tag-uri resurse"
 msgid "Resource tag"
 msgstr "Tag resurse"
 
-#: hub/models.py:226 hub/models.py:253
+#: hub/models.py:226 hub/models.py:253 hub/templates/ngo/detail.html:247
 msgid "Title"
 msgstr "Titlu"
 
@@ -169,7 +169,7 @@ msgstr "Nevoi ONG"
 msgid "NGO need"
 msgstr "Nevoie ONG"
 
-#: hub/models.py:252 hub/models.py:401
+#: hub/models.py:252 hub/models.py:402 hub/templates/ngo/detail.html:246
 msgid "Date"
 msgstr "Dată"
 
@@ -233,7 +233,7 @@ msgstr "Link către site sau Facebook"
 msgid "Active"
 msgstr "Activ"
 
-#: hub/models.py:320 mobilpay/models.py:25 mobilpay/models.py:44
+#: hub/models.py:320 mobilpay/models.py:27 mobilpay/models.py:46
 msgid "Registered on"
 msgstr "Înregistrat la"
 
@@ -253,21 +253,43 @@ msgstr "Cereri înregistrare ONG în așteptare"
 msgid "NGO pending request"
 msgstr "Cerere înregistrare ONG în așteptare"
 
-#: hub/models.py:399
+#: hub/models.py:400
 msgid "Motvation"
 msgstr "Motivația"
 
-#: hub/models.py:399
+#: hub/models.py:400
 msgid "Motivate your decision"
 msgstr "Motivează decizia"
 
-#: hub/models.py:404
+#: hub/models.py:405
 msgid "NGO Register requests votes"
 msgstr "Voturi înregistrare ONG"
 
-#: hub/models.py:405
+#: hub/models.py:406
 msgid "NGO Register requests vote"
 msgstr "Vot înregistrare ONG"
+
+#: hub/templates/admin/change_form.html:27
+#: hub/templates/admin/change_list.html:38
+msgid "Please correct the error below."
+msgstr ""
+
+#: hub/templates/admin/change_form.html:27
+#: hub/templates/admin/change_list.html:38
+msgid "Please correct the errors below."
+msgstr ""
+
+#: hub/templates/admin/change_form.html:68
+msgid "Minimize"
+msgstr ""
+
+#: hub/templates/admin/change_form.html:71
+msgid "Tools"
+msgstr ""
+
+#: hub/templates/admin/change_list.html:69
+msgid "Filter"
+msgstr ""
 
 #: hub/templates/admin/submit_line.html:13
 msgid "Save"
@@ -320,11 +342,7 @@ msgstr "Proiect incubat în"
 msgid "Search..."
 msgstr "Caută..."
 
-#: hub/templates/incubated-by.html:7
-msgid "Project incubated by"
-msgstr ""
-
-#: hub/templates/ngo/base.html:13
+#: hub/templates/ngo/base.html:14
 msgid "Search"
 msgstr "Caută"
 
@@ -509,39 +527,39 @@ msgstr "[RO HELP] Mesaj nou pentru {} "
 msgid "[RO HELP] New NGO"
 msgstr "[RO HELP] ONG nou"
 
-#: mobilpay/models.py:15
+#: mobilpay/models.py:17
 msgid "Order ID"
 msgstr "ID ordin de plată"
 
-#: mobilpay/models.py:18
+#: mobilpay/models.py:20
 msgid "First name"
 msgstr "Prenume"
 
-#: mobilpay/models.py:19
+#: mobilpay/models.py:21
 msgid "Last name"
 msgstr "Nume"
 
-#: mobilpay/models.py:23
+#: mobilpay/models.py:25
 msgid "Details"
 msgstr "Detalii"
 
-#: mobilpay/models.py:24
+#: mobilpay/models.py:26
 msgid "Amount"
 msgstr "Suma"
 
-#: mobilpay/models.py:32
+#: mobilpay/models.py:34
 msgid "Payment Orders"
 msgstr "Ordine de plată"
 
-#: mobilpay/models.py:33
+#: mobilpay/models.py:35
 msgid "Payment Order"
 msgstr "Ordin de plată"
 
-#: mobilpay/models.py:50
+#: mobilpay/models.py:52
 msgid "Payment responses"
 msgstr "Răspunsuri plată"
 
-#: mobilpay/models.py:51
+#: mobilpay/models.py:53
 msgid "Payment response"
 msgstr "Raspuns plată"
 
