@@ -168,7 +168,7 @@
             </div>
 
             <div class="card-info">
-                <div class="need-logo-name-wrapper is-flex">
+                <div class="flex-align-center">
                     <div class="card-image need-logo is-hidden-tablet">
                         <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
                     </div>
@@ -190,7 +190,7 @@
             {% url 'ngo-helper-create' need.ngo.pk need.pk as base %}
 
             <div class="need-call2action">
-                <a class="button has-background-success has-text-weight-bold has-text-white need-button"
+                <a class="button is-flex has-background-success has-text-weight-bold has-text-white"
                    href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">{% trans "I can help" %}</a>
             </div>
 

@@ -1,6 +1,7 @@
 body {
     font-family: 'Titillium Web', sans-serif;
     font-size: 16px;
+    color: #000;
 }
 
 #main {
@@ -21,12 +22,18 @@ body {
     }
 }
 
+.flex-align-center {
+    display: flex;
+    align-items: center;
+}
+
 .border-b {
     border-bottom: 1px solid #e0e0e0;
 }
 
 .navbar-item {
     font-size: 14px;
+    color: #000;
 }
 
 .navbar-item img {
@@ -72,6 +79,13 @@ body {
         min-height: 55px;
         width: 100%;
     }
+
+    .footer-content {
+        flex-direction: column;
+    }
+    .code4-branding {
+        margin-top: 2em;
+    }
 }
 
 .developed-by-logo, .incubated-by-logo {
@@ -112,6 +126,10 @@ footer {
     color: white;
 }
 
+
+.useful-links {
+}
+
 .useful-links a {
     text-decoration: none;
     color: white;
@@ -133,6 +151,7 @@ footer {
     text-align: right;
     align-self: flex-end;
     font-size: 18px;
+
 }
 
 .donate-title {
@@ -143,6 +162,41 @@ footer {
 .container .donate-subtitle {
     font-size: 1rem;
     padding-bottom: 3rem;
+}
+
+#redcross-banner {
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #FF4949;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2em;
+    flex-direction: column;
+}
+
+.redcross-title {
+    font-weight: bold;
+}
+
+.redcross-text {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    #redcross-banner {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .need-call2action {
+        margin: 2em;
+    }
+
+    .need-logo {
+        border: 1px solid #dbdbdb;
+        margin: 1em;
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+        width: 100px;
+    }
 }
 
 .ngo-list-title {
@@ -302,11 +356,6 @@ footer {
     font-size: 1.25em;
 }
 
-
-.need-logo-name-wrapper {
-    align-items: center;
-}
-
 .need-call2action {
     margin: 1em;
 }
@@ -363,8 +412,10 @@ footer {
     width: 100%;
 }
 
-.control { font-size: 14px;
-    font-family: Titillium Web, sans-serif; }
+.control {
+    font-size: 14px;
+    font-family: Titillium Web, sans-serif;
+}
 
 .register-form label {
     width: 100%;
