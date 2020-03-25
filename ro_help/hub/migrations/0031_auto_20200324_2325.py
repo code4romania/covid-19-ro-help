@@ -6,24 +6,26 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0030_auto_20200322_1540'),
+        ("hub", "0030_auto_20200322_1540"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='pendingregisterngorequest',
-            options={'verbose_name': 'NGO pending request', 'verbose_name_plural': 'NGO pending requests'},
+            name="pendingregisterngorequest",
+            options={"verbose_name": "NGO pending request", "verbose_name_plural": "NGO pending requests"},
         ),
         migrations.AlterModelOptions(
-            name='registerngorequest',
-            options={'verbose_name': 'NGO register request', 'verbose_name_plural': 'NGO register requests'},
+            name="registerngorequest",
+            options={"verbose_name": "NGO register request", "verbose_name_plural": "NGO register requests"},
         ),
         migrations.AlterModelOptions(
-            name='registerngorequestvote',
-            options={'verbose_name': 'NGO Register requests vote', 'verbose_name_plural': 'NGO Register requests votes'},
+            name="registerngorequestvote",
+            options={
+                "verbose_name": "NGO Register requests vote",
+                "verbose_name_plural": "NGO Register requests votes",
+            },
         ),
         migrations.AlterModelOptions(
-            name='resourcetag',
-            options={'verbose_name': 'Resource tag', 'verbose_name_plural': 'Resource tags'},
+            name="resourcetag", options={"verbose_name": "Resource tag", "verbose_name_plural": "Resource tags"},
         ),
     ]

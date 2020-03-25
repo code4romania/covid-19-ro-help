@@ -390,6 +390,7 @@ class PendingRegisterNGORequest(RegisterNGORequest):
         verbose_name_plural = _("NGO pending requests")
         verbose_name = _("NGO pending request")
 
+
 class RegisterNGORequestVote(TimeStampedModel):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     ngo_request = models.ForeignKey("RegisterNGORequest", on_delete=models.CASCADE, related_name="votes")

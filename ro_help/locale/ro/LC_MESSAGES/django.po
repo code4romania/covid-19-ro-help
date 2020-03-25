@@ -404,7 +404,7 @@ msgstr "Resetează filtrele"
 
 #: hub/templates/ngo/list.html:194 hub/templates/shared/need_form.html:43
 msgid "I can help"
-msgstr "Pot sa ajut"
+msgstr "Pot sa ajut eu!"
 
 #: hub/templates/register-ngo.html:11
 msgid "Do you represent a NGO or a Fund and could help?"

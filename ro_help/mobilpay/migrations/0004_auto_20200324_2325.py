@@ -7,18 +7,25 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0031_auto_20200324_2325'),
-        ('mobilpay', '0003_paymentorder_success'),
+        ("hub", "0031_auto_20200324_2325"),
+        ("mobilpay", "0003_paymentorder_success"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='paymentresponse',
-            options={'verbose_name': 'Payment response', 'verbose_name_plural': 'Payment responses'},
+            name="paymentresponse",
+            options={"verbose_name": "Payment response", "verbose_name_plural": "Payment responses"},
         ),
         migrations.AlterField(
-            model_name='paymentorder',
-            name='ngo',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='payment_orders', to='hub.NGO', verbose_name='NGO'),
+            model_name="paymentorder",
+            name="ngo",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="payment_orders",
+                to="hub.NGO",
+                verbose_name="NGO",
+            ),
         ),
     ]
