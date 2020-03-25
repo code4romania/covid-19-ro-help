@@ -38,14 +38,14 @@
                         {% get_current_language as LANGUAGE_CODE %}
 
                         {% for language in LANGUAGES %}
-                        {% if language.0 != LANGUAGE_CODE %}
-                        <form class="d-inline" action="{% url 'set_language' %}" method="post">
-                            {% csrf_token %}
-                            <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                            <input type="hidden" name="language" value="{{ language.0 }}"/>
-                            <input class="button is-success" type="submit" value="{{ language.0 | upper }}"/>
-                        </form>
-                        {% endif %}
+                            {% if language.0 != LANGUAGE_CODE %}
+                            <form class="d-inline" action="{% url 'set_language' %}" method="post">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                                <input type="hidden" name="language" value="{{ language.0 }}"/>
+                                <input class="button is-success" type="submit" value="{{ language.0 | upper }}"/>
+                            </form>
+                            {% endif %}
                         {% endfor %}
 
                     </a>

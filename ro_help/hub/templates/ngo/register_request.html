@@ -6,7 +6,7 @@
 
 {% block left-side-view %}
 <div class="container">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="register-form">
         {% csrf_token %}
 
         {{ form.non_field_errors }}
@@ -18,7 +18,7 @@
 
         {{ form|crispy }}
 
-        <input type="submit" value="Create">
+        <input class="button is-success" type="submit" value="TRIMITE">
     </form>
 </div>
 {% endblock %}

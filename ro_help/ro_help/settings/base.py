@@ -124,6 +124,7 @@ LANGUAGE_CODE = "ro"
 LANGUAGES = (
     ("en", "English"),
     ("ro", "Romanian"),
+    ("hu", "Hungarian"),
 )
 
 TIME_ZONE = "UTC"

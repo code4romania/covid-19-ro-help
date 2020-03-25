@@ -192,6 +192,10 @@ class NGO(TimeStampedModel):
 class ResourceTag(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=30)
 
+    class Meta:
+        verbose_name_plural = _("Resource tags")
+        verbose_name = _("Resource tag")
+
     def __str__(self):
         return self.name
 
@@ -315,6 +319,10 @@ class RegisterNGORequest(TimeStampedModel):
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
+    class Meta:
+        verbose_name_plural = _("NGO register requests")
+        verbose_name = _("NGO register request")
+
     def votes_yes(self):
         return self.votes.filter(vote="YES").count()
 
@@ -379,6 +387,8 @@ class RegisterNGORequest(TimeStampedModel):
 class PendingRegisterNGORequest(RegisterNGORequest):
     class Meta:
         proxy = True
+        verbose_name_plural = _("NGO pending requests")
+        verbose_name = _("NGO pending request")
 
 
 class RegisterNGORequestVote(TimeStampedModel):
@@ -390,3 +400,7 @@ class RegisterNGORequestVote(TimeStampedModel):
         _("Motvation"), max_length=500, null=True, blank=True, help_text=_("Motivate your decision")
     )
     date = models.DateTimeField(_("Date"), auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = _("NGO Register requests votes")
+        verbose_name = _("NGO Register requests vote")
