@@ -84,12 +84,10 @@ class Invoice:
             if len(item_elements) > 0:
                 amount = 0
                 for i in item_elements:
-                    # print(i)
                     temp_item = InvoiceItem(i)
                     self.add_item(temp_item)
                     amount += temp_item.get_total_amount()
                 self._amount = amount
-                # print(self._items)
 
         exchange_rates = invoice_node.getElementsByTagName("exchange_rates")
 
