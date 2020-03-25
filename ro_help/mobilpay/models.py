@@ -18,7 +18,7 @@ class PaymentOrder(TimeStampedModel):
     )
     first_name = models.CharField(_("First name"), max_length=254)
     last_name = models.CharField(_("Last name"), max_length=254)
-    show_name = models.BooleanField(default=False, help)
+    show_name = models.BooleanField(default=False, verbose_name="Sunt de acord ca numele meu să apară pe platforma RoHelp")
     phone = models.CharField(_("Phone"), max_length=30)
     email = models.EmailField(_("Email"),)
     address = models.CharField(_("Address"), max_length=254)

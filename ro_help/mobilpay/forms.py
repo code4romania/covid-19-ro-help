@@ -6,10 +6,10 @@ from captcha.widgets import ReCaptchaV3
 
 
 class PaymentOrderForm(forms.ModelForm):
-    # captcha = ReCaptchaField(widget=ReCaptchaV3(
-    #     attrs={"required_score": 0.85, }), label="")
+    captcha = ReCaptchaField(widget=ReCaptchaV3(
+        attrs={"required_score": 0.85, }), label="")
 
     class Meta:
         model = models.PaymentOrder
-        fields = ("amount", "first_name", "last_name", "phone", "email", "address")
+        fields = ("amount", "first_name", "last_name", "show_name", "phone", "email", "address")
         widgets = {"email": EmailInput()}

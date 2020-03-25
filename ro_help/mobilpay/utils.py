@@ -34,7 +34,11 @@ def get_and_send_request(base_url, order):
         obj_pm_req_card.get_invoice().set_currency("RON")
         obj_pm_req_card.get_invoice().set_amount(f"{order.amount:.2f}")
         obj_pm_req_card.get_invoice().set_token_id(order.ngo.mobilpay_icc)
-        obj_pm_req_card.get_invoice().set_details(order.details)
+        if order.details:
+            details = order.details
+        else:
+            details = f"Donatie catre {order.ngo.name}"
+        obj_pm_req_card.get_invoice().set_details(details)
         billing_address = Address("billing")
 
         # get_from_website
