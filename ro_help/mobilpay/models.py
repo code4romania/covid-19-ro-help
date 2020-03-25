@@ -48,7 +48,7 @@ class PaymentResponse(TimeStampedModel):
     date = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.payment_order} {self.error_code} {self.error_type} {self.error_message}"
 
     class Meta:
         verbose_name_plural = _("Payment responses")

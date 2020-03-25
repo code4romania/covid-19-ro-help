@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from hub.models import NGO
 from mobilpay.models import PaymentOrder, PaymentResponse
-from mobilpay.mobilpay.request import Request
+from mobilpay.mobilpay.request import Request, Crc
 from .utils import get_and_send_request
 from hub import utils
 
