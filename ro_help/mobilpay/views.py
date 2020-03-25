@@ -10,8 +10,9 @@ import requests
 from pprint import pprint
 
 def initialize_payment(request, order):
-    ngo = NGO.objects.get(name="Code4")
+    # ngo = NGO.objects.get(name="Code4")
     order = PaymentOrder.objects.get(order_id=order)
+    ngo = order.ngo
     base_path = f"{request.scheme}://{request.META['HTTP_HOST']}"
     data, env_key = get_and_send_request(base_path, order)
 

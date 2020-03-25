@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-25 17:25+0000\n"
+"POT-Creation-Date: 2020-03-25 20:15+0000\n"
 "PO-Revision-Date: 2020-03-25 00:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,31 +23,31 @@ msgstr ""
 msgid "active"
 msgstr "activ"
 
-#: hub/admin.py:132 hub/admin.py:195
+#: hub/admin.py:131 hub/admin.py:194
 msgid "Helpers"
 msgstr "Voluntari"
 
-#: hub/admin.py:203
+#: hub/admin.py:202
 msgid "Resolve need"
 msgstr "Rezolvă nevoia"
 
-#: hub/admin.py:211
+#: hub/admin.py:210
 msgid "Close need"
 msgstr "Închide nevoia"
 
-#: hub/admin.py:224
+#: hub/admin.py:223
 msgid "Votes"
 msgstr "Voturi"
 
-#: hub/admin.py:260
+#: hub/admin.py:259
 msgid "Voters"
 msgstr "Decidenți"
 
-#: hub/admin.py:272
+#: hub/admin.py:271
 msgid "Create account"
 msgstr "Crează cont"
 
-#: hub/admin.py:312
+#: hub/admin.py:313
 msgid "s"
 msgstr "uri"
 
@@ -57,7 +57,7 @@ msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:325
+#: hub/admin.py:328
 msgid "Vote NGO"
 msgstr "Votează"
 
@@ -551,31 +551,23 @@ msgstr "următoarea"
 msgid "last"
 msgstr "ultima"
 
-#: hub/views.py:157 hub/views.py:222 hub/views.py:243
+#: hub/views.py:168 hub/views.py:234 hub/views.py:254
 msgid "TODO: add a success message"
 msgstr ""
 
-#: hub/views.py:191
+#: hub/views.py:202
 msgid "Missing or invalid NGO need."
 msgstr "Nevoie ONG lipsă sau invalidă."
-
-#: hub/views.py:212
-msgid "[RO HELP] New message for {} "
-msgstr "[RO HELP] Mesaj nou pentru {} "
-
-#: hub/views.py:233
-msgid "[RO HELP] New NGO"
-msgstr "[RO HELP] ONG nou"
 
 #: mobilpay/models.py:17
 msgid "Order ID"
 msgstr "ID ordin de plată"
 
-#: mobilpay/models.py:20
+#: mobilpay/models.py:19
 msgid "First name"
 msgstr "Prenume"
 
-#: mobilpay/models.py:21
+#: mobilpay/models.py:20
 msgid "Last name"
 msgstr "Nume"
 
@@ -607,13 +599,19 @@ msgstr "Raspuns plată"
 msgid "You are being redirected to payment website"
 msgstr "Ești redirecționat către site-ul de plată"
 
-#: ro_help/settings/base.py:178
+#: ro_help/settings/base.py:181
 msgid "COVID-19 RO HELP"
 msgstr "COVID-19 RO HELP"
 
-#: ro_help/settings/base.py:179
+#: ro_help/settings/base.py:182
 msgid "RO HELP"
 msgstr "RO HELP"
+
+#~ msgid "[RO HELP] New message for {} "
+#~ msgstr "[RO HELP] Mesaj nou pentru {} "
+
+#~ msgid "[RO HELP] New NGO"
+#~ msgstr "[RO HELP] ONG nou"
 
 #~ msgid "Link"
 #~ msgstr "Link"
