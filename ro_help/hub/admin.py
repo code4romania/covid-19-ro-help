@@ -309,7 +309,11 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
                         )
                 self.message_user(
                     request,
-                    _("Vote succesfully registered. {} email{} sent to others admins".format(e, pluralize(e, str(_("s"))))),
+                    _(
+                        "Vote succesfully registered. {} email{} sent to others admins".format(
+                            e, pluralize(e, str(_("s")))
+                        )
+                    ),
                     level=messages.INFO,
                 )
         else:

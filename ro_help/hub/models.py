@@ -245,7 +245,7 @@ class NGONeed(TimeStampedModel):
     class Meta:
         verbose_name_plural = _("NGO needs")
         verbose_name = _("NGO need")
-        ordering = ['-urgency']
+        ordering = ["-urgency"]
 
 
 class NGOReportItem(TimeStampedModel):
