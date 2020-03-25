@@ -317,7 +317,7 @@ msgstr "Înapoi"
 
 #: hub/templates/developed-by.html:7
 msgid "A project in partnership with"
-msgstr "În parteneriat cu"
+msgstr "Un proiect în parteneriat cu"
 
 #: hub/templates/developed-by.html:18
 msgid "developed by"
