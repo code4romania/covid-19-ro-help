@@ -100,7 +100,6 @@ class NGOReportItemAdmin(admin.ModelAdmin):
         user = request.user
         authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
         if not user.groups.filter(name__in=authorized_groups).exists():
-            print("da")
             return qs.filter(ngo__pk__in=[user.ngos.values_list("pk", flat=True)])
 
         return qs

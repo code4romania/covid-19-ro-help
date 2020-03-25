@@ -1,10 +1,8 @@
-from zeep import Client
-from pprint import pprint
 import hashlib
-import base64
+
+from zeep import Client
 
 
-wsdl = "https://secure.mobilpay.ro/api/payment2/?wsdl"
 wsdl = "http://sandboxsecure.mobilpay.ro/api/payment2/?wsdl"
 client = Client(wsdl)
 
@@ -37,13 +35,6 @@ for service in client.wsdl.services.values():
 
         interface[service.name][port.name]["operations"] = operations
 
-# print("*****")
-pprint(operations["doPay"]["input"]["request"]["type"].keys())
-pprint(operations["doPay"]["input"]["request"]["type"]["order"])
-
-
-password = "TCE9-LS89-XVHG-16MN-5X9P"
-password = "0CA764E091AD059C9F60ED1DD02307E8"
 password = "r0b0d3v31m0b1lp@y"
 username = "costinbleotu"
 
@@ -61,9 +52,7 @@ account = {
     "customer_ip": "127.0.0.1",
 }
 hash_string = pass_md5.upper() + order["id"] + f"{order['amount']:.2f}" + order["currency"] + account["id"]
-print(hash_string)
 account["hash"] = hashlib.sha1(hash_string.encode()).hexdigest().upper()
-print(account["hash"])
 # $string = strtoupper(md5($pass)).$request->order->id.$request->order->amount.$request->order->currency.$request->account->id
 # $request->account->hash = strtoupper(sha1($string))
 
