@@ -185,6 +185,83 @@
         </div>
     </div>
     {% endif %}
+
+    <div class="card">
+        <header class="card-header">
+            <div class="card-header-title is-paddingless">
+                <span class="small-card-icon" style="background-color: #281AC8;"></span>
+                <span>{% trans "Donations" %}</span>
+            </div>
+            <a href="#donations" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+               aria-label="donations">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </a>
+        </header>
+
+        <div id="donations" class="is-collapsible">
+            <div class="card-content donation-card">
+                <table class="donations-table">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Firstname" %}</th>
+                            <th>{% trans "Lastname" %}</th>
+                            <th>{% trans "Sum (RON)" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in ngo.get_funders %}
+                        <tr>
+                            <td>{{order.first_name}}</td>
+                            <td>{{order.last_name}}</td>
+                            <td>{{order.amount}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <header class="card-header">
+            <div class="card-header-title is-paddingless">
+                <span class="small-card-icon" style="background-color: #281AC8;"></span>
+                <span>{% trans "Reporting" %}</span>
+            </div>
+            <a href="#reporting" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+               aria-label="donations">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </a>
+        </header>
+
+        <div id="reporting" class="is-collapsible">
+            <div class="card-content donation-card">
+                <table class="donations-table">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Date" %}</th>
+                            <th>{% trans "Title" %}</th>
+                            <th>{% trans "Sum (RON)" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for report in ngo.report_items.all %}
+                    <tr>
+                        <td>{{report.date}}</td>
+                        <td>{{report.title}}</td>
+                        <td>{{report.amount}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>

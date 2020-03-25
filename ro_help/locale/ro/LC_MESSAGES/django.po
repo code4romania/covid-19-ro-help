@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-25 14:14+0000\n"
+"POT-Creation-Date: 2020-03-25 15:03+0000\n"
 "PO-Revision-Date: 2020-03-25 00:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -141,7 +141,7 @@ msgstr "Tag-uri resurse"
 msgid "Resource tag"
 msgstr "Tag resurse"
 
-#: hub/models.py:226 hub/models.py:253
+#: hub/models.py:226 hub/models.py:253 hub/templates/ngo/detail.html:247
 msgid "Title"
 msgstr "Titlu"
 
@@ -169,7 +169,7 @@ msgstr "Nevoi ONG"
 msgid "NGO need"
 msgstr "Nevoie ONG"
 
-#: hub/models.py:252 hub/models.py:402
+#: hub/models.py:252 hub/models.py:402 hub/templates/ngo/detail.html:246
 msgid "Date"
 msgstr "Dată"
 
@@ -312,44 +312,14 @@ msgid "Back"
 msgstr "Înapoi"
 
 #: hub/templates/developed-by.html:7
-msgid "A project in partnership with"
-msgstr "Un proiect în parteneriat cu"
+msgid "A project developed by"
+msgstr "Proiect dezvoltat de"
 
-#: hub/templates/developed-by.html:18
-msgid "developed by"
-msgstr "dezvoltat de"
+#: hub/templates/developed-by.html:15
+msgid "Partnership with"
+msgstr "În parteneriat cu"
 
-#: hub/templates/footer.html:9 hub/templates/footer.html:23
-msgid "Link-uri utile"
-msgstr ""
-
-#: hub/templates/footer.html:10
-msgid "About the project"
-msgstr "Despre proiect"
-
-#: hub/templates/footer.html:12
-msgid "Romanian Government"
-msgstr "Guvernul României"
-
-#: hub/templates/footer.html:16
-msgid "Department for Emergency Situations"
-msgstr "Departamentul pentru Situații de Urgență"
-
-#: hub/templates/footer.html:19
-msgid "Ministry of Health"
-msgstr "Ministerul Sănătății"
-
-#: hub/templates/footer.html:35
-msgid "Privacy policy"
-msgstr "Politica de confidențialitate"
-
-#: hub/templates/footer.html:37
-#, fuzzy
-#| msgid "How to"
-msgid "How To"
-msgstr "Regulament"
-
-#: hub/templates/footer.html:47
+#: hub/templates/footer.html:27
 msgid ""
 "An independent, non-partisan, non-political, non-govermental organization."
 msgstr ""
@@ -359,17 +329,14 @@ msgstr ""
 msgid "About"
 msgstr "Despre"
 
-#: hub/templates/header.html:25
-msgid "How to"
-msgstr "Regulament"
-
-#: hub/templates/header.html:29
-msgid "Contact"
-msgstr ""
+#: hub/templates/header.html:25 hub/templates/header.html:29
+#: hub/templates/header.html:33
+msgid "Link"
+msgstr "Link"
 
 #: hub/templates/incubated-by.html:7
-msgid "Project developed in the program"
-msgstr "Proiect dezvoltat în programul"
+msgid "Project incubated by"
+msgstr "Proiect incubat în"
 
 #: hub/templates/ngo/base.html:13
 msgid "Search..."
@@ -393,37 +360,19 @@ msgstr ""
 "Ele vor gestiona rersursele pe care le pui la dispoziție, astfel încât sa "
 "ajungă la oamenii care au cea mai mare nevoie de ele."
 
-#: hub/templates/ngo/base.html:37 hub/templates/ngo/base.html:39
-msgid "Red Cross"
-msgstr "Crucea Roșie"
-
-#: hub/templates/ngo/base.html:40
-msgid "Red Cross text"
-msgstr ""
-"Societatea Națională de Cruce Roșie Română reprezintă punctul principal de "
-"colectare la nivel național, atât pentru donații financiare care vor fi "
-"utilizate in vederea achiziționării de echipamente și materiale sanitare, "
-"respectiv produse si bunuri materiale care vor fi distribuite - in funcție "
-"de nevoi și/sau solicitări - pe teritoriul național."
-
-#: hub/templates/ngo/base.html:42 hub/templates/ngo/detail.html:75
-#: hub/templates/ngo/donate.html:25
-msgid "Donate"
-msgstr "Donează"
-
-#: hub/templates/ngo/base.html:67
+#: hub/templates/ngo/base.html:53
 msgid "I want to help with money"
 msgstr "Vreau sa ajut cu bani"
 
-#: hub/templates/ngo/base.html:79
+#: hub/templates/ngo/base.html:66
 msgid "I want to help with resources"
 msgstr "Vreau sa ajut cu resurse"
 
-#: hub/templates/ngo/base.html:91
+#: hub/templates/ngo/base.html:79
 msgid "I want to volunteer"
 msgstr "Vreau să devin voluntar"
 
-#: hub/templates/ngo/base.html:114
+#: hub/templates/ngo/base.html:102
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -439,6 +388,10 @@ msgstr "Donează bani"
 msgid "Donate via Netopia"
 msgstr "Donează prin Netopia"
 
+#: hub/templates/ngo/detail.html:75 hub/templates/ngo/donate.html:25
+msgid "Donate"
+msgstr "Donează"
+
 #: hub/templates/ngo/detail.html:88
 msgid "Donate via transfer"
 msgstr "Doneaza via transfer bancar"
@@ -450,6 +403,26 @@ msgstr "Donează resurse"
 #: hub/templates/ngo/detail.html:158
 msgid "Join as volunteer"
 msgstr "Fi voluntar"
+
+#: hub/templates/ngo/detail.html:193
+msgid "Donations"
+msgstr "Donatii"
+
+#: hub/templates/ngo/detail.html:208
+msgid "Firstname"
+msgstr "Prenume"
+
+#: hub/templates/ngo/detail.html:209
+msgid "Lastname"
+msgstr "Nume"
+
+#: hub/templates/ngo/detail.html:210 hub/templates/ngo/detail.html:248
+msgid "Sum (RON)"
+msgstr "Suma (RON)"
+
+#: hub/templates/ngo/detail.html:231
+msgid "Reporting"
+msgstr "Raportare"
 
 #: hub/templates/ngo/list.html:10
 msgid "NGOs that manage"
@@ -601,9 +574,3 @@ msgstr "COVID-19 RO HELP"
 #: ro_help/settings/base.py:179
 msgid "RO HELP"
 msgstr "RO HELP"
-
-#~ msgid "Link"
-#~ msgstr "Link"
-
-#~ msgid "Useful Links"
-#~ msgstr "Link-uri utile"
