@@ -16,9 +16,9 @@ class PaymentOrder(TimeStampedModel):
     order_id = models.CharField(
         _("Order ID"), max_length=100, blank=True, unique=True, default=uuid.uuid4, editable=False
     )
-
     first_name = models.CharField(_("First name"), max_length=254)
     last_name = models.CharField(_("Last name"), max_length=254)
+    show_name = models.BooleanField(default=False, help)
     phone = models.CharField(_("Phone"), max_length=30)
     email = models.EmailField(_("Email"),)
     address = models.CharField(_("Address"), max_length=254)

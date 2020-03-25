@@ -217,7 +217,6 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMi
         ngo = self._get_ngo()
         need = self.get_object()
         base_path = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
-
         for user in ngo.users.all():
             utils.send_email(
                 template="mail/new_helper.html",
