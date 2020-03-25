@@ -1,6 +1,5 @@
 import json
 
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.postgres.search import SearchVector, TrigramSimilarity, SearchRank, SearchQuery
@@ -34,7 +33,11 @@ class NGOKindFilterMixin:
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["current_kind"] = self.request.GET.get("kind", KIND.default())
+
+        context["current_kind"] = self.request.GET.get("kind")
+
+        if not self.request.GET.get("q"):
+            context["current_kind"] = context["current_kind"] or KIND.default()
 
         ngo = kwargs.get("ngo", context.get("ngo"))
         if not ngo:
@@ -70,14 +73,25 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
     def get_needs(self):
         filters = {
-            "kind": self.request.GET.get("kind", KIND.default()),
             "resolved_on": None,
         }
 
+        kind = self.request.GET.get("kind")
+        if not self.request.GET.get("q"):
+            kind = kind or KIND.default()
+
+        if kind:
+            filters["kind"] = kind
+
         return NGONeed.objects.filter(**filters).order_by("created")
 
-    def search(self, query, queryset):
+    def search(self, queryset):
         # TODO: it should take into account selected language. Check only romanian for now.
+
+        if not self.request.GET.get("q"):
+            return queryset
+
+        query = self.request.GET.get("q")
 
         search_query = SearchQuery(query, config="romanian_unaccent")
 
@@ -103,14 +117,11 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
             **{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
         )
 
-        if self.request.GET.get("q"):
-            needs = self.search(self.request.GET.get("q"), needs)
-
-        return needs
+        return self.search(needs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        needs = self.get_needs()
+        needs = self.search(self.get_needs())
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
