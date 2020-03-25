@@ -34,7 +34,7 @@
 
         {{ current_form|crispy }}
 
-        <input type="submit" class="button is-primary" value="Trimite">
+        <input type="submit" class="button is-success"  value="Trimite">
     </form>
 {% else %}
     {% url 'ngo-helper-create' ngo.pk need.pk as base %}

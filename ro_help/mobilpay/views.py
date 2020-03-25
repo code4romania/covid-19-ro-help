@@ -48,9 +48,9 @@ def confirm(request, order):
         private_key_path = order.ngo.mobilpay_private_key.path
 
         """verifica daca exista env_key si data in request"""
-        result = request.form.to_dict()
-        env_key = result["env_key"]
-        env_data = result["data"]
+
+        env_key = request.POST.get("env_key")
+        env_data = request.POST.get("data")
         print(env_key)
         print('-----')
         print(env_data)
