@@ -28,8 +28,8 @@ def get_and_send_request(base_url, order):
 
         # order id
         obj_pm_req_card.set_order_id(order.order_id)
-        obj_pm_req_card.set_confirm_url(f"{base_url}/mobilpay/confirm/{order.order_id}")
-        obj_pm_req_card.set_return_url(f"{base_url}/mobilpay/response/{order.order_id}")
+        obj_pm_req_card.set_confirm_url(f"{base_url}/ro/mobilpay/confirm/{order.order_id}")
+        obj_pm_req_card.set_return_url(f"{base_url}/ro/mobilpay/response/{order.order_id}")
         obj_pm_req_card.set_invoice(Invoice())
         obj_pm_req_card.get_invoice().set_currency("RON")
         obj_pm_req_card.get_invoice().set_amount(f"{order.amount:.2f}")
