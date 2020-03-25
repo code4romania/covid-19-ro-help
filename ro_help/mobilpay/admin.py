@@ -11,6 +11,8 @@ from .models import PaymentOrder, PaymentResponse
 class PaymentOrderAdmin(admin.ModelAdmin):
     icon_name = "shopping_cart"
     list_display = ["order_id", "ngo", "first_name", "last_name", "amount"]
+    search_fields = ["ngo__name"]
+    list_filter = ["ngo", "date"]
 
 
 @admin.register(PaymentResponse)
