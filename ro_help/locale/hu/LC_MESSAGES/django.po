@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-25 14:14+0000\n"
+"POT-Creation-Date: 2020-03-25 15:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Resource tag"
 msgstr ""
 
-#: hub/models.py:226 hub/models.py:253
+#: hub/models.py:226 hub/models.py:253 hub/templates/ngo/detail.html:247
 msgid "Title"
 msgstr ""
 
@@ -166,7 +166,7 @@ msgstr ""
 msgid "NGO need"
 msgstr ""
 
-#: hub/models.py:252 hub/models.py:402
+#: hub/models.py:252 hub/models.py:402 hub/templates/ngo/detail.html:246
 msgid "Date"
 msgstr ""
 
@@ -309,42 +309,14 @@ msgid "Back"
 msgstr ""
 
 #: hub/templates/developed-by.html:7
-msgid "A project in partnership with"
+msgid "A project developed by"
 msgstr ""
 
-#: hub/templates/developed-by.html:18
-msgid "developed by"
+#: hub/templates/developed-by.html:15
+msgid "Partnership with"
 msgstr ""
 
-#: hub/templates/footer.html:9 hub/templates/footer.html:23
-msgid "Link-uri utile"
-msgstr ""
-
-#: hub/templates/footer.html:10
-msgid "About the project"
-msgstr ""
-
-#: hub/templates/footer.html:12
-msgid "Romanian Government"
-msgstr ""
-
-#: hub/templates/footer.html:16
-msgid "Department for Emergency Situations"
-msgstr ""
-
-#: hub/templates/footer.html:19
-msgid "Ministry of Health"
-msgstr ""
-
-#: hub/templates/footer.html:35
-msgid "Privacy policy"
-msgstr ""
-
-#: hub/templates/footer.html:37
-msgid "How To"
-msgstr ""
-
-#: hub/templates/footer.html:47
+#: hub/templates/footer.html:27
 msgid ""
 "An independent, non-partisan, non-political, non-govermental organization."
 msgstr ""
@@ -353,16 +325,13 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: hub/templates/header.html:25
-msgid "How to"
-msgstr ""
-
-#: hub/templates/header.html:29
-msgid "Contact"
+#: hub/templates/header.html:25 hub/templates/header.html:29
+#: hub/templates/header.html:33
+msgid "Link"
 msgstr ""
 
 #: hub/templates/incubated-by.html:7
-msgid "Project developed in the program"
+msgid "Project incubated by"
 msgstr ""
 
 #: hub/templates/ngo/base.html:13
@@ -384,32 +353,19 @@ msgid ""
 "in need receive them."
 msgstr ""
 
-#: hub/templates/ngo/base.html:37 hub/templates/ngo/base.html:39
-msgid "Red Cross"
-msgstr ""
-
-#: hub/templates/ngo/base.html:40
-msgid "Red Cross text"
-msgstr ""
-
-#: hub/templates/ngo/base.html:42 hub/templates/ngo/detail.html:75
-#: hub/templates/ngo/donate.html:25
-msgid "Donate"
-msgstr ""
-
-#: hub/templates/ngo/base.html:67
+#: hub/templates/ngo/base.html:53
 msgid "I want to help with money"
 msgstr ""
 
-#: hub/templates/ngo/base.html:79
+#: hub/templates/ngo/base.html:66
 msgid "I want to help with resources"
 msgstr ""
 
-#: hub/templates/ngo/base.html:91
+#: hub/templates/ngo/base.html:79
 msgid "I want to volunteer"
 msgstr ""
 
-#: hub/templates/ngo/base.html:114
+#: hub/templates/ngo/base.html:102
 msgid "Useful instruments"
 msgstr ""
 
@@ -425,6 +381,10 @@ msgstr ""
 msgid "Donate via Netopia"
 msgstr ""
 
+#: hub/templates/ngo/detail.html:75 hub/templates/ngo/donate.html:25
+msgid "Donate"
+msgstr ""
+
 #: hub/templates/ngo/detail.html:88
 msgid "Donate via transfer"
 msgstr ""
@@ -435,6 +395,26 @@ msgstr ""
 
 #: hub/templates/ngo/detail.html:158
 msgid "Join as volunteer"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:193
+msgid "Donations"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:208
+msgid "Firstname"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:209
+msgid "Lastname"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:210 hub/templates/ngo/detail.html:248
+msgid "Sum (RON)"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:231
+msgid "Reporting"
 msgstr ""
 
 #: hub/templates/ngo/list.html:10
