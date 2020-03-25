@@ -25,14 +25,29 @@
         </p>
     </div>
 
+    <div id="redcross-banner" class="container is-flex">
+        <div class="card-image is-hidden-mobile" style="min-width:115px;">
+            <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+        </div>
+        <div class="card-info">
+            <div class="flex-align-center">
+                <div class="card-image is-hidden-tablet">
+                    <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+                </div>
+                <div class="need-title is-hidden-tablet">{% trans "Red Cross" %}</div>
+            </div>
+            <div class="need-title is-hidden-mobile">{% trans "Red Cross" %}</div>
+            <div class="redcross-text">{% trans "Red Cross text" %}</div>
+        </div>
+        <div class="need-call2action"><a class="button is-success">{% trans "Donate" %}</a></div>
+    </div>
+
     <div id="messages" class="container">
         {% if messages %}
 
         <ul class="messages">
             {% for message in messages %}
-            <li
-                    {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
-            </li>
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
 
@@ -43,8 +58,7 @@
     <div id="aid_types" class="container">
         <div class="columns is-multiline">
             <div class="column is-4 filter">
-                <div
-                        class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
+                <div class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
@@ -56,8 +70,7 @@
             </div>
 
             <div class="column is-4 filter">
-                <div
-                        class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
+                <div class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>
@@ -69,8 +82,7 @@
             </div>
 
             <div class="column is-4 filter">
-                <div
-                        class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
+                <div class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
                     <span class="call-to-action" style="background-color: #bfd1e3;">
                         <i class="far fa-check-circle"></i>
                     </span>

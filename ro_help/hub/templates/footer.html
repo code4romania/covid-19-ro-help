@@ -4,17 +4,37 @@
 <footer>
     <div class="h-padded-wrapper">
         <div class="container footer-content">
-            <div class="footer-lists">
+            <div class="is-flex" style="justify-content: space-between;">
                 <ul class="useful-links">
-
-                    <li class="footer-links-header">Link-uri utile</li>
-                    <li><a href="{% url 'home' %}">Despre proiect</a></li>
-                    <li><a href="https://stirioficiale.ro/informatii" target="_blank" rel="noopener noreferrer">Știri
-                        Oficiale</a></li>
-                    <li><a href="https://www.gov.ro/" target="_blank" rel="noopener noreferrer">Guvernul României</a></li>
-                    <li><a href="http://www.dsu.mai.gov.ro/" target="_blank" rel="noopener noreferrer">Departamentul pentru
-                        Situații de Urgență</a></li>
-                    <li><a href="http://www.code4.ro/" target="_blank" rel="noopener noreferrer">Code for Romania</a></li>
+                    <li class="footer-links-header">{% trans "Link-uri utile" %}</li>
+                    <li><a href="/despre">{% trans "About the project" %}</a></li>
+                    <li><a href="https://www.gov.ro/ro/" target="_blank" rel="noopener noreferrer">
+                        {% trans "Romanian Government" %}</a>
+                    </li>
+                    <li>
+                        <a href="http://www.dsu.mai.gov.ro/" target="_blank" rel="noopener noreferrer">
+                        {% trans "Department for Emergency Situations" %}</a>
+                    </li>
+                    <li>
+                        <a href="http://www.ms.ro/" target="_blank" rel="noopener noreferrer">{% trans "Ministry of Health" %}</a>
+                    </li>
+                </ul>
+                <ul class="useful-links" style="margin-left: 50px;">
+                    <li class="footer-links-header">{% trans "Link-uri utile" %}</li>
+                    <li>
+                        <a href="https://stirioficiale.ro/informatii" target="_blank" rel="noopener noreferrer">
+                        Știri Oficiale</a>
+                    </li>
+                    <li>
+                        <a href="https://stirioficiale.ro/informatii" target="_blank" rel="noopener noreferrer">
+                            Ce trebuie sa fac?
+                        </a>
+                    </li>
+                    <li><a href="https://www.code4.ro/" target="_blank" rel="noopener noreferrer">Code for Romania</a>
+                    </li>
+                    <li><a href="#">{% trans "Privacy policy" %}</a>
+                    </li>
+                    <li><a href="#">{% trans "How to" %}</a></li>
 
                 </ul>
             </div>
