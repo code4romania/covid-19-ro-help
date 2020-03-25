@@ -309,7 +309,6 @@ class RegisterNGORequest(TimeStampedModel):
     email = models.EmailField(_("Email"), default="")
     contact_phone = models.CharField(_("Contact person's phone"), max_length=15)
     has_netopia_contract = models.BooleanField(_("Has contract with Netopia"), default=False)
-    avatar = models.ImageField(_("Avatar"), max_length=300)
     address = models.CharField(_("Address"), max_length=400)
     city = models.CharField(_("City"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
@@ -319,6 +318,9 @@ class RegisterNGORequest(TimeStampedModel):
     active = models.BooleanField(_("Active"), default=False)
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
+    avatar = models.ImageField(_("Avatar"), max_length=300)
+    last_balance_sheet = models.FileField(_("First page of last balance sheet"), max_length=300)
+    statute = models.FileField(_("NGO Statute"), max_length=300)
 
     class Meta:
         verbose_name_plural = _("NGO register requests")

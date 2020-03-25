@@ -1,5 +1,5 @@
 from django import forms
-from django_crispy_bulma.widgets import EmailInput
+from django_crispy_bulma.widgets import EmailInput, FileUploadInput
 from hub import models
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
@@ -24,14 +24,24 @@ class NGORegisterRequestForm(forms.ModelForm):
             "county",
             "city",
             "address",
-            "avatar",
             "email",
             "contact_name",
             "contact_phone",
             "social_link",
             "description",
+            "has_netopia_contract",
+            "avatar",
+            "last_balance_sheet",
+            "statute",
         ]
-        widgets = {"email": EmailInput()}
+        widgets = {
+            "email": EmailInput(),
+            # "has_netopia_contract": forms.CheckboxInput(),
+            # "avatar": FileUploadInput(),
+            # "last_balance_sheet": FileUploadInput(),
+            # "statute": FileUploadInput(),
+        }
+
 
 
 class RegisterNGORequestVoteForm(forms.ModelForm):

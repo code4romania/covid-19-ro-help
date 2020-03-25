@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-25 20:15+0000\n"
+"POT-Creation-Date: 2020-03-25 22:21+0000\n"
 "PO-Revision-Date: 2020-03-25 00:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -91,20 +91,20 @@ msgstr "Email"
 msgid "Phone"
 msgstr "Telefon"
 
-#: hub/models.py:156 hub/models.py:312
+#: hub/models.py:156 hub/models.py:321
 msgid "Avatar"
 msgstr "Avatar"
 
-#: hub/models.py:157 hub/models.py:292 hub/models.py:313 mobilpay/models.py:24
+#: hub/models.py:157 hub/models.py:292 hub/models.py:312 mobilpay/models.py:24
 msgid "Address"
 msgstr "Adresa"
 
-#: hub/models.py:158 hub/models.py:232 hub/models.py:290 hub/models.py:314
+#: hub/models.py:158 hub/models.py:232 hub/models.py:290 hub/models.py:313
 #: hub/templates/ngo/list.html:67
 msgid "City"
 msgstr "Oraș"
 
-#: hub/models.py:159 hub/models.py:233 hub/models.py:291 hub/models.py:315
+#: hub/models.py:159 hub/models.py:233 hub/models.py:291 hub/models.py:314
 #: hub/templates/ngo/list.html:31
 msgid "County"
 msgstr "Județ"
@@ -153,7 +153,7 @@ msgstr "Tip"
 msgid "Urgency"
 msgstr "Urgență"
 
-#: hub/models.py:237 hub/models.py:320
+#: hub/models.py:237 hub/models.py:319
 msgid "Resolved on"
 msgstr "Rezolvat la"
 
@@ -169,7 +169,7 @@ msgstr "Nevoi ONG"
 msgid "NGO need"
 msgstr "Nevoie ONG"
 
-#: hub/models.py:253 hub/models.py:404 hub/templates/ngo/detail.html:246
+#: hub/models.py:253 hub/models.py:406 hub/templates/ngo/detail.html:246
 msgid "Date"
 msgstr "Dată"
 
@@ -225,51 +225,59 @@ msgstr "Telefonul persoanei de contact"
 msgid "Has contract with Netopia"
 msgstr "Are contract cu Netopia"
 
-#: hub/models.py:317
+#: hub/models.py:316
 msgid "Link to website or Facebook"
 msgstr "Link către site sau Facebook"
 
-#: hub/models.py:319
+#: hub/models.py:318
 msgid "Active"
 msgstr "Activ"
 
-#: hub/models.py:321 mobilpay/models.py:27 mobilpay/models.py:46
+#: hub/models.py:320 mobilpay/models.py:27 mobilpay/models.py:46
 msgid "Registered on"
 msgstr "Înregistrat la"
 
-#: hub/models.py:324
+#: hub/models.py:322
+msgid "First page of last balance sheet"
+msgstr "Prima pagina a ultimului bilanț contabil"
+
+#: hub/models.py:323
+msgid "NGO Statute"
+msgstr "Statutul Asociației"
+
+#: hub/models.py:326
 msgid "NGO register requests"
 msgstr "Cereri înregistrare ONG"
 
-#: hub/models.py:325
+#: hub/models.py:327
 msgid "NGO register request"
 msgstr "Cereri înregistrare ONG"
 
-#: hub/models.py:392
+#: hub/models.py:394
 msgid "NGO pending requests"
 msgstr "Cereri înregistrare ONG în așteptare"
 
-#: hub/models.py:393
+#: hub/models.py:395
 msgid "NGO pending request"
 msgstr "Cerere înregistrare ONG în așteptare"
 
-#: hub/models.py:400
+#: hub/models.py:402
 msgid "Vote"
 msgstr "Vot"
 
-#: hub/models.py:402
+#: hub/models.py:404
 msgid "Motvation"
 msgstr "Motivația"
 
-#: hub/models.py:402
+#: hub/models.py:404
 msgid "Motivate your decision"
 msgstr "Motivează decizia"
 
-#: hub/models.py:407
+#: hub/models.py:409
 msgid "NGO Register requests votes"
 msgstr "Voturi înregistrare ONG"
 
-#: hub/models.py:408
+#: hub/models.py:410
 msgid "NGO Register requests vote"
 msgstr "Vot înregistrare ONG"
 
