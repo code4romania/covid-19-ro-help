@@ -4,6 +4,11 @@ from django.conf import settings
 
 
 def send_email(template, context, subject, to):
+    print('*****send email******')
+    print(template)
+    print(context)
+    print(subject)
+    print(to)
     html = get_template(template)
     html_content = html.render(context)
     msg = EmailMultiAlternatives(subject, html_content, settings.NO_REPLY_EMAIL, [to])

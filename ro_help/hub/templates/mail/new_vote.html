@@ -1,36 +1,6 @@
-Buna {{user.first_name}},
+Bună {{user.first_name}}, <br><br>
 
-<b>{{vote.entity}}</b> a votat pentru <b>{{vote.ngo_request.name}}</b>:
+{{vote.entity}} a evaluat organizația {{vote.ngo_request.name}}. Te rugăm să <a href="{{base_path}}/admin/hub/pendingregisterngorequest/">evaluezi</a> și tu această organizație. <br><br>
 
-<table>
-    <tr>
-        <td>Data</td>
-        <td>{{vote.date}}</td>
-    </tr>
-    <tr>
-        <td>Vot</td>
-        <td>{{vote.vote}}</td>
-    </tr>
-    {% if vote.motivation %}
-        <tr>
-            <td>Motivatie</td>
-            <td>{{vote.motivation}}</td>
-        </tr>
-    {% endif %}
-        </tr>
-</table>
-
-In momentul de fata <b>{{vote.ngo_request.name}}</b> are:
-<table>
-    <tr>
-        <td>Voturi Pentru</td><td>{{vote.ngo_request.votes_yes}}</td>
-    </tr>
-    <tr>
-        <td>Voturi Impotriva</td><td>{{vote.ngo_request.votes_no}}</td>
-    </tr>
-    <tr>
-        <td>Abtineri</td><td>{{vote.ngo_request.votes_abstention}}</td>
-    </tr>
-</table>
-<br>
-Pentru a vedea toate voturile mergi la <a href="https://rohelp.ro/ro/admin/hub/registerngorequest/{{vote.ngo_request.pk}}/change/">{{vote.ngo_request.name}}</a>
+Mulțumim, <br>
+RoHelp

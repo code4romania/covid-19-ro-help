@@ -15,6 +15,6 @@
     <div class="card-title text-center" style="width: 100%">
         <center>
         <small>{% firstof user.get_short_name user.get_username %}</small><br>
-          <strong>{{user.ngos.all|join:","}}</strong></center>
+          {{user.email}}</center>
     </div>
 {% endblock %}

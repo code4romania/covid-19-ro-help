@@ -13,7 +13,17 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView, DetailView, CreateView
 
 from hub import utils
-from hub.models import NGO, NGONeed, NGOHelper, KIND, RegisterNGORequest, ADMIN_GROUP_NAME
+from hub.models import (
+    NGO,
+    NGONeed,
+    NGOHelper,
+    KIND,
+    RegisterNGORequest,
+    ADMIN_GROUP_NAME,
+    NGO_GROUP_NAME,
+    DSU_GROUP_NAME,
+    FFC_GROUP_NAME,
+    )
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
@@ -216,17 +226,9 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, Create
 
     def get_success_message(self, cleaned_data):
         authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
-        print("******")
-        print("******")
-        print("******")
-        print("******")
-        print("******")
-        print("******")
-        print("******")
-        print("******")
-        print("******")
         for user in User.objects.filter(groups__name__in=authorized_groups):
             print(user)
+            cleaned_data["base_path"] = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
             utils.send_email(
                 template="mail/new_ngo.html", context=cleaned_data, subject=_("[RO HELP] New NGO"), to=user.email
             )

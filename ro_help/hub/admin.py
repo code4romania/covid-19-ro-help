@@ -1,5 +1,4 @@
 from admin_auto_filters.filters import AutocompleteFilter
-
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter, helpers
 from django.shortcuts import render
@@ -8,6 +7,7 @@ from django.template.defaultfilters import pluralize
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import activate
 from hub import utils
 from .forms import RegisterNGORequestVoteForm
 from .models import (
@@ -237,9 +237,9 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         "county",
         "city",
         "voters",
-        "votes_yes",
-        "votes_no",
-        "votes_abstention",
+        "yes",
+        "no",
+        "abstention",
         "active",
         "registered_on",
         "resolved_on",
@@ -260,7 +260,7 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
     voters.short_description = _("Voters")
 
     def create_account(self, request, queryset):
-        queryset = queryset.filter(resolved_on=None)
+        # queryset = queryset.filter(resolved_on=None)
         ngo_group = Group.objects.get(name=NGO_GROUP_NAME)
 
         for register_request in queryset:
@@ -280,9 +280,11 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
     inlines = [RegisterNGORequestVoteInline]
 
     def vote(self, request, queryset):
+        activate(request.LANGUAGE_CODE)
         if request.POST.get("post") == "yes":
             authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
             user = request.user
+            base_path = f"{request.scheme}://{request.META['HTTP_HOST']}"
             user_groups = user.groups.values_list("name", flat=True)
             entity = list(set(authorized_groups).intersection(user_groups))[0]
 
@@ -301,13 +303,13 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
                     for user in group.user_set.all():
                         e += utils.send_email(
                             template="mail/new_vote.html",
-                            context={"vote": vote, "user": user},
-                            subject=_("[RO HELP] {} voted for {} ".format(entity, ngo_request.name)),
+                            context={"vote": vote, "user": user, "base_path": base_path},
+                            subject=f"[RO HELP] {entity} a votat pentru {ngo_request.name}",
                             to=user.email,
                         )
                 self.message_user(
                     request,
-                    _("Vote succesfully registered. {} email{} sent to others admins".format(e, pluralize(e, "s"))),
+                    _("Vote succesfully registered. {} email{} sent to others admins".format(e, pluralize(e, str(_("s"))))),
                     level=messages.INFO,
                 )
         else:
@@ -320,7 +322,7 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
             )
             return render(request, "admin/vote_motivation.html", context)
 
-    vote.short_description = _("Vote")
+    vote.short_description = _("Vote NGO")
 
     def get_queryset(self, request):
         user = request.user

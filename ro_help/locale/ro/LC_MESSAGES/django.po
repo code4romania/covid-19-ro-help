@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-25 14:14+0000\n"
+"POT-Creation-Date: 2020-03-25 16:28+0000\n"
 "PO-Revision-Date: 2020-03-25 00:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -47,19 +47,19 @@ msgstr "Decidenți"
 msgid "Create account"
 msgstr "Crează cont"
 
-#: hub/admin.py:305
-msgid "[RO HELP] {} voted for {} "
-msgstr "[RO HELP] {} a votat pentru {} "
+#: hub/admin.py:312
+msgid "s"
+msgstr "uri"
 
-#: hub/admin.py:310
+#: hub/admin.py:312
 msgid "Vote succesfully registered. {} email{} sent to others admins"
 msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:323 hub/models.py:398
-msgid "Vote"
-msgstr "Vot"
+#: hub/admin.py:325
+msgid "Vote NGO"
+msgstr "Votează"
 
 #: hub/models.py:129
 msgid "YES"
@@ -253,6 +253,10 @@ msgstr "Cereri înregistrare ONG în așteptare"
 msgid "NGO pending request"
 msgstr "Cerere înregistrare ONG în așteptare"
 
+#: hub/models.py:398
+msgid "Vote"
+msgstr "Vot"
+
 #: hub/models.py:400
 msgid "Motvation"
 msgstr "Motivația"
@@ -343,10 +347,8 @@ msgstr "Ministerul Sănătății"
 msgid "Privacy policy"
 msgstr "Politica de confidențialitate"
 
-#: hub/templates/footer.html:37
-#, fuzzy
-#| msgid "How to"
-msgid "How To"
+#: hub/templates/footer.html:37 hub/templates/header.html:25
+msgid "How to"
 msgstr "Regulament"
 
 #: hub/templates/footer.html:47
@@ -358,10 +360,6 @@ msgstr ""
 #: hub/templates/header.html:21
 msgid "About"
 msgstr "Despre"
-
-#: hub/templates/header.html:25
-msgid "How to"
-msgstr "Regulament"
 
 #: hub/templates/header.html:29
 msgid "Contact"
@@ -538,19 +536,19 @@ msgstr "următoarea"
 msgid "last"
 msgstr "ultima"
 
-#: hub/views.py:147 hub/views.py:212 hub/views.py:241
+#: hub/views.py:157 hub/views.py:222 hub/views.py:243
 msgid "TODO: add a success message"
 msgstr ""
 
-#: hub/views.py:181
+#: hub/views.py:191
 msgid "Missing or invalid NGO need."
 msgstr "Nevoie ONG lipsă sau invalidă."
 
-#: hub/views.py:202
+#: hub/views.py:212
 msgid "[RO HELP] New message for {} "
 msgstr "[RO HELP] Mesaj nou pentru {} "
 
-#: hub/views.py:231
+#: hub/views.py:233
 msgid "[RO HELP] New NGO"
 msgstr "[RO HELP] ONG nou"
 
@@ -601,6 +599,12 @@ msgstr "COVID-19 RO HELP"
 #: ro_help/settings/base.py:179
 msgid "RO HELP"
 msgstr "RO HELP"
+
+#~ msgid "[RO HELP] {} voted for {} "
+#~ msgstr "[RO HELP] {} a votat pentru {} "
+
+#~ msgid "How To"
+#~ msgstr "Regulament"
 
 #~ msgid "Link"
 #~ msgstr "Link"

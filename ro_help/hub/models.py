@@ -133,9 +133,9 @@ class VOTE:
     @classmethod
     def to_choices(cls):
         return [
-            (VOTE.YES, VOTE.YES),
-            (VOTE.NO, VOTE.NO),
-            (VOTE.ABSTENTION, VOTE.ABSTENTION),
+            ("YES", VOTE.YES),
+            ("NO", VOTE.NO),
+            ("ABSTENTION", VOTE.ABSTENTION),
         ]
 
     @classmethod
@@ -245,6 +245,7 @@ class NGONeed(TimeStampedModel):
     class Meta:
         verbose_name_plural = _("NGO needs")
         verbose_name = _("NGO need")
+        ordering = ['-urgency']
 
 
 class NGOReportItem(TimeStampedModel):
@@ -323,13 +324,13 @@ class RegisterNGORequest(TimeStampedModel):
         verbose_name_plural = _("NGO register requests")
         verbose_name = _("NGO register request")
 
-    def votes_yes(self):
+    def yes(self):
         return self.votes.filter(vote="YES").count()
 
-    def votes_no(self):
+    def no(self):
         return self.votes.filter(vote="NO").count()
 
-    def votes_abstention(self):
+    def abstention(self):
         return self.votes.filter(vote="ABSTENTION").count()
 
     def create_ngo_owner(self, request, ngo_group):
@@ -354,6 +355,7 @@ class RegisterNGORequest(TimeStampedModel):
             use_https=request.is_secure(),
             subject_template_name="registration/password_reset_subject.txt",
             email_template_name="registration/password_reset_email.html",
+            html_email_template_name="registration/password_reset_email.html",
         )
 
         return user
