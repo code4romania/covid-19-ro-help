@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0031_auto_20200324_2325'),
+        ("hub", "0031_auto_20200324_2325"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='ngoneed',
-            options={'ordering': ['-urgency'], 'verbose_name': 'NGO need', 'verbose_name_plural': 'NGO needs'},
+            name="ngoneed",
+            options={"ordering": ["-urgency"], "verbose_name": "NGO need", "verbose_name_plural": "NGO needs"},
         ),
     ]

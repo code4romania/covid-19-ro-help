@@ -43,7 +43,6 @@ class NGORegisterRequestForm(forms.ModelForm):
         }
 
 
-
 class RegisterNGORequestVoteForm(forms.ModelForm):
     class Meta:
         model = models.RegisterNGORequestVote

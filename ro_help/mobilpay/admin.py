@@ -25,7 +25,6 @@ class PaymentOrderAdmin(admin.ModelAdmin):
 class PaymentResponseAdmin(admin.ModelAdmin):
     icon_name = "credit_card"
 
-
     def get_queryset(self, request):
         qs = super().get_queryset(request)
 

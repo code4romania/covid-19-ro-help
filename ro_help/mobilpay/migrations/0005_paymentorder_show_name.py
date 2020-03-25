@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mobilpay', '0004_auto_20200324_2325'),
+        ("mobilpay", "0004_auto_20200324_2325"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='paymentorder',
-            name='show_name',
-            field=models.BooleanField(default=False, verbose_name='Sunt de acord ca numele meu să apară pe platforma RoHelp'),
+            model_name="paymentorder",
+            name="show_name",
+            field=models.BooleanField(
+                default=False, verbose_name="Sunt de acord ca numele meu să apară pe platforma RoHelp"
+            ),
         ),
     ]
