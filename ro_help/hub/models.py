@@ -153,13 +153,15 @@ class NGO(TimeStampedModel):
     description = models.TextField(_("Description"))
     email = models.EmailField(_("Email"),)
     phone = models.CharField(_("Phone"), max_length=30)
-    avatar = models.ImageField(_("Avatar"), max_length=300)
     address = models.CharField(_("Address"), max_length=400)
     city = models.CharField(_("City"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
 
     # mobilpay_username = models.CharField(_("mobilpay Merchant identifier code"), max_length=20, null=True, blank=True)
     # mobilpay_icc = models.CharField(_("mobilpay Merchant identifier code"), max_length=20, null=True, blank=True)
+    avatar = models.ImageField(_("Avatar"), max_length=300)
+    last_balance_sheet = models.FileField(_("First page of last balance sheet"), max_length=300, null=True, blank=True)
+    statute = models.FileField(_("NGO Statute"), max_length=300, null=True, blank=True)
     mobilpay_icc = models.CharField(
         _("mobilpay Merchant identifier code"),
         max_length=24,
@@ -372,6 +374,8 @@ class RegisterNGORequest(TimeStampedModel):
             email=self.email,
             phone=self.contact_phone,
             avatar=self.avatar,
+            last_balance_sheet=self.last_balance_sheet,
+            statute=self.statute,
             address=self.address,
             city=self.city,
             county=self.county,
