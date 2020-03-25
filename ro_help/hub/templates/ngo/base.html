@@ -42,17 +42,17 @@
         <div class="need-call2action"><a class="button is-success">{% trans "Donate" %}</a></div>
     </div>
 
-    <div id="messages" class="container">
-        {% if messages %}
 
-        <ul class="messages">
-            {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
+    {% if messages %}
+    <article class="message is-success">
+        {% for message in messages %}
+            <div class="message-body">
+                {{ message }}
+            </div>    
+        {% endfor %}
+    </article>
+    {% endif %}
 
-        {% endif %}
-    </div>
 
     {% block kind-kind-filters %}
     <div id="aid_types" class="container">

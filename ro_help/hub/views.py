@@ -205,11 +205,13 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMi
     def get_success_message(self, cleaned_data):
         ngo = self._get_ngo()
         need = self.get_object()
+        base_path = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
+
         for user in ngo.users.all():
             utils.send_email(
                 template="mail/new_helper.html",
-                context={"helper": cleaned_data, "need": need, "ngo": ngo},
-                subject=_("[RO HELP] New message for {} ".format(need.title))[:50],
+                context={"helper": cleaned_data, "need": need, "ngo": ngo, "base_path": base_path},
+                subject="[RO HELP] Mesaj nou pentru {} ".format(need.title)[:50],
                 to=user.email,
             )
         return super().get_success_message(cleaned_data)
@@ -230,7 +232,7 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, Create
             print(user)
             cleaned_data["base_path"] = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
             utils.send_email(
-                template="mail/new_ngo.html", context=cleaned_data, subject=_("[RO HELP] New NGO"), to=user.email
+                template="mail/new_ngo.html", context=cleaned_data, subject="[RO HELP] ONG nou", to=user.email
             )
 
         return super().get_success_message(cleaned_data)
