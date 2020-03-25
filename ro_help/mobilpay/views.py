@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from hub.models import NGO
 from mobilpay.models import PaymentOrder, PaymentResponse
 from mobilpay.mobilpay.request import Request
@@ -28,6 +29,9 @@ def response(request, order):
     return render(request, "mobilpay/response.html", {"order": order})
 
 
+
+
+@csrf_exempt
 def confirm(request, order):
     pprint(request.POST)
     order = PaymentOrder.objects.get(order_id=order)
