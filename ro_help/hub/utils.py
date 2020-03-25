@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 def send_email(template, context, subject, to):
-    print('*****send email******')
+    print("*****send email******")
     print(template)
     print(context)
     print(subject)

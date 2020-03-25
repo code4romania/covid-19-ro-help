@@ -22,7 +22,7 @@ from hub.models import (
     NGO_GROUP_NAME,
     DSU_GROUP_NAME,
     FFC_GROUP_NAME,
-    )
+)
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
