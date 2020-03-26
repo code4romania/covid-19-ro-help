@@ -41,6 +41,12 @@ class PaymentOrderAdmin(admin.ModelAdmin):
 class PaymentResponseAdmin(admin.ModelAdmin):
     icon_name = "credit_card"
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
     def get_queryset(self, request):
         qs = super().get_queryset(request)
 
