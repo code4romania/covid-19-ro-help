@@ -307,6 +307,14 @@ class RegisterNGORequest(TimeStampedModel):
     description = models.TextField(
         _("Description"), max_length=500, help_text=_("Organization's short description - max 500 chars.")
     )
+
+    past_actions = models.TextField(
+        _("Past actions"), max_length=500, help_text=_("Description of past actions, with empahsis on COVID-19 related actions.")
+    )
+    resource_types = models.TextField(
+        _("Resource tpes"), max_length=500, help_text=_("The types of resources you anticipate you will need.")
+    )
+
     contact_name = models.CharField(_("Contact person's name"), max_length=254)
     email = models.EmailField(_("Email"), default="")
     contact_phone = models.CharField(_("Contact person's phone"), max_length=15)
@@ -319,10 +327,12 @@ class RegisterNGORequest(TimeStampedModel):
 
     active = models.BooleanField(_("Active"), default=False)
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
-    registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
+
     avatar = models.ImageField(_("Avatar"), max_length=300)
     last_balance_sheet = models.FileField(_("First page of last balance sheet"), max_length=300)
     statute = models.FileField(_("NGO Statute"), max_length=300)
+
+    registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
     class Meta:
         verbose_name_plural = _("NGO register requests")

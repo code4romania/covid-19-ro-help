@@ -29,6 +29,8 @@ class NGORegisterRequestForm(forms.ModelForm):
             "contact_phone",
             "social_link",
             "description",
+            "past_actions",
+            "resource_types",
             "has_netopia_contract",
             "avatar",
             "last_balance_sheet",

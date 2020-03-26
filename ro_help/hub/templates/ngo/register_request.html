@@ -9,7 +9,7 @@
 
 {% block left-side-view %}
 <div class="container">
-    <form method="post" enctype="multipart/form-data" class="register-form">
+    <form method="post" enctype="multipart/form-data" >
         {% csrf_token %}
 
         {{ form.non_field_errors }}
