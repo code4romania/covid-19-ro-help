@@ -186,6 +186,7 @@ class NGO(TimeStampedModel):
         else:
             return None
 
+
     class Meta:
         verbose_name_plural = _("NGOs")
         verbose_name = _("NGO")
@@ -339,6 +340,20 @@ class RegisterNGORequest(TimeStampedModel):
     class Meta:
         verbose_name_plural = _("NGO register requests")
         verbose_name = _("NGO register request")
+
+    @classmethod
+    def last_balance_sheet_link(self):
+        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.last_balance_sheet.url}'>Vezi</a>")
+
+
+    @classmethod
+    def statute_link(self):
+        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.statute.url}'>Vezi</a>")
+
+    @classmethod
+    def avatar_link(self):
+        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.avatar.url}'>Vezi</a>")
+
 
     def yes(self):
         return self.votes.filter(vote="YES").count()

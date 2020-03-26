@@ -41,6 +41,7 @@ class PaymentOrderAdmin(admin.ModelAdmin):
 @admin.register(PaymentResponse)
 class PaymentResponseAdmin(admin.ModelAdmin):
     icon_name = "credit_card"
+    list_display = ["payment_order", "date", "action", "error_code", "error_type", "error_message"]
 
     def has_add_permission(self, request, obj=None):
         return False

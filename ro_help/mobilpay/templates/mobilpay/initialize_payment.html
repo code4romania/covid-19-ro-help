@@ -5,7 +5,11 @@
 
 
 {% block content %}
-    {% trans "You are being redirected to payment website" %}
+    <article class="message is-success">
+            <div class="message-body">
+                {% trans "You are being redirected to payment website" %}
+            </div>    
+    </article>
     <form name="form" method="post" action="http://sandboxsecure.mobilpay.ro/">
     <input type="hidden" name="env_key" value={{ env_key }} />
     <input type="hidden" name="data" value={{ data }} />

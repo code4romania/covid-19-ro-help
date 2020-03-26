@@ -231,6 +231,23 @@ class RegisterNGORequestVoteInline(admin.TabularInline):
 @admin.register(RegisterNGORequest)
 class RegisterNGORequestAdmin(admin.ModelAdmin):
     icon_name = "add_circle"
+    fields = (
+        "name",
+        "description",
+        "past_actions",
+        "resource_types",
+        "contact_name",
+        "email",
+        "contact_phone",
+        "has_netopia_contract",
+        "address",
+        "city",
+        "county",
+        "social_link",
+        "active",
+        "resolved_on",
+        "get_avatar"
+    )
     list_display = [
         "name",
         "county",
@@ -242,16 +259,49 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         "active",
         "registered_on",
         "resolved_on",
+        "get_last_balance_sheet",
+        "get_statute"
     ]
     actions = ["create_account"]
-    readonly_fields = ["active", "resolved_on"]
+    readonly_fields = ["active", "resolved_on", "registered_on"]
     inlines = [RegisterNGORequestVoteInline]
+
+
+    def get_changeform_initial_data(self, request):
+        user = request.user
+        if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
+            return {"user": user.pk}
 
     def get_actions(self, request):
         actions = super().get_actions(request)
         if not "Admin" in request.user.groups.values_list("name", flat=True):
             del actions["create_account"]
         return actions
+
+    def get_last_balance_sheet(self, obj):
+        if obj.last_balance_sheet:
+            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.last_balance_sheet.url}'>Vezi</a>")
+        return '-'
+
+    get_last_balance_sheet.short_description = _("Last balance")
+    get_last_balance_sheet.allow_tags = True
+
+    def get_statute(self, obj):
+        if obj.statute:
+            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.statute.url}'>Vezi</a>")
+        return '-'
+
+    get_statute.short_description = _("Statute")
+    get_statute.allow_tags = True
+
+    def get_avatar(self, obj):
+        if obj.avatar:
+            return format_html(f"<img src='{obj.avatar.url}' width='200'>")
+        return '-'
+
+    get_avatar.short_description = "Avatar"
+    get_avatar.allow_tags = True
+
 
     def voters(self, obj):
         return ",".join(obj.votes.values_list("entity", flat=True))
