@@ -1,12 +1,5 @@
 {% load i18n %}
-{% if widget.is_initial %}
-<span style="color: #A7ACBB">
-    {{ widget.initial_text }}:
-</span>
-<a href="/dashboard/api/get-document?dataset_iid={{widget.attrs.datasetiid}}&document_name={{widget.name}}" target="_blank">{{ widget.value }}</a>
-<!-- <a href="#" onclick="APP.openDocument('{{widget.attrs.datasetiid}}', '{{widget.name}}');">{{ widget.value }}</a> -->
-<br>
-{% endif %}
+
 <div class="upload-btn-wrapper">
     {% if not widget.attrs.readonly %}
         <button class="btn-upload"> <span><i class="fas fa-upload"></i></span> <span class="input-label">{% trans "Upload document" %}..</span></button>
@@ -14,10 +7,8 @@
     {% endif %}
 </div>
 
-
 <script>
 $(document).ready(function() {
-    // https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/
     var input = $('input[name="{{widget.name}}"]')
 
     var label = input.siblings().children(".input-label")
