@@ -20,7 +20,7 @@
 </div>
 
 {% if current_form %}
-    <form method="post">
+    <form method="post" id="need-form">
         {% csrf_token %}
 
         {{ current_form.non_field_errors }}
@@ -36,6 +36,16 @@
 
         <input type="submit" class="button is-success"  value="Trimite">
     </form>
+    <script>
+        window.onload = function () {
+            let target = document.getElementById('need-form');
+                target.scrollIntoView({
+                    behavior: "smooth", 
+                    block: "center", 
+                    inline: "nearest"
+                })
+        };
+    </script>
 {% else %}
     {% url 'ngo-helper-create' ngo.pk need.pk as base %}
     <div class="content has-text-centered">
