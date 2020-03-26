@@ -1,5 +1,7 @@
 from django import forms
 from django_crispy_bulma.widgets import EmailInput, FileUploadInput
+from file_resubmit.admin import AdminResubmitFileWidget, AdminResubmitImageWidget
+
 from hub import models
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
@@ -39,9 +41,9 @@ class NGORegisterRequestForm(forms.ModelForm):
         widgets = {
             "email": EmailInput(),
             # "has_netopia_contract": forms.CheckboxInput(),
-            # "avatar": FileUploadInput(),
-            # "last_balance_sheet": FileUploadInput(),
-            # "statute": FileUploadInput(),
+            "avatar": AdminResubmitImageWidget,
+            "last_balance_sheet": AdminResubmitFileWidget,
+            "statute": AdminResubmitFileWidget,
         }
 
 

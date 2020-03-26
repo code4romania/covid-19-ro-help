@@ -1,0 +1,31 @@
+{% load i18n %}
+<div class="field">
+  <div class="file is-info has-name">
+    <label class="file-label">
+      <input class="file-input" type="file" id="file-input-{{field.name}}" name="{{field.name}}">
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
+          {% trans "Upload file" %}
+        </span>
+      </span>
+      <span class="file-name" id="file-name-{{field.name}}">
+          {{field.value}}
+      </span>
+    </label>
+  </div>
+</div>
+
+
+
+<script>
+  const fileInput_{{field.name}} = document.querySelector('#file-input-{{field.name}}');
+  fileInput_{{field.name}}.onchange = () => {
+    if (fileInput_{{field.name}}.files.length > 0) {
+      const fileName = document.querySelector('#file-name-{{field.name}}');
+      fileName.textContent = fileInput_{{field.name}}.files[0].name;
+    }
+  }
+</script>
