@@ -17,15 +17,15 @@
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-end has-text-centered-touch">
-                    <a class="navbar-item">
+                    <a  href="{% url 'about' %}" class="navbar-item">
                         {% trans "About" %}
                     </a>
 
-                    <a class="navbar-item">
+                    <a  href="{% url 'how-to' %}" class="navbar-item">
                         {% trans "How to" %}
                     </a>
 
-                    <a class="navbar-item">
+                    <a  href="{% url 'contact' %}" class="navbar-item">
                         {% trans "Contact" %}
                     </a>
 
