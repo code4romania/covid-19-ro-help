@@ -12,6 +12,21 @@ from hub.models import (
     FFC_GROUP_NAME,
 )
 
+class PaymentResponseInline(admin.TabularInline):
+    model = PaymentResponse
+    fields = ("date", "action", "error_code", "error_type", "error_message")
+    readonly_fields =("date",)
+    can_delete = False
+    can_add = False
+    verbose_name_plural = _("Responses")
+    extra = 0
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(PaymentOrder)
 class PaymentOrderAdmin(admin.ModelAdmin):
@@ -19,6 +34,7 @@ class PaymentOrderAdmin(admin.ModelAdmin):
     list_display = ["order_id", "ngo", "first_name", "last_name", "amount"]
     search_fields = ["ngo__name"]
     list_filter = ["ngo", "date"]
+    inlines = [PaymentResponseInline]
 
 
 @admin.register(PaymentResponse)
