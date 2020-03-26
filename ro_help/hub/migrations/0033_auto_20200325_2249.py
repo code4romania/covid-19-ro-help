@@ -6,30 +6,34 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0032_auto_20200325_1953'),
+        ("hub", "0032_auto_20200325_1953"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ngo',
-            name='last_balance_sheet',
-            field=models.FileField(blank=True, max_length=300, null=True, upload_to='', verbose_name='First page of last balance sheet'),
+            model_name="ngo",
+            name="last_balance_sheet",
+            field=models.FileField(
+                blank=True, max_length=300, null=True, upload_to="", verbose_name="First page of last balance sheet"
+            ),
         ),
         migrations.AddField(
-            model_name='ngo',
-            name='statute',
-            field=models.FileField(blank=True, max_length=300, null=True, upload_to='', verbose_name='NGO Statute'),
+            model_name="ngo",
+            name="statute",
+            field=models.FileField(blank=True, max_length=300, null=True, upload_to="", verbose_name="NGO Statute"),
         ),
         migrations.AddField(
-            model_name='registerngorequest',
-            name='last_balance_sheet',
-            field=models.FileField(default='', max_length=300, upload_to='', verbose_name='First page of last balance sheet'),
+            model_name="registerngorequest",
+            name="last_balance_sheet",
+            field=models.FileField(
+                default="", max_length=300, upload_to="", verbose_name="First page of last balance sheet"
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='registerngorequest',
-            name='statute',
-            field=models.FileField(default='', max_length=300, upload_to='', verbose_name='NGO Statute'),
+            model_name="registerngorequest",
+            name="statute",
+            field=models.FileField(default="", max_length=300, upload_to="", verbose_name="NGO Statute"),
             preserve_default=False,
         ),
     ]

@@ -309,7 +309,9 @@ class RegisterNGORequest(TimeStampedModel):
     )
 
     past_actions = models.TextField(
-        _("Past actions"), max_length=500, help_text=_("Description of past actions, with empahsis on COVID-19 related actions.")
+        _("Past actions"),
+        max_length=500,
+        help_text=_("Description of past actions, with empahsis on COVID-19 related actions."),
     )
     resource_types = models.TextField(
         _("Resource tpes"), max_length=500, help_text=_("The types of resources you anticipate you will need.")

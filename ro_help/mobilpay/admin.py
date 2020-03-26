@@ -12,10 +12,11 @@ from hub.models import (
     FFC_GROUP_NAME,
 )
 
+
 class PaymentResponseInline(admin.TabularInline):
     model = PaymentResponse
     fields = ("date", "action", "error_code", "error_type", "error_message")
-    readonly_fields =("date",)
+    readonly_fields = ("date",)
     can_delete = False
     can_add = False
     verbose_name_plural = _("Responses")

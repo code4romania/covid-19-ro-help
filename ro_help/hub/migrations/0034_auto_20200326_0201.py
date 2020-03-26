@@ -6,20 +6,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0033_auto_20200325_2249'),
+        ("hub", "0033_auto_20200325_2249"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='registerngorequest',
-            name='past_actions',
-            field=models.TextField(default='', help_text='Description of past actions, with empahsis on COVID-19 related actions.', max_length=500, verbose_name='Past actions'),
+            model_name="registerngorequest",
+            name="past_actions",
+            field=models.TextField(
+                default="",
+                help_text="Description of past actions, with empahsis on COVID-19 related actions.",
+                max_length=500,
+                verbose_name="Past actions",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='registerngorequest',
-            name='resource_types',
-            field=models.TextField(default='', help_text='The types of resources you anticipate you will need.', max_length=500, verbose_name='Resource tpes'),
+            model_name="registerngorequest",
+            name="resource_types",
+            field=models.TextField(
+                default="",
+                help_text="The types of resources you anticipate you will need.",
+                max_length=500,
+                verbose_name="Resource tpes",
+            ),
             preserve_default=False,
         ),
     ]
