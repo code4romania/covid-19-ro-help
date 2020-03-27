@@ -41,7 +41,7 @@ class PaymentOrderAdmin(admin.ModelAdmin):
 @admin.register(PaymentResponse)
 class PaymentResponseAdmin(admin.ModelAdmin):
     icon_name = "credit_card"
-    list_display = ["payment_order", "date", "action", "error_code", "error_type", "error_message"]
+    list_display = ["payment_order", "order_id", "date", "action", "error_code", "error_type", "error_message"]
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -58,3 +58,6 @@ class PaymentResponseAdmin(admin.ModelAdmin):
             return qs.filter(payment_order__ngo__users__pk__in=[user.ngos.values_list("pk", flat=True)])
 
         return qs
+
+    def order_id(self, obj):
+        return obj.payment_order.order_id
