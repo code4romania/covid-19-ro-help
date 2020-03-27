@@ -116,6 +116,7 @@ body {
 
 footer {
     background-color: #004890;
+
     padding: 4em 0;
 }
 
@@ -377,11 +378,7 @@ footer {
 
     .need-icon {
         padding: 1.5em;
-        color: #000;
-    }
-
-    .need-icon img {
-        height: 2em;
+        color: #fff;
     }
 
     .need-call2action {
@@ -487,4 +484,10 @@ footer {
     background: #F2F2F2;
     border: 1px solid white;
     padding: 1em;
+}
+
+
+.file.has-name .file-name {
+    max-width: none;
+
 }
