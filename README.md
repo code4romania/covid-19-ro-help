@@ -2,15 +2,15 @@
 
 [![GitHub contributors](https://img.shields.io/github/contributors/code4romania/ro-help.svg?style=for-the-badge)](https://github.com/code4romania/ro-help/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/ro-help.svg?style=for-the-badge)](https://github.com/code4romania/ro-help/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
 
-This project is the result of the 2019 Civic Labs research. You can view the knowledge base of the project, as well as the prototype, on the [ROHelp](https://civiclabs.ro/ro/solutions/aid-management-hub) Civic Labs page.
+This project is the result of the 2019 Civic Labs research. You can view the knowledge base of the project, as well as the prototype, on the [Ro Help](https://civiclabs.ro/ro/solutions/aid-management-hub) Civic Labs page.
 
-ROHelp is a platform meant to help NGOs organize their activities during an emergency situation. Initially prototyped with an earthquake in mind, this project was pushed at the forefront of our [Tech for Social Good](https://tfsg.code4.ro/ro/) development program during the COVID-19 pandemic.
+Ro Help is a platform meant to help NGOs during an emergency situation. The NGOs can ask for donations, resources or volunteers, and users can browse the needs that various NGOs have. Initially prototyped with an earthquake in mind, this project was pushed at the forefront of our [Tech for Social Good](https://tfsg.code4.ro/ro/) development program during the COVID-19 pandemic.
 
 [See the project live](https://dev.rohelp.ro/)
 
 Objective: Safe and coherent collection of aid.
 
-How: The application shows verified and validated NGOs for the collection and distribution of resources.
+How: The application displays verified and validated NGOs for the collection and distribution of resources.
 
 Concept developed as part of the Civic Labs program of Code for Romania.
 
@@ -19,7 +19,12 @@ Concept developed as part of the Civic Labs program of Code for Romania.
 ## Contributing
 
 This project is built by amazing volunteers and you can be one of them! Here's a list of ways in [which you can contribute to this project](.github/CONTRIBUTING.md).
+
 If you want to make any change to this repository, please **make a fork first**.
+
+Help us out by testing this project in the [staging environment](https://dev.rohelp.ro/). If you see something that doesn't quite work the way you expect it to, open an Issue. Make sure to describe what you _expect to happen_ and _what is actually hapening_ in detail.
+
+If you would like to suggest new functionality, open an Issue and mark it as a __[Feature request]__. Please be specific about why you think this functionality will be of use. If you can, please include some visual description of what you would like the UI to look like, if you are suggesting new UI elements. 
 
 ## Built With
 
@@ -42,15 +47,14 @@ docker-compose exec web sh
 pip install <my cool dependency>
 ```
 
-We're using black for formatting and each push is check against it. Running 
+We're using black for formatting and each push is checked against it. Running 
 ```bash
 black --line-length 120 --target-version py37
 ```
 before a commit will do the trick.
 
 ## Deployment
-The deployment process is fully automated using AWS CodeBuild and ECS. Each time a PR is merged on master, a new docker image build is trigger and if 
-it's successful, https://dev.rohelp.ro/ will point to your latest changes.
+The deployment process is fully automated using AWS CodeBuild and ECS. Each time a PR is merged on master, a new docker image build is trigger and if it's successful, [the staging environment](https://dev.rohelp.ro/) will point to your latest changes.
 
 ## Feedback
 
