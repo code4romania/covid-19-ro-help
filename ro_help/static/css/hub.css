@@ -162,7 +162,6 @@ footer {
 
 .container .donate-subtitle {
     font-size: 1rem;
-    padding-bottom: 3rem;
 }
 
 #redcross-banner {
@@ -170,7 +169,7 @@ footer {
     background: #FFFFFF;
     border: 1px solid #FF4949;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-bottom: 2em;
+    margin: 50px 0;
     flex-direction: column;
 }
 
@@ -200,6 +199,10 @@ footer {
     }
 }
 
+#right_sidebar {
+    border-top: 1px solid #E5E5E5;
+}
+
 .ngo-list-title {
     font-size: 1.75em;
     color: #3D4F9F;
@@ -209,15 +212,10 @@ footer {
     margin: 1em 0;
 }
 
-.filter {
-    margin-bottom: 1rem;
-}
-
 .filter-dropdown button, .filter-dropdown button:hover {
     border: 1px solid #1C1080;
     color: #1C1080;
     font-size: 1em;
-
 }
 
 .tool {
