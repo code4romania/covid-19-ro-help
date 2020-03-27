@@ -11,8 +11,8 @@ from hub.views import (
 
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="home.html"), name="home"),
-    path("ngos", NGONeedListView.as_view(), name="ngos"),
+    # path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    path("", NGONeedListView.as_view(), name="ngos"),
     path("ngos/register", NGORegisterRequestCreateView.as_view(), name="ngos-register-request"),
     path("ngos/<int:pk>", NGODetailView.as_view(), name="ngo-detail"),
     path("ngos/<int:ngo>/donate", NGODonateCreateView.as_view(), name="ngo-donate"),
