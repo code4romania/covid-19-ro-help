@@ -191,7 +191,13 @@
 
             <div class="need-call2action">
                 <a class="button is-flex has-background-success has-text-weight-bold has-text-white"
-                   href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">{% trans "I can help" %}</a>
+                   href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">
+                    {% if need.kind == "money" %}
+                        {% trans "Donate" %}
+                    {% else %}
+                        {% trans "I can help" %}
+                    {% endif %}
+                </a>
             </div>
 
         </div>
