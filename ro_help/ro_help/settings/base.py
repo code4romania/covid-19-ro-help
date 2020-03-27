@@ -190,9 +190,9 @@ MATERIAL_ADMIN_SITE = {
     "TITLE": _("RO HELP"),  # Admin site title
     # Admin site favicon (path to static should be specified)
     "FAVICON": "path/to/favicon",
-    "MAIN_BG_COLOR": "#fd4b49",  # Admin site main color, css color should be specified
+    "MAIN_BG_COLOR": "#3c0201",  # Admin site main color, css color should be specified
     # Admin site main hover color, css color should be specified
-    "MAIN_HOVER_COLOR": "#fe9695",
+    "MAIN_HOVER_COLOR": "#f15b8c",
     # Admin site profile picture (path to static should be specified)
     "PROFILE_PICTURE": "images/logo.png",
     # Admin site profile background (path to static should be specified)
