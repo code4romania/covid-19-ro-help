@@ -330,7 +330,7 @@ class RegisterNGORequest(TimeStampedModel):
     active = models.BooleanField(_("Active"), default=False)
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
 
-    avatar = models.ImageField(_("Avatar"), max_length=300)
+    avatar = models.ImageField(_("Avatar"), max_length=300, help_text=_("Image should be 500x500px"))
     last_balance_sheet = models.FileField(_("First page of last balance sheet"), max_length=300)
     statute = models.FileField(_("NGO Statute"), max_length=300)
 

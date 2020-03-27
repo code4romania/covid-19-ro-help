@@ -12,7 +12,9 @@
         </span>
       </span>
       <span class="file-name" id="file-name-{{field.name}}">
-          {{field.value}}
+          {% if field.value %}
+            {{field.value}}
+          {% endif %}
       </span>
     </label>
   </div>
