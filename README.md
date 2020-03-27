@@ -2,7 +2,9 @@
 
 [![GitHub contributors](https://img.shields.io/github/contributors/code4romania/ro-help.svg?style=for-the-badge)](https://github.com/code4romania/ro-help/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/ro-help.svg?style=for-the-badge)](https://github.com/code4romania/ro-help/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
 
-This project is the result of the 2019 Civic Labs research. You can view the knowledge base of the project, as well as the prototype, on the [Ro Help](https://civiclabs.ro/ro/solutions/aid-management-hub) Civic Labs page.
+This project is the result of the 2019 Civic Labs research. You can view the knowledge base of the project on the [Ro Help](https://civiclabs.ro/ro/solutions/aid-management-hub) Civic Labs page.
+
+Check out the [prototype](https://www.figma.com/file/wSzl4a7eScXwV9Yu0RLF1V/CoVid-ROHelp?node-id=223%3A0) as well!
 
 Ro Help is a platform meant to help NGOs during an emergency situation. The NGOs can ask for donations, resources or volunteers, and users can browse the needs that various NGOs have. Initially prototyped with an earthquake in mind, this project was pushed at the forefront of our [Tech for Social Good](https://tfsg.code4.ro/ro/) development program during the COVID-19 pandemic.
 
