@@ -314,7 +314,7 @@ class RegisterNGORequest(TimeStampedModel):
         help_text=_("Description of past actions, with empahsis on COVID-19 related actions."),
     )
     resource_types = models.TextField(
-        _("Resource tpes"), max_length=500, help_text=_("The types of resources you anticipate you will need.")
+        _("Resource tags"), max_length=500, help_text=_("The types of resources you anticipate you will need.")
     )
 
     contact_name = models.CharField(_("Contact person's name"), max_length=254)
