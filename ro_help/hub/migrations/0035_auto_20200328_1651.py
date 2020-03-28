@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("hub", "0034_auto_20200326_0201"),
+        ("hub", "0035_auto_20200328_1532"),
     ]
 
     operations = [
@@ -44,22 +44,6 @@ class Migration(migrations.Migration):
             model_name="ngo", name="cui", field=models.CharField(blank=True, max_length=20, null=True),
         ),
         migrations.AddField(model_name="ngo", name="donations_description", field=models.TextField(null=True),),
-        migrations.AlterField(
-            model_name="registerngorequest",
-            name="avatar",
-            field=models.ImageField(
-                help_text="Image should be 500x500px", max_length=300, upload_to="", verbose_name="Avatar"
-            ),
-        ),
-        migrations.AlterField(
-            model_name="registerngorequest",
-            name="resource_types",
-            field=models.TextField(
-                help_text="The types of resources you anticipate you will need.",
-                max_length=500,
-                verbose_name="Resource tags",
-            ),
-        ),
         migrations.AddField(
             model_name="ngo", name="ibans", field=models.ManyToManyField(null=True, to="hub.NGOAccount"),
         ),
