@@ -164,7 +164,5 @@ def confirm(request, order):
     payment_response.error_message = error_message
     payment_response.save()
     crc = Crc(error_code, error_type, error_message).create_crc()
-    print('*****')
-    print(crc.toprettyxml(indent="\t", encoding="utf-8"))
-    print('*****')
+
     return HttpResponse(crc.toprettyxml(indent="\t", encoding="utf-8"), content_type='text/xml')
