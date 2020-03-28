@@ -34,24 +34,16 @@ class NGOForm(forms.ModelForm):
 
         if accepts_mobilpay:
             if not donations_description:
-                self.add_error(
-                    "donations_description", _("To accept mobilpay donations this field is required.")
-                )
+                self.add_error("donations_description", _("To accept mobilpay donations this field is required."))
             if not mobilpay_icc:
-                self.add_error("mobilpay_icc", "To accept mobilpay donations this field is required.")
+                self.add_error("mobilpay_icc", _("To accept mobilpay donations this field is required."))
             if not mobilpay_public_key:
-                self.add_error(
-                    "mobilpay_public_key", "To accept mobilpay donations this field is required."
-                )
+                self.add_error("mobilpay_public_key", _("To accept mobilpay donations this field is required."))
             if not mobilpay_private_key:
-                self.add_error(
-                    "mobilpay_private_key", "To accept mobilpay donations this field is required."
-                )
+                self.add_error("mobilpay_private_key", _("To accept mobilpay donations this field is required."))
         if accepts_transfer:
             if not donations_description:
-                self.add_error(
-                    "donations_description", _("To accept money transfer this field is required")
-                )
+                self.add_error("donations_description", _("To accept money transfer this field is required"))
             if not cif:
                 self.add_error("cif", _("To accept money transfer this field is required"))
             if not cui:

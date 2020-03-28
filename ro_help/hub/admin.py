@@ -105,9 +105,7 @@ class NGOAdmin(admin.ModelAdmin):
         if ngo.accepts_transfer:
             if not ngo.accounts.all():
                 self.message_user(
-                    request,
-                    _("To accept IBAN Transfers you need to add at least one account."),
-                    level=messages.ERROR,
+                    request, _("To accept IBAN Transfers you need to add at least one account."), level=messages.ERROR,
                 )
                 ngo.accepts_transfer = False
                 ngo.save()
