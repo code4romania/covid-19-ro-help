@@ -98,9 +98,9 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
         self.needs = (
             NGONeed.objects.filter(**filters)
-                .order_by("created")
-                .select_related("ngo")
-                .prefetch_related("resource_tags")
+            .order_by("created")
+            .select_related("ngo")
+            .prefetch_related("resource_tags")
         )
 
         return self.needs
@@ -118,20 +118,20 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         search_query = SearchQuery(query, config="romanian_unaccent")
 
         vector = (
-                SearchVector("title", weight="A", config="romanian_unaccent")
-                + SearchVector("ngo__name", weight="B", config="romanian_unaccent")
-                + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
+            SearchVector("title", weight="A", config="romanian_unaccent")
+            + SearchVector("ngo__name", weight="B", config="romanian_unaccent")
+            + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
         )
 
         result = (
             queryset.annotate(
                 rank=SearchRank(vector, search_query),
                 similarity=TrigramSimilarity("title", query)
-                           + TrigramSimilarity("ngo__name", query)
-                           + TrigramSimilarity("resource_tags__name", query),
+                + TrigramSimilarity("ngo__name", query)
+                + TrigramSimilarity("resource_tags__name", query),
             )
-                .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
-                .order_by("-rank")
+            .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
+            .order_by("-rank")
         )
 
         if not hasattr(self, "search_cache"):
@@ -148,7 +148,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        needs = self.search(self.get_needs())
+        needs = list(self.search(self.get_needs()).all())
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
@@ -156,19 +156,15 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         context["current_search"] = self.request.GET.get("q", "")
 
         # TODO: maybe we can process this and lift the heavy burden from postgres
-        context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
+        context["counties"] = sorted([need.county for need in needs])
 
-        cities = needs.order_by("city")
-        if self.request.GET.get("county"):
-            cities = cities.filter(county=self.request.GET.get("county"))
+        county = self.request.GET.get("county")
+        context["cities"] = sorted([need.city for need in needs if not county or county == need.county])
 
-        context["cities"] = cities.values_list("city", flat=True).distinct("city")
-
-        urgencies = cities
-        if self.request.GET.get("city"):
-            urgencies = urgencies.filter(city=self.request.GET.get("city"))
-
-        context["urgencies"] = urgencies.order_by("urgency").values_list("urgency", flat=True).distinct("urgency")
+        city = self.request.GET.get("city")
+        context["urgencies"] = sorted(
+            [need.city for need in needs if (not county or county == need.county) and (not city or city == need.city)]
+        )
 
         return context
 
