@@ -22,5 +22,5 @@ COPY ./ /opt/ro_help
 
 WORKDIR /opt/ro_help/ro_help
 
-ENTRYPOINT ["/opt/ro_help/docker-entrypoint"]
+ENTRYPOINT ["/opt/ro_help/docker/web/docker-entrypoint"]
 EXPOSE 8000

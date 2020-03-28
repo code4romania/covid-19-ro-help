@@ -1,7 +1,9 @@
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
     command: dockerize -wait tcp://db:5432 -timeout 90s
     env_file:
       - .env
