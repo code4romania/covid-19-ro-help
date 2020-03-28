@@ -189,7 +189,7 @@ MATERIAL_ADMIN_SITE = {
     "HEADER": _("COVID-19 RO HELP"),  # Admin site header
     "TITLE": _("RO HELP"),  # Admin site title
     # Admin site favicon (path to static should be specified)
-    "FAVICON": "path/to/favicon",
+    "FAVICON": "images/favicons/favicon.ico",
     "MAIN_BG_COLOR": "#3c0201",  # Admin site main color, css color should be specified
     # Admin site main hover color, css color should be specified
     "MAIN_HOVER_COLOR": "#f15b8c",
