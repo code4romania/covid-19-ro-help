@@ -8,7 +8,7 @@ class PasswordDifferentFromPrevious:
         if not user:
             return
 
-        # If the newly provided password is in fact still the old passoword
+        # If the newly provided password is in fact still the old password
         # consider it invalid
         if check_password(password, user.password):
             raise ValidationError(
