@@ -141,7 +141,7 @@ class Command(BaseCommand):
                 NGOHelper: ["view"],
                 NGONeed: ["add", "change", "view"],
                 NGOReportItem: ["add", "change", "delete", "view"],
-                NGOAccount: ["add", "change", "delete", "view"]
+                NGOAccount: ["add", "change", "delete", "view"],
             },
             DSU_GROUP_NAME: {
                 PendingRegisterNGORequest: ["view", "change"],
