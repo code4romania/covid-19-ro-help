@@ -5,6 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="{% block meta.title %}RO Help{% endblock %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% block meta.image_path %}{% static 'images/logo-meta.png' %}{% endblock %}" />
+    <meta property="og:description" content="{% block meta.description %}Colectarea coerentă și în siguranță a ajutoarelor.{% endblock %}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700&subset=latin-ext">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" href="{% static "css/bulma-collapsible.min.css" %}">
@@ -12,7 +17,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="{% static "js/navbar.js" %}"></script>
     <script src="{% static 'js/bulma-collapsible.min.js' %}"></script>
-    <title>RO Help</title>
+    <title>{% block title %}RO Help{% endblock %}</title>
 </head>
 <body>
 {% include "header.html" %}
@@ -22,7 +27,6 @@
     {% block content %}
     {% endblock %}
 </div>
-
 
 {% include "incubated-by.html" %}
 {% include "footer.html" %}
