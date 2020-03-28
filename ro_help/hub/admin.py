@@ -284,14 +284,14 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
 
     def get_last_balance_sheet(self, obj):
         if obj.last_balance_sheet:
-            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.last_balance_sheet.url}'>Vezi</a>")
+            return format_html(f"<a class='' href='{obj.last_balance_sheet.url}'>{_('Open')}</a>")
         return "-"
 
     get_last_balance_sheet.short_description = _("Last balance")
 
     def get_statute(self, obj):
         if obj.statute:
-            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.statute.url}'>Vezi</a>")
+            return format_html(f"<a class='' href='{obj.statute.url}'>{_('Open')}</a>")
         return "-"
 
     get_statute.short_description = _("Statute")
