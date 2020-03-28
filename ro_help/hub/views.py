@@ -148,26 +148,28 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        needs = list(self.search(self.get_needs()).all())
+        needs = self.search(self.get_needs())
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
         context["current_urgency"] = self.request.GET.get("urgency")
         context["current_search"] = self.request.GET.get("q", "")
 
-        # TODO: maybe we can process this and lift the heavy burden from postgres
-        context["counties"] = sorted([need.county for need in needs])
+        context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
 
-        county = self.request.GET.get("county")
-        context["cities"] = sorted([need.city for need in needs if not county or county == need.county])
+        cities = needs.order_by("city")
+        if self.request.GET.get("county"):
+            cities = cities.filter(county=self.request.GET.get("county"))
 
-        city = self.request.GET.get("city")
-        context["urgencies"] = sorted(
-            [need.city for need in needs if (not county or county == need.county) and (not city or city == need.city)]
-        )
+        context["cities"] = cities.values_list("city", flat=True).distinct("city")
+
+        urgencies = cities
+        if self.request.GET.get("city"):
+            urgencies = urgencies.filter(city=self.request.GET.get("city"))
+
+        context["urgencies"] = urgencies.order_by("urgency").values_list("urgency", flat=True).distinct("urgency")
 
         return context
-
 
 class NGODetailView(InfoContextMixin, NGOKindFilterMixin, DetailView):
     template_name = "ngo/detail.html"
