@@ -52,8 +52,6 @@ def confirm(request, order):
 
         env_key = request.POST.get("env_key")
         env_data = request.POST.get("data")
-        # env_key = post['env_key']
-        # env_data = post['data']
         print(env_key)
         print("-----")
         print(env_data)
@@ -164,5 +162,4 @@ def confirm(request, order):
     payment_response.error_message = error_message
     payment_response.save()
     crc = Crc(error_code, error_type, error_message).create_crc()
-
     return HttpResponse(crc.toprettyxml(indent="\t", encoding="utf-8"), content_type='text/xml')
