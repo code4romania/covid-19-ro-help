@@ -82,6 +82,9 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
     template_name = "ngo/list.html"
 
     def get_needs(self):
+        if hasattr(self, "needs"):
+            return self.needs
+
         filters = {
             "resolved_on": None,
         }
@@ -93,12 +96,14 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if kind:
             filters["kind"] = kind
 
-        return (
+        self.needs = (
             NGONeed.objects.filter(**filters)
-            .order_by("created")
-            .select_related("ngo")
-            .prefetch_related("resource_tags")
+                .order_by("created")
+                .select_related("ngo")
+                .prefetch_related("resource_tags")
         )
+
+        return self.needs
 
     def search(self, queryset):
         # TODO: it should take into account selected language. Check only romanian for now.
@@ -107,31 +112,39 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if not query:
             return queryset
 
+        if hasattr(self, "search_cache") and query in self.search_cache:
+            return self.search_cache[query]
+
         search_query = SearchQuery(query, config="romanian_unaccent")
 
         vector = (
-            SearchVector("title", weight="A", config="romanian_unaccent")
-            + SearchVector("ngo__name", weight="B", config="romanian_unaccent")
-            + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
+                SearchVector("title", weight="A", config="romanian_unaccent")
+                + SearchVector("ngo__name", weight="B", config="romanian_unaccent")
+                + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
         )
 
-        return (
+        result = (
             queryset.annotate(
                 rank=SearchRank(vector, search_query),
                 similarity=TrigramSimilarity("title", query)
-                + TrigramSimilarity("ngo__name", query)
-                + TrigramSimilarity("resource_tags__name", query),
+                           + TrigramSimilarity("ngo__name", query)
+                           + TrigramSimilarity("resource_tags__name", query),
             )
-            .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
-            .order_by("-rank")
+                .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
+                .order_by("-rank")
         )
+
+        if not hasattr(self, "search_cache"):
+            self.search_cache = {}
+
+        self.search_cache[query] = result
+
+        return result
 
     def get_queryset(self):
-        needs = self.get_needs().filter(
-            **{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
-        )
+        needs = self.search(self.get_needs())
 
-        return self.search(needs)
+        return needs.filter(**{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -142,6 +155,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         context["current_urgency"] = self.request.GET.get("urgency")
         context["current_search"] = self.request.GET.get("q", "")
 
+        # TODO: maybe we can process this and lift the heavy burden from postgres
         context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
 
         cities = needs.order_by("city")
@@ -169,7 +183,6 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMi
     template_name = "ngo/detail.html"
     model = NGOHelper
     form_class = NGOHelperForm
-    success_message = _("TODO: add a success message")
 
     def get_object(self, queryset=None):
         # return from local cache, if any
@@ -221,6 +234,7 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMi
         ngo = self._get_ngo()
         need = self.get_object()
         base_path = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
+
         for user in ngo.users.all():
             utils.send_email(
                 template="mail/new_helper.html",
@@ -228,6 +242,7 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMi
                 subject="[RO HELP] Mesaj nou pentru {} ".format(need.title)[:50],
                 to=user.email,
             )
+
         return super().get_success_message(cleaned_data)
 
 
