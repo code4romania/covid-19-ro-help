@@ -197,7 +197,7 @@ class ResourceTag(TimeStampedModel):
     class Meta:
         verbose_name_plural = _("Resource tags")
         verbose_name = _("Resource tag")
-        ordering = ('name', )
+        ordering = ("name",)
 
     def __str__(self):
         return self.name
