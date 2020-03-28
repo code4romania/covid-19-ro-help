@@ -11,7 +11,7 @@ AUTH_PASSWORD_VALIDATORS = []
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Add debug toolbar
-if DEBUG:
+if DEBUG and env("ENABLE_DEBUG_TOOLBAR"):
     INSTALLED_APPS += ["debug_toolbar", "django_extensions"]
     MIDDLEWARE.insert(1, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
