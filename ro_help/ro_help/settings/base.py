@@ -20,6 +20,7 @@ root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
+    ENABLE_DEBUG_TOOLBAR=(bool, False),
     USE_S3=(bool, False),
     ALLOWED_HOSTS=(list, []),
 )
