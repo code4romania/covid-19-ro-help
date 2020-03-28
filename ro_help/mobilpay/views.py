@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from hub.models import NGO
 from mobilpay.models import PaymentOrder, PaymentResponse
@@ -42,6 +42,7 @@ def confirm(request, order):
     payment_response = PaymentResponse()
     payment_response.payment_order = order
     base_path = f"{request.scheme}://{request.META['HTTP_HOST']}"
+
     if request.method == "POST":
 
         """calea catre cheia privata aflata pe serverul dumneavoastra"""
@@ -161,5 +162,4 @@ def confirm(request, order):
     payment_response.error_message = error_message
     payment_response.save()
     crc = Crc(error_code, error_type, error_message).create_crc()
-
-    return crc.toprettyxml(indent="\t", encoding="utf-8")
+    return HttpResponse(crc.toprettyxml(indent="\t", encoding="utf-8"), content_type='text/xml')
