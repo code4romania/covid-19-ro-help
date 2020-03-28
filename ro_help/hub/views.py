@@ -93,15 +93,19 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if kind:
             filters["kind"] = kind
 
-        return NGONeed.objects.filter(**filters).order_by("created")
+        return (
+            NGONeed.objects.filter(**filters)
+            .order_by("created")
+            .select_related("ngo")
+            .prefetch_related("resource_tags")
+        )
 
     def search(self, queryset):
         # TODO: it should take into account selected language. Check only romanian for now.
-
-        if not self.request.GET.get("q"):
-            return queryset
-
         query = self.request.GET.get("q")
+
+        if not query:
+            return queryset
 
         search_query = SearchQuery(query, config="romanian_unaccent")
 
@@ -231,13 +235,13 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, Create
     template_name = "ngo/register_request.html"
     model = RegisterNGORequest
     form_class = NGORegisterRequestForm
-    success_message = _("TODO: add a success message")
 
     def get_success_url(self):
         return reverse("ngos-register-request")
 
     def get_success_message(self, cleaned_data):
         authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
+
         for user in User.objects.filter(groups__name__in=authorized_groups):
             cleaned_data["base_path"] = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
             utils.send_email(
@@ -257,11 +261,11 @@ class NGODonateCreateView(SuccessMessageMixin, InfoContextMixin, CreateView):
         return reverse("mobilpay:initialize-payment", kwargs={"order": self.object.order_id})
 
     def get_initial(self):
-        ngo = self.get_object()
         return {"amount": self.request.GET.get("amount", "0")}
 
     def get_object(self, queryset=None):
         ngo = NGO.objects.filter(pk=self.kwargs["ngo"]).first()
+
         if not ngo:
             return None
 
