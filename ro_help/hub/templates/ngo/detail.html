@@ -202,6 +202,11 @@
 
         <div id="donations" class="is-collapsible">
             <div class="card-content donation-card">
+
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=donations_page_obj %}
+                </div>
+
                 <table class="donations-table">
                     <thead>
                         <tr>
@@ -211,7 +216,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for order in ngo.get_funders %}
+                    {% for order in donations_page_obj %}
                         <tr>
                             <td>{{order.first_name}}</td>
                             <td>{{order.last_name}}</td>
@@ -240,6 +245,11 @@
 
         <div id="reporting" class="is-collapsible">
             <div class="card-content donation-card">
+
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=report_items_page_obj %}
+                </div>
+
                 <table class="donations-table">
                     <thead>
                         <tr>
@@ -249,7 +259,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for report in ngo.report_items.all %}
+                    {% for report in report_items_page_obj %}
                     <tr>
                         <td>{{report.date}}</td>
                         <td>{{report.title}}</td>

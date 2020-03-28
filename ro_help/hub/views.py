@@ -75,7 +75,42 @@ class NGOKindFilterMixin:
         return context
 
 
-class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
+class NGODonationsReportsMixin:
+    """
+    Class used for separately paginating the donations and the reports.
+    """
+
+    paginated_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ngo = kwargs.get("ngo", context.get("ngo"))
+        if not ngo:
+            return context
+        page = self.request.GET.get("page")
+
+        # Donations paginator.
+        ngo_donations = ngo.get_funders()
+        donations_paginator = paginator.Paginator(ngo_donations.order_by("id"), self.paginated_by)
+        try:
+            donations_page_obj = donations_paginator.page(page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            donations_page_obj = donations_paginator.page(1)
+        context[f"donations_page_obj"] = donations_page_obj
+
+        # Report items paginator.
+        ngo_report_items = ngo.report_items.all()
+        report_items_paginator = paginator.Paginator(ngo_report_items.order_by("id"), self.paginated_by)
+        try:
+            report_items_page_obj = report_items_paginator.page(page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            report_items_page_obj = report_items_paginator.page(1)
+        context[f"report_items_page_obj"] = report_items_page_obj
+
+        return context
+
+
+class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, NGODonationsReportsMixin, ListView):
     allow_filters = ["county", "city", "urgency"]
     paginate_by = 9
 
@@ -172,13 +207,15 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         return context
 
 
-class NGODetailView(InfoContextMixin, NGOKindFilterMixin, DetailView):
+class NGODetailView(InfoContextMixin, NGOKindFilterMixin, NGODonationsReportsMixin, DetailView):
     template_name = "ngo/detail.html"
     context_object_name = "ngo"
     model = NGO
 
 
-class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMixin, CreateView):
+class NGOHelperCreateView(
+    SuccessMessageMixin, InfoContextMixin, NGOKindFilterMixin, NGODonationsReportsMixin, CreateView
+):
     template_name = "ngo/detail.html"
     model = NGOHelper
     form_class = NGOHelperForm
