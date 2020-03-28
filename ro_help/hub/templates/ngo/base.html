@@ -5,17 +5,20 @@
 
 
 {% block content %}
-<div class="container">
-
-    <div class="container" style="margin-bottom: 2em">
-        <form action="{% url 'ngos' %}" method="GET">
-            <div class="is-flex">
+<div class="container is-flex" style="justify-content: flex-end;">
+    <form action="{% url 'ngos' %}" method="GET">
+        <div class="field border-b">
+            <p class="control has-icons-right ">
                 <input class="input search-input" type="text" name="q" value="{{ current_search }}" placeholder="{% trans 'Search...' %}">
-                <button class="button">{% trans "Search" %}</button>
-            </div>
-        </form>
-    </div>
+                <span class="icon is-small is-right">
+                      <i class="fas fa-search"></i>
+                    </span>
+            </p>
+        </div>
+    </form>
+</div>
 
+<div class="container">
     <div id="donate_safely" class="container">
         <h1 class="donate-title">
             {% trans "Donate safely" %}
