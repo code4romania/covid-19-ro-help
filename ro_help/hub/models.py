@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User, Group
 from django.db import models, transaction
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
@@ -174,6 +175,9 @@ class NGO(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("ngo-detail", args=[self.pk])
 
     def get_funders(self):
         return self.payment_orders.filter(success=True)
