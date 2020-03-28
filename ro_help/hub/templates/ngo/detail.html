@@ -99,16 +99,14 @@
                         </div>
 
                         <div class="content">
-                            <p>Nume: {{ngo.name}}</p>
-                            <p>Sediu: {{ngo.address}}, {{ngo.city}}, {{ngo.county}}</p>
-                            <p>CIF: {{ngo.cif}}</p>
-                            <p>CUI: {{ngo.cui}}</p>
+                            <p>{% trans "Name" %}: {{ngo.name}}</p>
+                            <p>{% trans "Address" %}: {{ngo.address}}, {{ngo.city}}, {{ngo.county}}</p>
+                            <p>{% trans "CIF" %}: {{ngo.cif}}</p>
+                            <p>{% trans "CUI" %}: {{ngo.cui}}</p>
                             
                             {% for account in ngo.accounts.all %}
-                                
-                                <p>Cont {{account.currency}}: {{account.iban}} (Banca: {{account.bank}}) </p>
+                                <p>{% trans "Currency" %} {{account.currency}}: {{account.iban}} ({% trans "Bank" %}: {{account.bank}}) </p>
                             {% endfor %}
-
                         </div>
                     </div>
                 {% endif %}

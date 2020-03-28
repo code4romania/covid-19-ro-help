@@ -19,7 +19,7 @@ class NGOHelperForm(forms.ModelForm):
 class NGOForm(forms.ModelForm):
     class Meta:
         model = models.NGO
-        fields = ("__all__")
+        fields = "__all__"
 
     def clean(self):
         cleaned_data = super().clean()
@@ -34,21 +34,29 @@ class NGOForm(forms.ModelForm):
 
         if accepts_mobilpay:
             if not donations_description:
-                self.add_error('donations_description', "Pentru a accepta donatii prin mobilpay acest camp este obligatoriu")
+                self.add_error(
+                    "donations_description", _("To accept mobilpay donations this field is required.")
+                )
             if not mobilpay_icc:
-                self.add_error('mobilpay_icc', "Pentru a accepta donatii prin mobilpay acest camp este obligatoriu")
+                self.add_error("mobilpay_icc", "To accept mobilpay donations this field is required.")
             if not mobilpay_public_key:
-                self.add_error('mobilpay_public_key', "Pentru a accepta donatii prin mobilpay acest camp este obligatoriu")
+                self.add_error(
+                    "mobilpay_public_key", "To accept mobilpay donations this field is required."
+                )
             if not mobilpay_private_key:
-                self.add_error('mobilpay_private_key', "Pentru a accepta donatii prin mobilpay acest camp este obligatoriu")
+                self.add_error(
+                    "mobilpay_private_key", "To accept mobilpay donations this field is required."
+                )
         if accepts_transfer:
             if not donations_description:
-                self.add_error('donations_description', "Pentru a accepta donatii prin transfer acest camp este obligatoriu")
+                self.add_error(
+                    "donations_description", _("To accept money transfer this field is required")
+                )
             if not cif:
-                self.add_error('cif', "Pentru a accepta donatii prin transfer bancar acest camp este obligatoriu")
+                self.add_error("cif", _("To accept money transfer this field is required"))
             if not cui:
-                self.add_error('cui', "Pentru a accepta donatii prin transfer bancar acest camp este obligatoriu")
-            
+                self.add_error("cui", _("To accept money transfer this field is required"))
+
 
 class NGORegisterRequestForm(forms.ModelForm):
     captcha = ReCaptchaField(widget=ReCaptchaV3(attrs={"required_score": 0.85,}), label="")
