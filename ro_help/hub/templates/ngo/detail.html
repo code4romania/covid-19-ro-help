@@ -50,59 +50,68 @@
 
         <div id="donate-money" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
             <div class="card-content donation-card">
-
                 <div class="container">
-                    <div class="container donate-hero">
-                        <span class="donate-hero-img">
-                             <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
-                        </span>
-                        <div>
-                            <div class="title">
-                                {% trans "Donate via Netopia" %}:
-                            </div>
-                        </div>
+                    <div class="content">
+                        <p>{{ngo.donations_description}}</p>
                     </div>
-
-
-                    <form method="GET" action="{% url 'ngo-donate' ngo.pk %}">
-                        <div class="columns is-mobile">
-                            <div class="column is-two-thirds-desktop is-half-mobile">
-                                <div class="control">
-                                    <input class="input is-success" name="amount" type="text" placeholder="100 RON">
+                </div>
+                
+                {% if ngo.accepts_mobilpay %}
+                    <div class="container">
+                        <div class="container donate-hero">
+                            <span class="donate-hero-img">
+                                 <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
+                            </span>
+                            <div>
+                                <div class="title">
+                                    {% trans "Donate via Netopia" %}:
                                 </div>
                             </div>
-                            <div class="column is-one-third-desktop is-half-mobile">
-                                <button class="button is-success is-fullwidth">{% trans "Donate" %}</button>
+                        </div>
+
+
+                        <form method="GET" action="{% url 'ngo-donate' ngo.pk %}">
+                            <div class="columns is-mobile">
+                                <div class="column is-two-thirds-desktop is-half-mobile">
+                                    <div class="control">
+                                        <input class="input is-success" name="amount" type="text" placeholder="100 RON">
+                                    </div>
+                                </div>
+                                <div class="column is-one-third-desktop is-half-mobile">
+                                    <button class="button is-success is-fullwidth">{% trans "Donate" %}</button>
+                                </div>
+                            </div>
+                         </form>
+                    </div>
+                {% endif %}
+                
+                {% if ngo.accepts_transfer %}
+                    <div class="container">
+                        <div class="container donate-hero">
+                            <span class="donate-hero-img">
+                                 <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
+                            </span>
+                            <div>
+                                <div class="title">
+                                    {% trans "Donate via transfer" %}:
+                                </div>
                             </div>
                         </div>
-                     </form>
-                </div>
 
-                <div class="container">
-                    <div class="container donate-hero">
-                        <span class="donate-hero-img">
-                             <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
-                        </span>
-                        <div>
-                            <div class="title">
-                                {% trans "Donate via transfer" %}:
-                            </div>
+                        <div class="content">
+                            <p>Nume: {{ngo.name}}</p>
+                            <p>Sediu: {{ngo.address}}, {{ngo.city}}, {{ngo.county}}</p>
+                            <p>CIF: {{ngo.cif}}</p>
+                            <p>CUI: {{ngo.cui}}</p>
+                            
+                            {% for account in ngo.accounts.all %}
+                                
+                                <p>Cont {{account.currency}}: {{account.iban}} (Banca: {{account.bank}}) </p>
+                            {% endfor %}
+
                         </div>
                     </div>
-
-                    <div class="content">
-                        <p>Nume: Asociația Habitat for Humanity</p>
-                        <p>Sediu: Piata Unirii 16,Bucuresti</p>
-                        <p>CIF: RO22556447</p>
-                        <p>CUI: 323265</p>
-
-                        <p>Cont RON: RO38BTRLRONCRT0505050505</p>
-                        <p>Cont EUR: RO38BTRLRONCRT0505050505</p>
-                        <p>Cont USD: RO38BTRLRONCRT0505050505</p>
-
-                        <p>Banca: Raiffeisen Bank</p>
-                    </div>
-                </div>
+                {% endif %}
 
             </div>
         </div>

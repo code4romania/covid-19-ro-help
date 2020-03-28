@@ -4,10 +4,26 @@ import requests
 from faker import Faker
 
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, Permission
 from django.utils import timezone
 
-from hub.models import NGO, NGONeed, KIND, URGENCY, ResourceTag, ADMIN_GROUP_NAME, NGO_GROUP_NAME, NGOReportItem
+from hub.models import (
+    NGO,
+    NGONeed,
+    NGOHelper,
+    NGOAccount,
+    PendingRegisterNGORequest,
+    RegisterNGORequest,
+    RegisterNGORequestVote,
+    KIND,
+    URGENCY,
+    ResourceTag,
+    ADMIN_GROUP_NAME,
+    NGO_GROUP_NAME,
+    DSU_GROUP_NAME,
+    FFC_GROUP_NAME,
+    NGOReportItem,
+)
 from mobilpay.models import PaymentOrder
 
 
@@ -102,11 +118,64 @@ class Command(BaseCommand):
         if not User.objects.filter(username="user").exists():
             User.objects.create_user("user", "user@user.com", "user", is_staff=True)
 
+        if not User.objects.filter(username="dsu").exists():
+            User.objects.create_user("dsu", "user@user.com", "dsu", is_staff=True)
+
+        if not User.objects.filter(username="ffc").exists():
+            User.objects.create_user("ffc", "user@user.com", "ffc", is_staff=True)
+
         admin_user = User.objects.get(username="admin")
         ngo_user = User.objects.get(username="user")
+        dsu_user = User.objects.get(username="dsu")
+        ffc_user = User.objects.get(username="ffc")
 
         admin_group, _ = Group.objects.get_or_create(name=ADMIN_GROUP_NAME)
         ngo_group, _ = Group.objects.get_or_create(name=NGO_GROUP_NAME)
+        dsu_group, _ = Group.objects.get_or_create(name=DSU_GROUP_NAME)
+        ffc_group, _ = Group.objects.get_or_create(name=FFC_GROUP_NAME)
+
+        # models.NamedCredentials: ['add', 'change', 'delete', 'view'],
+        GROUPS_PERMISSIONS = {
+            NGO_GROUP_NAME: {
+                NGO: ["change", "view"],
+                NGOHelper: ["view"],
+                NGONeed: ["add", "change", "view"],
+                NGOReportItem: ["add", "change", "delete", "view"],
+                NGOAccount: ["add", "change", "delete", "view"]
+            },
+            DSU_GROUP_NAME: {
+                PendingRegisterNGORequest: ["view", "change"],
+                RegisterNGORequest: ["view"],
+                RegisterNGORequestVote: ["view", "change"],
+            },
+            FFC_GROUP_NAME: {
+                PendingRegisterNGORequest: ["view", "change"],
+                RegisterNGORequest: ["view"],
+                RegisterNGORequestVote: ["view", "change"],
+            },
+        }
+
+        for group_name in GROUPS_PERMISSIONS:
+
+            # Get or create group
+            group, created = Group.objects.get_or_create(name=group_name)
+
+            # Loop models in group
+            for model_cls in GROUPS_PERMISSIONS[group_name]:
+
+                # Loop permissions in group/model
+                for perm_index, perm_name in enumerate(GROUPS_PERMISSIONS[group_name][model_cls]):
+
+                    # Generate permission name as Django would generate it
+                    codename = perm_name + "_" + model_cls._meta.model_name
+
+                    try:
+                        # Find permission object and add to group
+                        perm = Permission.objects.get(codename=codename)
+                        group.permissions.add(perm)
+                        self.stdout.write("Adding " + codename + " to group " + group.__str__())
+                    except Permission.DoesNotExist:
+                        self.stdout.write(codename + " not found")
 
         admin_user.groups.add(admin_group)
         admin_user.save()
@@ -114,54 +183,77 @@ class Command(BaseCommand):
         ngo_user.groups.add(ngo_group)
         ngo_user.save()
 
+        dsu_user.groups.add(dsu_group)
+        dsu_user.save()
+
+        ffc_user.groups.add(ffc_group)
+        ffc_user.save()
+
         tags = []
         for resource in RESOURCE_TAGS:
             tag, _ = ResourceTag.objects.get_or_create(name=resource)
             tags.append(tag)
 
-        # for details in NGOS:
-        #     ngo, _ = NGO.objects.get_or_create(**details)
+        NGO.objects.filter(
+            pk__in=NGO.objects.exclude(name__in=["Code4Romania", "Crucea Rosie"])
+            .order_by("created")
+            .values_list("pk")[100:]
+        ).delete()
 
-        #     owner = random.choice([ngo_user, admin_user, None])
-        #     if owner:
-        #         ngo.users.add(owner)
-        #         ngo.save()
+        for details in NGOS:
+            ngo, _ = NGO.objects.get_or_create(**details)
 
-        #     for _ in range(20):
-        #         need = NGONeed.objects.create(
-        #             **{
-        #                 "ngo": ngo,
-        #                 "kind": random.choice(KIND.to_list()),
-        #                 "urgency": random.choice(URGENCY.to_list()),
-        #                 "description": fake.text(),
-        #                 "title": fake.text(),
-        #                 "resolved_on": random.choice([None, timezone.now()]),
-        #                 "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
-        #                 "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
-        #             }
-        #         )
+            owner = random.choice([ngo_user, admin_user, None])
+            if owner:
+                ngo.users.add(owner)
+                ngo.save()
 
-        #         for _ in range(len(RESOURCE_TAGS)):
-        #             need.resource_tags.add(random.choice(tags))
+            NGONeed.objects.filter(pk__in=ngo.needs.order_by("created").values_list("pk")[20:]).delete()
 
-        # for ngo in NGO.objects.all():
-        #     for i in range(random.choice([3, 4, 5, 6, 10])):
-        #         payment = PaymentOrder.objects.create(
-        #             ngo=ngo,
-        #             first_name=fake.name().split(" ")[0],
-        #             last_name=fake.name().split(" ")[-1],
-        #             phone=fake.phone_number(),
-        #             email=fake.email(),
-        #             address=fake.address(),
-        #             details="ddd",
-        #             amount=random.choice([100, 200, 300, 400, 500, 150]),
-        #             date=fake.date_between(start_date="-30y", end_date="today"),
-        #             success=True,
-        #         )
-        #     for i in range(random.choice([3, 4, 5, 6, 10])):
-        #         report = NGOReportItem.objects.create(
-        #             ngo=ngo,
-        #             date=fake.date_between(start_date="-30y", end_date="today"),
-        #             title=f"Achizitionat {random.choice(RESOURCE_TAGS)}",
-        #             amount=random.choice([100, 200, 300, 400, 500, 150]),
-        #         )
+            for _ in range(20):
+                need = NGONeed.objects.create(
+                    **{
+                        "ngo": ngo,
+                        "kind": random.choice(KIND.to_list()),
+                        "urgency": random.choice(URGENCY.to_list()),
+                        "description": fake.text(),
+                        "title": fake.text(),
+                        "resolved_on": random.choice([None, timezone.now()]),
+                        "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
+                        "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
+                    }
+                )
+
+                for _ in range(len(RESOURCE_TAGS)):
+                    need.resource_tags.add(random.choice(tags))
+
+        for ngo in NGO.objects.all():
+            PaymentOrder.objects.filter(
+                pk__in=PaymentOrder.objects.filter(ngo=ngo).order_by("created").values_list("pk")[10:]
+            ).delete()
+
+            for _ in range(random.choice([3, 4, 5, 6, 10])):
+                PaymentOrder.objects.create(
+                    ngo=ngo,
+                    first_name=fake.name().split(" ")[0],
+                    last_name=fake.name().split(" ")[-1],
+                    phone=fake.phone_number(),
+                    email=fake.email(),
+                    address=fake.address(),
+                    details="ddd",
+                    amount=random.choice([100, 200, 300, 400, 500, 150]),
+                    date=fake.date_between(start_date="-30y", end_date="today"),
+                    success=True,
+                )
+
+            NGOReportItem.objects.filter(
+                pk__in=NGOReportItem.objects.filter(ngo=ngo).order_by("created").values_list("pk")[10:]
+            ).delete()
+
+            for _ in range(random.choice([3, 4, 5, 6, 10])):
+                NGOReportItem.objects.create(
+                    ngo=ngo,
+                    date=fake.date_between(start_date="-30y", end_date="today"),
+                    title=f"Achizitionat {random.choice(RESOURCE_TAGS)}",
+                    amount=random.choice([100, 200, 300, 400, 500, 150]),
+                )
