@@ -171,6 +171,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
         return context
 
+
 class NGODetailView(InfoContextMixin, NGOKindFilterMixin, DetailView):
     template_name = "ngo/detail.html"
     context_object_name = "ngo"
