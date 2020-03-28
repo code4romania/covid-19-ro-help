@@ -247,6 +247,7 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         "active",
         "resolved_on",
         "get_avatar",
+        "avatar",
     )
     list_display = [
         "name",
@@ -263,7 +264,7 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         "get_statute",
     ]
     actions = ["create_account"]
-    readonly_fields = ["active", "resolved_on", "registered_on"]
+    readonly_fields = ["active", "resolved_on", "registered_on", "get_avatar"]
     inlines = [RegisterNGORequestVoteInline]
 
     def get_changeform_initial_data(self, request):
@@ -296,7 +297,7 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
             return format_html(f"<img src='{obj.avatar.url}' width='200'>")
         return "-"
 
-    get_avatar.short_description = "Avatar"
+    get_avatar.short_description = _("Avatar Preview")
 
     def voters(self, obj):
         return ",".join(obj.votes.values_list("entity", flat=True))
