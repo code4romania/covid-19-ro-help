@@ -260,9 +260,9 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, Create
 
         for user in User.objects.filter(groups__name__in=authorized_groups):
             cleaned_data["base_path"] = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
-            # utils.send_email(
-            #     template="mail/new_ngo.html", context=cleaned_data, subject="[RO HELP] ONG nou", to=user.email
-            # )
+            utils.send_email(
+                template="mail/new_ngo.html", context=cleaned_data, subject="[RO HELP] ONG nou", to=user.email
+            )
 
         return super().get_success_message(cleaned_data)
 

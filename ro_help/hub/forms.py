@@ -1,6 +1,6 @@
 from django import forms
-from django_crispy_bulma.widgets import EmailInput, FileUploadInput
 from django.core.files.images import get_image_dimensions
+from django_crispy_bulma.widgets import EmailInput, FileUploadInput
 from file_resubmit.admin import AdminResubmitFileWidget, AdminResubmitImageWidget
 
 from hub import models
