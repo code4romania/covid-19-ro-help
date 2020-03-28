@@ -179,6 +179,7 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMi
     template_name = "ngo/detail.html"
     model = NGOHelper
     form_class = NGOHelperForm
+    success_message = _("Thank you for your help!")
 
     def get_object(self, queryset=None):
         # return from local cache, if any
@@ -246,6 +247,7 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, Create
     template_name = "ngo/register_request.html"
     model = RegisterNGORequest
     form_class = NGORegisterRequestForm
+    success_message = _("Thank you for registering your ONG. An email was sent with the next steps.")
 
     def get_success_url(self):
         return reverse("ngos-register-request")
@@ -266,7 +268,7 @@ class NGODonateCreateView(SuccessMessageMixin, InfoContextMixin, CreateView):
     template_name = "ngo/donate.html"
     model = PaymentOrder
     form_class = PaymentOrderForm
-    success_message = _("TODO: add a success message")
+    success_message = _("Thank you for your donation!")
 
     def get_success_url(self):
         return reverse("mobilpay:initialize-payment", kwargs={"order": self.object.order_id})
