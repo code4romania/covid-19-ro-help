@@ -217,6 +217,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 @admin.register(ResourceTag)
 class ResourceTagAdmin(admin.ModelAdmin):
     icon_name = "filter_vintage"
+    search_fields = ('name', )
 
 
 class RegisterNGORequestVoteInline(admin.TabularInline):
