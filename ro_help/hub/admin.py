@@ -4,6 +4,7 @@ from django.contrib.admin import SimpleListFilter, helpers
 from django.shortcuts import render
 from django.contrib.auth.models import Group, User
 from django.template.defaultfilters import pluralize
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
@@ -156,6 +157,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
+        qs = qs.select_related("ngo").prefetch_related("helpers")
 
         user = request.user
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
@@ -181,13 +183,15 @@ class NGONeedAdmin(admin.ModelAdmin):
             return {"ngo": user.ngos.first().pk}
 
     def responses(self, obj):
-        all_helpers = obj.helpers.count()
-        new_helpers = obj.helpers.filter(read=False).count()
+        all_helpers = list(obj.helpers.all())
+        new_helpers = [helper for helper in all_helpers if not helper.read]
+
+        need_url = reverse("admin:hub_ngoneed_change", args=[obj.pk])
 
         if new_helpers:
-            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{all_helpers} ({new_helpers} new)</a></span>"
+            html = f"<span><a href='{need_url}'>{len(all_helpers)} ({len(new_helpers)} new)</a></span>"
         else:
-            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{all_helpers}</a></span>"
+            html = f"<span><a href='{need_url}'>{len(all_helpers)}</a></span>"
 
         return format_html(html)
 
