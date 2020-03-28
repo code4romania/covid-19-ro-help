@@ -309,7 +309,6 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
     voters.short_description = _("Voters")
 
     def create_account(self, request, queryset):
-        # queryset = queryset.filter(resolved_on=None)
         ngo_group = Group.objects.get(name=NGO_GROUP_NAME)
 
         for register_request in queryset:
@@ -348,14 +347,14 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
 
     def get_last_balance_sheet(self, obj):
         if obj.last_balance_sheet:
-            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.last_balance_sheet.url}'>Vezi</a>")
+            return format_html(f"<a class='' href='{obj.last_balance_sheet.url}'>{_('Open')}</a>")
         return "-"
 
     get_last_balance_sheet.short_description = _("Last balance")
 
     def get_statute(self, obj):
         if obj.statute:
-            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.statute.url}'>Vezi</a>")
+            return format_html(f"<a class='' href='{obj.statute.url}'>{_('Open')}</a>")
         return "-"
 
     get_statute.short_description = _("Statute")
@@ -432,9 +431,11 @@ class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         user = request.user
-        user_groups = user.groups.values_list("name", flat=True)
-        if "Admin" not in user_groups:
+
+        if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
+            user_groups = user.groups.values_list("name", flat=True)
             return self.model.objects.filter(entity__in=user_groups)
+
         return self.model.objects.all()
 
     def has_change_permission(self, request, obj=None):
