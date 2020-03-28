@@ -10,11 +10,13 @@ from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import activate
 from hub import utils
-from .forms import RegisterNGORequestVoteForm
+from .forms import RegisterNGORequestVoteForm, NGOForm
 from .models import (
     NGO,
+    KIND,
     NGOReportItem,
     NGONeed,
+    NGOAccount,
     NGOHelper,
     ResourceTag,
     RegisterNGORequest,
@@ -54,17 +56,28 @@ class ActiveNGONeedFilter(SimpleListFilter):
         return queryset
 
 
+class NGOAccountInline(admin.TabularInline):
+    model = NGOAccount
+    fields = ("currency", "bank", "iban")
+    can_delete = True
+    can_add = True
+    verbose_name_plural = _("Bank Accounts")
+    extra = 1
+
+
 @admin.register(NGO)
 class NGOAdmin(admin.ModelAdmin):
     icon_name = "home_work"
     list_per_page = 25
+    form = NGOForm
 
-    list_display = ("name", "email", "phone", "city", "county", "created")
+    list_display = ("name", "contact_name", "county", "city", "accepts_transfer", "accepts_mobilpay", "created")
     list_filter = (
         "city",
         "county",
     )
     search_fields = ("name", "email")
+    inlines = [NGOAccountInline]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -84,6 +97,90 @@ class NGOAdmin(admin.ModelAdmin):
             return ["users"]
 
         return []
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if obj.accepts_transfer:
+            if not obj.accounts.all():
+                self.message_user(request, 'Trebuie sa adaugati cel putin un cont pentru a accepta transfer bancar', level=messages.ERROR)
+                obj.accepts_transfer = False
+                obj.save()
+        if obj.accepts_transfer or obj.accepts_mobilpay:
+            need = NGONeed.objects.get_or_create(
+                ngo=obj,
+                title=obj.name,
+                description=obj.donations_description,
+                kind="money",
+                city=obj.city,
+                county=obj.county)
+        else:
+            NGONeed.objects.filter(ngo=obj, kind="money").delete()
+        # return ngo
+
+    #     return ngo
+    # def save_model(self, request, obj, form, change):
+    #     super(ComandaAdmin, self).save_model(request, obj, form, change)
+    #     obj.user = request.user
+    #     if not obj.token:
+    #         unique = False
+    #         token = token_generator()
+    #         while not unique:
+    #             token_exists = models.Comanda.objects.filter(token=token).exists()
+    #             if not token_exists:
+    #                 unique = True
+    #             else:
+    #                 token = token_generator()
+    #             obj.token = token
+
+    #     num_intrari = request.POST.get('intrari_comanda-TOTAL_FORMS', 0)
+    #     obj.suma = 0.00
+    #     tip_intrari = []
+    #     for i in range(int(num_intrari)):
+    #         if request.POST.get('intrari_comanda-{}-suma'.format(i)):
+    #             if not 'intrari_comanda-{}-DELETE'.format(i) in request.POST:
+    #                 obj.suma += round(float(request.POST.get('intrari_comanda-{}-suma'.format(i))),2)
+    #         id_intrare = request.POST.get('intrari_comanda-{}-tip_intrare'.format(i))
+    #         if id_intrare:
+    #             tip_intrari.append(id_intrare)
+
+    #     intrari_comanda = models.TipIntrareComanda.objects.filter(pk__in=tip_intrari).values_list('denumire', flat=True)
+    #     obj.is_avans = True in ['avans' in x.lower() for x in intrari_comanda]
+    #     obj.save()
+    #     if obj.trimite_email:
+    #         if not obj.email:
+    #             self.message_user(request, 'Trebuie sa completati emailul', level=messages.ERROR)
+    #         else:
+    #             locale.setlocale(locale.LC_TIME, "ro_RO")
+    #             recipient_dict = {
+    #                 'NUME':   xstr(obj.prenume) + ' ' + xstr(obj.nume),
+    #                 'LINK_COMANDA': 'https://comenzi.cofetariacodrina.ro/comanda/{}'.format(obj.token),
+    #                 'TELEFON': obj.telefon,
+    #                 'EMAIL': obj.email,
+    #                 'NUMAR_COMANDA': obj.comanda,
+    #                 'COFETARIE': obj.cofetarie.nume,
+    #                 'ADRESA_COFETARIE': obj.cofetarie.adresa,
+    #                 'DATA_RIDICARE': obj.data_ridicare_comanda.strftime('%d %B %Y'),
+    #                 'DETALII_COMANDA': obj.notite.replace('\r\n','<br/>'),
+    #                 'SUMA': '{0:.2f} lei'.format(obj.suma),
+    #             }
+
+    #             send_to = {
+    #                 'name': xstr(obj.nume) + ' ' + xstr(obj.prenume),
+    #                 'email': obj.email
+    #             }
+    #             mail_subject = 'Plată avans comandă' if obj.is_avans else 'Plată comandă'
+
+    #             mail = sendinblue.send_mail(send_to, recipient_dict, 'comanda_noua', mail_subject)
+
+    #             if mail:
+    #                 if 'message_id' in mail.keys():
+    #                     obj.welcome_mail = timezone.now()
+    #                     obj.welcome_mail_id = mail['message_id']
+    #                     obj.trimite_email = False
+    #             else:
+    #                 user_msg = 'Emailul catre {} nu  a fost trimis'.format(obj.email)
+    #                 return self.message_user(request, user_msg, level=messages.WARNING)
+    #         obj.save()
 
 
 @admin.register(NGOReportItem)
@@ -172,9 +269,9 @@ class NGONeedAdmin(admin.ModelAdmin):
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
             try:
                 form.base_fields["ngo"].queryset = user.ngos
+                form.base_fields["kind"].choices = [(KIND.RESOURCE, KIND.RESOURCE), (KIND.VOLUNTEER, KIND.VOLUNTEER)]
             except NGO.DoesNotExist:
                 pass
-
         return form
 
     def get_changeform_initial_data(self, request):
