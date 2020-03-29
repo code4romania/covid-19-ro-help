@@ -659,3 +659,7 @@ msgstr "COVID-19 RO HELP"
 msgid "RO HELP"
 msgstr "RO HELP"
 
+#: hub/utils.py:21
+msgid "A coherent and safe collection of aid."
+msgstr "Colectarea coerentă și în siguranță a ajutoarelor."
+

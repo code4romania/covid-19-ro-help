@@ -1,5 +1,7 @@
 {% extends "ngo/base.html" %}
+{% load custom_tags %}
 
+{% block meta_tags %}{% with title="About" %}{% meta_tags %}{% endwith %}{% endblock %}
 
 {% block content %}
     About
