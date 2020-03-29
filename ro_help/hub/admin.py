@@ -9,12 +9,15 @@ from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import activate
+from django.db import models, transaction
 from hub import utils
-from .forms import RegisterNGORequestVoteForm
+from .forms import RegisterNGORequestVoteForm, NGOForm
 from .models import (
     NGO,
+    KIND,
     NGOReportItem,
     NGONeed,
+    NGOAccount,
     NGOHelper,
     ResourceTag,
     RegisterNGORequest,
@@ -54,17 +57,28 @@ class ActiveNGONeedFilter(SimpleListFilter):
         return queryset
 
 
+class NGOAccountInline(admin.TabularInline):
+    model = NGOAccount
+    fields = ("currency", "bank", "iban")
+    can_delete = True
+    can_add = True
+    verbose_name_plural = _("Bank Accounts")
+    extra = 1
+
+
 @admin.register(NGO)
 class NGOAdmin(admin.ModelAdmin):
     icon_name = "home_work"
     list_per_page = 25
+    form = NGOForm
 
-    list_display = ("name", "email", "phone", "city", "county", "created")
+    list_display = ("name", "contact_name", "county", "city", "accepts_transfer", "accepts_mobilpay", "created")
     list_filter = (
         "city",
         "county",
     )
     search_fields = ("name", "email")
+    inlines = [NGOAccountInline]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -84,6 +98,28 @@ class NGOAdmin(admin.ModelAdmin):
             return ["users"]
 
         return []
+
+    @transaction.atomic
+    def save_model(self, request, ngo, form, change):
+        super().save_model(request, ngo, form, change)
+        if ngo.accepts_transfer:
+            if not ngo.accounts.all():
+                self.message_user(
+                    request, _("To accept IBAN Transfers you need to add at least one account."), level=messages.ERROR,
+                )
+                ngo.accepts_transfer = False
+                ngo.save()
+        if ngo.accepts_transfer or ngo.accepts_mobilpay:
+            NGONeed.objects.get_or_create(
+                ngo=ngo,
+                title=ngo.name,
+                description=ngo.donations_description,
+                kind=KIND.MONEY,
+                city=ngo.city,
+                county=ngo.county,
+            )
+        else:
+            NGONeed.objects.filter(ngo=ngo, kind=KIND.MONEY).delete()
 
 
 @admin.register(NGOReportItem)
@@ -172,9 +208,9 @@ class NGONeedAdmin(admin.ModelAdmin):
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
             try:
                 form.base_fields["ngo"].queryset = user.ngos
+                form.base_fields["kind"].choices = [(KIND.RESOURCE, KIND.RESOURCE), (KIND.VOLUNTEER, KIND.VOLUNTEER)]
             except NGO.DoesNotExist:
                 pass
-
         return form
 
     def get_changeform_initial_data(self, request):
@@ -217,6 +253,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 @admin.register(ResourceTag)
 class ResourceTagAdmin(admin.ModelAdmin):
     icon_name = "filter_vintage"
+    search_fields = ("name",)
 
 
 class RegisterNGORequestVoteInline(admin.TabularInline):

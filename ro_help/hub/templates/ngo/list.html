@@ -142,7 +142,7 @@
 
 
 <div class="container">
-    {% include "shared/pagination.html" with page_obj=page_obj %}
+    {% include "shared/pagination.html" with page_obj=page_obj page_parameter_name="page" %}
 
     <div class="columns is-multiline">
         {% for need in page_obj %}

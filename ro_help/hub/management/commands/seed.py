@@ -4,10 +4,26 @@ import requests
 from faker import Faker
 
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, Permission
 from django.utils import timezone
 
-from hub.models import NGO, NGONeed, KIND, URGENCY, ResourceTag, ADMIN_GROUP_NAME, NGO_GROUP_NAME, NGOReportItem
+from hub.models import (
+    NGO,
+    NGONeed,
+    NGOHelper,
+    NGOAccount,
+    PendingRegisterNGORequest,
+    RegisterNGORequest,
+    RegisterNGORequestVote,
+    KIND,
+    URGENCY,
+    ResourceTag,
+    ADMIN_GROUP_NAME,
+    NGO_GROUP_NAME,
+    DSU_GROUP_NAME,
+    FFC_GROUP_NAME,
+    NGOReportItem,
+)
 from mobilpay.models import PaymentOrder
 
 
@@ -102,17 +118,76 @@ class Command(BaseCommand):
         if not User.objects.filter(username="user").exists():
             User.objects.create_user("user", "user@user.com", "user", is_staff=True)
 
+        if not User.objects.filter(username="dsu").exists():
+            User.objects.create_user("dsu", "user@user.com", "dsu", is_staff=True)
+
+        if not User.objects.filter(username="ffc").exists():
+            User.objects.create_user("ffc", "user@user.com", "ffc", is_staff=True)
+
         admin_user = User.objects.get(username="admin")
         ngo_user = User.objects.get(username="user")
+        dsu_user = User.objects.get(username="dsu")
+        ffc_user = User.objects.get(username="ffc")
 
         admin_group, _ = Group.objects.get_or_create(name=ADMIN_GROUP_NAME)
         ngo_group, _ = Group.objects.get_or_create(name=NGO_GROUP_NAME)
+        dsu_group, _ = Group.objects.get_or_create(name=DSU_GROUP_NAME)
+        ffc_group, _ = Group.objects.get_or_create(name=FFC_GROUP_NAME)
+
+        # models.NamedCredentials: ['add', 'change', 'delete', 'view'],
+        GROUPS_PERMISSIONS = {
+            NGO_GROUP_NAME: {
+                NGO: ["change", "view"],
+                NGOHelper: ["view"],
+                NGONeed: ["add", "change", "view"],
+                NGOReportItem: ["add", "change", "delete", "view"],
+                NGOAccount: ["add", "change", "delete", "view"],
+            },
+            DSU_GROUP_NAME: {
+                PendingRegisterNGORequest: ["view", "change"],
+                RegisterNGORequest: ["view"],
+                RegisterNGORequestVote: ["view", "change"],
+            },
+            FFC_GROUP_NAME: {
+                PendingRegisterNGORequest: ["view", "change"],
+                RegisterNGORequest: ["view"],
+                RegisterNGORequestVote: ["view", "change"],
+            },
+        }
+
+        for group_name in GROUPS_PERMISSIONS:
+
+            # Get or create group
+            group, created = Group.objects.get_or_create(name=group_name)
+
+            # Loop models in group
+            for model_cls in GROUPS_PERMISSIONS[group_name]:
+
+                # Loop permissions in group/model
+                for perm_index, perm_name in enumerate(GROUPS_PERMISSIONS[group_name][model_cls]):
+
+                    # Generate permission name as Django would generate it
+                    codename = perm_name + "_" + model_cls._meta.model_name
+
+                    try:
+                        # Find permission object and add to group
+                        perm = Permission.objects.get(codename=codename)
+                        group.permissions.add(perm)
+                        self.stdout.write("Adding " + codename + " to group " + group.__str__())
+                    except Permission.DoesNotExist:
+                        self.stdout.write(codename + " not found")
 
         admin_user.groups.add(admin_group)
         admin_user.save()
 
         ngo_user.groups.add(ngo_group)
         ngo_user.save()
+
+        dsu_user.groups.add(dsu_group)
+        dsu_user.save()
+
+        ffc_user.groups.add(ffc_group)
+        ffc_user.save()
 
         tags = []
         for resource in RESOURCE_TAGS:
