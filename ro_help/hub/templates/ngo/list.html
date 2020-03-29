@@ -56,7 +56,6 @@
                 </div>
             </div>
         </div>
-
         <div class="column is-narrow filter-dropdown is-marginless">
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
@@ -93,7 +92,6 @@
             </div>
 
         </div>
-
         <div class="column is-narrow filter-dropdown is-marginless">
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
@@ -142,68 +140,71 @@
 
 
 <div class="container">
-    {% include "shared/pagination.html" with page_obj=page_obj %}
-
-    <div class="columns is-multiline">
-        {% for need in page_obj %}
-        <div class="need is-flex container">
-                {% if need.kind == "money" %}
-                    <div class="need-icon" style="background-color: #F5BCD6;">
-                        <i class="fas fa-dollar-sign icon"></i>
-                    </div>
-                {% else %}
-                    {% if need.kind == "resource" %}
-                        <div class="need-icon" style="background-color: #05d6c8">
-                            <i class="fas fa-box-open icon"></i>
+    {% if page_obj %}
+        {% include "shared/pagination.html" with page_obj=page_obj %}
+        <div class="columns is-multiline">
+            {% for need in page_obj %}
+            <div class="need is-flex container">
+                    {% if need.kind == "money" %}
+                        <div class="need-icon" style="background-color: #F5BCD6;">
+                            <i class="fas fa-dollar-sign icon"></i>
                         </div>
                     {% else %}
-                        <span class="need-icon" style="background-color: #FFB800">
-                                <i class="fas fa-people-carry icon"></i>
-                        </span>
+                        {% if need.kind == "resource" %}
+                            <div class="need-icon" style="background-color: #05d6c8">
+                                <i class="fas fa-box-open icon"></i>
+                            </div>
+                        {% else %}
+                            <span class="need-icon" style="background-color: #FFB800">
+                                    <i class="fas fa-people-carry icon"></i>
+                            </span>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
 
-            <div class="card-image need-logo is-hidden-mobile">
-               <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
-            </div>
-
-            <div class="card-info">
-                <div class="flex-align-center">
-                    <div class="card-image need-logo is-hidden-tablet">
-                        <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
-                    </div>
-                    <div class="need-title is-hidden-tablet">{{need.ngo.name}}</div>
+                <div class="card-image need-logo is-hidden-mobile">
+                   <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
                 </div>
-                <div class="need-title is-hidden-mobile">{{need.ngo.name}}</div>
-                <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
-                {% if need.resource_tags.all  %}
-                    <div class="tag-bar">
-                        {% for tag in need.resource_tags.all %}
-                            <span class="tag">{{ tag }}</span>
-                        {% endfor%}
+
+                <div class="card-info">
+                    <div class="flex-align-center">
+                        <div class="card-image need-logo is-hidden-tablet">
+                            <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
+                        </div>
+                        <div class="need-title is-hidden-tablet">{{need.ngo.name}}</div>
                     </div>
-                {% endif %}
-
-            </div>
-            <div class="vr"></div>
-            <hr class="is-hidden-tablet" style="margin: 0 10%;"/>
-            {% url 'ngo-helper-create' need.ngo.pk need.pk as base %}
-
-            <div class="need-call2action">
-                <a class="button is-flex has-background-success has-text-weight-bold has-text-white"
-                   href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">
-                    {% if need.kind == "money" %}
-                        {% trans "Donate" %}
-                    {% else %}
-                        {% trans "I can help" %}
+                    <div class="need-title is-hidden-mobile">{{need.ngo.name}}</div>
+                    <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
+                    {% if need.resource_tags.all  %}
+                        <div class="tag-bar">
+                            {% for tag in need.resource_tags.all %}
+                                <span class="tag">{{ tag }}</span>
+                            {% endfor%}
+                        </div>
                     {% endif %}
-                </a>
-            </div>
 
+                </div>
+                <div class="vr"></div>
+                <hr class="is-hidden-tablet" style="margin: 0 10%;"/>
+                {% url 'ngo-helper-create' need.ngo.pk need.pk as base %}
+
+                <div class="need-call2action">
+                    <a class="button is-flex has-background-success has-text-weight-bold has-text-white"
+                       href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">
+                        {% if need.kind == "money" %}
+                            {% trans "Donate" %}
+                        {% else %}
+                            {% trans "I can help" %}
+                        {% endif %}
+                    </a>
+                </div>
+
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    {% include "shared/pagination.html" with page_obj=page_obj %}
+        {% include "shared/pagination.html" with page_obj=page_obj %}
+    {% else %}
+        <p style="text-align: center;">{% trans "No results matching query" %}</p>
+    {% endif %}
     {% include "register-ngo.html" %}
 </div>
 {% endblock %}
