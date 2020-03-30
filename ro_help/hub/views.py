@@ -172,6 +172,7 @@ class NGONeedListView(InfoContextMixin, ListView):
             )
             .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
             .order_by("-rank")
+            .distinct()
         )
 
         if not hasattr(self, "search_cache"):
