@@ -31,6 +31,7 @@ from mobilpay.models import PaymentOrder
 NEEDS_PER_PAGE = 3
 DONATIONS_PER_PAGE = 10
 
+
 class InfoContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -42,7 +43,6 @@ class InfoContextMixin:
 
 
 class NGOKindFilterMixin:
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -90,8 +90,7 @@ class NGODonationsReportsMixin:
         donations_page = self.request.GET.get("donations_page")
         # Donations paginator.
         ngo_donations = ngo.get_funders()
-        donations_paginator = paginator.Paginator(
-            ngo_donations.order_by("-created"), DONATIONS_PER_PAGE)
+        donations_paginator = paginator.Paginator(ngo_donations.order_by("-created"), DONATIONS_PER_PAGE)
 
         try:
             donations_page_obj = donations_paginator.page(donations_page)
@@ -102,12 +101,10 @@ class NGODonationsReportsMixin:
         report_item_page = self.request.GET.get("report_items_page")
         # Report items paginator.
         ngo_report_items = ngo.report_items.all()
-        report_items_paginator = paginator.Paginator(
-            ngo_report_items.order_by("-created"), DONATIONS_PER_PAGE)
+        report_items_paginator = paginator.Paginator(ngo_report_items.order_by("-created"), DONATIONS_PER_PAGE)
 
         try:
-            report_items_page_obj = \
-                report_items_paginator.page(report_item_page)
+            report_items_page_obj = report_items_paginator.page(report_item_page)
         except (paginator.PageNotAnInteger, paginator.EmptyPage):
             report_items_page_obj = report_items_paginator.page(1)
         context["report_items_page_obj"] = report_items_page_obj
@@ -199,7 +196,7 @@ class NGONeedListView(InfoContextMixin, ListView):
 
         cities = needs.order_by("city")
         if self.request.GET.get("county"):
-            print('CITIES:', cities, dir(cities))
+            print("CITIES:", cities, dir(cities))
             cities = cities.filter(county=self.request.GET.get("county"))
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
@@ -219,9 +216,9 @@ class NGODetailView(InfoContextMixin, NGODonationsReportsMixin, DetailView):
     model = NGO
 
 
-class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin,
-                          NGOKindFilterMixin, NGODonationsReportsMixin,
-                          CreateView):
+class NGOHelperCreateView(
+    SuccessMessageMixin, InfoContextMixin, NGOKindFilterMixin, NGODonationsReportsMixin, CreateView
+):
 
     template_name = "ngo/detail.html"
     model = NGOHelper

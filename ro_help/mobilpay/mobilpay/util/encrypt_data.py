@@ -7,6 +7,7 @@ from OpenSSL import crypto
 import base64
 import requests
 
+
 class Crypto:
     @staticmethod
     def get_private_key(file_path, password=None):

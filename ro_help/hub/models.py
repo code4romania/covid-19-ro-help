@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_extensions.db.models import TimeStampedModel
 
+from .storage_backends import PublicMediaStorage, PrivateMediaStorage
 
 ADMIN_GROUP_NAME = "Admin"
 NGO_GROUP_NAME = "ONG"
@@ -199,9 +200,11 @@ class NGO(TimeStampedModel):
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
     city = models.CharField(_("City"), max_length=100)
 
-    avatar = models.ImageField(_("Avatar"), max_length=300)
-    last_balance_sheet = models.FileField(_("First page of last balance sheet"), max_length=300, null=True, blank=True)
-    statute = models.FileField(_("NGO Statute"), max_length=300, null=True, blank=True)
+    avatar = models.ImageField(_("Avatar"), max_length=300, storage=PublicMediaStorage())
+    last_balance_sheet = models.FileField(
+        _("First page of last balance sheet"), max_length=300, null=True, blank=True, storage=PrivateMediaStorage()
+    )
+    statute = models.FileField(_("NGO Statute"), max_length=300, null=True, blank=True, storage=PrivateMediaStorage())
 
     accepts_mobilpay = models.BooleanField(_("Accepts mobilpay"), default=False)
     accepts_transfer = models.BooleanField(_("Accepts transfers"), default=False)
@@ -214,8 +217,12 @@ class NGO(TimeStampedModel):
         blank=True,
         help_text=_("XXXX-XXXX-XXXX-XXXX-XXXX"),
     )
-    mobilpay_public_key = models.FileField(_("mobilpay Public key"), max_length=300, null=True, blank=True)
-    mobilpay_private_key = models.FileField(_("mobilpay Private key"), max_length=300, null=True, blank=True)
+    mobilpay_public_key = models.FileField(
+        _("mobilpay Public key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorage()
+    )
+    mobilpay_private_key = models.FileField(
+        _("mobilpay Private key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorage()
+    )
 
     def __str__(self):
         return self.name
