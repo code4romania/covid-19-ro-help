@@ -184,6 +184,8 @@ class NGONeedAdmin(admin.ModelAdmin):
     inlines = [NGOHelperInline]
     actions = ["resolve_need", "close_need"]
     search_fields = (
+        "title",
+        "resource_tags__name",
         "ngo__name",
         "ngo__email",
     )
