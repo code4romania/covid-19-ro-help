@@ -208,7 +208,6 @@ class Command(BaseCommand):
                 ngo.users.add(owner)
                 ngo.save()
 
-
             for _ in range(20):
                 need = NGONeed.objects.create(
                     **{

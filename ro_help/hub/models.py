@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User, Group
 from django.db import models, transaction
@@ -186,6 +187,17 @@ class NGOAccount(models.Model):
         pass
 
 
+from ro_help.storage_backends import PrivateStorage
+
+
+class PrivateFileField(models.FileField):
+    def __init__(self, verbose_name=None, name=None, upload_to='', storage=None, **kwargs):
+        storage = None
+        if hasattr(settings, 'AWS_PRIVATE_MEDIA_LOCATION'):
+            storage = PrivateStorage()
+        super().__init__(verbose_name, name, upload_to, storage, **kwargs)
+
+
 class NGO(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
     users = models.ManyToManyField(User, related_name="ngos")
@@ -200,8 +212,8 @@ class NGO(TimeStampedModel):
     city = models.CharField(_("City"), max_length=100)
 
     avatar = models.ImageField(_("Avatar"), max_length=300)
-    last_balance_sheet = models.FileField(_("First page of last balance sheet"), max_length=300, null=True, blank=True)
-    statute = models.FileField(_("NGO Statute"), max_length=300, null=True, blank=True)
+    last_balance_sheet = PrivateFileField(_("First page of last balance sheet"), max_length=300, null=True, blank=True)
+    statute = PrivateFileField(_("NGO Statute"), max_length=300, null=True, blank=True)
 
     accepts_mobilpay = models.BooleanField(_("Accepts mobilpay"), default=False)
     accepts_transfer = models.BooleanField(_("Accepts transfers"), default=False)
