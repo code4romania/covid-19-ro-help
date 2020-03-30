@@ -28,6 +28,9 @@ from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
 
 
+NEEDS_PER_PAGE = 3
+DONATIONS_PER_PAGE = 10
+
 class InfoContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -59,7 +62,7 @@ class NGOKindFilterMixin:
 
         for kind in KIND.to_list():
             kind_needs = needs.filter(kind=kind)
-            needs_paginator = paginator.Paginator(kind_needs, 3)
+            needs_paginator = paginator.Paginator(kind_needs, NEEDS_PER_PAGE)
             page = self.request.GET.get("{}_page".format(kind))
 
             # Catch invalid page numbers
@@ -78,8 +81,6 @@ class NGODonationsReportsMixin:
     Class used for separately paginating the donations and the reports.
     """
 
-    paginated_by = 10
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         ngo = kwargs.get("ngo", context.get("ngo"))
@@ -90,7 +91,7 @@ class NGODonationsReportsMixin:
         # Donations paginator.
         ngo_donations = ngo.get_funders()
         donations_paginator = paginator.Paginator(
-            ngo_donations.order_by("-created"), self.paginated_by)
+            ngo_donations.order_by("-created"), DONATIONS_PER_PAGE)
 
         try:
             donations_page_obj = donations_paginator.page(donations_page)
@@ -102,7 +103,7 @@ class NGODonationsReportsMixin:
         # Report items paginator.
         ngo_report_items = ngo.report_items.all()
         report_items_paginator = paginator.Paginator(
-            ngo_report_items.order_by("-created"), self.paginated_by)
+            ngo_report_items.order_by("-created"), DONATIONS_PER_PAGE)
 
         try:
             report_items_page_obj = \
@@ -198,6 +199,7 @@ class NGONeedListView(InfoContextMixin, ListView):
 
         cities = needs.order_by("city")
         if self.request.GET.get("county"):
+            print('CITIES:', cities, dir(cities))
             cities = cities.filter(county=self.request.GET.get("county"))
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
