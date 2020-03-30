@@ -203,7 +203,9 @@
         </div>
         {% include "shared/pagination.html" with page_obj=page_obj %}
     {% else %}
-        <p style="text-align: center; padding-bottom: 20px;">{% trans "No results matching query" %}</p>
+        <div class="content">
+            <p style="text-align: center;">{% trans "No results matching query" %}</p>
+        </div>
     {% endif %}
     {% include "register-ngo.html" %}
 </div>
