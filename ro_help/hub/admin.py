@@ -306,6 +306,7 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
     ]
     actions = ["create_account"]
     readonly_fields = ["active", "resolved_on", "registered_on", "get_avatar"]
+    list_filter = ("city", "county", "registered_on")
     inlines = [RegisterNGORequestVoteInline]
 
     def get_changeform_initial_data(self, request):
@@ -378,7 +379,7 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
         "resolved_on",
         "get_avatar",
     )
-
+    list_filter = ("city", "county", "registered_on")
     actions = ["vote"]
     inlines = [RegisterNGORequestVoteInline]
 
