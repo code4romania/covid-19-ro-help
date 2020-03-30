@@ -213,7 +213,7 @@ class Command(BaseCommand):
                 need = NGONeed.objects.create(
                     **{
                         "ngo": ngo,
-                        "kind": random.choice(["volunteer", "resource"]),
+                        "kind": random.choice(KIND.to_list()[:-1]),
                         "urgency": random.choice(URGENCY.to_list()),
                         "description": fake.text(),
                         "title": fake.text(),
