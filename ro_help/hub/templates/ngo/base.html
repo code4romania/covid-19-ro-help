@@ -132,9 +132,11 @@
                         {% if project.description %}
                         <p class="call-to-action">{{project.description}}</p>
                         {% endif %}
-                        <button class="button is-fullwidth is-white has-text-centered has-text-weight-bold"
-                                style="background-color: {{ project.color }};">{{ project.button_text }}
-                        </button>
+                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold"
+                           style="background-color: {{ project.color }};" href="{{project.url}}"
+                           rel="nofollow">
+                            {{ project.button_text }}
+                        </a>
                     </div>
                 </div>
 

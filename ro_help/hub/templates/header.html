@@ -44,20 +44,19 @@
 
                     {% get_available_languages as LANGUAGES %}
                     {% get_current_language as LANGUAGE_CODE %}
-
-                    {% for language in LANGUAGES %}
-                        {% if language.0 != LANGUAGE_CODE %}
-                        <a class="navbar-item">
-                            <form class="d-inline" action="{% url 'set_language' %}" method="post">
-                                {% csrf_token %}
-                                <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                                <input type="hidden" name="language" value="{{ language.0 }}"/>
-                                <input class="button is-success" type="submit" value="{{ language.0 | upper }}"/>
-                            </form>
-                        </a>
-                        {% endif %}
-                    {% endfor %}
-
+                    <div class="navbar-item">
+                        <form class="d-inline" action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                            <div class="select">
+                              <select id="language" name="language" onchange="this.form.submit()">
+                                {% for language in LANGUAGES %}
+                                <option {% if language.0 == LANGUAGE_CODE %} selected {% endif %} name="language" value="{{language.0}}">{{language.0 | upper}}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
