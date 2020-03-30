@@ -172,7 +172,9 @@
                         </div>
                         <div class="need-title is-hidden-tablet">{{need.ngo.name}}</div>
                     </div>
-                    <div class="need-title is-hidden-mobile">{{need.ngo.name}}</div>
+                    <div class="need-title is-hidden-mobile">
+                        <a class="has-text-black" href="{% url 'ngo-detail' need.ngo.pk %}">{{need.ngo.name}}</a>
+                    </div>
                     <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
                     {% if need.resource_tags.all  %}
                         <div class="tag-bar">
