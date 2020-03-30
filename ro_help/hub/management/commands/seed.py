@@ -200,6 +200,8 @@ class Command(BaseCommand):
             .values_list("pk")[100:]
         ).delete()
 
+        NGONeed.objects.filter(kind="money").exclude(ngo__name="Code4Romania").delete()
+
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)
 

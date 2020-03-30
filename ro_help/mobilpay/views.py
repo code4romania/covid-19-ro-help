@@ -46,7 +46,7 @@ def confirm(request, order):
     if request.method == "POST":
 
         """calea catre cheia privata aflata pe serverul dumneavoastra"""
-        private_key_path = order.ngo.mobilpay_private_key.path
+        private_key_path = order.ngo.mobilpay_private_key.url
 
         """verifica daca exista env_key si data in request"""
 
