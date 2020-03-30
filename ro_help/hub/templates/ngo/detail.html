@@ -224,8 +224,18 @@
                     <tbody>
                     {% for order in donations_page_obj %}
                         <tr>
-                            <td>{{order.first_name}}</td>
-                            <td>{{order.last_name}}</td>
+                            <td>
+                                {% if order.show_name %}
+                                    {{order.first_name}}
+                                {% else %}
+                                    {% trans "Anonymous" %}   
+                                {% endif %}
+                            </td>
+                            <td>{% if order.show_name %}
+                                    {{order.last_name}}
+                                {% else %}
+                                    {% trans "Anonymous" %}   
+                                {% endif %}</td>
                             <td>{{order.amount}}</td>
                         </tr>
                     {% endfor %}
