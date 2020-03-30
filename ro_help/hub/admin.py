@@ -184,6 +184,9 @@ class NGONeedAdmin(admin.ModelAdmin):
     inlines = [NGOHelperInline]
     actions = ["resolve_need", "close_need"]
     search_fields = (
+        "title",
+        "resource_tags__name",
+        "kind",
         "ngo__name",
         "ngo__email",
     )
@@ -306,7 +309,9 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
     ]
     actions = ["create_account"]
     readonly_fields = ["active", "resolved_on", "registered_on", "get_avatar"]
+    list_filter = ("city", "county", "registered_on")
     inlines = [RegisterNGORequestVoteInline]
+    search_fields = ("name",)
 
     def get_changeform_initial_data(self, request):
         user = request.user
@@ -378,7 +383,8 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
         "resolved_on",
         "get_avatar",
     )
-
+    list_filter = ("city", "county", "registered_on")
+    search_fields = ("name",)
     actions = ["vote"]
     inlines = [RegisterNGORequestVoteInline]
 
