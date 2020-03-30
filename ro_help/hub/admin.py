@@ -186,6 +186,7 @@ class NGONeedAdmin(admin.ModelAdmin):
     search_fields = (
         "title",
         "resource_tags__name",
+        "kind",
         "ngo__name",
         "ngo__email",
     )
