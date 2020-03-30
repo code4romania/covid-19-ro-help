@@ -47,7 +47,7 @@ ALLOWED_HOSTS += env.list("ALLOWED_HOSTS")
 
 INSTALLED_APPS = [
     "hub",
-    "mobilpay",
+    "mobilpay.apps.MobilpayConfig",
     "material.admin",
     "material.admin.default",
     "django.contrib.auth",
