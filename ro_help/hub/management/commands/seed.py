@@ -208,13 +208,12 @@ class Command(BaseCommand):
                 ngo.users.add(owner)
                 ngo.save()
 
-            NGONeed.objects.filter(pk__in=ngo.needs.order_by("created").values_list("pk")[20:]).delete()
 
             for _ in range(20):
                 need = NGONeed.objects.create(
                     **{
                         "ngo": ngo,
-                        "kind": random.choice(KIND.to_list()),
+                        "kind": random.choice(["volunteer", "resource"]),
                         "urgency": random.choice(URGENCY.to_list()),
                         "description": fake.text(),
                         "title": fake.text(),
@@ -226,12 +225,9 @@ class Command(BaseCommand):
 
                 for _ in range(len(RESOURCE_TAGS)):
                     need.resource_tags.add(random.choice(tags))
+            NGONeed.objects.filter(pk__in=ngo.needs.order_by("created").values_list("pk")[20:]).delete()
 
         for ngo in NGO.objects.all():
-            PaymentOrder.objects.filter(
-                pk__in=PaymentOrder.objects.filter(ngo=ngo).order_by("created").values_list("pk")[10:]
-            ).delete()
-
             for _ in range(random.choice([3, 4, 5, 6, 10])):
                 PaymentOrder.objects.create(
                     ngo=ngo,
@@ -245,10 +241,10 @@ class Command(BaseCommand):
                     date=fake.date_between(start_date="-30y", end_date="today"),
                     success=True,
                 )
-
-            NGOReportItem.objects.filter(
-                pk__in=NGOReportItem.objects.filter(ngo=ngo).order_by("created").values_list("pk")[10:]
+            PaymentOrder.objects.filter(
+                pk__in=PaymentOrder.objects.filter(ngo=ngo).order_by("created").values_list("pk")[10:]
             ).delete()
+
 
             for _ in range(random.choice([3, 4, 5, 6, 10])):
                 NGOReportItem.objects.create(
@@ -257,3 +253,6 @@ class Command(BaseCommand):
                     title=f"Achizitionat {random.choice(RESOURCE_TAGS)}",
                     amount=random.choice([100, 200, 300, 400, 500, 150]),
                 )
+            NGOReportItem.objects.filter(
+                pk__in=NGOReportItem.objects.filter(ngo=ngo).order_by("created").values_list("pk")[10:]
+            ).delete()
