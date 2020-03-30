@@ -1,12 +1,12 @@
 {% load static %}
-{% load custom_tags %}
+{% load meta_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% block meta_tags %}{% with title="RO HELP" %}{% meta_tags %}{% endwith %}{% endblock %}
+{% block meta_tags %}{% with title="RO HELP" %}{% meta_tags %}{% endwith %}{% endblock %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700&subset=latin-ext">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" href="{% static "css/bulma-collapsible.min.css" %}">

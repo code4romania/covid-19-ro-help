@@ -2,7 +2,7 @@
 {% load static %}
 {% load spurl %}
 {% load i18n %}
-{% load custom_tags %}
+{% load meta_tags %}
 
 {% block meta_tags %}{% with title=ngo.name, image=ngo.avatar, description=ngo.description %}{% meta_tags %}{% endwith %}{% endblock %}
 
