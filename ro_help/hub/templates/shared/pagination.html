@@ -1,31 +1,32 @@
 {% load spurl %}
 {% load i18n %}
-
+{% with page_parameter_name|default:"page" as page %}
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
-        <a class="pagination-previous" href="{% spurl base='{{ request.get_full_path }}' set_query='page=1' %}">&laquo;
+        <a class="pagination-previous" href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}=1' %}">&laquo;
             {% trans "first" %}</a>
         <a class="pagination-previous"
-            href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.previous_page_number }}' %}">{% trans "previous" %}</a>
+            href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}={{ page_obj.previous_page_number }}' %}">{% trans "previous" %}</a>
         {% endif %}
     </span>
 
     <span class="current">
         {% blocktrans with page=page_obj.number no_pages=page_obj.paginator.num_pages %}
             Page {{ page }} of {{ no_pages }}
-            
+
         {% endblocktrans %}
     </span>
-    
+
     <span class="step-links">
         {% if page_obj.has_next %}
         <a class="pagination-next"
-            href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.next_page_number }}' %}">{% trans "next" %}</a>
+            href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}={{ page_obj.next_page_number }}' %}">{% trans "next" %}</a>
         <a class="pagination-next"
-            href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.paginator.num_pages }}' %}">{% trans "last" %}
+            href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}={{ page_obj.paginator.num_pages }}' %}">{% trans "last" %}
             &raquo;</a>
         {% endif %}
     </span>
 
 </nav>
++{% endwith %}

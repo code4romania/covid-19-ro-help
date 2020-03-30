@@ -28,6 +28,9 @@ from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
 
 
+NEEDS_PER_PAGE = 3
+DONATIONS_PER_PAGE = 10
+
 class InfoContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -39,7 +42,6 @@ class InfoContextMixin:
 
 
 class NGOKindFilterMixin:
-    paginated_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -53,8 +55,6 @@ class NGOKindFilterMixin:
         if not ngo:
             return context
 
-        page = self.request.GET.get("page")
-
         needs = ngo.needs.filter(resolved_on=None)
         if "need" in kwargs:
             needs = needs.exclude(pk=kwargs["need"].pk)
@@ -62,7 +62,8 @@ class NGOKindFilterMixin:
 
         for kind in KIND.to_list():
             kind_needs = needs.filter(kind=kind)
-            needs_paginator = paginator.Paginator(kind_needs, self.paginated_by)
+            needs_paginator = paginator.Paginator(kind_needs, NEEDS_PER_PAGE)
+            page = self.request.GET.get("{}_page".format(kind))
 
             # Catch invalid page numbers
             try:
@@ -75,7 +76,46 @@ class NGOKindFilterMixin:
         return context
 
 
-class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
+class NGODonationsReportsMixin:
+    """
+    Class used for separately paginating the donations and the reports.
+    """
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ngo = kwargs.get("ngo", context.get("ngo"))
+
+        if not ngo:
+            return context
+        donations_page = self.request.GET.get("donations_page")
+        # Donations paginator.
+        ngo_donations = ngo.get_funders()
+        donations_paginator = paginator.Paginator(
+            ngo_donations.order_by("-created"), DONATIONS_PER_PAGE)
+
+        try:
+            donations_page_obj = donations_paginator.page(donations_page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            donations_page_obj = donations_paginator.page(1)
+        context["donations_page_obj"] = donations_page_obj
+
+        report_item_page = self.request.GET.get("report_items_page")
+        # Report items paginator.
+        ngo_report_items = ngo.report_items.all()
+        report_items_paginator = paginator.Paginator(
+            ngo_report_items.order_by("-created"), DONATIONS_PER_PAGE)
+
+        try:
+            report_items_page_obj = \
+                report_items_paginator.page(report_item_page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            report_items_page_obj = report_items_paginator.page(1)
+        context["report_items_page_obj"] = report_items_page_obj
+
+        return context
+
+
+class NGONeedListView(InfoContextMixin, ListView):
     allow_filters = ["county", "city", "urgency"]
     paginate_by = 9
 
@@ -159,6 +199,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
         cities = needs.order_by("city")
         if self.request.GET.get("county"):
+            print('CITIES:', cities, dir(cities))
             cities = cities.filter(county=self.request.GET.get("county"))
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
@@ -172,13 +213,16 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         return context
 
 
-class NGODetailView(InfoContextMixin, NGOKindFilterMixin, DetailView):
+class NGODetailView(InfoContextMixin, NGODonationsReportsMixin, DetailView):
     template_name = "ngo/detail.html"
     context_object_name = "ngo"
     model = NGO
 
 
-class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMixin, CreateView):
+class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin,
+                          NGOKindFilterMixin, NGODonationsReportsMixin,
+                          CreateView):
+
     template_name = "ngo/detail.html"
     model = NGOHelper
     form_class = NGOHelperForm

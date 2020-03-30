@@ -137,7 +137,7 @@
         <div id="donate-resources" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
             <div class="card-content donation-card">
                 <div class="container">
-                    {% include "shared/pagination.html" with page_obj=resource_page_obj %}
+                    {% include "shared/pagination.html" with page_obj=resource_page_obj page_parameter_name="resource_page" %}
                 </div>
 
                 {% if current_need.kind == 'resource' and resource_page_obj.number == 1%}
@@ -176,11 +176,11 @@
             <div class="card-content donation-card">
 
                 <div class="container">
-                    {% include "shared/pagination.html" with page_obj=resource_page_obj %}
+                    {% include "shared/pagination.html" with page_obj=volunteer_page_obj page_parameter_name="volunteer_page" %}
                 </div>
 
-                {% if current_need.kind == 'volunteer' and resource_page_obj.number == 1%}
-                {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
+                {% if current_need.kind == 'volunteer' and volunteer_page_obj.number == 1%}
+                {% include "shared/need_form.html" with current_form=form page=volunteer_page_obj.number %}
                 {% endif %}
 
                 {% for need in volunteer_page_obj %}
@@ -209,6 +209,10 @@
 
         <div id="donations" class="is-collapsible">
             <div class="card-content donation-card">
+
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=donations_page_obj page_parameter_name="donations_page" %}
+                </div>
                 <table class="donations-table">
                     <thead>
                         <tr>
@@ -218,7 +222,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for order in ngo.get_funders %}
+                    {% for order in donations_page_obj %}
                         <tr>
                             <td>{{order.first_name}}</td>
                             <td>{{order.last_name}}</td>
@@ -247,6 +251,10 @@
 
         <div id="reporting" class="is-collapsible">
             <div class="card-content donation-card">
+
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=report_items_page_obj page_parameter_name="report_items_page" %}
+                </div>
                 <table class="donations-table">
                     <thead>
                         <tr>
@@ -256,7 +264,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for report in ngo.report_items.all %}
+                    {% for report in report_items_page_obj %}
                     <tr>
                         <td>{{report.date}}</td>
                         <td>{{report.title}}</td>
