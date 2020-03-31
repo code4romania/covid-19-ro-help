@@ -125,14 +125,14 @@
                 <div class="tool">
                     <div class="is-flex">
                         <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
-                        <h1 class="card-content is-size-5" style="background-color: #f0f0f0;">
+                        <h1 class="card-content" style="background-color: #f0f0f0;">
                             {{ project.call_to_action }}</h1>
                     </div>
                     <div class="card-content" style="background-color: #fafafa;">
                         {% if project.description %}
                         <p class="call-to-action">{{project.description}}</p>
                         {% endif %}
-                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold"
+                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold sidebar-btn"
                            style="background-color: {{ project.color }};" href="{{project.url}}"
                            rel="nofollow">
                             {{ project.button_text }}
