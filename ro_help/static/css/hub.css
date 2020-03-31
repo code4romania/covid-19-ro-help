@@ -496,6 +496,7 @@ footer {
 .donations-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 32px;
 }
 
 .donations-table th {
