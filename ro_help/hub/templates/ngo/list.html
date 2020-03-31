@@ -145,6 +145,7 @@
         <div class="columns is-multiline">
             {% for need in page_obj %}
             <div class="need is-flex container">
+                #{{need.pk}}
                     {% if need.kind == "money" %}
                         <div class="need-icon" style="background-color: #F5BCD6;">
                             <i class="fas fa-dollar-sign icon"></i>

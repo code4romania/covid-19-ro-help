@@ -231,12 +231,12 @@ class NGO(TimeStampedModel):
         return self.payment_orders.filter(success=True)
 
     def get_avatar(self):
-        if self.avatar:
-            if "http" in str(self.avatar):
-                return str(self.avatar)
-            return f"{self.avatar.url}"
-        else:
-            return None
+        # if self.avatar:
+        #     # if "http" in str(self.avatar):
+        #     #     return str(self.avatar)
+        #     return f"{self.avatar.url}"
+        # else:
+        return None
 
     class Meta:
         verbose_name_plural = _("NGOs")

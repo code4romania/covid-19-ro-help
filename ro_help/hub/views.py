@@ -2,6 +2,7 @@ import json
 
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.postgres.aggregates import StringAgg
 from django.contrib.postgres.search import SearchVector, TrigramSimilarity, SearchRank, SearchQuery
 from django.core import paginator
 from django.db.models import Q
@@ -157,7 +158,7 @@ class NGONeedListView(InfoContextMixin, ListView):
         vector = (
             SearchVector("title", weight="A", config="romanian_unaccent")
             + SearchVector("ngo__name", weight="B", config="romanian_unaccent")
-            + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
+            + SearchVector(StringAgg("resource_tags__name", delimiter=" "), weight="C", config="romanian_unaccent")
         )
 
         result = (
@@ -165,11 +166,10 @@ class NGONeedListView(InfoContextMixin, ListView):
                 rank=SearchRank(vector, search_query),
                 similarity=TrigramSimilarity("title", query)
                 + TrigramSimilarity("ngo__name", query)
-                + TrigramSimilarity("resource_tags__name", query),
+                + TrigramSimilarity(StringAgg("resource_tags__name", delimiter=" "), query),
             )
             .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
-            .order_by("title", "-rank")
-            .distinct("title")
+            .order_by("-rank")
         )
 
         if not hasattr(self, "search_cache"):
@@ -197,7 +197,6 @@ class NGONeedListView(InfoContextMixin, ListView):
 
         cities = needs.order_by("city")
         if self.request.GET.get("county"):
-            print("CITIES:", cities, dir(cities))
             cities = cities.filter(county=self.request.GET.get("county"))
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
