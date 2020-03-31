@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.postgres.search import SearchVector, TrigramSimilarity, SearchRank, SearchQuery
@@ -10,7 +11,6 @@ from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView, DetailView, CreateView
-from django.conf import settings
 
 from hub import utils
 from hub.models import (
@@ -195,7 +195,7 @@ class NGONeedListView(InfoContextMixin, ListView):
         needs = self.search(self.get_needs())
         # We need a filter for the Red Cross in order to use it for the red
         # banner.
-        context["red_cross_data"] = needs.filter(
+        context["red_cross_need"] = needs.filter(
             ngo__name=settings.RED_CROSS_NAME, kind=KIND.MONEY).first()
 
         context["current_county"] = self.request.GET.get("county")
