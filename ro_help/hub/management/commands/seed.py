@@ -210,7 +210,6 @@ class Command(BaseCommand):
                 ngo.users.add(owner)
                 ngo.save()
 
-
             for _ in range(20):
                 need = NGONeed.objects.create(
                     **{
@@ -246,7 +245,6 @@ class Command(BaseCommand):
             PaymentOrder.objects.filter(
                 pk__in=PaymentOrder.objects.filter(ngo=ngo).order_by("created").values_list("pk")[10:]
             ).delete()
-
 
             for _ in range(random.choice([3, 4, 5, 6, 10])):
                 NGOReportItem.objects.create(
