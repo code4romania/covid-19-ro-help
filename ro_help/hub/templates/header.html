@@ -38,10 +38,10 @@
                     </a>
                     {% else %}
                     <a  href="{% url 'material:login'%}?next={{request.get_full_path|urlencode}}" class="navbar-item">
-                        <button class="button is-success">{% trans "Login" %}</button>
+                        {% trans "Login" %}
                     </a>
                     <a  href="{% url 'ngos-register-request'%}" class="navbar-item">
-                        <button class="button is-success">{% trans "Register" %}</button>
+                        {% trans "Register" %}
                     </a>
                     {% endif %}
 
