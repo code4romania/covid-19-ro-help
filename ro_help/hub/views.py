@@ -197,7 +197,6 @@ class NGONeedListView(InfoContextMixin, ListView):
 
         cities = needs.order_by("city")
         if self.request.GET.get("county"):
-            print("CITIES:", cities, dir(cities))
             cities = cities.filter(county=self.request.GET.get("county"))
 
         context["cities"] = cities.values_list("city", flat=True).distinct("city")
@@ -211,7 +210,7 @@ class NGONeedListView(InfoContextMixin, ListView):
         return context
 
 
-class NGODetailView(InfoContextMixin, NGODonationsReportsMixin, DetailView):
+class NGODetailView(InfoContextMixin, NGOKindFilterMixin, NGODonationsReportsMixin, DetailView):
     template_name = "ngo/detail.html"
     context_object_name = "ngo"
     model = NGO
@@ -270,7 +269,9 @@ class NGOHelperCreateView(
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("ngo-detail", kwargs={"pk": self.kwargs["ngo"]})
+        need = self.get_object()
+        reverse_url = reverse("ngo-need", kwargs={"ngo": need.ngo.pk, "need": need.pk})
+        return f"{reverse_url}?kind={need.kind}"
 
     def get_success_message(self, cleaned_data):
         ngo = self._get_ngo()
@@ -281,7 +282,7 @@ class NGOHelperCreateView(
             utils.send_email(
                 template="mail/new_helper.html",
                 context={"helper": cleaned_data, "need": need, "ngo": ngo, "base_path": base_path},
-                subject="[RO HELP] Mesaj nou pentru {} ".format(need.title)[:50],
+                subject="[RO HELP] Mesaj nou pentru {} ".format(need.title.replace("\n", ""))[:50],
                 to=user.email,
             )
 

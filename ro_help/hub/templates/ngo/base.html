@@ -49,18 +49,6 @@
         <div class="need-call2action"><a class="button is-success">{% trans "Donate" %}</a></div>
     </div>
 
-
-    {% if messages %}
-    <article class="message is-success">
-        {% for message in messages %}
-            <div class="message-body">
-                {{ message }}
-            </div>    
-        {% endfor %}
-    </article>
-    {% endif %}
-
-
     {% block kind-kind-filters %}
     <div id="aid_types" class="container">
         <div class="columns is-multiline">
