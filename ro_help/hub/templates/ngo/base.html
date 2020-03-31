@@ -46,7 +46,8 @@
                 {% endblocktrans %}
             </div>
         </div>
-        <div class="need-call2action"><a class="button is-success">{% trans "Donate" %}</a></div>
+        {% url 'ngo-helper-create' red_cross_context_data.ngo.pk red_cross_context_data.pk as base %}
+        <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross_context_data.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
     </div>
 
 
