@@ -203,6 +203,10 @@ footer {
     border-top: 1px solid #E5E5E5;
 }
 
+.sidebar-btn {
+    font-size: 0.9rem;
+}
+
 .ngo-list-title {
     font-size: 1.75em;
     color: #3D4F9F;
