@@ -418,6 +418,11 @@ footer {
     color: #6B6B6B;
 }
 
+.search-input+label.search-icon .icon {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
 .control.has-icons-left .icon, .control.has-icons-right .icon {
     color: #6B6B6B;
 }
