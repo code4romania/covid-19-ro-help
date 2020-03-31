@@ -60,4 +60,7 @@ class PaymentResponseAdmin(admin.ModelAdmin):
         return qs
 
     def order_id(self, obj):
-        return obj.payment_order.order_id
+        try:
+            return obj.payment_order.order_id
+        except PaymentOrder.DoesNotExist:
+            return '-'

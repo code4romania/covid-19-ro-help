@@ -174,7 +174,8 @@ class NGONeedListView(InfoContextMixin, ListView):
                 + TrigramSimilarity("resource_tags__name", query),
             )
             .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
-            .order_by("-rank")
+            .order_by("-rank", "title")
+            .distinct("title")
         )
 
         if not hasattr(self, "search_cache"):
