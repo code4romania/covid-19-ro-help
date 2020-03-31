@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView, DetailView, CreateView
+from django.conf import settings
 
 from hub import utils
 from hub.models import (
@@ -31,7 +32,6 @@ from mobilpay.models import PaymentOrder
 NEEDS_PER_PAGE = 3
 DONATIONS_PER_PAGE = 10
 
-RED_CROSS_NAME = 'Crucea Rosie'
 
 
 class InfoContextMixin:
@@ -188,20 +188,14 @@ class NGONeedListView(InfoContextMixin, ListView):
         needs = self.search(self.get_needs())
         return needs.filter(**{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET})
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         needs = self.search(self.get_needs())
         # We need a filter for the Red Cross in order to use it for the red
         # banner.
-        red_cross_filter = needs.filter(ngo__name=RED_CROSS_NAME)
-        if red_cross_filter:
-            if red_cross_filter.filter(kind=KIND.default()).exists():
-                # If we find a money need, we send it.
-                context["red_cross_context_data"] = red_cross_filter.filter(
-                    kind=KIND.default()).first()
-            else:
-                # If not, we send whatever need we get first.
-                context["red_cross_context_data"] = red_cross_filter.first()
+        context["red_cross_data"] = needs.filter(
+            ngo__name=settings.RED_CROSS_NAME, kind=KIND.MONEY).first()
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")

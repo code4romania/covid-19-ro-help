@@ -27,7 +27,7 @@
             {% trans "Direct your aid towards one of the verified organizations below. They will manage the aid and resources you provide them with so that the people most in need receive them." %}
         </p>
     </div>
-
+    {% if red_cross_data %}
     <div id="redcross-banner" class="container is-flex">
         <div class="card-image is-hidden-mobile" style="min-width:115px;">
             <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
@@ -46,10 +46,10 @@
                 {% endblocktrans %}
             </div>
         </div>
-        {% url 'ngo-helper-create' red_cross_context_data.ngo.pk red_cross_context_data.pk as base %}
-        <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross_context_data.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
+        {% url 'ngo-helper-create' red_cross_data.ngo.pk red_cross_data.pk as base %}
+        <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross_data.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
     </div>
-
+    {% endif %}
 
     {% if messages %}
     <article class="message is-success">
