@@ -28,8 +28,8 @@ from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
 
 
-NEEDS_PER_PAGE = 2
-DONATIONS_PER_PAGE = 2
+NEEDS_PER_PAGE = 3
+DONATIONS_PER_PAGE = 10
 
 
 class InfoContextMixin:
