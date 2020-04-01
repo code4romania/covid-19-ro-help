@@ -14,8 +14,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./:/opt/ro_help
-
+      - ./:/opt
   db:
     build:
       context: .

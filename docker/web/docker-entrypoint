@@ -4,10 +4,7 @@ PORT=${PORT:-"8000"}
 RUN_SEED=${RUN_SEED:-"yes"}
 RUN_MIGRATION=${RUN_MIGRATION:-"yes"}
 RUN_DEV_SERVER=${RUN_DEV_SERVER:-"yes"}
-
-ls -la .
-ls -la ro_help
-ls -la ro_help/settings
+RUN_COLLECT_STATIC=${RUN_COLLECT_STATIC:-"no"}
 
 echo "Checking..."
 python3 manage.py check
@@ -15,6 +12,12 @@ python3 manage.py check
 if [ "$RUN_MIGRATION" == "yes" ] ; then
   echo "Migrating databse"
   python3 manage.py migrate --run-syncdb
+fi
+
+if [ "$RUN_COLLECT_STATIC" == "yes" ] ; then
+  echo "Collect static"
+  mkdir -p static
+  python3 manage.py collectstatic --noinput
 fi
 
 if [ "$RUN_SEED" == "yes" ] ; then

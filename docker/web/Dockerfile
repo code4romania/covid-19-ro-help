@@ -25,8 +25,5 @@ WORKDIR /opt/ro_help/
 COPY ./docker/web/docker-entrypoint /
 COPY ./ /opt/
 
-
-RUN if [ "ENVIRONMENT" == "prod" ]; then ./manage.py collectstatic; fi
-
 ENTRYPOINT ["/docker-entrypoint"]
 EXPOSE 8000

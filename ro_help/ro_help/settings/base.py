@@ -190,7 +190,7 @@ else:
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = env.list(
-    "STATICFILES_DIRS", default=[os.path.join(PROJECT_ROOT, "static/")]
+    "STATICFILES_DIRS", default=[os.path.join(PROJECT_ROOT, "../", "static/")]
 )
 STATIC_ROOT = env.str("STATIC_ROOT", os.path.join(WEBROOT_DIR, "static/"))
 
