@@ -9,19 +9,23 @@ RUN pip3 install --upgrade pip setuptools \
     && wget -qO- https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz | tar -zxf - -C /usr/bin \
     && chown root:root /usr/bin/dockerize
 
-WORKDIR /opt/ro_help
+WORKDIR /opt/
 
 ARG ENVIRONMENT=dev
+
+ENV ENVIRONMENT=${ENVIRONMENT}
 ENV DJANGO_SETTINGS_MODULE=ro_help.settings.${ENVIRONMENT}
 
 # Copy just the requirements for caching
-COPY ./requirements* /opt/ro_help/
+COPY ./requirements* /opt/
 RUN pip3 install -r requirements-${ENVIRONMENT}.txt
 
 COPY ./docker/web/docker-entrypoint /
-COPY ./ /opt/ro_help
+COPY ./ /opt/
 
-WORKDIR /opt/ro_help/ro_help
+WORKDIR /opt/ro_help/
+
+RUN if [ "ENVIRONMENT" == "prod" ]; then ./manage.py collectstatic; fi
 
 ENTRYPOINT ["/docker-entrypoint"]
 EXPOSE 8000
