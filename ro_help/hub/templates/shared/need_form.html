@@ -28,16 +28,6 @@
                 </div>    
             {% endfor %}
         </article>
-        <script>
-            window.onload = function () {
-                let target = document.getElementById('message-div');
-                    target.scrollIntoView({
-                        behavior: "smooth", 
-                        block: "center", 
-                        inline: "nearest"
-                    })
-            };
-        </script>
     {% else %}
         <form method="post" id="need-form">
             {% csrf_token %}
@@ -55,16 +45,7 @@
 
             <input type="submit" class="button is-success"  value="Trimite">
         </form>
-        <script>
-            window.onload = function () {
-                let target = document.getElementById('need-form');
-                    target.scrollIntoView({
-                        behavior: "smooth", 
-                        block: "center", 
-                        inline: "nearest"
-                    })
-            };
-        </script>
+        
     {% endif %}
 {% else %}
     {% url 'ngo-need' ngo.pk need.pk as base %}

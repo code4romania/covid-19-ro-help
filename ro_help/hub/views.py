@@ -28,8 +28,8 @@ from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
 
 
-NEEDS_PER_PAGE = 3
-DONATIONS_PER_PAGE = 10
+NEEDS_PER_PAGE = 2
+DONATIONS_PER_PAGE = 2
 
 
 class InfoContextMixin:
@@ -47,6 +47,7 @@ class NGOKindFilterMixin:
         context = super().get_context_data(**kwargs)
 
         context["current_kind"] = self.request.GET.get("kind")
+        # context["current_page"] = self.request.GET.get("current_page")
 
         if not self.request.GET.get("q"):
             context["current_kind"] = context["current_kind"] or KIND.default()
@@ -60,10 +61,11 @@ class NGOKindFilterMixin:
             needs = needs.exclude(pk=kwargs["need"].pk)
             context["current_need"] = kwargs["need"]
 
+
         for kind in KIND.to_list():
             kind_needs = needs.filter(kind=kind)
             needs_paginator = paginator.Paginator(kind_needs, NEEDS_PER_PAGE)
-            page = self.request.GET.get("{}_page".format(kind))
+            page = self.request.GET.get(f"{kind}_page")
 
             # Catch invalid page numbers
             try:
