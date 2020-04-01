@@ -24,11 +24,18 @@ env = environ.Env(
     ENABLE_DEBUG_TOOLBAR=(bool, False),
     USE_S3=(bool, False),
     ALLOWED_HOSTS=(list, []),
+    RECAPTCHA_PUBLIC_KEY=(str, ""),
+    RECAPTCHA_PRIVATE_KEY=(str, ""),
 )
 environ.Env.read_env(f"{root}/.env")  # reading .env file
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+PROJECT_ROOT = env.str(
+    "PROJECT_ROOT", os.path.dirname(os.path.dirname(__file__))
+)
+WEBROOT_DIR = env.str("WEBROOT_DIR", os.path.join(PROJECT_ROOT, "webroot/"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -182,8 +189,14 @@ else:
     MEDIA_ROOT = os.path.join(BASE_DIR, "../", "mediafiles")
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "../", "static"),
+STATICFILES_DIRS = env.list(
+    "STATICFILES_DIRS", default=[os.path.join(PROJECT_ROOT, "static/")]
+)
+STATIC_ROOT = env.str("STATIC_ROOT", os.path.join(WEBROOT_DIR, "static/"))
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
 # SMTP
