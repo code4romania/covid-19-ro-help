@@ -20,34 +20,35 @@
 </div>
 
 {% if current_form %}
-    <form method="post" id="need-form">
-        {% csrf_token %}
+    {% if messages %}
+        <article class="message is-success" id="message-div">
+            {% for message in messages %}
+                <div class="message-body">
+                    {{ message }}
+                </div>    
+            {% endfor %}
+        </article>
+    {% else %}
+        <form method="post" id="need-form">
+            {% csrf_token %}
 
-        {{ current_form.non_field_errors }}
+            {{ current_form.non_field_errors }}
 
-        {% for hidden_field in current_form.hidden_fields %}
-            {{ hidden_field.errors }}
-            {{ hidden_field }}
-        {% endfor %}
+            {% for hidden_field in current_form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+            {% endfor %}
 
-        <input type="hidden" value="{{ need.pk }}" name="need-pk">
+            <input type="hidden" value="{{ need.pk }}" name="need-pk">
 
-        {{ current_form|crispy }}
+            {{ current_form|crispy }}
 
-        <input type="submit" class="button is-success"  value="Trimite">
-    </form>
-    <script>
-        window.onload = function () {
-            let target = document.getElementById('need-form');
-                target.scrollIntoView({
-                    behavior: "smooth", 
-                    block: "center", 
-                    inline: "nearest"
-                })
-        };
-    </script>
+            <input type="submit" class="button is-success"  value="Trimite">
+        </form>
+        
+    {% endif %}
 {% else %}
-    {% url 'ngo-helper-create' ngo.pk need.pk as base %}
+    {% url 'ngo-need' ngo.pk need.pk as base %}
     <div class="content has-text-centered">
         <a class="button is-medium has-background-success has-text-weight-bold has-text-white"
             href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' set_query='page=1' %}">{% trans "I can help" %}</a>

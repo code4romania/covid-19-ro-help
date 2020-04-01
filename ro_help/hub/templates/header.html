@@ -30,15 +30,18 @@
                     </a>
 
                     {% if request.user.is_authenticated %}
+                    <a  href="{% url 'admin:index' %}" class="navbar-item">
+                        {% trans "Admin Panel" %}
+                    </a>
                     <a  href="{% url 'material:logout' %}?next={{request.get_full_path|urlencode}}" class="navbar-item">
                         {% trans "Logout" %}
                     </a>
                     {% else %}
-                    <a  href="{% url 'material:login'%}?next={{request.get_full_path|urlencode}}" class="navbar-item">
-                        <button class="button is-success">{% trans "Login" %}</button>
+                    <a  href="{% url 'material:login'%}?next=/admin" class="navbar-item">
+                        {% trans "Login" %}
                     </a>
                     <a  href="{% url 'ngos-register-request'%}" class="navbar-item">
-                        <button class="button is-success">{% trans "Register" %}</button>
+                        {% trans "Register" %}
                     </a>
                     {% endif %}
 

@@ -10,9 +10,12 @@
         <div class="field border-b">
             <p class="control has-icons-right ">
                 <input class="input search-input" type="text" name="q" value="{{ current_search }}" placeholder="{% trans 'Search...' %}">
-                <span class="icon is-small is-right">
-                    <i class="fas fa-search"></i>
-                </span>
+                <label class="search-icon">
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="submit" style="display: none;"/>
+                </label>
             </p>
         </div>
     </form>
@@ -27,7 +30,7 @@
             {% trans "Direct your aid towards one of the verified organizations below. They will manage the aid and resources you provide them with so that the people most in need receive them." %}
         </p>
     </div>
-    {% if red_cross_need %}
+
     <div id="redcross-banner" class="container is-flex">
         <div class="card-image is-hidden-mobile" style="min-width:115px;">
             <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
@@ -46,21 +49,8 @@
                 {% endblocktrans %}
             </div>
         </div>
-        {% url 'ngo-helper-create' red_cross_need.ngo.pk red_cross_need.pk as base %}
-        <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross_need.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
+        <div class="need-call2action"><a class="button is-success">{% trans "Donate" %}</a></div>
     </div>
-    {% endif %}
-
-    {% if messages %}
-    <article class="message is-success">
-        {% for message in messages %}
-            <div class="message-body">
-                {{ message }}
-            </div>    
-        {% endfor %}
-    </article>
-    {% endif %}
-
 
     {% block kind-kind-filters %}
     <div id="aid_types" class="container">
@@ -126,14 +116,14 @@
                 <div class="tool">
                     <div class="is-flex">
                         <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
-                        <h1 class="card-content is-size-5" style="background-color: #f0f0f0;">
+                        <h1 class="card-content" style="background-color: #f0f0f0;">
                             {{ project.call_to_action }}</h1>
                     </div>
                     <div class="card-content" style="background-color: #fafafa;">
                         {% if project.description %}
                         <p class="call-to-action">{{project.description}}</p>
                         {% endif %}
-                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold"
+                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold sidebar-btn"
                            style="background-color: {{ project.color }};" href="{{project.url}}"
                            rel="nofollow">
                             {{ project.button_text }}

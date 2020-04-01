@@ -50,6 +50,7 @@ class NGOKindFilterMixin:
         context = super().get_context_data(**kwargs)
 
         context["current_kind"] = self.request.GET.get("kind")
+        # context["current_page"] = self.request.GET.get("current_page")
 
         if not self.request.GET.get("q"):
             context["current_kind"] = context["current_kind"] or KIND.default()
@@ -66,7 +67,7 @@ class NGOKindFilterMixin:
         for kind in KIND.to_list():
             kind_needs = needs.filter(kind=kind)
             needs_paginator = paginator.Paginator(kind_needs, NEEDS_PER_PAGE)
-            page = self.request.GET.get("{}_page".format(kind))
+            page = self.request.GET.get(f"{kind}_page")
 
             # Catch invalid page numbers
             try:
@@ -174,7 +175,7 @@ class NGONeedListView(InfoContextMixin, ListView):
                 + TrigramSimilarity("resource_tags__name", query),
             )
             .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
-            .order_by("-rank", "title")
+            .order_by("title", "-rank")
             .distinct("title")
         )
 
@@ -220,7 +221,7 @@ class NGONeedListView(InfoContextMixin, ListView):
         return context
 
 
-class NGODetailView(InfoContextMixin, NGODonationsReportsMixin, DetailView):
+class NGODetailView(InfoContextMixin, NGOKindFilterMixin, NGODonationsReportsMixin, DetailView):
     template_name = "ngo/detail.html"
     context_object_name = "ngo"
     model = NGO
@@ -279,7 +280,9 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin,
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("ngo-detail", kwargs={"pk": self.kwargs["ngo"]})
+        need = self.get_object()
+        reverse_url = reverse("ngo-need", kwargs={"ngo": need.ngo.pk, "need": need.pk})
+        return f"{reverse_url}?kind={need.kind}"
 
     def get_success_message(self, cleaned_data):
         ngo = self._get_ngo()
@@ -290,7 +293,7 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin,
             utils.send_email(
                 template="mail/new_helper.html",
                 context={"helper": cleaned_data, "need": need, "ngo": ngo, "base_path": base_path},
-                subject="[RO HELP] Mesaj nou pentru {} ".format(need.title)[:50],
+                subject="[RO HELP] Mesaj nou pentru {} ".format(need.title.replace("\n", ""))[:50],
                 to=user.email,
             )
 

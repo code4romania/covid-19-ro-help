@@ -8,21 +8,32 @@
 {% endblock kind-kind-filters %}
 
 {% block left-side-view %}
+
 <div class="container">
-    <form method="post" enctype="multipart/form-data" >
-        {% csrf_token %}
+    {% if messages %}
+        <article class="message is-success">
+        <div class="message-body">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>    
+        </article>
+    {% else %}
+        <form method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
 
-        {{ form.non_field_errors }}
+            {{ form.non_field_errors }}
 
-        {% for hidden_field in form.hidden_fields %}
-            {{ hidden_field.errors }}
-            {{ hidden_field }}
-        {% endfor %}
+            {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+            {% endfor %}
 
-        {{ form|crispy }}
+            {{ form|crispy }}
 
-        <input class="button is-success" type="submit" value="TRIMITE">
-    </form>
+            <input class="button is-success" type="submit" value="TRIMITE">
+        </form>
+    {% endif %}
 </div>
 {% endblock %}
 
