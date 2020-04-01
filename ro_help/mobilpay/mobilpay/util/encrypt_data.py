@@ -5,12 +5,18 @@ from Crypto.Cipher import PKCS1_v1_5
 from Crypto.PublicKey import RSA
 from OpenSSL import crypto
 import base64
+import requests
 
 
 class Crypto:
     @staticmethod
     def get_private_key(file_path, password=None):
-        private_key = RSA.importKey(open(file_path, "r").read(), passphrase=password)
+        try:
+            private_key = RSA.importKey(open(file_path, "r").read(), passphrase=password)
+        except:
+            r = requests.get(file_path, allow_redirects=True)
+            private_key = RSA.importKey(r.content, passphrase=password)
+
         return private_key
 
     @staticmethod
@@ -18,7 +24,11 @@ class Crypto:
         # Importing keys from files, converting it into the RsaKey object
 
         # this is used for certs
-        cert_data = crypto.load_certificate(crypto.FILETYPE_PEM, open(file_path, "r").read().encode("utf-8"))
+        try:
+            cert_data = crypto.load_certificate(crypto.FILETYPE_PEM, open(file_path, "r").read().encode("utf-8"))
+        except:
+            r = requests.get(file_path, allow_redirects=True)
+            cert_data = crypto.load_certificate(crypto.FILETYPE_PEM, r.content)
         public_key_object = cert_data.get_pubkey()
         public_key_string = crypto.dump_publickey(crypto.FILETYPE_PEM, public_key_object)
         public_key = RSA.importKey(public_key_string.decode("utf-8"))

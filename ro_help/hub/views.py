@@ -28,6 +28,10 @@ from mobilpay.forms import PaymentOrderForm
 from mobilpay.models import PaymentOrder
 
 
+NEEDS_PER_PAGE = 3
+DONATIONS_PER_PAGE = 10
+
+
 class InfoContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -39,12 +43,11 @@ class InfoContextMixin:
 
 
 class NGOKindFilterMixin:
-    paginated_by = 3
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context["current_kind"] = self.request.GET.get("kind")
+        # context["current_page"] = self.request.GET.get("current_page")
 
         if not self.request.GET.get("q"):
             context["current_kind"] = context["current_kind"] or KIND.default()
@@ -53,8 +56,6 @@ class NGOKindFilterMixin:
         if not ngo:
             return context
 
-        page = self.request.GET.get("page")
-
         needs = ngo.needs.filter(resolved_on=None)
         if "need" in kwargs:
             needs = needs.exclude(pk=kwargs["need"].pk)
@@ -62,7 +63,8 @@ class NGOKindFilterMixin:
 
         for kind in KIND.to_list():
             kind_needs = needs.filter(kind=kind)
-            needs_paginator = paginator.Paginator(kind_needs, self.paginated_by)
+            needs_paginator = paginator.Paginator(kind_needs, NEEDS_PER_PAGE)
+            page = self.request.GET.get(f"{kind}_page")
 
             # Catch invalid page numbers
             try:
@@ -75,13 +77,52 @@ class NGOKindFilterMixin:
         return context
 
 
-class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
+class NGODonationsReportsMixin:
+    """
+    Class used for separately paginating the donations and the reports.
+    """
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ngo = kwargs.get("ngo", context.get("ngo"))
+
+        if not ngo:
+            return context
+        donations_page = self.request.GET.get("donations_page")
+        # Donations paginator.
+        ngo_donations = ngo.get_funders()
+        donations_paginator = paginator.Paginator(ngo_donations.order_by("-created"), DONATIONS_PER_PAGE)
+
+        try:
+            donations_page_obj = donations_paginator.page(donations_page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            donations_page_obj = donations_paginator.page(1)
+        context["donations_page_obj"] = donations_page_obj
+
+        report_item_page = self.request.GET.get("report_items_page")
+        # Report items paginator.
+        ngo_report_items = ngo.report_items.all()
+        report_items_paginator = paginator.Paginator(ngo_report_items.order_by("-created"), DONATIONS_PER_PAGE)
+
+        try:
+            report_items_page_obj = report_items_paginator.page(report_item_page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            report_items_page_obj = report_items_paginator.page(1)
+        context["report_items_page_obj"] = report_items_page_obj
+
+        return context
+
+
+class NGONeedListView(InfoContextMixin, ListView):
     allow_filters = ["county", "city", "urgency"]
     paginate_by = 9
 
     template_name = "ngo/list.html"
 
     def get_needs(self):
+        if hasattr(self, "needs"):
+            return self.needs
+
         filters = {
             "resolved_on": None,
         }
@@ -93,15 +134,24 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if kind:
             filters["kind"] = kind
 
-        return NGONeed.objects.filter(**filters).order_by("created")
+        self.needs = (
+            NGONeed.objects.filter(**filters)
+            .order_by("created")
+            .select_related("ngo")
+            .prefetch_related("resource_tags")
+        )
+
+        return self.needs
 
     def search(self, queryset):
         # TODO: it should take into account selected language. Check only romanian for now.
+        query = self.request.GET.get("q")
 
-        if not self.request.GET.get("q"):
+        if not query:
             return queryset
 
-        query = self.request.GET.get("q")
+        if hasattr(self, "search_cache") and query in self.search_cache:
+            return self.search_cache[query]
 
         search_query = SearchQuery(query, config="romanian_unaccent")
 
@@ -111,7 +161,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
             + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
         )
 
-        return (
+        result = (
             queryset.annotate(
                 rank=SearchRank(vector, search_query),
                 similarity=TrigramSimilarity("title", query)
@@ -119,15 +169,21 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
                 + TrigramSimilarity("resource_tags__name", query),
             )
             .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
-            .order_by("-rank")
+            .order_by("title", "-rank")
+            .distinct("title")
         )
+
+        if not hasattr(self, "search_cache"):
+            self.search_cache = {}
+
+        self.search_cache[query] = result
+
+        return result
 
     def get_queryset(self):
-        needs = self.get_needs().filter(
-            **{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
-        )
+        needs = self.search(self.get_needs())
 
-        return self.search(needs)
+        return needs.filter(**{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -155,17 +211,20 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         return context
 
 
-class NGODetailView(InfoContextMixin, NGOKindFilterMixin, DetailView):
+class NGODetailView(InfoContextMixin, NGOKindFilterMixin, NGODonationsReportsMixin, DetailView):
     template_name = "ngo/detail.html"
     context_object_name = "ngo"
     model = NGO
 
 
-class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMixin, CreateView):
+class NGOHelperCreateView(
+    SuccessMessageMixin, InfoContextMixin, NGOKindFilterMixin, NGODonationsReportsMixin, CreateView
+):
+
     template_name = "ngo/detail.html"
     model = NGOHelper
     form_class = NGOHelperForm
-    success_message = _("TODO: add a success message")
+    success_message = _("Thank you for your help!")
 
     def get_object(self, queryset=None):
         # return from local cache, if any
@@ -211,19 +270,23 @@ class NGOHelperCreateView(SuccessMessageMixin, InfoContextMixin, NGOKindFilterMi
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("ngo-detail", kwargs={"pk": self.kwargs["ngo"]})
+        need = self.get_object()
+        reverse_url = reverse("ngo-need", kwargs={"ngo": need.ngo.pk, "need": need.pk})
+        return f"{reverse_url}?kind={need.kind}"
 
     def get_success_message(self, cleaned_data):
         ngo = self._get_ngo()
         need = self.get_object()
         base_path = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
+
         for user in ngo.users.all():
             utils.send_email(
                 template="mail/new_helper.html",
                 context={"helper": cleaned_data, "need": need, "ngo": ngo, "base_path": base_path},
-                subject="[RO HELP] Mesaj nou pentru {} ".format(need.title)[:50],
+                subject="[RO HELP] Mesaj nou pentru {} ".format(need.title.replace("\n", ""))[:50],
                 to=user.email,
             )
+
         return super().get_success_message(cleaned_data)
 
 
@@ -231,13 +294,14 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, Create
     template_name = "ngo/register_request.html"
     model = RegisterNGORequest
     form_class = NGORegisterRequestForm
-    success_message = _("TODO: add a success message")
+    success_message = _("Thank you for registering your ONG. An email was sent with the next steps.")
 
     def get_success_url(self):
         return reverse("ngos-register-request")
 
     def get_success_message(self, cleaned_data):
         authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
+
         for user in User.objects.filter(groups__name__in=authorized_groups):
             cleaned_data["base_path"] = f"{self.request.scheme}://{self.request.META['HTTP_HOST']}"
             utils.send_email(
@@ -251,17 +315,17 @@ class NGODonateCreateView(SuccessMessageMixin, InfoContextMixin, CreateView):
     template_name = "ngo/donate.html"
     model = PaymentOrder
     form_class = PaymentOrderForm
-    success_message = _("TODO: add a success message")
+    success_message = _("Thank you for your donation!")
 
     def get_success_url(self):
         return reverse("mobilpay:initialize-payment", kwargs={"order": self.object.order_id})
 
     def get_initial(self):
-        ngo = self.get_object()
         return {"amount": self.request.GET.get("amount", "0")}
 
     def get_object(self, queryset=None):
         ngo = NGO.objects.filter(pk=self.kwargs["ngo"]).first()
+
         if not ngo:
             return None
 

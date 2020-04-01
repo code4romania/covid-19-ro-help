@@ -18,9 +18,10 @@ ENV DJANGO_SETTINGS_MODULE=ro_help.settings.${ENVIRONMENT}
 COPY ./requirements* /opt/ro_help/
 RUN pip3 install -r requirements-${ENVIRONMENT}.txt
 
+COPY ./docker/web/docker-entrypoint /
 COPY ./ /opt/ro_help
 
 WORKDIR /opt/ro_help/ro_help
 
-ENTRYPOINT ["/opt/ro_help/docker-entrypoint"]
+ENTRYPOINT ["/docker-entrypoint"]
 EXPOSE 8000

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-26 13:03+0000\n"
+"POT-Creation-Date: 2020-03-28 12:23+0000\n"
 "PO-Revision-Date: 2020-03-25 00:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,53 +19,59 @@ msgstr ""
 "2:1));\n"
 "X-Generator: Poedit 2.3\n"
 
-#: hub/admin.py:35
+#: hub/admin.py:36
 msgid "active"
 msgstr "activ"
 
-#: hub/admin.py:131 hub/admin.py:194
+#: hub/admin.py:132 hub/admin.py:198
 msgid "Helpers"
 msgstr "Voluntari"
 
-#: hub/admin.py:202
+#: hub/admin.py:206
 msgid "Resolve need"
 msgstr "Rezolvă nevoia"
 
-#: hub/admin.py:210
+#: hub/admin.py:214
 msgid "Close need"
 msgstr "Închide nevoia"
 
-#: hub/admin.py:223
+#: hub/admin.py:227
 msgid "Votes"
 msgstr "Voturi"
 
-#: hub/admin.py:285 hub/admin.py:349
+#: hub/admin.py:290 hub/admin.py:354
 msgid "Last balance"
 msgstr "Ultimul bilanț"
 
-#: hub/admin.py:292 hub/admin.py:356
+#: hub/admin.py:297 hub/admin.py:361
 msgid "Statute"
 msgstr "Statut"
 
 #: hub/admin.py:304
+#, fuzzy
+#| msgid "Avatar"
+msgid "Avatar Preview"
+msgstr "Avatar"
+
+#: hub/admin.py:309
 msgid "Voters"
 msgstr "Decidenți"
 
-#: hub/admin.py:316
+#: hub/admin.py:321
 msgid "Create account"
 msgstr "Crează cont"
 
-#: hub/admin.py:397
+#: hub/admin.py:402
 msgid "s"
 msgstr "uri"
 
-#: hub/admin.py:396
+#: hub/admin.py:401
 msgid "Vote succesfully registered. {} email{} sent to others admins"
 msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:412
+#: hub/admin.py:417
 msgid "Vote NGO"
 msgstr "Votează"
 
@@ -409,19 +415,15 @@ msgstr ""
 msgid "Project developed in the program"
 msgstr "Proiect dezvoltat în programul"
 
-#: hub/templates/ngo/base.html:13
+#: hub/templates/ngo/base.html:12
 msgid "Search..."
 msgstr "Caută..."
 
-#: hub/templates/ngo/base.html:14
-msgid "Search"
-msgstr "Caută"
-
-#: hub/templates/ngo/base.html:21
+#: hub/templates/ngo/base.html:24
 msgid "Donate safely"
 msgstr "Doneaza in siguranta"
 
-#: hub/templates/ngo/base.html:24
+#: hub/templates/ngo/base.html:27
 msgid ""
 "Direct your aid towards one of the verified organizations below. They will "
 "manage the aid and resources you provide them with so that the people most "
@@ -431,11 +433,11 @@ msgstr ""
 "Ele vor gestiona rersursele pe care le pui la dispoziție, astfel încât sa "
 "ajungă la oamenii care au cea mai mare nevoie de ele."
 
-#: hub/templates/ngo/base.html:37 hub/templates/ngo/base.html:39
+#: hub/templates/ngo/base.html:40 hub/templates/ngo/base.html:42
 msgid "Red Cross"
 msgstr "Crucea Roșie"
 
-#: hub/templates/ngo/base.html:41
+#: hub/templates/ngo/base.html:44
 msgid ""
 "\n"
 "                    Societatea Națională de Cruce Roșie Română reprezintă "
@@ -447,24 +449,24 @@ msgid ""
 "                "
 msgstr ""
 
-#: hub/templates/ngo/base.html:46 hub/templates/ngo/detail.html:75
-#: hub/templates/ngo/donate.html:24
+#: hub/templates/ngo/base.html:49 hub/templates/ngo/detail.html:75
+#: hub/templates/ngo/donate.html:24 hub/templates/ngo/list.html:196
 msgid "Donate"
 msgstr "Donează"
 
-#: hub/templates/ngo/base.html:71
+#: hub/templates/ngo/base.html:74
 msgid "I want to help with money"
 msgstr "Vreau sa ajut cu bani"
 
-#: hub/templates/ngo/base.html:83
+#: hub/templates/ngo/base.html:86
 msgid "I want to help with resources"
 msgstr "Vreau sa ajut cu resurse"
 
-#: hub/templates/ngo/base.html:95
+#: hub/templates/ngo/base.html:98
 msgid "I want to volunteer"
 msgstr "Vreau să devin voluntar"
 
-#: hub/templates/ngo/base.html:118
+#: hub/templates/ngo/base.html:121
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -532,7 +534,7 @@ msgstr "voluntari"
 msgid "Reset filters"
 msgstr "Resetează filtrele"
 
-#: hub/templates/ngo/list.html:194 hub/templates/shared/need_form.html:53
+#: hub/templates/ngo/list.html:198 hub/templates/shared/need_form.html:53
 msgid "I can help"
 msgstr "Pot sa ajut eu!"
 
@@ -599,13 +601,22 @@ msgstr "următoarea"
 msgid "last"
 msgstr "ultima"
 
-#: hub/views.py:168 hub/views.py:234 hub/views.py:254
-msgid "TODO: add a success message"
+#: hub/views.py:182
+msgid "Thank you for your help!"
 msgstr ""
 
-#: hub/views.py:202
+#: hub/views.py:216
 msgid "Missing or invalid NGO need."
 msgstr "Nevoie ONG lipsă sau invalidă."
+
+#: hub/views.py:250
+msgid ""
+"Thank you for registering your ONG. An email was sent with the next steps."
+msgstr ""
+
+#: hub/views.py:271
+msgid "Thank you for your donation!"
+msgstr ""
 
 #: mobilpay/admin.py:22
 msgid "Responses"
@@ -651,11 +662,13 @@ msgstr "Raspuns plată"
 msgid "You are being redirected to payment website"
 msgstr "Ești redirecționat către site-ul de plată"
 
-#: ro_help/settings/base.py:189
+#: ro_help/settings/base.py:190
 msgid "COVID-19 RO HELP"
 msgstr "COVID-19 RO HELP"
 
-#: ro_help/settings/base.py:190
+#: ro_help/settings/base.py:191
 msgid "RO HELP"
 msgstr "RO HELP"
 
+#~ msgid "Search"
+#~ msgstr "Caută"

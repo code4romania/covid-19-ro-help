@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from hub.models import NGO
 from mobilpay.models import PaymentOrder, PaymentResponse
@@ -9,7 +9,6 @@ from hub import utils
 
 from urllib.parse import unquote, quote
 import requests
-from pprint import pprint
 
 
 def initialize_payment(request, order):
@@ -33,7 +32,6 @@ def response(request, order):
 
 @csrf_exempt
 def confirm(request, order):
-    pprint(request.POST)
     order = PaymentOrder.objects.get(order_id=order)
     ngo = order.ngo
     error_code = 0
@@ -42,32 +40,24 @@ def confirm(request, order):
     payment_response = PaymentResponse()
     payment_response.payment_order = order
     base_path = f"{request.scheme}://{request.META['HTTP_HOST']}"
-    if request.method == "POST":
 
+    if request.method == "POST":
         """calea catre cheia privata aflata pe serverul dumneavoastra"""
-        private_key_path = order.ngo.mobilpay_private_key.path
+        private_key_path = order.ngo.mobilpay_private_key.url
 
         """verifica daca exista env_key si data in request"""
-
         env_key = request.POST.get("env_key")
         env_data = request.POST.get("data")
-        print(env_key)
-        print("-----")
-        print(env_data)
 
         """daca env_key si env_data exista, se incepe decriptarea"""
         if env_key is not None and len(env_key) > 0 and env_data is not None and len(env_data) > 0:
-            print("IN!")
             try:
                 """env_key si data trebuie parsate pentru ca vin din url, se face cu function unquote din urllib
-
                 in cazul in care decriptarea nu este reusita, raspunsul v-a contine o eroare si mesajul acesteia
                 """
                 obj_pm_request = Request().factory_from_encrypted(unquote(env_key), unquote(env_data), private_key_path)
 
                 """obiectul notify contine metode pentru setarea si citirea proprietatilor"""
-                print("obj_pm_request", obj_pm_request)
-                print(obj_pm_request.get_notify())
                 notify = obj_pm_request.get_notify()
                 if int(notify.errorCode) == 0:
                     payment_response.action = notify.action
@@ -79,7 +69,6 @@ def confirm(request, order):
                     order_id = obj_pm_req.get_order_id()
                     """
                     if notify.action == "confirmed":
-                        print("CONFIRMED!!")
                         """ 
                         cand action este confirmed avem certitudinea ca banii au plecat din contul posesorului de
                         card si facem update al starii comenzii si livrarea produsului
@@ -89,14 +78,12 @@ def confirm(request, order):
                         order.save()
                         error_message = notify.errorMessage
                         for user in order.ngo.users.all():
-                            print(f"send mail to ngo: {user.email}")
                             utils.send_email(
                                 template="mail/new_donation.html",
                                 context={"base_path": base_path},
                                 subject="[RO HELP] Donație inregistrată",
                                 to=user.email,
                             )
-                        print(f"send mail to order: {order.email}")
                         utils.send_email(
                             template="mail/new_payment.html",
                             context={"ngo": ngo, "base_path": base_path},
@@ -161,5 +148,4 @@ def confirm(request, order):
     payment_response.error_message = error_message
     payment_response.save()
     crc = Crc(error_code, error_type, error_message).create_crc()
-
-    return crc.toprettyxml(indent="\t", encoding="utf-8")
+    return HttpResponse(crc.toprettyxml(indent="\t", encoding="utf-8"), content_type="text/xml")

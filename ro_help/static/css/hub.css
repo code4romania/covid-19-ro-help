@@ -14,7 +14,7 @@ body {
 
 @media (min-width: 1024px) {
     #main {
-        padding: 3em 6em;
+        padding: 2em 6em;
     }
 
     .h-padded-wrapper {
@@ -162,7 +162,6 @@ footer {
 
 .container .donate-subtitle {
     font-size: 1rem;
-    padding-bottom: 3rem;
 }
 
 #redcross-banner {
@@ -170,7 +169,7 @@ footer {
     background: #FFFFFF;
     border: 1px solid #FF4949;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-bottom: 2em;
+    margin: 50px 0;
     flex-direction: column;
 }
 
@@ -200,6 +199,14 @@ footer {
     }
 }
 
+#right_sidebar {
+    border-top: 1px solid #E5E5E5;
+}
+
+.sidebar-btn {
+    font-size: 0.9rem;
+}
+
 .ngo-list-title {
     font-size: 1.75em;
     color: #3D4F9F;
@@ -209,15 +216,10 @@ footer {
     margin: 1em 0;
 }
 
-.filter {
-    margin-bottom: 1rem;
-}
-
 .filter-dropdown button, .filter-dropdown button:hover {
     border: 1px solid #1C1080;
     color: #1C1080;
     font-size: 1em;
-
 }
 
 .tool {
@@ -393,9 +395,40 @@ footer {
     }
 }
 
+.search-wrapper {
+    border-bottom: 1px solid #dbdbdb;
+}
 
-.search-input {
-    margin-right: 1em
+.search-input, .search-input:hover,  .search-input:focus {
+    box-shadow: none;
+    border: none;
+    width: 400px;
+    font-family: Titillium Web, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.search-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #6B6B6B;
+    opacity: 1; /* Firefox */
+}
+
+.search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #6B6B6B;
+}
+
+.search-input::-ms-input-placeholder { /* Microsoft Edge */
+    color: #6B6B6B;
+}
+
+.search-input+label.search-icon .icon {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.control.has-icons-left .icon, .control.has-icons-right .icon {
+    color: #6B6B6B;
 }
 
 .register-form {
@@ -472,6 +505,7 @@ footer {
 .donations-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 32px;
 }
 
 .donations-table th {
