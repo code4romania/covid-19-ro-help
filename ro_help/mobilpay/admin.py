@@ -63,4 +63,4 @@ class PaymentResponseAdmin(admin.ModelAdmin):
         try:
             return obj.payment_order.order_id
         except PaymentOrder.DoesNotExist:
-            return '-'
+            return "-"
