@@ -58,12 +58,17 @@ body {
     padding: 0.75em 0;
 }
 
+<<<<<<< HEAD
 .part-wrapper {
+=======
+.developed-by > div {
+>>>>>>> Put back user generated static
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     padding-left: 1rem;
+<<<<<<< HEAD
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
 }
@@ -75,6 +80,10 @@ body {
 
 .developed-logo-img-sm {
     padding: 5px;
+=======
+    border-bottom: 1px solid #e5e5e5;
+    min-height: 75px;
+>>>>>>> Put back user generated static
 }
 
 @media (max-width: 768px) {
@@ -82,7 +91,11 @@ body {
         flex-direction: column;
     }
 
+<<<<<<< HEAD
     .part-wrapper {
+=======
+    .developed-by > div {
+>>>>>>> Put back user generated static
         justify-content: space-between;
         flex-direction: row;
         min-height: 55px;
@@ -92,6 +105,7 @@ body {
     .footer-content {
         flex-direction: column;
     }
+<<<<<<< HEAD
 
     .code4-branding {
         margin-top: 2em;
@@ -112,6 +126,17 @@ body {
 .developed-by .caption {
     font-size: .875rem;
 }
+=======
+    .code4-branding {
+        margin-top: 2em;
+    }
+}
+
+.developed-by-logo, .incubated-by-logo {
+    padding-left: 0.5rem;
+}
+
+>>>>>>> Put back user generated static
 
 .incubated-by-wrapper {
     margin-top: 2rem;
@@ -212,7 +237,13 @@ footer {
     }
 
     .need-logo {
+<<<<<<< HEAD
         margin: 1em;
+=======
+        border: 1px solid #dbdbdb;
+        margin: 1em;
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+>>>>>>> Put back user generated static
         width: 100px;
     }
 }
@@ -221,6 +252,7 @@ footer {
     border-top: 1px solid #E5E5E5;
 }
 
+<<<<<<< HEAD
 @media screen and (min-width: 769px) {
     #right_sidebar {
         border-top: 1px solid #E5E5E5;
@@ -230,6 +262,8 @@ footer {
     }
 }
 
+=======
+>>>>>>> Put back user generated static
 .sidebar-btn {
     font-size: 0.9rem;
 }
@@ -276,7 +310,10 @@ footer {
     width: 50px;
     height: 100%;
     margin-right: 1em;
+<<<<<<< HEAD
     color: #fff;
+=======
+>>>>>>> Put back user generated static
 }
 
 .call-to-action {
@@ -352,6 +389,7 @@ footer {
 }
 
 .tag-bar {
+<<<<<<< HEAD
     margin-top: 1.25em;
 }
 
@@ -359,6 +397,10 @@ footer {
     background: rgba(167, 209, 233, 0.45) !important;
     border-radius: 6px !important;
     margin-right: 10px;
+=======
+    border: 1px solid #dbdbdb;
+    padding: 5px;
+>>>>>>> Put back user generated static
 }
 
 .need-icon {
@@ -377,17 +419,28 @@ footer {
 
 .need {
     flex-direction: column;
+<<<<<<< HEAD
+=======
+    border: 1px solid #dbdbdb;
+    margin: 1em;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+>>>>>>> Put back user generated static
 }
 
 .need-logo {
     margin-right: 1em;
+<<<<<<< HEAD
     width: 64px;
     min-width: 64px;
+=======
+    width: 40px;
+>>>>>>> Put back user generated static
 }
 
 .need-title {
     font-weight: bold;
     font-size: 1.25em;
+<<<<<<< HEAD
     margin-bottom: 0.5em;
 }
 
@@ -399,6 +452,8 @@ footer {
 .need-description {
     margin-top: 1em;
     font-size: 0.9em;
+=======
+>>>>>>> Put back user generated static
 }
 
 .need-call2action {
@@ -430,11 +485,18 @@ footer {
     }
 
     .need-logo {
+<<<<<<< HEAD
         margin: 1em;
+=======
+        border: 1px solid #dbdbdb;
+        margin: 1em;
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+>>>>>>> Put back user generated static
         width: 100px;
     }
 }
 
+<<<<<<< HEAD
 #need-form input[type="submit"] {
     display:flex;
     margin-right: auto;
@@ -453,12 +515,23 @@ footer {
 .search-input, .search-input:hover, .search-input:focus {
     box-shadow: none;
     border: none;
+=======
+.search-wrapper {
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.search-input, .search-input:hover,  .search-input:focus {
+    box-shadow: none;
+    border: none;
+    width: 400px;
+>>>>>>> Put back user generated static
     font-family: Titillium Web, sans-serif;
     font-style: italic;
     font-weight: normal;
     font-size: 16px;
 }
 
+<<<<<<< HEAD
 @media (max-width: 768px) {
 
     .search-wrapper form {
@@ -466,6 +539,8 @@ footer {
     }
 }
 
+=======
+>>>>>>> Put back user generated static
 .search-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #6B6B6B;
     opacity: 1; /* Firefox */
@@ -479,11 +554,14 @@ footer {
     color: #6B6B6B;
 }
 
+<<<<<<< HEAD
 .search-input + label.search-icon .icon {
     pointer-events: auto;
     cursor: pointer;
 }
 
+=======
+>>>>>>> Put back user generated static
 .control.has-icons-left .icon, .control.has-icons-right .icon {
     color: #6B6B6B;
 }
@@ -580,9 +658,14 @@ footer {
 
 .file.has-name .file-name {
     max-width: none;
+<<<<<<< HEAD
 }
 
 .half-width {
     width: 50%;
 }
 
+=======
+
+}
+>>>>>>> Put back user generated static
