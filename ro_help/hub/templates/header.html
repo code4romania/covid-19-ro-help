@@ -37,7 +37,7 @@
                         {% trans "Logout" %}
                     </a>
                     {% else %}
-                    <a  href="{% url 'material:login'%}?next={{request.get_full_path|urlencode}}" class="navbar-item">
+                    <a  href="{% url 'material:login'%}" class="navbar-item">
                         {% trans "Login" %}
                     </a>
                     <a  href="{% url 'ngos-register-request'%}" class="navbar-item">
