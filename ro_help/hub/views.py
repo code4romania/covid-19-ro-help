@@ -61,7 +61,6 @@ class NGOKindFilterMixin:
             needs = needs.exclude(pk=kwargs["need"].pk)
             context["current_need"] = kwargs["need"]
 
-
         for kind in KIND.to_list():
             kind_needs = needs.filter(kind=kind)
             needs_paginator = paginator.Paginator(kind_needs, NEEDS_PER_PAGE)
