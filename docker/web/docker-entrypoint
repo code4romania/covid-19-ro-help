@@ -1,15 +1,30 @@
 #!/bin/sh
 
 PORT=${PORT:-"8000"}
+RUN_SEED=${RUN_SEED:-"yes"}
+RUN_MIGRATION=${RUN_MIGRATION:-"yes"}
+RUN_DEV_SERVER=${RUN_DEV_SERVER:-"yes"}
+
+ls -la .
+ls -la ro_help
+ls -la ro_help/settings
 
 echo "Checking..."
 python3 manage.py check
 
-echo "Migrating databse"
-python3 manage.py migrate --run-syncdb
+if [ "$RUN_MIGRATION" == "yes" ] ; then
+  echo "Migrating databse"
+  python3 manage.py migrate --run-syncdb
+fi
 
-echo "Seed"
-python3 manage.py seed
+if [ "$RUN_SEED" == "yes" ] ; then
+  echo "Seed"
+  python3 manage.py seed
+fi
 
-echo "Start web server on $PORT"
-python3 manage.py runserver "0.0.0.0:$PORT"
+if [ "$RUN_DEV_SERVER" == "yes" ] ; then
+  echo "Start web server on $PORT"
+  python3 manage.py runserver "0.0.0.0:$PORT"
+else
+   gunicorn ro_help.wsgi --bind "0.0.0.0:$PORT" --log-level info -k gevent -w 2
+fi

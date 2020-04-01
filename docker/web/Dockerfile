@@ -20,10 +20,11 @@ ENV DJANGO_SETTINGS_MODULE=ro_help.settings.${ENVIRONMENT}
 COPY ./requirements* /opt/
 RUN pip3 install -r requirements-${ENVIRONMENT}.txt
 
+WORKDIR /opt/ro_help/
+
 COPY ./docker/web/docker-entrypoint /
 COPY ./ /opt/
 
-WORKDIR /opt/ro_help/
 
 RUN if [ "ENVIRONMENT" == "prod" ]; then ./manage.py collectstatic; fi
 
