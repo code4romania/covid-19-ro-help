@@ -119,7 +119,7 @@ class NGODonationsReportsMixin:
         return context
 
 
-class NGONeedListView(InfoContextMixin, ListView):
+class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
     allow_filters = ["county", "city", "urgency"]
     paginate_by = 9
 
