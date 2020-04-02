@@ -490,10 +490,11 @@ class RegisterNGORequestVote(TimeStampedModel):
     entity = models.CharField(max_length=30)
     vote = models.CharField(_("Vote"), choices=VOTE.to_choices(), default=VOTE.default(), max_length=10)
     motivation = models.TextField(
-        _("Motvation"), max_length=500, null=True, blank=True, help_text=_("Motivate your decision")
+        _("Motivation"), max_length=500, null=True, blank=True, help_text=_("Motivate your decision")
     )
     date = models.DateTimeField(_("Date"), auto_now_add=True)
 
     class Meta:
         verbose_name_plural = _("NGO Register requests votes")
         verbose_name = _("NGO Register requests vote")
+        unique_together = ("ngo_request", "entity")
