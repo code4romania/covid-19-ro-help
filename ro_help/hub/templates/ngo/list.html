@@ -141,7 +141,7 @@
 
 <div class="container">
     {% if page_obj %}
-        {% include "shared/pagination.html" with page_obj=page_obj %}
+        {% include "shared/pagination.html" with page_obj=page_obj kind=current_kind%}
         <div class="columns is-multiline">
             {% for need in page_obj %}
             <div class="need is-flex container">
@@ -203,7 +203,7 @@
             </div>
             {% endfor %}
         </div>
-        {% include "shared/pagination.html" with page_obj=page_obj %}
+        {% include "shared/pagination.html" with page_obj=page_obj kind=current_kind %}
     {% else %}
         <div class="content is-medium">
             <p style="text-align: center;">{% trans "No results matching query" %}</p>
