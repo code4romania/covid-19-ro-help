@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
+{% load red_cross_tag %}
 {% load static %}
 {% load spurl %}
 {% load i18n %}
-
 
 {% block content %}
 <div class="container is-flex" style="justify-content: flex-end;">
@@ -31,6 +31,8 @@
         </p>
     </div>
 
+    {% fetch_red_cross_data as red_cross %}
+    {% if red_cross %}
     <div id="redcross-banner" class="container is-flex">
         <div class="card-image is-hidden-mobile" style="min-width:115px;">
             <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
@@ -49,8 +51,14 @@
                 {% endblocktrans %}
             </div>
         </div>
-        <div class="need-call2action"><a class="button is-success">{% trans "Donate" %}</a></div>
+        {% if red_cross.money_need %}
+            {% url 'ngo-need' red_cross.obj.pk red_cross.money_need.pk as base %}
+            <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross.money_need.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
+        {% else %}
+            <div class="need-call2action"><a href="{% url 'ngo-detail' red_cross.obj.pk %}" class="button is-success">{% trans "Donate" %}</a></div>
+        {% endif %}
     </div>
+    {% endif %}
 
     {% block kind-kind-filters %}
     <div id="aid_types" class="container">
