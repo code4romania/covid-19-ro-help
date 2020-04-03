@@ -384,9 +384,14 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
         "get_avatar",
     )
     list_filter = ("city", "county", "registered_on")
+    readonly_fields = ["get_avatar", "resolved_on"]
     search_fields = ("name",)
     actions = ["vote"]
     inlines = [RegisterNGORequestVoteInline]
+
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
     def get_last_balance_sheet(self, obj):
         if obj.last_balance_sheet:
