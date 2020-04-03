@@ -470,7 +470,9 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
 @admin.register(RegisterNGORequestVote)
 class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
     icon_name = "how_to_vote"
-    list_display = ["ngo_request", "user", "vote", "motivation", "date"]
+    list_display = ["ngo_request", "user", "entity", "vote", "motivation", "date"]
+    search_fields = ["ngo_request__name"]
+    list_filter = ["user", "entity", "vote", "date"]
 
     def get_queryset(self, request):
         user = request.user
