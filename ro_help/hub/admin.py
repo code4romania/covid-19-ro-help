@@ -486,14 +486,14 @@ class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
-    def get_form(self, request, obj=None, **kwargs):
-        user = request.user
-        form = super().get_form(request, obj, **kwargs)
+    # def get_form(self, request, obj=None, **kwargs):
+    #     user = request.user
+    #     form = super().get_form(request, obj, **kwargs)
 
-        if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
-            form.base_fields["user"].queryset = User.objects.filter(pk=user.pk)
+    #     if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
+    #         form.base_fields["user"].queryset = User.objects.filter(pk=user.pk)
 
-        return form
+    #     return form
 
     def get_changeform_initial_data(self, request):
         user = request.user
