@@ -83,6 +83,7 @@ body {
     .footer-content {
         flex-direction: column;
     }
+
     .code4-branding {
         margin-top: 2em;
     }
@@ -192,9 +193,7 @@ footer {
     }
 
     .need-logo {
-        border: 1px solid #dbdbdb;
         margin: 1em;
-        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
         width: 100px;
     }
 }
@@ -324,8 +323,12 @@ footer {
 }
 
 .tag-bar {
-    border: 1px solid #dbdbdb;
-    padding: 5px;
+    margin-top: 1.25em;
+}
+
+.need-tag {
+    background: rgba(167, 209, 233, 0.45) !important;
+    border-radius: 6px !important;
 }
 
 .need-icon {
@@ -344,19 +347,28 @@ footer {
 
 .need {
     flex-direction: column;
-    border: 1px solid #dbdbdb;
-    margin: 1em;
-    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
 }
 
 .need-logo {
     margin-right: 1em;
-    width: 40px;
+    width: 64px;
+    min-width: 64px;
 }
 
 .need-title {
     font-weight: bold;
     font-size: 1.25em;
+    margin-bottom: 0.5em;
+}
+
+.need-subtitle {
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.need-description {
+    margin-top: 1em;
+    font-size: 0.9em;
 }
 
 .need-call2action {
@@ -388,9 +400,7 @@ footer {
     }
 
     .need-logo {
-        border: 1px solid #dbdbdb;
         margin: 1em;
-        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
         width: 100px;
     }
 }
@@ -399,7 +409,7 @@ footer {
     border-bottom: 1px solid #dbdbdb;
 }
 
-.search-input, .search-input:hover,  .search-input:focus {
+.search-input, .search-input:hover, .search-input:focus {
     box-shadow: none;
     border: none;
     width: 400px;
@@ -422,7 +432,7 @@ footer {
     color: #6B6B6B;
 }
 
-.search-input+label.search-icon .icon {
+.search-input + label.search-icon .icon {
     pointer-events: auto;
     cursor: pointer;
 }
@@ -524,4 +534,8 @@ footer {
 .file.has-name .file-name {
     max-width: none;
 
+}
+
+.half-width {
+    width: 50%;
 }
