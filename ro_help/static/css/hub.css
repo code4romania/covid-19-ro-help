@@ -329,6 +329,7 @@ footer {
 .need-tag {
     background: rgba(167, 209, 233, 0.45) !important;
     border-radius: 6px !important;
+    margin-right: 10px;
 }
 
 .need-icon {
