@@ -250,7 +250,8 @@ class ResourceTag(TimeStampedModel):
         max_length=30,
         validators=[
             RegexValidator(
-                regex="^[-a-zA-Z0-9\s,]+$", message="Enter a valid tag consisting of letters, numbers, hyphens or spaces",
+                regex="^[-a-zA-Z0-9\s,]+$",
+                message="Enter a valid tag consisting of letters, numbers, hyphens or spaces",
             ),
         ],
     )

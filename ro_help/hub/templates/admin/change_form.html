@@ -6,6 +6,19 @@
   <link rel="stylesheet" type="text/css" href="{% static 'material/admin/css/change_form.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'material/admin/css/object_tools.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'material/admin/css/object_tools-responsive.min.css' %}">
+
+  <style>
+      .aligned label + div.readonly {
+          padding-top: 40px;
+      }
+
+      .aligned label + p, .aligned label + div.help, .aligned label + div.readonly {
+          /*padding: 6px 0;*/
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-left: 0px;
+      }
+  </style>
 {% endblock %}
 
 {% block content %}
