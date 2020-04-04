@@ -1,0 +1,14 @@
+{% load i18n %}
+
+{% language 'ro' %}
+Bună, <br><br>
+
+ONG-ul tău a fost înregistrat în platforma <a href="https://rohelp.ro">RoHelp</a> şi poate fi găsit <a href="{{base_path}}{% url 'ngo-detail' ngo_id %}">aici</a>. 
+{% if user_has_edit_rights %}
+<a href="{{base_path}}{% url 'admin:hub_ngo_change' ngo_id %}">Intră</a> în platformă pentru a vizualiza sau modifica detaliile ONG-ului tău.
+{% endif %}
+<br><br>
+
+Mulțumim,<br>
+Echipa RoHelp
+{% endlanguage %}
