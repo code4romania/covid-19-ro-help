@@ -389,7 +389,6 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
     actions = ["vote"]
     inlines = [RegisterNGORequestVoteInline]
 
-
     def has_add_permission(self, request, obj=None):
         return False
 
