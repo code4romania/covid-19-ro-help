@@ -112,14 +112,14 @@
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='urgency' remove_query_param='page' %}"
                                class="dropdown-item">
-                                -
+                                {% trans "All" %}
                             </a>
                         </div>
                         {% for urgency in urgencies %}
                             <div class="dropdown-item">
                                 <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
                                    class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
-                                    {{ urgency }}
+                                    {{ urgency|title }}
                                 </a>
                             </div>
                         {% endfor %}
