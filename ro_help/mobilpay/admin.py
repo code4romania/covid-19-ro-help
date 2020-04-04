@@ -62,5 +62,5 @@ class PaymentResponseAdmin(admin.ModelAdmin):
     def order_id(self, obj):
         try:
             return obj.payment_order.order_id
-        except PaymentOrder.DoesNotExist:
+        except (PaymentOrder.DoesNotExist, AttributeError):
             return "-"

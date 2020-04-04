@@ -6,8 +6,11 @@ from django.db import models, transaction
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
-
+from django.core.validators import RegexValidator
 from django_extensions.db.models import TimeStampedModel
+
+from .storage_backends import PublicMediaStorage, PrivateMediaStorage
+
 
 ADMIN_GROUP_NAME = "Admin"
 NGO_GROUP_NAME = "ONG"
@@ -249,7 +252,16 @@ class NGO(TimeStampedModel):
 
 
 class ResourceTag(TimeStampedModel):
-    name = models.CharField(_("Name"), max_length=30)
+    name = models.CharField(
+        _("Name"),
+        max_length=30,
+        validators=[
+            RegexValidator(
+                regex="^[-a-zA-Z0-9\s,]+$",
+                message="Enter a valid tag consisting of letters, numbers, hyphens or spaces",
+            ),
+        ],
+    )
 
     class Meta:
         verbose_name_plural = _("Resource tags")
@@ -390,9 +402,9 @@ class RegisterNGORequest(TimeStampedModel):
 
     avatar = models.ImageField(_("Avatar"), max_length=300, help_text=_("Image should be 500x500px"))
     last_balance_sheet = models.FileField(
-        _("First page of last balance sheet"), max_length=300, storage=PrivateMediaStorageClass()
+        _("First page of last balance sheet"), max_length=300, storage=PrivateMediaStorage()
     )
-    statute = models.FileField(_("NGO Statute"), max_length=300, storage=PrivateMediaStorageClass())
+    statute = models.FileField(_("NGO Statute"), max_length=300, storage=PrivateMediaStorage())
 
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
