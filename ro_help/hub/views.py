@@ -156,18 +156,14 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
         search_query = SearchQuery(query, config="romanian_unaccent")
 
-        vector = (
-            SearchVector("title", weight="A", config="romanian_unaccent")
-            + SearchVector("ngo__name", weight="B", config="romanian_unaccent")
-            + SearchVector("resource_tags__name", weight="C", config="romanian_unaccent")
+        vector = SearchVector("title", weight="A", config="romanian_unaccent") + SearchVector(
+            "ngo__name", weight="B", config="romanian_unaccent"
         )
 
         result = (
             queryset.annotate(
                 rank=SearchRank(vector, search_query),
-                similarity=TrigramSimilarity("title", query)
-                + TrigramSimilarity("ngo__name", query)
-                + TrigramSimilarity("resource_tags__name", query),
+                similarity=TrigramSimilarity("title", query) + TrigramSimilarity("ngo__name", query),
             )
             .filter(Q(rank__gte=0.3) | Q(similarity__gt=0.3))
             .order_by("title", "-rank")
@@ -183,7 +179,11 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
     def get_queryset(self):
         needs = self.search(self.get_needs())
-        return needs.filter(**{name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET})
+        filters = {name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
+
+        if "tag" in self.request.GET:
+            filters["resource_tags__name__in"] = self.request.GET.getlist("tag")
+        return needs.filter(**filters)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -196,8 +196,9 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         context["current_city"] = self.request.GET.get("city")
         context["current_urgency"] = self.request.GET.get("urgency")
         context["current_search"] = self.request.GET.get("q", "")
-
+        context["current_tags"] = self.request.GET.getlist("tag", "")
         context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
+        context["tags"] = set(needs.values_list("resource_tags__name", flat=True))
 
         cities = needs.order_by("city")
         if self.request.GET.get("county"):
