@@ -434,6 +434,12 @@ footer {
     }
 }
 
+#need-form input[type="submit"] {
+    display:flex;
+    margin-right: auto;
+    margin-left:auto;
+}
+
 .search-wrapper {
     justify-content: flex-end;
     margin-bottom: 3em;
