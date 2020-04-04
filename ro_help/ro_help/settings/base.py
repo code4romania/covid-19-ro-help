@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 import environ
@@ -239,6 +240,8 @@ RED_CROSS_NAME = "Crucea Rosie"
 
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+
+LOGOUT_REDIRECT_URL = reverse_lazy('ngos')
 
 if env("RECAPTCHA_PUBLIC_KEY"):
     RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
