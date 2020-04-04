@@ -120,6 +120,8 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
     template_name = "ngo/list.html"
 
+    URGENCY_ORDER = {"low": 1, "medium": 2, "high": 3, "critical": 4}
+
     def get_needs(self):
         if hasattr(self, "needs"):
             return self.needs
@@ -211,7 +213,8 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if self.request.GET.get("city"):
             urgencies = urgencies.filter(city=self.request.GET.get("city"))
 
-        context["urgencies"] = urgencies.order_by("urgency").values_list("urgency", flat=True).distinct("urgency")
+        urgencies = {x: self.URGENCY_ORDER[x] for x in (urgencies.values_list("urgency", flat=True))}
+        context["urgencies"] = [k for k, _ in sorted(urgencies.items(), key=lambda item: item[1], reverse=True)]
 
         return context
 

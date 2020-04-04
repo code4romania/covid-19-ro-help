@@ -7,18 +7,28 @@ import hub.storage_backends
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0042_merge_20200404_0912'),
+        ("hub", "0042_merge_20200404_0912"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='registerngorequest',
-            name='last_balance_sheet',
-            field=models.FileField(max_length=300, storage=hub.storage_backends.PrivateMediaStorage(), upload_to='', verbose_name='First page of last balance sheet'),
+            model_name="registerngorequest",
+            name="last_balance_sheet",
+            field=models.FileField(
+                max_length=300,
+                storage=hub.storage_backends.PrivateMediaStorage(),
+                upload_to="",
+                verbose_name="First page of last balance sheet",
+            ),
         ),
         migrations.AlterField(
-            model_name='registerngorequest',
-            name='statute',
-            field=models.FileField(max_length=300, storage=hub.storage_backends.PrivateMediaStorage(), upload_to='', verbose_name='NGO Statute'),
+            model_name="registerngorequest",
+            name="statute",
+            field=models.FileField(
+                max_length=300,
+                storage=hub.storage_backends.PrivateMediaStorage(),
+                upload_to="",
+                verbose_name="NGO Statute",
+            ),
         ),
     ]
