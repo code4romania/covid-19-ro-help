@@ -199,7 +199,16 @@ class NGO(TimeStampedModel):
     description = models.TextField(_("Description"))
     contact_name = models.CharField(_("Contact person's name"), max_length=254)
     email = models.EmailField(_("Email"),)
-    phone = models.CharField(_("Phone"), max_length=30)
+    phone = models.CharField(
+        _("Phone"),
+        max_length=30,
+        validators=[
+            RegexValidator(
+                regex="^(\+4|)?(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2}){1}?(\s|\.|\-)?([0-9]{3}(\s|\.|\-|)){2}$",
+                message=_("Enter a valid phone number"),
+            ),
+        ]
+    )
     address = models.CharField(_("Address"), max_length=400)
     cif = models.CharField("CIF", max_length=20, null=True, blank=True)
     cui = models.CharField("CUI", max_length=20, null=True, blank=True)
