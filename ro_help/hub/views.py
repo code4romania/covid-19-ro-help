@@ -199,7 +199,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         context["current_search"] = self.request.GET.get("q", "")
         context["current_tags"] = self.request.GET.getlist("tag", "")
         context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
-        context["tags"] = sorted(set(needs.values_list("resource_tags__name", flat=True)))
+        context["tags"] = sorted(set([n for n in needs.values_list("resource_tags__name", flat=True) if n is not None]))
 
         cities = needs.order_by("city")
         if self.request.GET.get("county"):
