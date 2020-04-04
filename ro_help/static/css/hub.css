@@ -426,7 +426,8 @@ footer {
 }
 
 .search-wrapper {
-    border-bottom: 1px solid #dbdbdb;
+    justify-content: flex-end;
+    margin-bottom: 3em;
 }
 
 .search-input, .search-input:hover, .search-input:focus {
