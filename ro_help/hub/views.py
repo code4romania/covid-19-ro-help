@@ -181,8 +181,9 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         needs = self.search(self.get_needs())
         filters = {name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
 
-        if "tag" in self.request.GET:
-            filters["resource_tags__name__in"] = self.request.GET.getlist("tag")
+        tags = self.request.GET.getlist("tag", [])
+        if tags:
+            filters["resource_tags__name__in"] = tags
         return needs.filter(**filters)
 
     def get_context_data(self, **kwargs):
@@ -198,7 +199,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         context["current_search"] = self.request.GET.get("q", "")
         context["current_tags"] = self.request.GET.getlist("tag", "")
         context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
-        context["tags"] = set(needs.values_list("resource_tags__name", flat=True))
+        context["tags"] = sorted(set(needs.values_list("resource_tags__name", flat=True)))
 
         cities = needs.order_by("city")
         if self.request.GET.get("county"):
