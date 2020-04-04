@@ -430,14 +430,24 @@ footer {
     margin-bottom: 3em;
 }
 
+.search-wrapper form {
+    width: 300px;
+}
+
 .search-input, .search-input:hover, .search-input:focus {
     box-shadow: none;
     border: none;
-    width: 400px;
     font-family: Titillium Web, sans-serif;
     font-style: italic;
     font-weight: normal;
     font-size: 16px;
+}
+
+@media (max-width: 768px) {
+
+    .search-wrapper form {
+        width:100%;
+    }
 }
 
 .search-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
