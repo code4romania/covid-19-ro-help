@@ -64,36 +64,36 @@
     <div id="aid_types" class="container">
         <div class="columns is-multiline">
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
-                    <span class="call-to-action" style="background-color: #bfd1e3;">
-                        <i class="far fa-check-circle"></i>
-                    </span>
+                <div class="{% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=money' remove_query_param='page' %}"
-                       class="has-text-black">
+                       class="has-text-black is-flex">
+                        <span class="call-to-action" style="background-color: #bfd1e3;">
+                            <i class="far fa-check-circle"></i>
+                        </span>
                         <div class="card-content">{% trans "I want to help with money" %}</div>
                     </a>
                 </div>
             </div>
 
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
-                    <span class="call-to-action" style="background-color: #bfd1e3;">
-                        <i class="far fa-check-circle"></i>
-                    </span>
+                <div class="{% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' remove_query_param='page' %}"
-                       class="has-text-black">
+                       class="is-flex has-text-black">
+                        <span class="call-to-action" style="background-color: #bfd1e3;">
+                         <i class="far fa-check-circle"></i>
+                        </span>
                         <div class="card-content">{% trans "I want to help with resources" %}</div>
                     </a>
                 </div>
             </div>
 
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
-                    <span class="call-to-action" style="background-color: #bfd1e3;">
-                        <i class="far fa-check-circle"></i>
-                    </span>
+                <div class="{% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' remove_query_param='page' %}"
-                       class="has-text-black">
+                       class="is-flex has-text-black">
+                         <span class="call-to-action" style="background-color: #bfd1e3;">
+                            <i class="far fa-check-circle"></i>
+                         </span>
                         <div class="card-content">{% trans "I want to volunteer" %}</div>
                     </a>
                 </div>
