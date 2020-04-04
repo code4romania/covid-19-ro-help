@@ -112,15 +112,53 @@
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='urgency' remove_query_param='page' %}"
                                class="dropdown-item">
-                                -
+                                {% trans "All" %}
                             </a>
                         </div>
                         {% for urgency in urgencies %}
                             <div class="dropdown-item">
                                 <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
                                    class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
-                                    {{ urgency }}
+                                    {{ urgency|title }}
                                 </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-narrow filter-dropdown is-marginless">
+            <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        <span>{% trans "Tags" %}</span>
+                        <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-item">
+                            <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='tag' remove_query_param='page' %}"
+                               class="dropdown-item">
+                                -
+                            </a>
+                        </div>
+                        {% for tag in tags %}
+                            <div class="dropdown-item">
+                                {% if tag in current_tags %}
+                                <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='tag={{ tag }}' remove_query_param='page' %}"
+                                   class="dropdown-item {% if tag in current_tags %}is-active{% endif %}">
+                                    {{ tag }}
+                                </a>
+                                {% else %}
+                                <a href="{% spurl base='{{ request.get_full_path }}' add_query='tag={{ tag }}' remove_query_param='page' %}"
+                                   class="dropdown-item {% if tag in current_tags %}is-active{% endif %}">
+                                    {{ tag }}
+                                </a>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>
@@ -141,7 +179,6 @@
 
 <div class="container">
     {% if page_obj %}
-        {% include "shared/pagination.html" with page_obj=page_obj kind=current_kind%}
         <div class="columns is-multiline">
             {% for need in page_obj %}
             <div class="need is-flex container">
