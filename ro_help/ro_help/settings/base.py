@@ -175,6 +175,7 @@ if USE_S3:
     AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
     AWS_S3_SIGNATURE_VERSION = "s3v4"
 else:
+    PRIVATE_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
     STATIC_URL = "/static/"
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "../", "mediafiles")

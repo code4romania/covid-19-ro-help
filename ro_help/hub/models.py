@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User, Group
+from django.core.files.storage import get_storage_class
 from django.db import models, transaction
 from django.utils import timezone
 from django.utils.crypto import get_random_string
@@ -14,6 +16,9 @@ ADMIN_GROUP_NAME = "Admin"
 NGO_GROUP_NAME = "ONG"
 DSU_GROUP_NAME = "DSU"
 FFC_GROUP_NAME = "FFC"
+
+PrivateMediaStorageClass = get_storage_class(settings.PRIVATE_FILE_STORAGE)
+PublicMediaStorageClass = get_storage_class(settings.DEFAULT_FILE_STORAGE)
 
 
 class URGENCY:
@@ -201,11 +206,13 @@ class NGO(TimeStampedModel):
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
     city = models.CharField(_("City"), max_length=100)
 
-    avatar = models.ImageField(_("Avatar"), max_length=300, storage=PublicMediaStorage())
+    avatar = models.ImageField(_("Avatar"), max_length=300, storage=PublicMediaStorageClass())
     last_balance_sheet = models.FileField(
-        _("First page of last balance sheet"), max_length=300, null=True, blank=True, storage=PrivateMediaStorage()
+        _("First page of last balance sheet"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
     )
-    statute = models.FileField(_("NGO Statute"), max_length=300, null=True, blank=True, storage=PrivateMediaStorage())
+    statute = models.FileField(
+        _("NGO Statute"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
+    )
 
     accepts_mobilpay = models.BooleanField(_("Accepts mobilpay"), default=False)
     accepts_transfer = models.BooleanField(_("Accepts transfers"), default=False)
@@ -219,10 +226,10 @@ class NGO(TimeStampedModel):
         help_text=_("XXXX-XXXX-XXXX-XXXX-XXXX"),
     )
     mobilpay_public_key = models.FileField(
-        _("mobilpay Public key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorage()
+        _("mobilpay Public key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
     )
     mobilpay_private_key = models.FileField(
-        _("mobilpay Private key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorage()
+        _("mobilpay Private key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
     )
 
     def __str__(self):
@@ -495,10 +502,11 @@ class RegisterNGORequestVote(TimeStampedModel):
     entity = models.CharField(max_length=30)
     vote = models.CharField(_("Vote"), choices=VOTE.to_choices(), default=VOTE.default(), max_length=10)
     motivation = models.TextField(
-        _("Motvation"), max_length=500, null=True, blank=True, help_text=_("Motivate your decision")
+        _("Motivation"), max_length=500, null=True, blank=True, help_text=_("Motivate your decision")
     )
     date = models.DateTimeField(_("Date"), auto_now_add=True)
 
     class Meta:
         verbose_name_plural = _("NGO Register requests votes")
         verbose_name = _("NGO Register requests vote")
+        unique_together = ("ngo_request", "entity")
