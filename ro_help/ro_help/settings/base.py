@@ -188,6 +188,7 @@ else:
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "../", "mediafiles")
 
+
 STATIC_URL = "/static/"
 STATICFILES_DIRS = env.list(
     "STATICFILES_DIRS", default=[os.path.join(PROJECT_ROOT, "../", "static/")]

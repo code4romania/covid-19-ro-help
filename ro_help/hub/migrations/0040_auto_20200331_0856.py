@@ -12,6 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
+
             model_name="registerngorequest",
             name="last_balance_sheet",
             field=models.FileField(

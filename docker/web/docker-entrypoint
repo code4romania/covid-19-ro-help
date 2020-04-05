@@ -1,6 +1,7 @@
 #!/bin/sh
 
 PORT=${PORT:-"8000"}
+
 RUN_SEED=${RUN_SEED:-"yes"}
 RUN_MIGRATION=${RUN_MIGRATION:-"yes"}
 RUN_DEV_SERVER=${RUN_DEV_SERVER:-"yes"}
