@@ -74,7 +74,7 @@ class NGORegisterRequestForm(forms.ModelForm):
             # "statute",
         ]
         widgets = {
-            # "email": EmailInput(),
+            "email": EmailInput(),
             # # "has_netopia_contract": forms.CheckboxInput(),
             # "avatar": AdminResubmitImageWidget,
             # "last_balance_sheet": AdminResubmitFileWidget,

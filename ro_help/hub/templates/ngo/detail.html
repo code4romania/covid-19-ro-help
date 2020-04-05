@@ -5,7 +5,8 @@
 
 
 {% block left-side-view %}
-
+{% block extra-header %}
+{% endblock %}
 {% block kind-kind-filters %}
 {% endblock%}
 
@@ -40,7 +41,7 @@
                 </span>
                 <span>{% trans "Donate money" %}</span>
             </div>
-            <a href="#donate-money" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+            <a href="#money-accordion" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                aria-label="more options">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -48,7 +49,7 @@
             </a>
         </header>
 
-        <div id="donate-money" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
+        <div id="money-accordion" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
             <div class="card-content donation-card">
                 <div class="container">
                     <div class="content">
@@ -69,8 +70,7 @@
                             </div>
                         </div>
 
-
-                        <form method="GET" action="{% url 'ngo-donate' ngo.pk %}">
+                        <form method="GET" action="{% url 'ngo-donate' ngo.pk %}#donation-form">
                             <div class="columns is-mobile">
                                 <div class="column is-two-thirds-desktop is-half-mobile">
                                     <div class="control">
@@ -84,7 +84,7 @@
                          </form>
                     </div>
                 {% endif %}
-                
+
                 {% if ngo.accepts_transfer %}
                     <div class="container">
                         <div class="container donate-hero">
@@ -110,6 +110,7 @@
                         </div>
                     </div>
                 {% endif %}
+
 
             </div>
         </div>

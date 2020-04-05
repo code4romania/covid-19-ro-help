@@ -112,15 +112,53 @@
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='urgency' remove_query_param='page' %}"
                                class="dropdown-item">
-                                -
+                                {% trans "All" %}
                             </a>
                         </div>
                         {% for urgency in urgencies %}
                             <div class="dropdown-item">
                                 <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
                                    class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
-                                    {{ urgency }}
+                                    {{ urgency|title }}
                                 </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-narrow filter-dropdown is-marginless">
+            <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        <span>{% trans "Tags" %}</span>
+                        <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-item">
+                            <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='tag' remove_query_param='page' %}"
+                               class="dropdown-item">
+                                -
+                            </a>
+                        </div>
+                        {% for tag in tags %}
+                            <div class="dropdown-item">
+                                {% if tag in current_tags %}
+                                <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='tag={{ tag }}' remove_query_param='page' %}"
+                                   class="dropdown-item {% if tag in current_tags %}is-active{% endif %}">
+                                    {{ tag }}
+                                </a>
+                                {% else %}
+                                <a href="{% spurl base='{{ request.get_full_path }}' add_query='tag={{ tag }}' remove_query_param='page' %}"
+                                   class="dropdown-item {% if tag in current_tags %}is-active{% endif %}">
+                                    {{ tag }}
+                                </a>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>
@@ -141,28 +179,11 @@
 
 <div class="container">
     {% if page_obj %}
-        {% include "shared/pagination.html" with page_obj=page_obj %}
         <div class="columns is-multiline">
             {% for need in page_obj %}
             <div class="need is-flex container">
-                    {% if need.kind == "money" %}
-                        <div class="need-icon" style="background-color: #F5BCD6;">
-                            <i class="fas fa-dollar-sign icon"></i>
-                        </div>
-                    {% else %}
-                        {% if need.kind == "resource" %}
-                            <div class="need-icon" style="background-color: #05d6c8">
-                                <i class="fas fa-box-open icon"></i>
-                            </div>
-                        {% else %}
-                            <span class="need-icon" style="background-color: #FFB800">
-                                    <i class="fas fa-people-carry icon"></i>
-                            </span>
-                        {% endif %}
-                    {% endif %}
-
                 <div class="card-image need-logo is-hidden-mobile">
-                   <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
+                    <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
                 </div>
 
                 <div class="card-info">
@@ -175,18 +196,19 @@
                     <div class="need-title is-hidden-mobile">
                         <a class="has-text-black" href="{% url 'ngo-detail' need.ngo.pk %}">{{need.ngo.name}}</a>
                     </div>
-                    <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
+                    {% if need.kind != "money" %}
+                        <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
+                    {% endif %}
+                    <div class="need-description">{{ need.description }}</div>
                     {% if need.resource_tags.all  %}
                         <div class="tag-bar">
                             {% for tag in need.resource_tags.all %}
-                                <span class="tag">{{ tag }}</span>
+                                <span class="need-tag tag">{{ tag }}</span>
                             {% endfor%}
                         </div>
                     {% endif %}
 
                 </div>
-                <div class="vr"></div>
-                <hr class="is-hidden-tablet" style="margin: 0 10%;"/>
                 {% url 'ngo-need' need.ngo.pk need.pk as base %}
 
                 <div class="need-call2action">
@@ -201,9 +223,12 @@
                 </div>
 
             </div>
+            <hr class="is-hidden-tablet" style="margin: 0 10%;"/>
+            <hr class="is-hidden-mobile half-width"/>
             {% endfor %}
         </div>
-        {% include "shared/pagination.html" with page_obj=page_obj %}
+        {% include "shared/pagination.html" with page_obj=page_obj kind=current_kind %}
+
     {% else %}
         <div class="content is-medium">
             <p style="text-align: center;">{% trans "No results matching query" %}</p>

@@ -33,7 +33,8 @@
                     <a  href="{% url 'admin:index' %}" class="navbar-item">
                         {% trans "Admin Panel" %}
                     </a>
-                    <a  href="{% url 'material:logout' %}?next={{request.get_full_path|urlencode}}" class="navbar-item">
+
+                    <a  href="{% url 'material:logout' %}" class="navbar-item">
                         {% trans "Logout" %}
                     </a>
                     {% else %}
