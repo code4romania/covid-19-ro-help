@@ -32,9 +32,7 @@ environ.Env.read_env(f"{root}/.env")  # reading .env file
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PROJECT_ROOT = env.str(
-    "PROJECT_ROOT", os.path.dirname(os.path.dirname(__file__))
-)
+PROJECT_ROOT = env.str("PROJECT_ROOT", os.path.dirname(os.path.dirname(__file__)))
 WEBROOT_DIR = env.str("WEBROOT_DIR", os.path.join(PROJECT_ROOT, "webroot/"))
 
 # Quick-start development settings - unsuitable for production
@@ -190,9 +188,7 @@ else:
 
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = env.list(
-    "STATICFILES_DIRS", default=[os.path.join(PROJECT_ROOT, "../", "static/")]
-)
+STATICFILES_DIRS = env.list("STATICFILES_DIRS", default=[os.path.join(PROJECT_ROOT, "../", "static/")])
 STATIC_ROOT = env.str("STATIC_ROOT", os.path.join(WEBROOT_DIR, "static/"))
 
 STATICFILES_FINDERS = [
