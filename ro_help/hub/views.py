@@ -114,7 +114,6 @@ class NGODonationsReportsMixin:
         return context
 
 
-
 class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
     allow_filters = ["county", "city", "urgency"]
@@ -190,7 +189,6 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if tags:
             filters["resource_tags__name__in"] = tags
         return needs.filter(**filters)
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
