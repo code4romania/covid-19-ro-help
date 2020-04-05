@@ -1,13 +1,5 @@
 [
   {
-<<<<<<< HEAD
-    "app": "Știri oficiale",
-    "call_to_action": "Știri oficiale și informații la zi",
-    "description": "",
-    "button_text": "Cele mai noi informații oficiale",
-    "color": "#05d6c8",
-    "url": "https://stirioficiale.ro"
-=======
     "app": "Declaratie pe proprie raspundere",
     "call_to_action": "Model - Declarație pe proprie răspundere",
     "description": "",
@@ -30,7 +22,6 @@
     "button_text": "Citește aici",
     "color": "#ffdd57",
     "url": "https://stirioficiale.ro/15-recomandari-privind-conduita-sociala-responsabila-in-prevenirea-raspandirii-coronavirus"
->>>>>>> Put back user generated static
   },
   {
     "app": "Extensie Chrome",
@@ -63,8 +54,6 @@
     "button_text": "Vezi aici date la zi",
     "color": "#f5bcd6",
     "url": "https://datelazi.ro/"
-<<<<<<< HEAD
-=======
   },
   {
     "app": "Model - declarație intrare în țară",
@@ -73,6 +62,5 @@
     "button_text": "Descarcă aici",
     "color": "#ffdd57",
     "url": "https://cdn.stirioficiale.ro/storage/Declaratie%20persoane%20intrare%20in%20tara%20Covid%2019.pdf"
->>>>>>> Put back user generated static
   }
 ]
