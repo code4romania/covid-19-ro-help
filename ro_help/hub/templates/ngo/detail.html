@@ -69,8 +69,7 @@
                             </div>
                         </div>
 
-
-                        <form method="GET" action="{% url 'ngo-donate' ngo.pk %}">
+                        <form method="GET" action="{% url 'ngo-donate' ngo.pk %}#donation-form">
                             <div class="columns is-mobile">
                                 <div class="column is-two-thirds-desktop is-half-mobile">
                                     <div class="control">
@@ -84,7 +83,7 @@
                          </form>
                     </div>
                 {% endif %}
-                
+
                 {% if ngo.accepts_transfer %}
                     <div class="container">
                         <div class="container donate-hero">
