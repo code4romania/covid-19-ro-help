@@ -22,44 +22,45 @@
 </div>
 
 <div class="container">
-    <div id="donate_safely" class="container">
-        <h1 class="donate-title">
-            {% trans "Donate safely" %}
-        </h1>
-        <p class="donate-subtitle">
-            {% trans "Direct your aid towards one of the verified organizations below. They will manage the aid and resources you provide them with so that the people most in need receive them." %}
-        </p>
-    </div>
-
-    {% fetch_red_cross_data as red_cross %}
-    {% if red_cross %}
-    <div id="redcross-banner" class="container is-flex">
-        <div class="card-image is-hidden-mobile" style="min-width:115px;">
-            <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+    {% block extra-header %}
+        <div id="donate_safely" class="container">
+            <h1 class="donate-title">
+                {% trans "Donate safely" %}
+            </h1>
+            <p class="donate-subtitle">
+                {% trans "Direct your aid towards one of the verified organizations below. They will manage the aid and resources you provide them with so that the people most in need receive them." %}
+            </p>
         </div>
-        <div class="card-info">
-            <div class="flex-align-center">
-                <div class="card-image is-hidden-tablet">
-                    <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+
+        {% fetch_red_cross_data as red_cross %}
+        {% if red_cross %}
+        <div id="redcross-banner" class="container is-flex">
+            <div class="card-image is-hidden-mobile" style="min-width:115px;">
+                <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+            </div>
+            <div class="card-info">
+                <div class="flex-align-center">
+                    <div class="card-image is-hidden-tablet">
+                        <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+                    </div>
+                    <div class="need-title is-hidden-tablet">{% trans "Red Cross" %}</div>
                 </div>
-                <div class="need-title is-hidden-tablet">{% trans "Red Cross" %}</div>
+                <div class="need-title is-hidden-mobile">{% trans "Red Cross" %}</div>
+                <div class="redcross-text">
+                    {% blocktrans %}
+                        Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
+                    {% endblocktrans %}
+                </div>
             </div>
-            <div class="need-title is-hidden-mobile">{% trans "Red Cross" %}</div>
-            <div class="redcross-text">
-                {% blocktrans %}
-                    Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
-                {% endblocktrans %}
-            </div>
+            {% if red_cross.money_need %}
+                {% url 'ngo-need' red_cross.obj.pk red_cross.money_need.pk as base %}
+                <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross.money_need.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
+            {% else %}
+                <div class="need-call2action"><a href="{% url 'ngo-detail' red_cross.obj.pk %}" class="button is-success">{% trans "Donate" %}</a></div>
+            {% endif %}
         </div>
-        {% if red_cross.money_need %}
-            {% url 'ngo-need' red_cross.obj.pk red_cross.money_need.pk as base %}
-            <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross.money_need.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
-        {% else %}
-            <div class="need-call2action"><a href="{% url 'ngo-detail' red_cross.obj.pk %}" class="button is-success">{% trans "Donate" %}</a></div>
         {% endif %}
-    </div>
-    {% endif %}
-
+    {% endblock %}
     {% block kind-kind-filters %}
     <div id="aid_types" class="container">
         <div class="columns is-multiline">
