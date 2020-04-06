@@ -126,24 +126,25 @@ class NGOAdmin(admin.ModelAdmin):
             NGONeed.objects.filter(ngo=ngo, kind=KIND.MONEY).delete()
 
     def _email_ngo_owners_about_creation(self, request, ngo, form, change):
-        if not change:
-            email_template = "mail/ngo_registration_notice.html"
-            template_context = {"ngo_id": ngo.id, "base_path": f"{request.scheme}://{request.META['HTTP_HOST']}"}
-            email_subject = f"[RO HELP] {ngo.name} a fost înregistrat în platforma noastră"
-            email_recipients = {
-                user.email: user.is_staff
-                for user in form.cleaned_data['users']
-                if user != request.user and user.is_active and user.email
-            }
-            if request.user.email != ngo.email:
-                email_recipients.setdefault(ngo.email, False)
-            for email, is_staff in email_recipients.items():
-                template_context["user_has_edit_rights"] = is_staff
-                utils.send_email(email_template, template_context, email_subject, email)
-            if email_recipients:
-                self.message_user(
-                    request, _("NGO owners have been notified."), level=messages.INFO,
-                )
+        if change:
+            return
+        email_template = "mail/ngo_registration_notice.html"
+        template_context = {"ngo_id": ngo.id, "base_path": f"{request.scheme}://{request.META['HTTP_HOST']}"}
+        email_subject = f"[RO HELP] {ngo.name} a fost înregistrat în platforma noastră"
+        email_recipients = {
+            user.email: user.is_staff
+            for user in form.cleaned_data["users"]
+            if user != request.user and user.is_active and user.email
+        }
+        if request.user.email != ngo.email:
+            email_recipients.setdefault(ngo.email, False)
+        for email, is_staff in email_recipients.items():
+            template_context["user_has_edit_rights"] = is_staff
+            utils.send_email(email_template, template_context, email_subject, email)
+        if email_recipients:
+            self.message_user(
+                request, _("NGO owners have been notified."), level=messages.INFO,
+            )
 
 
 @admin.register(NGOReportItem)
