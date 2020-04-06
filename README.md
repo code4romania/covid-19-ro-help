@@ -42,6 +42,8 @@ Once installed, you just need to copy `cp .env.example .env` and run `docker-com
 
 A seed command is being run on each start, so you can have fresh new random data to play with. 
 
+In case you are using WSL with Docker for Desktop (version 2.2.0.4) on Windows: you need to have your repository on the Windows file system rather than on the WSL one because otherwise the volume won't be mounted (solution inspired from this work around: https://github.com/docker/for-win/issues/2151#issuecomment-402163189)
+
 If you want to make migrations, run tests or add a dependency, you can get into the web container using:
 ```bash
 docker-compose exec web sh

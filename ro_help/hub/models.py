@@ -1,17 +1,24 @@
+from django.conf import settings
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User, Group
+from django.core.files.storage import get_storage_class
 from django.db import models, transaction
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
-
+from django.core.validators import RegexValidator
 from django_extensions.db.models import TimeStampedModel
+
+from .storage_backends import PublicMediaStorage, PrivateMediaStorage
 
 
 ADMIN_GROUP_NAME = "Admin"
 NGO_GROUP_NAME = "ONG"
 DSU_GROUP_NAME = "DSU"
 FFC_GROUP_NAME = "FFC"
+
+PrivateMediaStorageClass = get_storage_class(settings.PRIVATE_FILE_STORAGE)
+PublicMediaStorageClass = get_storage_class(settings.DEFAULT_FILE_STORAGE)
 
 
 class URGENCY:
@@ -147,21 +154,70 @@ class VOTE:
         return [VOTE.YES, VOTE.NO, VOTE.ABSTENTION]
 
 
+class CURRENCY:
+    RON = _("RON")
+    EUR = _("EUR")
+    USD = _("USD")
+
+    @classmethod
+    def to_choices(cls):
+        return [
+            ("RON", CURRENCY.RON),
+            ("EUR", CURRENCY.EUR),
+            ("USD", CURRENCY.USD),
+        ]
+
+    @classmethod
+    def default(cls):
+        return CURRENCY.RON
+
+    @classmethod
+    def to_list(cls):
+        return [CURRENCY.RON, CURRENCY.EUR, CURRENCY.USD]
+
+
+class NGOAccount(models.Model):
+    """
+    Description: Model Description
+    """
+
+    ngo = models.ForeignKey("NGO", on_delete=models.CASCADE, related_name="accounts")
+    currency = models.CharField(_("Currency"), choices=CURRENCY.to_choices(), default=CURRENCY.default(), max_length=10)
+    iban = models.CharField(max_length=40)
+    bank = models.CharField(max_length=50)
+
+    def str(self):
+        return f"{self.bank} ({self.currency})"
+
+    class Meta:
+        pass
+
+
 class NGO(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254)
     users = models.ManyToManyField(User, related_name="ngos")
     description = models.TextField(_("Description"))
+    contact_name = models.CharField(_("Contact person's name"), max_length=254)
     email = models.EmailField(_("Email"),)
     phone = models.CharField(_("Phone"), max_length=30)
     address = models.CharField(_("Address"), max_length=400)
-    city = models.CharField(_("City"), max_length=100)
+    cif = models.CharField("CIF", max_length=20, null=True, blank=True)
+    cui = models.CharField("CUI", max_length=20, null=True, blank=True)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
+    city = models.CharField(_("City"), max_length=100)
 
-    # mobilpay_username = models.CharField(_("mobilpay Merchant identifier code"), max_length=20, null=True, blank=True)
-    # mobilpay_icc = models.CharField(_("mobilpay Merchant identifier code"), max_length=20, null=True, blank=True)
-    avatar = models.ImageField(_("Avatar"), max_length=300)
-    last_balance_sheet = models.FileField(_("First page of last balance sheet"), max_length=300, null=True, blank=True)
-    statute = models.FileField(_("NGO Statute"), max_length=300, null=True, blank=True)
+    avatar = models.ImageField(_("Avatar"), max_length=300, storage=PublicMediaStorageClass())
+    last_balance_sheet = models.FileField(
+        _("First page of last balance sheet"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
+    )
+    statute = models.FileField(
+        _("NGO Statute"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
+    )
+
+    accepts_mobilpay = models.BooleanField(_("Accepts mobilpay"), default=False)
+    accepts_transfer = models.BooleanField(_("Accepts transfers"), default=False)
+    donations_description = models.TextField(null=True, blank=True)
+
     mobilpay_icc = models.CharField(
         _("mobilpay Merchant identifier code"),
         max_length=24,
@@ -169,8 +225,12 @@ class NGO(TimeStampedModel):
         blank=True,
         help_text=_("XXXX-XXXX-XXXX-XXXX-XXXX"),
     )
-    mobilpay_public_key = models.FileField(_("mobilpay Public key"), max_length=300, null=True, blank=True)
-    mobilpay_private_key = models.FileField(_("mobilpay Private key"), max_length=300, null=True, blank=True)
+    mobilpay_public_key = models.FileField(
+        _("mobilpay Public key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
+    )
+    mobilpay_private_key = models.FileField(
+        _("mobilpay Private key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
+    )
 
     def __str__(self):
         return self.name
@@ -192,11 +252,21 @@ class NGO(TimeStampedModel):
 
 
 class ResourceTag(TimeStampedModel):
-    name = models.CharField(_("Name"), max_length=30)
+    name = models.CharField(
+        _("Name"),
+        max_length=30,
+        validators=[
+            RegexValidator(
+                regex="^[-a-zA-Z0-9\s,]+$",
+                message="Enter a valid tag consisting of letters, numbers, hyphens or spaces",
+            ),
+        ],
+    )
 
     class Meta:
         verbose_name_plural = _("Resource tags")
         verbose_name = _("Resource tag")
+        ordering = ("name",)
 
     def __str__(self):
         return self.name
@@ -331,8 +401,10 @@ class RegisterNGORequest(TimeStampedModel):
     resolved_on = models.DateTimeField(_("Resolved on"), null=True, blank=True)
 
     avatar = models.ImageField(_("Avatar"), max_length=300, help_text=_("Image should be 500x500px"))
-    last_balance_sheet = models.FileField(_("First page of last balance sheet"), max_length=300)
-    statute = models.FileField(_("NGO Statute"), max_length=300)
+    last_balance_sheet = models.FileField(
+        _("First page of last balance sheet"), max_length=300, storage=PrivateMediaStorage()
+    )
+    statute = models.FileField(_("NGO Statute"), max_length=300, storage=PrivateMediaStorage())
 
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
@@ -395,6 +467,7 @@ class RegisterNGORequest(TimeStampedModel):
         ngo, _ = NGO.objects.get_or_create(
             name=self.name,
             description=self.description,
+            contact_name=self.contact_name,
             email=self.email,
             phone=self.contact_phone,
             avatar=self.avatar,
@@ -429,10 +502,11 @@ class RegisterNGORequestVote(TimeStampedModel):
     entity = models.CharField(max_length=30)
     vote = models.CharField(_("Vote"), choices=VOTE.to_choices(), default=VOTE.default(), max_length=10)
     motivation = models.TextField(
-        _("Motvation"), max_length=500, null=True, blank=True, help_text=_("Motivate your decision")
+        _("Motivation"), max_length=500, null=True, blank=True, help_text=_("Motivate your decision")
     )
     date = models.DateTimeField(_("Date"), auto_now_add=True)
 
     class Meta:
         verbose_name_plural = _("NGO Register requests votes")
         verbose_name = _("NGO Register requests vote")
+        unique_together = ("ngo_request", "entity")

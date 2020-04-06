@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 import environ
@@ -20,13 +21,19 @@ root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
+    ENABLE_DEBUG_TOOLBAR=(bool, False),
     USE_S3=(bool, False),
     ALLOWED_HOSTS=(list, []),
+    RECAPTCHA_PUBLIC_KEY=(str, ""),
+    RECAPTCHA_PRIVATE_KEY=(str, ""),
 )
 environ.Env.read_env(f"{root}/.env")  # reading .env file
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+PROJECT_ROOT = env.str("PROJECT_ROOT", os.path.dirname(os.path.dirname(__file__)))
+WEBROOT_DIR = env.str("WEBROOT_DIR", os.path.join(PROJECT_ROOT, "webroot/"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -37,7 +44,7 @@ SECRET_KEY = "v*2$eed@gagp7f%kvb=zl%30c-(*gl9qppn0vv%sku#q7o&p64"
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com", "dev.rohelp.ro", "rohelp.ro"]
+ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com", "dev.rohelp.ro", "rohelp.ro", "prod.rohelp.ro"]
 
 # TODO: should be replaced with ALLOWED_HOSTS once we go live
 ALLOWED_HOSTS += env.list("ALLOWED_HOSTS")
@@ -46,7 +53,7 @@ ALLOWED_HOSTS += env.list("ALLOWED_HOSTS")
 
 INSTALLED_APPS = [
     "hub",
-    "mobilpay",
+    "mobilpay.apps.MobilpayConfig",
     "material.admin",
     "material.admin.default",
     "django.contrib.auth",
@@ -122,6 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {"NAME": "hub.password_validation.PasswordDifferentFromPrevious"},
 ]
 
 
@@ -160,21 +168,33 @@ if USE_S3:
     AWS_DEFAULT_ACL = "public-read"
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
-    # s3 static settings
-    AWS_LOCATION = "static"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
-    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    PUBLIC_MEDIA_LOCATION = "media"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = "media"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+    DEFAULT_FILE_STORAGE = "hub.storage_backends.PublicMediaStorage"
+    # s3 private media settings
+    PRIVATE_MEDIA_LOCATION = "private"
+    PRIVATE_FILE_STORAGE = "hub.storage_backends.PrivateMediaStorage"
+    AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+    AWS_S3_SIGNATURE_VERSION = "s3v4"
 else:
+    PRIVATE_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
     STATIC_URL = "/static/"
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "../", "mediafiles")
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "../", "static"),
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = env.list("STATICFILES_DIRS", default=[os.path.join(PROJECT_ROOT, "../", "static/")])
+STATIC_ROOT = env.str("STATIC_ROOT", os.path.join(WEBROOT_DIR, "static/"))
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
 
 # SMTP
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -189,7 +209,7 @@ MATERIAL_ADMIN_SITE = {
     "HEADER": _("COVID-19 RO HELP"),  # Admin site header
     "TITLE": _("RO HELP"),  # Admin site title
     # Admin site favicon (path to static should be specified)
-    "FAVICON": "path/to/favicon",
+    "FAVICON": "images/favicons/favicon.ico",
     "MAIN_BG_COLOR": "#3c0201",  # Admin site main color, css color should be specified
     # Admin site main hover color, css color should be specified
     "MAIN_HOVER_COLOR": "#f15b8c",
@@ -226,8 +246,12 @@ ADMINS = [
 
 NO_REPLY_EMAIL = "noreply@rohelp.ro"
 
+RED_CROSS_NAME = "Crucea Rosie"
+
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+
+LOGOUT_REDIRECT_URL = reverse_lazy("ngos")
 
 if env("RECAPTCHA_PUBLIC_KEY"):
     RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")

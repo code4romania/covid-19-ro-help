@@ -21,7 +21,6 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
-urlpatterns = []
 
 urlpatterns = (
     i18n_patterns(
@@ -30,7 +29,11 @@ urlpatterns = (
         path("contact/", TemplateView.as_view(template_name="contact.html"), name="contact"),
         path("mobilpay/", include("mobilpay.urls", namespace="mobilpay")),
         path("admin/", admin.site.urls),
-        path("admin/password_reset/", auth_views.PasswordResetView.as_view(), name="admin_password_reset"),
+        path(
+            "admin/password_reset/",
+            auth_views.PasswordResetView.as_view(html_email_template_name="registration/password_reset_email.html"),
+            name="admin_password_reset",
+        ),
         path("admin/password_reset/done/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
         path(
             "admin/reset/<uidb64>/<token>/",
@@ -48,8 +51,4 @@ urlpatterns = (
 if settings.DEBUG:
     import debug_toolbar
 
-    urlpatterns = [
-        path("__debug__/", include(debug_toolbar.urls)),
-        # For django versions before 2.0:
-        # url(r'^__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
+    urlpatterns = [path("__debug__/", include(debug_toolbar.urls)),] + urlpatterns

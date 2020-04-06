@@ -3,22 +3,25 @@
 
 <div class="h-padded-wrapper">
     <div class="container developed-by">
-        <div>
+        <div class="part-wrapper border-b">
             <div class="caption">{% trans "A project in partnership with" %}</div>
-            <div class="developed-by-logo">
+            <div class="developed-logo is-flex">
                 <a href="https://www.gov.ro" target="_blank" rel="noopener noreferrer">
-                    <img src="{% static "images/apdr_logo.png" %}" alt="Autoritatea pentru digitalizarea României" width=180" height="50">
+                    <img class="developed-logo-img" src="{% static "images/gov_logo.png" %}" alt="Guvernul României">
+                </a>
+                <a href="https://www.aadr.ro" target="_blank" rel="noopener noreferrer">
+                    <img class="developed-logo-img" src="{% static "images/aadr_logo.png" %}" alt="Autoritatea pentru digitalizarea României" >
                 </a>
                 <a href="http://www.dsu.mai.gov.ro/" target="_blank" rel="noopener noreferrer">
-                    <img src="{% static "images/dsu_logo.png" %}" alt="Romanian Government logo" width="121" height="50">
+                    <img class="developed-logo-img"  src="{% static "images/dsu_logo.png" %}" alt="Romanian Government logo">
                 </a>
             </div>
         </div>
-        <div>
+        <div class="part-wrapper border-b">
             <div class="caption"> {% trans "developed by" %}</div>
             <div class="developed-by-logo">
                 <a href="https://code4.ro/ro/" target="_blank" rel="noopener noreferrer">
-                    <img class="smaller" src="{% static "images/code4romania.svg" %}" alt="Code for Romania logo" width=100" height="100">
+                    <img class="developed-logo-img developed-logo-img-sm" src="{% static "images/code4romania.svg" %}" alt="Code for Romania logo" width=100" height="30">
                 </a>
             </div>
         </div>
