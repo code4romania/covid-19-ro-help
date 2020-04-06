@@ -30,5 +30,5 @@ if [ "$RUN_DEV_SERVER" == "yes" ] ; then
   echo "Start web server on $PORT"
   python3 manage.py runserver "0.0.0.0:$PORT"
 else
-   gunicorn ro_help.wsgi --bind "0.0.0.0:$PORT" --log-level info -k gevent -w 2
+   gunicorn ro_help.wsgi --bind "0.0.0.0:$PORT" --log-level debug -k gevent -w 2
 fi
