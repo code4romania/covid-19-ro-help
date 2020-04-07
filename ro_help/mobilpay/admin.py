@@ -42,6 +42,9 @@ class PaymentOrderAdmin(admin.ModelAdmin):
 class PaymentResponseAdmin(admin.ModelAdmin):
     icon_name = "credit_card"
     list_display = ["payment_order", "order_id", "date", "action", "error_code", "error_type", "error_message"]
+    search_fields = ["payment_order__ngo__name"]
+    list_filter = ["payment_order__ngo", "date", "action", "error_code"]
+
 
     def has_add_permission(self, request, obj=None):
         return False
