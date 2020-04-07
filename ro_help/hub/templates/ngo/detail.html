@@ -5,7 +5,7 @@
 {% load i18n %}
 {% load meta_tags %}
 
-{% block meta_tags %}{% with title=ngo.name, image=ngo.avatar, description=ngo.description %}{% meta_tags %}{% endwith %}{% endblock %}
+{% block meta_tags %}{% with title=ngo.name image=ngo.avatar.url description=ngo.description %}{% meta_tags %}{% endwith %}{% endblock %}
 
 {% block left-side-view %}
 {% block extra-header %}
