@@ -413,8 +413,8 @@ class RegisterNGORequest(TimeStampedModel):
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = _("NGO register requests")
-        verbose_name = _("NGO register request")
+        verbose_name_plural = _("Votes history")
+        verbose_name = _("Vote history")
 
     @classmethod
     def last_balance_sheet_link(self):
@@ -496,8 +496,8 @@ class RegisterNGORequest(TimeStampedModel):
 class PendingRegisterNGORequest(RegisterNGORequest):
     class Meta:
         proxy = True
-        verbose_name_plural = _("NGO pending requests")
-        verbose_name = _("NGO pending request")
+        verbose_name_plural = _("Pending NGOs")
+        verbose_name = _("Pending NGO")
 
 
 class RegisterNGORequestVote(TimeStampedModel):
@@ -511,6 +511,6 @@ class RegisterNGORequestVote(TimeStampedModel):
     date = models.DateTimeField(_("Date"), auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = _("NGO Register requests votes")
-        verbose_name = _("NGO Register requests vote")
+        verbose_name_plural = _("My votes")
+        verbose_name = _("My vote")
         unique_together = ("ngo_request", "entity")
