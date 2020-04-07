@@ -150,7 +150,6 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
     def search(self, queryset):
         # TODO: it should take into account selected language. Check only romanian for now.
         query = self.request.GET.get("q")
-
         if not query:
             return queryset
 
@@ -172,7 +171,6 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
             .order_by("title", "-rank")
             .distinct("title")
         )
-
         if not hasattr(self, "search_cache"):
             self.search_cache = {}
 
@@ -205,17 +203,15 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         context["counties"] = needs.order_by("county").values_list("county", flat=True).distinct("county")
         context["tags"] = sorted(set([n for n in needs.values_list("resource_tags__name", flat=True) if n]))
 
-        cities = needs.order_by("city")
         if self.request.GET.get("county"):
-            cities = cities.filter(county=self.request.GET.get("county"))
+            needs = needs.filter(county=self.request.GET.get("county"))
 
-        context["cities"] = cities.values_list("city", flat=True).distinct("city")
+        context["cities"] = set(needs.values_list("city", flat=True))
 
-        urgencies = cities
         if self.request.GET.get("city"):
-            urgencies = urgencies.filter(city=self.request.GET.get("city"))
+            needs = needs.filter(city=self.request.GET.get("city"))
 
-        urgencies = {x: self.URGENCY_ORDER[x] for x in (urgencies.values_list("urgency", flat=True))}
+        urgencies = {x: self.URGENCY_ORDER[x] for x in (needs.values_list("urgency", flat=True))}
         context["urgencies"] = [k for k, _ in sorted(urgencies.items(), key=lambda item: item[1], reverse=True)]
 
         return context
