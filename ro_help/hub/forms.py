@@ -1,7 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django_crispy_bulma.widgets import EmailInput, FileUploadInput
-from file_resubmit.admin import AdminResubmitFileWidget, AdminResubmitImageWidget
 
 from hub import models
 from captcha.fields import ReCaptchaField
