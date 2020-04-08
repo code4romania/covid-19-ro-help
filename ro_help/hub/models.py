@@ -3,6 +3,7 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User, Group
 from django.core.files.storage import get_storage_class
 from django.db import models, transaction
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
@@ -235,6 +236,9 @@ class NGO(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("ngo-detail", args=[self.pk])
+
     def get_funders(self):
         return self.payment_orders.filter(success=True)
 
@@ -409,8 +413,8 @@ class RegisterNGORequest(TimeStampedModel):
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = _("NGO register requests")
-        verbose_name = _("NGO register request")
+        verbose_name_plural = _("Votes history")
+        verbose_name = _("Vote history")
 
     @classmethod
     def last_balance_sheet_link(self):
@@ -492,8 +496,8 @@ class RegisterNGORequest(TimeStampedModel):
 class PendingRegisterNGORequest(RegisterNGORequest):
     class Meta:
         proxy = True
-        verbose_name_plural = _("NGO pending requests")
-        verbose_name = _("NGO pending request")
+        verbose_name_plural = _("Pending NGOs")
+        verbose_name = _("Pending NGO")
 
 
 class RegisterNGORequestVote(TimeStampedModel):
@@ -507,6 +511,6 @@ class RegisterNGORequestVote(TimeStampedModel):
     date = models.DateTimeField(_("Date"), auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = _("NGO Register requests votes")
-        verbose_name = _("NGO Register requests vote")
+        verbose_name_plural = _("My votes")
+        verbose_name = _("My vote")
         unique_together = ("ngo_request", "entity")

@@ -652,3 +652,7 @@ msgstr ""
 #: ro_help/settings/base.py:191
 msgid "RO HELP"
 msgstr ""
+
+#: hub/utils.py:21
+msgid "A coherent and safe collection of aid."
+msgstr ""

@@ -1,8 +1,11 @@
 {% extends 'ngo/base.html' %}
+{% load social_share  %}
 {% load static %}
 {% load spurl %}
 {% load i18n %}
+{% load meta_tags %}
 
+{% block meta_tags %}{% with title=ngo.name image=ngo.avatar.url description=ngo.description %}{% meta_tags %}{% endwith %}{% endblock %}
 
 {% block left-side-view %}
 {% block extra-header %}
@@ -31,6 +34,8 @@
     <p>{{ ngo.description }}</p>
 </div>
 
+{% social_buttons obj=ngo %}
+<br/>
 <div class="container">
     {% if money_page_obj or current_need.kind == 'money' %}
     <div class="card">
@@ -287,7 +292,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script>

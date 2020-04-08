@@ -29,7 +29,6 @@ from .models import (
     FFC_GROUP_NAME,
 )
 
-
 class NGOFilter(AutocompleteFilter):
     title = "NGO"
     field_name = "ngo"
@@ -99,11 +98,24 @@ class NGOAdmin(admin.ModelAdmin):
 
         return []
 
+    def has_accounts(self, request, no_accounts):
+        for account_idx in range(no_accounts):
+            if f"accounts-{account_idx}-DELETE" in request:
+                continue
+
+            if request.get(f"accounts-{account_idx}-iban") and request.get(f"accounts-{account_idx}-bank"):
+                return True
+
+        return False
+
     @transaction.atomic
     def save_model(self, request, ngo, form, change):
         super().save_model(request, ngo, form, change)
+
         if ngo.accepts_transfer:
-            if not ngo.accounts.all():
+            no_accounts = request.POST.get("accounts-TOTAL_FORMS", 0)
+
+            if not self.has_accounts(request.POST, int(no_accounts)):
                 self.message_user(
                     request, _("To accept IBAN Transfers you need to add at least one account."), level=messages.ERROR,
                 )

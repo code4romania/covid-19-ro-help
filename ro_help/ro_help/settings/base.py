@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "storages",
     "captcha",
     "file_resubmit",
+    "easy_thumbnails"
 ]
 
 MIDDLEWARE = [
@@ -252,6 +253,12 @@ RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 
 LOGOUT_REDIRECT_URL = reverse_lazy("ngos")
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'ngo_avatar': {'size': (500, 500), 'crop': True},
+    },
+}
 
 if env("RECAPTCHA_PUBLIC_KEY"):
     RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
