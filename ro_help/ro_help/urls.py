@@ -21,12 +21,14 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
+from ro_help.views import StaticPageView
+
 
 urlpatterns = (
     i18n_patterns(
         path("about/", TemplateView.as_view(template_name="about.html"), name="about"),
         path("how-to/", TemplateView.as_view(template_name="how_to.html"), name="how-to"),
-        path("contact/", TemplateView.as_view(template_name="contact.html"), name="contact"),
+        path("contact/", StaticPageView.as_view(template_name="contact.html"), name="contact"),
         path("mobilpay/", include("mobilpay.urls", namespace="mobilpay")),
         path("admin/", admin.site.urls),
         path(
