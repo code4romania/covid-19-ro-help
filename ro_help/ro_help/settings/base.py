@@ -179,6 +179,7 @@ if USE_S3:
     PUBLIC_MEDIA_LOCATION = "media"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
     DEFAULT_FILE_STORAGE = "hub.storage_backends.PublicMediaStorage"
+    THUMBNAIL_DEFAULT_STORAGE = 'hub.storage_backends.PublicMediaStorage'
     # s3 private media settings
     PRIVATE_MEDIA_LOCATION = "private"
     PRIVATE_FILE_STORAGE = "hub.storage_backends.PrivateMediaStorage"
