@@ -4,6 +4,7 @@ from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import TemplateView
 
+
 class InfoContextMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -19,5 +20,5 @@ class StaticPageView(InfoContextMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-    
+
         return context
