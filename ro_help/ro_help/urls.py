@@ -29,6 +29,7 @@ urlpatterns = (
         path("about/", TemplateView.as_view(template_name="about.html"), name="about"),
         path("how-to/", TemplateView.as_view(template_name="how_to.html"), name="how-to"),
         path("contact/", StaticPageView.as_view(template_name="contact.html"), name="contact"),
+        path("terms/", StaticPageView.as_view(template_name="terms_and_conditions.html"), name="terms"),
         path("mobilpay/", include("mobilpay.urls", namespace="mobilpay")),
         path("admin/", admin.site.urls),
         path(
