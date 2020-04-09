@@ -207,7 +207,7 @@ class NGO(TimeStampedModel):
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
     city = models.CharField(_("City"), max_length=100)
 
-    avatar = models.ImageField(_("Avatar"), max_length=300, storage=PublicMediaStorageClass())
+    avatar = models.ImageField(_("Logo"), max_length=300, storage=PublicMediaStorageClass())
     last_balance_sheet = models.FileField(
         _("First page of last balance sheet"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
     )
@@ -217,7 +217,7 @@ class NGO(TimeStampedModel):
 
     accepts_mobilpay = models.BooleanField(_("Accepts mobilpay"), default=False)
     accepts_transfer = models.BooleanField(_("Accepts transfers"), default=False)
-    donations_description = models.TextField(null=True, blank=True)
+    donations_description = models.TextField(_("Donations description"), null=True, blank=True)
 
     mobilpay_icc = models.CharField(
         _("mobilpay Merchant identifier code"),
@@ -251,8 +251,8 @@ class NGO(TimeStampedModel):
             return None
 
     class Meta:
-        verbose_name_plural = _("NGOs")
-        verbose_name = _("NGO")
+        verbose_name_plural = _("My organizations")
+        verbose_name = _("My organization")
 
 
 class ResourceTag(TimeStampedModel):
@@ -319,8 +319,8 @@ class NGONeed(TimeStampedModel):
         return f"{self.ngo.name}: {self.urgency} {self.kind}"
 
     class Meta:
-        verbose_name_plural = _("NGO needs")
-        verbose_name = _("NGO need")
+        verbose_name_plural = _("Manage needs")
+        verbose_name = _("Manage need")
         ordering = ["-urgency"]
 
 
@@ -335,8 +335,8 @@ class NGOReportItem(TimeStampedModel):
         return f"{self.title}: {self.amount}"
 
     class Meta:
-        verbose_name_plural = _("NGO report items")
-        verbose_name = _("NGO report item")
+        verbose_name_plural = _("Reporta")
+        verbose_name = _("Reports")
 
 
 class NGOHelper(TimeStampedModel):
