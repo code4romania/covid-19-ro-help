@@ -45,7 +45,6 @@ class PaymentResponseAdmin(admin.ModelAdmin):
     search_fields = ["payment_order__ngo__name"]
     list_filter = ["payment_order__ngo", "date", "action", "error_code"]
 
-
     def has_add_permission(self, request, obj=None):
         return False
 

@@ -29,6 +29,7 @@ from .models import (
     FFC_GROUP_NAME,
 )
 
+
 class NGOFilter(AutocompleteFilter):
     title = "NGO"
     field_name = "ngo"
