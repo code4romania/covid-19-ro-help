@@ -44,8 +44,6 @@ class NGOForm(forms.ModelForm):
         if accepts_transfer:
             if not donations_description:
                 self.add_error("donations_description", _("To accept money transfer this field is required"))
-            if not cif:
-                self.add_error("cif", _("To accept money transfer this field is required"))
             if not cui:
                 self.add_error("cui", _("To accept money transfer this field is required"))
 
