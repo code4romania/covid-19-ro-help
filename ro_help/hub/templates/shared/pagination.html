@@ -9,6 +9,9 @@
             {% trans "first" %}</a>
         <a class="pagination-previous"
             href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}={{ page_obj.previous_page_number }}' set_query='kind={{kind}}' %}">{% trans "previous" %}</a>
+       {% else %}
+         <a class="pagination-next hidden"></a>
+         <a class="pagination-next hidden"></a>
         {% endif %}
     </span>
 
@@ -25,7 +28,11 @@
         <a class="pagination-next"
             href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}={{ page_obj.paginator.num_pages }}' set_query='kind={{kind}}' %}">{% trans "last" %}
             &raquo;</a>
+        {% else %}
+         <a class="pagination-next hidden"></a>
+         <a class="pagination-next hidden"></a>
         {% endif %}
+
     </span>
 
 </nav>

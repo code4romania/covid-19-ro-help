@@ -1,29 +1,48 @@
-{% extends "ngo/base.html" %}
+{% extends 'ngo/base.html' %}
+{% load social_share  %}
+{% load static %}
+{% load spurl %}
+{% load i18n %}
 
 
 {% block content %}
 
-    <h1>Despre RO help</h1>
+<div class="container">
+    <div id="donate_safely" class="container">
+        <h1 class="donate-title">
+            {% trans "About" %}
+        </h1>
+        <p class="donate-subtitle">
+            <p>În contextul pandemiei cauzate de virusul COVID-19, este mai important ca niciodată să fim conștienți că orice
+                sprijin din partea noastră poate contribui la îmbunătățirea situației generale.</p>
+            
+            <p>Code for Romania, prin programul Code for Romania Task Force, a dezvoltat aplicația RO Help ca platformă care să
+                faciliteze solicitarea sau colectarea de resurse, fie ele materiale sau financiare precum și înregistrarea de
+                voluntari.</p>
+            
+            <p>RO help este destinată ONG-urilor, care pot să solicite ajutor prin intermediul aplicației, respectând următoarele
+                recomandări:
+                <ul>
+                    <li>
+                        specificarea tipului de resursă solicitată
+                    </li>
+                    <li>
+                        crearea unei solicitări per resursă și per oras.
+                    </li>
+                </ul>
+            </p>
+            
+            <p>Procesul de urmat pentru cetățeni este similar.
+                O dată ce solicitarea a fost creată și direcționată către un ONG, cetățeanului nu îi mai ramane de făcut decat să
+                aștepte soluționarea acesteia. Când solicitarea a fost îndeplinită, aceasta va fi închisă.</p>
+            
+            <p>RO Help este un proiect realizat de Code for Romania în parteneriat cu Guvernul României prin Autoritatea pentru
+                Digitalizarea României și Departamentul pentru Situații de Urgență.</p>
+        </p>
+    </div>
+</div>
 
-    <p>În contextul pandemiei cauzate de virusul COVID-19, este mai important ca niciodată să fim conștienți că orice sprijin din partea noastră poate contribui la îmbunătățirea situației generale.</p>
 
-    <p>Code for Romania, prin programul Code for Romania Task Force, a dezvoltat aplicația RO Help ca platformă care să faciliteze solicitarea sau colectarea de resurse, fie ele materiale sau financiare precum și înregistrarea de voluntari.</p>
-
-    <p>RO help este destinată ONG-urilor, care pot să solicite ajutor prin intermediul aplicației, respectând următoarele recomandări:
-        <ul>
-            <li>
-                specificarea tipului de resursă solicitată    
-            </li>
-            <li>
-                crearea unei solicitări per resursă și per oras. 
-            </li>
-        </ul>
-    </p>
-
-    <p>Procesul de urmat pentru cetățeni este similar.
-        O dată ce solicitarea a fost creată și direcționată către un ONG, cetățeanului nu îi mai ramane de făcut decat să aștepte soluționarea acesteia. Când solicitarea a fost îndeplinită, aceasta va fi închisă.</p>
-
-    <p>RO Help este un proiect realizat de Code for Romania în parteneriat cu Guvernul României prin Autoritatea pentru Digitalizarea României și Departamentul pentru Situații de Urgență.</p>
 
 
 {% endblock %}

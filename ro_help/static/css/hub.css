@@ -436,9 +436,9 @@ footer {
 }
 
 #need-form input[type="submit"] {
-    display:flex;
+    display: flex;
     margin-right: auto;
-    margin-left:auto;
+    margin-left: auto;
 }
 
 .search-wrapper {
@@ -586,3 +586,10 @@ footer {
     width: 50%;
 }
 
+.pagination-next, .pagination-previous {
+    min-width: 80px;
+}
+
+.pagination-next.hidden, .pagination-previous.hidden {
+    visibility: hidden;
+}
