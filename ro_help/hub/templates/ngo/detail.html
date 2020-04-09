@@ -142,10 +142,6 @@
 
         <div id="resource-accordion" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
             <div class="card-content donation-card">
-                <div class="container">
-                    {% include "shared/pagination.html" with page_obj=resource_page_obj page_parameter_name="resource_page" kind="resource"%}
-                </div>
-
                 {% if current_need.kind == 'resource' and resource_page_obj.number == 1%}
                 {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
                 {% endif %}
@@ -155,7 +151,9 @@
                     {% include "shared/need_form.html" with page=resource_page_obj.number %}
                 </div>
                 {% endfor %}
-
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=resource_page_obj page_parameter_name="resource_page" kind="resource"%}
+                </div>
             </div>
         </div>
     </div>
@@ -180,11 +178,6 @@
 
         <div id="volunteer-accordion" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
             <div class="card-content donation-card">
-
-                <div class="container">
-                    {% include "shared/pagination.html" with page_obj=volunteer_page_obj page_parameter_name="volunteer_page" kind="volunteer"%}
-                </div>
-
                 {% if current_need.kind == 'volunteer' and volunteer_page_obj.number == 1%}
                 {% include "shared/need_form.html" with current_form=form page=volunteer_page_obj.number %}
                 {% endif %}
@@ -194,6 +187,10 @@
                     {% include "shared/need_form.html" %}
                 </div>
                 {% endfor %}
+
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=volunteer_page_obj page_parameter_name="volunteer_page" kind="volunteer"%}
+                </div>
             </div>
         </div>
     </div>
