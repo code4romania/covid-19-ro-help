@@ -15,9 +15,6 @@ import os
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
 import environ
 
 root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
@@ -267,11 +264,3 @@ if env("RECAPTCHA_PUBLIC_KEY"):
     RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 else:
     SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
-
-sentry_sdk.init(
-    dsn="https://fafd029cf71346c1b9c44397e6634b47@o375441.ingest.sentry.io/5194891",
-    integrations=[DjangoIntegration()],
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True,
-)
