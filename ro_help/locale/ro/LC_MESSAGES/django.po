@@ -1312,7 +1312,7 @@ msgstr ""
 "implicate activ în limitarea efectelor epidemiei de Covid-19 pentru a "
 "colecta resursele de care acestea au mare nevoie. Cu ajutorul acestei "
 "platforme vei putea vedea care sunt cele mai presante nevoi ale "
-"organizațiilor de pe teriotoriul țării și vei putea alege către ce cauză "
+"organizațiilor de pe teritoriul țării și vei putea alege către ce cauză "
 "vrei să donezi sau la ce eforturi îți dorești să contribui."
 
 #: hub/templates/ngo/base.html:46 hub/templates/ngo/base.html:48
