@@ -67,8 +67,7 @@ INSTALLED_APPS = [
     "django_crispy_bulma",
     "storages",
     "captcha",
-    "file_resubmit",
-    "easy_thumbnails",
+    "file_resubmit"
 ]
 
 MIDDLEWARE = [
@@ -176,7 +175,6 @@ if USE_S3:
     PUBLIC_MEDIA_LOCATION = "media"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
     DEFAULT_FILE_STORAGE = "hub.storage_backends.PublicMediaStorage"
-    THUMBNAIL_DEFAULT_STORAGE = "hub.storage_backends.PublicMediaStorage"
     # s3 private media settings
     PRIVATE_MEDIA_LOCATION = "private"
     PRIVATE_FILE_STORAGE = "hub.storage_backends.PrivateMediaStorage"
@@ -254,10 +252,6 @@ RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 
 LOGOUT_REDIRECT_URL = reverse_lazy("ngos")
-
-THUMBNAIL_ALIASES = {
-    "": {"ngo_avatar": {"size": (500, 500), "crop": True},},
-}
 
 if env("RECAPTCHA_PUBLIC_KEY"):
     RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
