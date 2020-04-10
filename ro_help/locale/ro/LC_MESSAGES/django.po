@@ -1221,12 +1221,12 @@ msgstr ""
 "ro/"
 
 #: hub/templates/developed-by.html:7
-msgid "A project in partnership with"
-msgstr "Un proiect în parteneriat cu"
+msgid "in partnership with"
+msgstr "în parteneriat cu"
 
 #: hub/templates/developed-by.html:21
-msgid "developed by"
-msgstr "dezvoltat de"
+msgid "A project developed by"
+msgstr "Un proiect dezvoltat de"
 
 #: hub/templates/django/forms/widgets/clearable_file_input.html:5
 msgid "Upload document"

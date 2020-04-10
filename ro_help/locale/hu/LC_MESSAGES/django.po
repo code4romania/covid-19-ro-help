@@ -353,11 +353,11 @@ msgid "Upload file"
 msgstr ""
 
 #: hub/templates/developed-by.html:7
-msgid "A project in partnership with"
+msgid "in partnership with"
 msgstr ""
 
 #: hub/templates/developed-by.html:18
-msgid "developed by"
+msgid "A project developed by"
 msgstr ""
 
 #: hub/templates/django/forms/widgets/clearable_file_input.html:5
