@@ -2,7 +2,6 @@
 {% load static %}
 {% load spurl %}
 {% load i18n %}
-{% load thumbnail %}
 
 
 {% block left-side-view %}
@@ -184,13 +183,13 @@
             {% for need in page_obj %}
             <div class="need is-flex container">
                 <div class="card-image need-logo is-hidden-mobile">
-                    <img src="{{ need.ngo.avatar|thumbnail_url:'ngo_avatar' }}" alt="{{ need.ngo.name }}">
+                    <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
                 </div>
 
                 <div class="card-info">
                     <div class="flex-align-center">
                         <div class="card-image need-logo is-hidden-tablet">
-                            <img src="{{ need.ngo.avatar|thumbnail_url:'ngo_avatar' }}" alt="{{ need.ngo.name }}">
+                            <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
                         </div>
                         <div class="need-title is-hidden-tablet">{{need.ngo.name}}</div>
                     </div>
