@@ -26,8 +26,8 @@ from ro_help.views import StaticPageView
 
 urlpatterns = (
     i18n_patterns(
-        path("about/", TemplateView.as_view(template_name="about.html"), name="about"),
-        path("how-to/", TemplateView.as_view(template_name="how_to.html"), name="how-to"),
+        path("about/", StaticPageView.as_view(template_name="about.html"), name="about"),
+        path("how-to/", StaticPageView.as_view(template_name="how_to.html"), name="how-to"),
         path("contact/", StaticPageView.as_view(template_name="contact.html"), name="contact"),
         path("terms/", StaticPageView.as_view(template_name="terms_and_conditions.html"), name="terms"),
         path("cookies/", StaticPageView.as_view(template_name="cookies.html"), name="cookies"),
