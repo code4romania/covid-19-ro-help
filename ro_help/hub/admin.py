@@ -123,14 +123,15 @@ class NGOAdmin(admin.ModelAdmin):
                 ngo.accepts_transfer = False
                 ngo.save()
         if ngo.accepts_transfer or ngo.accepts_mobilpay:
-            NGONeed.objects.get_or_create(
+            need, _ = NGONeed.objects.get_or_create(
                 ngo=ngo,
                 title=ngo.name,
-                description=ngo.donations_description,
                 kind=KIND.MONEY,
                 city=ngo.city,
                 county=ngo.county,
             )
+            need.description=ngo.donations_description
+            need.save()
         else:
             NGONeed.objects.filter(ngo=ngo, kind=KIND.MONEY).delete()
 
