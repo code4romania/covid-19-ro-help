@@ -61,7 +61,7 @@
                         <p>{{ngo.donations_description}}</p>
                     </div>
                 </div>
-                
+
                 {% if ngo.accepts_mobilpay %}
                     <div class="container">
                         <div class="container donate-hero">
@@ -106,9 +106,11 @@
                         <div class="content">
                             <p>{% trans "Name" %}: {{ngo.name}}</p>
                             <p>{% trans "Address" %}: {{ngo.address}}, {{ngo.city}}, {{ngo.county}}</p>
+                            {% if ngo.cif %}
                             <p>{% trans "CIF" %}: {{ngo.cif}}</p>
+                            {% endif %}
                             <p>{% trans "CUI" %}: {{ngo.cui}}</p>
-                            
+
                             {% for account in ngo.accounts.all %}
                                 <p>{% trans "Currency" %} {{account.currency}}: {{account.iban}} ({% trans "Bank" %}: {{account.bank}}) </p>
                             {% endfor %}
