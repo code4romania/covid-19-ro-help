@@ -227,10 +227,10 @@ class NGO(TimeStampedModel):
         help_text=_("XXXX-XXXX-XXXX-XXXX-XXXX"),
     )
     mobilpay_public_key = models.FileField(
-        _("mobilpay Public key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
+        _("Mobilpay Public key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
     )
     mobilpay_private_key = models.FileField(
-        _("mobilpay Private key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
+        _("Mobilpay Private key"), max_length=300, null=True, blank=True, storage=PrivateMediaStorageClass()
     )
 
     def __str__(self):
@@ -335,8 +335,8 @@ class NGOReportItem(TimeStampedModel):
         return f"{self.title}: {self.amount}"
 
     class Meta:
-        verbose_name_plural = _("Reporta")
-        verbose_name = _("Reports")
+        verbose_name_plural = _("Report")
+        verbose_name = _("Report")
 
 
 class NGOHelper(TimeStampedModel):
