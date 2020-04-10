@@ -61,7 +61,7 @@
             <p>{% trans "Personal data is temporarily stored for the duration of rohelp.ro’s functioning, as part of the COVID-19 pandemic response" %}</p>
 
             <h2>{% trans "5. Submittal of personal data to third parties" %}</h2>
-            <p>{% trans "Coat for Romania will only supply your personal data to the NGOs of your choice. Submitting a message to an organisation registered in the platform constitutes  expressed consent for that organisation to contact you in return. The organisation agrees to confidentiality, guaranteeing that your personal data is kept safe" %}</p>
+            <p>{% trans "Code for Romania will only supply your personal data to the NGOs of your choice. Submitting a message to an organisation registered in the platform constitutes  expressed consent for that organisation to contact you in return. The organisation agrees to confidentiality, guaranteeing that your personal data is kept safe" %}</p>
             <p>{% trans "Data can also be supplied to institutions or authorities as well as to other accredited state bodies, on the basis and within the bounds of the law, only as part of an express request by said authorities." %}</p>
 
             <h2>{% trans "6. Your Rights" %}</h2>
@@ -95,7 +95,11 @@
             <p>{% trans "For any further questions regarding the information on this page please write to rohelp@code4.ro." %}</p>
 
             <h2>{% trans "10. About Code for Romania" %}</h2>
-            <p>{% trans "Code for Romania is an independent, unaffiliated and apolitical NGO, founded in 2016, whose main purpose is to mobilise young IT professionals to create digital tools that help solve social problems. Code for Romania was founded and operates in accordance to  Romanian law, its constitutive documents, its statute and its code of conduct." %}</p>
+            <p>
+                {% blocktrans with link="https://code4.ro/codul-de-conduita/" target="_blank" %}
+                Code for Romania is an independent, unaffiliated and apolitical NGO, founded in 2016, whose main purpose is to mobilise young IT professionals to create digital tools that help solve social problems. Code for Romania was founded and operates in accordance to  Romanian law, its constitutive documents, its statute and its <a href="{{ link }}" target="{{ target }}">code of conduct</a>.
+                {% endblocktrans %}
+            </p>
 
             <h2>{% trans "11. Contact Code for Romania" %}</h2>
             <p>{% trans "For any questions or issues, as well as to ensure your rights in regards to the processing of personal data by Code for Romania, you can contact us at:" %}</p>

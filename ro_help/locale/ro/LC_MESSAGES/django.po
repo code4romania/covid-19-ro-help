@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-10 11:24+0000\n"
-"PO-Revision-Date: 2020-04-10 14:30+0300\n"
+"POT-Creation-Date: 2020-04-10 12:18+0000\n"
+"PO-Revision-Date: 2020-04-10 15:21+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -326,7 +326,7 @@ msgstr "Imaginea ar trebui să aibă dimensiunile 500x500px."
 
 #: hub/models.py:413 mobilpay/models.py:29 mobilpay/models.py:48
 msgid "Registered on"
-msgstr "Înregistrat la"
+msgstr "Înregistrare"
 
 #: hub/models.py:416
 msgid "Votes history"
@@ -366,17 +366,19 @@ msgstr "Votul meu"
 
 #: hub/password_validation.py:14
 msgid "Your new password must be different."
-msgstr ""
+msgstr "Parola nouă trebuie să fie diferită de cea veche."
 
 #: hub/password_validation.py:17
 msgid ""
 "Please correct the error below. Your new password must be different. Please "
 "try again."
 msgstr ""
+"Te rog corectează următoarea eroare. Parola nouă trebuie să fie diferită. Te "
+"rog încearcă din nou."
 
 #: hub/templates/about.html:17
 msgid "About RoHelp"
-msgstr ""
+msgstr "Despre RoHelp"
 
 #: hub/templates/about.html:20
 msgid ""
@@ -389,6 +391,14 @@ msgid ""
 "offering support to those most vulnerable, Romanian NGOs, both small and "
 "large, have been vital in protecting each and everyone of us."
 msgstr ""
+"Traversăm probabil cea mai mare criză a vieților noastre, o criză în care "
+"suntem cu toții vulnerabili, indiferent de geografie sau context social, o "
+"criză cu ale cărei efecte ne vom lupta multe luni de acum înainte. Din "
+"fericire, sectorul ONG este în prima linie a luptei pentru ameliorarea "
+"efectelor epidemiei; de la acoperirea lipsurilor din sistemul sanitar, până "
+"la crearea sau suplimentarea capacității de răspuns a instituțiilor publice "
+"și la sprijinul oferit celor vulnerabili în această perioada, ONG-urile mici "
+"și mari din România au fost vitale în a ne proteja pe fiecare dintre noi.  "
 
 #: hub/templates/about.html:22
 msgid ""
@@ -396,6 +406,10 @@ msgid ""
 "depend upon can't go on as is in the months to come and can become "
 "sustainable only if we too contribute."
 msgstr ""
+"În ciuda sprijinului consistent din partea mediului de afaceri, eforturile "
+"ONG-urilor de care depindem acum noi toți pot continua în lunile care "
+"urmează și pot deveni sustenabile doar prin contribuția noastră, "
+"individuală. "
 
 #: hub/templates/about.html:24
 msgid ""
@@ -409,6 +423,17 @@ msgid ""
 "the platform. The needs of every organization on the platform can be seen "
 "according to how stringent the need is and where the organization is located."
 msgstr ""
+"Code for Romania, prin implicarea comunității sale de voluntari, a dezvoltat "
+"RoHelp.ro, o platformă digitală completă pusa la dispozitia ONG-urile "
+"implicate activ în limitarea efectelor epidemiei de Covid-19 pentru a "
+"colecta resursele de care acestea au mare nevoie. Prin integrarea în "
+"platformă a procesatorului de plăți online Netopia, RoHelp.ro ajută "
+"organizațiile eligibile înscrise să colecteze în mod direct, fără alți "
+"intermediari sau costuri ascunse, resursele financiare de care au nevoie. La "
+"această facilitate unică se adaugă posibilitatea de a solicita și primi "
+"resurse materiale și de voluntari direct prin platforma RoHelp.ro. Nevoile "
+"tuturor organizațiilor prezente în platformă pot fi vizualizate în funcție "
+"de urgență și locația geografică."
 
 #: hub/templates/about.html:26
 msgid ""
@@ -422,6 +447,17 @@ msgid ""
 "basis of  race, ethnicity, gender, sexual orientation, religion, physical or "
 "mental ability or social/economic class."
 msgstr ""
+"Platforma RoHelp.ro este construită cu sprijinul și ajutorul Romanian "
+"American Foundation, ING Bank și al Fundației Vodafone România în "
+"parteneriat cu Guvernul României prin Autoritatea pentru Digitalizarea "
+"României, Departamentul pentru Situații de Urgență și Federatia Fundațiilor "
+"Comunitare din România și este deschisă tuturor asociațiilor și fundațiilor "
+"legal constituite în România care derulează activități pentru ameliorarea "
+"crizei generate de epidemia COVID-19 si nu nu realizează activități și nu "
+"susțin cauze de natură politică sau care discriminează pe considerente "
+"legate de etnie, rasă, sex, orientare sexuală, religie, capacități fizice "
+"sau psihice sau de apartenență la una sau mai multe categorii sociale sau "
+"economice. "
 
 #: hub/templates/about.html:28
 msgid ""
@@ -431,10 +467,15 @@ msgid ""
 "validation and reporting system, that will help us ensure that the platform "
 "is administered to the benefit of all."
 msgstr ""
+"Pentru a ne asigura că donația fiecăruia dintre noi ajunge și este folosită "
+"pentru scopul pentru care a fost cerută, Code for Romania în parteneriat cu "
+"Federația Fundațiilor Comunitare din România a dezvoltat un regulament clar "
+"și un sistem de validare și raportare transparent și ne vom asigura că "
+"platforma este administrată în beneficiul societății."
 
 #: hub/templates/about.html:31
 msgid "How RoHelp got started"
-msgstr ""
+msgstr "De unde a pornit RoHelp"
 
 #: hub/templates/about.html:33
 msgid ""
@@ -469,6 +510,20 @@ msgid ""
 "field. \n"
 "                "
 msgstr ""
+"\n"
+"                    “Nu va exista o distribuție uniformă de resurse” este a "
+"19 problemă identificată în cercetarea  <a href=\"%(link)s\" target="
+"\"%(target)s\">Civic Labs Anul 1 2019-2020</a> în domeniul Pregătirii și "
+"Managementului unei Situații de Urgență apărute ca urmare a unui seism "
+"major, un program al Code for Romania.  Pe scurt, plecând de la analiza "
+"situației din Mexic sau Italia care au trecut prin situații de gestionare de "
+"cutremure majore recent (2017 respectiv 2016), am constatat ca orice efort "
+"de strângere de fonduri după sau în timpul unui dezastru este însoțit de "
+"multiple riscuri, incluzând apariția unor organizații-fantomă sau "
+"concentrarea ajutorului doar în anumite zone de intervenție, tematice sau "
+"geografice, în funcție de capacitatea de comunicare a organizațiilor care "
+"activează în respectivul domeniu.  \n"
+"                "
 
 #: hub/templates/about.html:39
 #, python-format
@@ -482,6 +537,13 @@ msgid ""
 "in record time.\n"
 "                "
 msgstr ""
+"\n"
+"                    În cadrul Code for Romania Task Force am folosit "
+"rezultatele cercetării din programul Civic Labs cu privire la situațiile de "
+"urgență, am adaptat și am dezvoltat în timp record platforma RoHelp.ro, "
+"plecând de la prototipul soluției <a href=\"%(link)s\" target=\"%(target)s"
+"\">Aid Management Hub</a>\n"
+"                "
 
 #: hub/templates/about.html:48
 msgid ""
@@ -492,6 +554,12 @@ msgid ""
 "Federation, the Romanian Government via the Authority for the Digitalization "
 "of Romania and the Emergency Services Department."
 msgstr ""
+"RoHelp.ro este un proiect realizat prin efortul voluntarilor și al echipei "
+"Code for Romania, organizație neguvernamentală independentă, neafiliată "
+"politic și apolitică. Proiectul este realizat în cadrul Code for Romania "
+"Task Force în parteneriat cu Federația Fundațiilor Comunitare, Guvernul "
+"României prin Autoritatea pentru Digitalizarea României și Departamentul "
+"pentru Situații de Urgență."
 
 #: hub/templates/about.html:49
 msgid ""
@@ -499,10 +567,13 @@ msgid ""
 "Vodafone Foundation Romania and the Romanian American Foundation to which we "
 "owe our thanks."
 msgstr ""
+"Code for Romania Task Force este un program ale cărui costuri sunt susținute "
+"de ING Bank, Fundația Vodafone România și Romanian American Foundation, "
+"cărora le mulțumim."
 
 #: hub/templates/about.html:66 hub/templates/contact.html:58
 #: hub/templates/cookies.html:102 hub/templates/ngo/base.html:122
-#: hub/templates/terms_and_conditions.html:116
+#: hub/templates/terms_and_conditions.html:120
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -1175,7 +1246,7 @@ msgstr "Ministerul Sănătății"
 
 #: hub/templates/footer.html:23
 msgid "Terms and conditions"
-msgstr ""
+msgstr "Termeni și condiții de utilizare"
 
 #: hub/templates/footer.html:25
 msgid "Cookie policy"
@@ -1213,7 +1284,7 @@ msgstr ""
 
 #: hub/templates/header.html:45
 msgid "Register"
-msgstr "Înregistrat la"
+msgstr "Înregistrare"
 
 #: hub/templates/incubated-by.html:7
 msgid "Project developed in the program"
@@ -1590,52 +1661,69 @@ msgstr "numărul de telefon"
 
 #: hub/templates/terms_and_conditions.html:49
 msgid "3. Grounds for data processing"
-msgstr ""
+msgstr "3. Scop și temei"
 
 #: hub/templates/terms_and_conditions.html:50
 msgid ""
 "Code for Romania uses personal data for the sole purpose of helping users of "
 "the site interact with one or more organisations registered on rohelp.ro."
 msgstr ""
+"Code for Romania prelucrează date cu caracter personal doar în interesul "
+"utilizatorilor site-ului care doresc să transmită un mesaj către una sau mai "
+"multe organizații prezente în rohelp.ro. "
 
 #: hub/templates/terms_and_conditions.html:51
 msgid ""
 "Code for Romania uses your personal data in order to allow  contacted NGOs "
 "to get back to you after your message has been sent."
 msgstr ""
+"Code for Romania prelucrează datele tale personale menționate mai sus doar "
+"cu scopul de a salva în contul de administrare al organizației mesajul tău "
+"ca organizația selectată să poată intra în legătură cu tine ulterior "
+"transmiterii mesajului."
 
 #: hub/templates/terms_and_conditions.html:52
 msgid "Should you not want your personal data used you can:"
 msgstr ""
+"În cazul în care nu dorești ca datele tale personale să fie prelucrate:"
 
 #: hub/templates/terms_and_conditions.html:58
 msgid ""
 "These personal data are directly sent to the NGO, they cannot be used in "
 "anyway by Code for Romania."
 msgstr ""
+"Aceste date personale vor fi transmise direct către ONG, ele nu vor putea fi "
+"utilizate în vreun fel de Code for Romania."
 
 #: hub/templates/terms_and_conditions.html:60
 msgid "4. Length of data storage"
-msgstr ""
+msgstr "4. Durata stocării"
 
 #: hub/templates/terms_and_conditions.html:61
 msgid ""
 "Personal data is temporarily stored for the duration of rohelp.ro’s "
 "functioning, as part of the COVID-19 pandemic response"
 msgstr ""
+"Datele personale furnizate sunt stocate temporar pe durata funcționării "
+"platformei rohelp.ro în contextul pandemiei COVID-19. "
 
 #: hub/templates/terms_and_conditions.html:63
 msgid "5. Submittal of personal data to third parties"
-msgstr ""
+msgstr "5. Transmiterea Datelor personale către terți"
 
 #: hub/templates/terms_and_conditions.html:64
 msgid ""
-"Coat for Romania will only supply your personal data to the NGOs of your "
+"Code for Romania will only supply your personal data to the NGOs of your "
 "choice. Submitting a message to an organisation registered in the platform "
 "constitutes  expressed consent for that organisation to contact you in "
 "return. The organisation agrees to confidentiality, guaranteeing that your "
 "personal data is kept safe"
 msgstr ""
+"Code for Romania va furniza datele personale pe care le-ai oferit doar ONG-"
+"ului ales de tine. Transmiterea unui mesaj către o organizație constituie "
+"consimțământul exprimat de tine ca acea organizație să te contacteze. "
+"Organizația își asumă un angajament de confidențialitate, prin care "
+"garantează că datele tale personale sunt păstrate în siguranță."
 
 #: hub/templates/terms_and_conditions.html:65
 msgid ""
@@ -1643,10 +1731,13 @@ msgid ""
 "accredited state bodies, on the basis and within the bounds of the law, only "
 "as part of an express request by said authorities."
 msgstr ""
+"Datele pot fi furnizate și către instituții sau autorități publice, precum "
+"și altor organe abilitate ale statului, în baza și în limitele prevederilor "
+"legale, ca urmare a unor cereri expres formulate de acestea."
 
 #: hub/templates/terms_and_conditions.html:67
 msgid "6. Your Rights"
-msgstr ""
+msgstr "6. Drepturile tale"
 
 #: hub/templates/terms_and_conditions.html:68
 msgid ""
@@ -1654,24 +1745,33 @@ msgid ""
 "beginning with the 25th of May 2018, in accordance with the General Data "
 "Protection Regulation, you have the following rights:"
 msgstr ""
+"În calitate de utilizator al platformei rohelp.ro, potrivit Legii nr. "
+"679/2016, precum și, începând cu 25 mai 2018, potrivit Regulamentului "
+"General privind protecția datelor, ai următoarele drepturi:"
 
 #: hub/templates/terms_and_conditions.html:70
 msgid ""
 "the right to be informed about the use of your personal data by Code for "
 "Romania;"
 msgstr ""
+"Dreptul la informare cu privire la prelucrarea datelor personale de către "
+"Code for Romania;"
 
 #: hub/templates/terms_and_conditions.html:71
 msgid ""
 "the right to access your personal data, on demand and for free for one "
 "request per annum;"
 msgstr ""
+"Dreptul de acces la datele personale, la cerere și în mod gratuit pentru o "
+"solicitare pe an;"
 
 #: hub/templates/terms_and_conditions.html:72
 msgid ""
 "the right to intervene in, rectify, delete or transfer your personal data on "
 "demand and for free;"
 msgstr ""
+"Dreptul de intervenție, rectificarea, ștergerea sau portabilitatea datelor "
+"personale, la cerere și în mod gratuit;"
 
 #: hub/templates/terms_and_conditions.html:73
 msgid ""
@@ -1680,20 +1780,26 @@ msgid ""
 "Boulevard, www.dataprotection.ro) or to recourse to the justice system, in "
 "order to defend your rights as guaranteed by law;"
 msgstr ""
+"Dreptul de a te adresa Autorității Naționale de Supraveghere privind "
+"Prelucrarea Datelor cu Caracter Personal (cu sediul în Bucureşti, sector 1, "
+"B-dul G-ral. Gheorghe Magheru, www.dataprotection.ro) sau justiției, pentru "
+"apărarea oricăror drepturi garantate de lege;"
 
 #: hub/templates/terms_and_conditions.html:74
 msgid "the right to oppose and to the individual automated decisional process;"
-msgstr ""
+msgstr "Dreptul la opoziţie şi procesul decizional individual automatizat;"
 
 #: hub/templates/terms_and_conditions.html:75
 msgid ""
 "from the 25th of May 2018, in accordance with the General Data Protection "
 "Regulation, the right to restrict the use of your data."
 msgstr ""
+"începând cu 25 mai 2018, potrivit Regulamentului general privind protecția "
+"datelor, dreptul la restricționarea prelucrării."
 
 #: hub/templates/terms_and_conditions.html:78
 msgid "7. Security and confidentiality"
-msgstr ""
+msgstr "7. Securitate și confidențialitate"
 
 #: hub/templates/terms_and_conditions.html:79
 msgid ""
@@ -1704,6 +1810,13 @@ msgid ""
 "and takes all the reasonable technical measures to ensure that your personal "
 "data is kept and transmitted securely and confidentially."
 msgstr ""
+"Protecția informațiilor în cursul prelucrării datelor tale personale este o "
+"preocupare majoră a Code for Romania, de aceea toate datele personale "
+"colectate în cursul vizitelor pe rohelp.ro sunt prelucrate conform "
+"prevederilor legale în vigoare în România. Code for Romania folosește "
+"tehnologii de ultimă generație și ia toate măsurile tehnice rezonabile "
+"pentru transmiterea și păstrarea datelor personale în condiții de deplină "
+"securitate și confidențialitate."
 
 #: hub/templates/terms_and_conditions.html:80
 msgid ""
@@ -1712,6 +1825,10 @@ msgid ""
 "protection legislation. No information offered on this website leaves "
 "European Union territory."
 msgstr ""
+"Toate datele personale de pe site sunt stocate și procesate pe servere "
+"situate în Uniunea Europeană, ce cad sub incidența legislației europene de "
+"protecție a datelor personale. Nicio informație oferită pe acest site nu "
+"părăsește teritoriul Uniunii Europene."
 
 #: hub/templates/terms_and_conditions.html:81
 msgid ""
@@ -1719,6 +1836,9 @@ msgid ""
 "website, with the sole exception of proper legal requests by the authorities "
 "or situations mentioned as part of this Terms and Conditions document."
 msgstr ""
+"Code for Romania se angajează să nu dezvăluie datele personale cu privire la "
+"vizitele tale pe rohelp.ro, exceptând situațiile legale sau situațiile "
+"prezentate în acest document de Termeni și Condiții."
 
 #: hub/templates/terms_and_conditions.html:82
 msgid ""
@@ -1728,10 +1848,16 @@ msgid ""
 "hours. If the security incident is of such a nature as to present a high "
 "risk to your rights and liberties, you will be notified as well."
 msgstr ""
+"Dacă descoperim un incident cu privire la securitatea datelor personale care "
+"prezintă un risc pentru drepturile și libertățile utilizatorilor noștri, vom "
+"notifica Autoritatea Națională de Supraveghere privind Prelucrarea Datelor "
+"cu Caracter Personale în termen de 72 de ore. Dacă incidentul de securitate "
+"este de natură să prezinte un risc ridicat pentru drepturile și libertățile "
+"tale, vei fi, de asemenea, notificat."
 
 #: hub/templates/terms_and_conditions.html:84
 msgid "8. Trademark and Copyright"
-msgstr ""
+msgstr "8. Marca și dreptul de autor"
 
 #: hub/templates/terms_and_conditions.html:85
 msgid ""
@@ -1740,10 +1866,14 @@ msgid ""
 "part, or modified without the express approval of Code for Romania, the "
 "copyright holder."
 msgstr ""
+"Dreptul de autor pentru toate informațiile existente pe acest site este "
+"deținut de Code for Romania. Nici un material de pe acest site nu poate fi "
+"reprodus parțial, integral sau modificat fără acordul expres exprimat de "
+"catre Code for Romania, titularul acestui drept."
 
 #: hub/templates/terms_and_conditions.html:87
 msgid "All rights reserved."
-msgstr ""
+msgstr "Toate drepturile sunt rezervate."
 
 #: hub/templates/terms_and_conditions.html:88
 msgid ""
@@ -1751,6 +1881,9 @@ msgid ""
 "security or its contents ior for discrediting or harrassin rohelp.ro or Code "
 "for Romania is strictly forbidden."
 msgstr ""
+"Este strict interzisă folosirea acestui Site în scopul distrugerii sau "
+"alterării lui, a conținutului său a securității acestuia ori pentru "
+"discreditarea sau hărțuirea rohelp.ro sau a Code for Romania."
 
 #: hub/templates/terms_and_conditions.html:89
 msgid ""
@@ -1759,16 +1892,23 @@ msgid ""
 "attempts, accidental or intentional, to manipulate, lose or destroy them as "
 "well as to prevent the access of unauthorised persons."
 msgstr ""
+"Code for Romania va aplica toate măsurile de securitate tehnică și "
+"organizatorică pentru protejarea datelor asupra cărora deține controlul "
+"împotriva oricărei situații de manipulare accidentală sau intenționată, "
+"pierdere, distrugere sau împotriva accesului unei persoane neautorizate."
 
 #: hub/templates/terms_and_conditions.html:92
 msgid "9. Changes to the general Terms and Conditions for using the Site"
-msgstr ""
+msgstr "9. Modificari Termeni și Condiții generale de utilizare Site"
 
 #: hub/templates/terms_and_conditions.html:93
 msgid ""
 "“The General Terms and Conditions” document constitutes, in its entirety, an "
 "agreement between yourself and Code for Romania for the use of rohelp.ro."
 msgstr ""
+"\"Termenii și Condițiile generale de utilizare\" constituie, în întregime, "
+"un acord încheiat între dumneavoastră și Code for Romania în privința "
+"utilizării rohelp.ro."
 
 #: hub/templates/terms_and_conditions.html:94
 msgid ""
@@ -1776,44 +1916,67 @@ msgid ""
 "and Conditions” at any time, with no prior notification or need for user "
 "consent."
 msgstr ""
+"Code for Romania își rezervă dreptul de a revizui și aduce la zi \"Termenii "
+"și Condițiile generale de utilizare\" în orice moment, fără o anunțare sau o "
+"acceptare prealabilă a utilizatorilor."
 
 #: hub/templates/terms_and_conditions.html:95
 msgid ""
 "For any further questions regarding the information on this page please "
 "write to rohelp@code4.ro."
 msgstr ""
+"Dacă aveți întrebări cu privire la informațiile cuprinse în această pagină "
+"vă rugăm să ne scrieți la adresa rohelp@code4.ro."
 
 #: hub/templates/terms_and_conditions.html:97
 msgid "10. About Code for Romania"
-msgstr ""
+msgstr "10. Despre Code for Romania"
 
-#: hub/templates/terms_and_conditions.html:98
+#: hub/templates/terms_and_conditions.html:99
+#, python-format
 msgid ""
-"Code for Romania is an independent, unaffiliated and apolitical NGO, founded "
-"in 2016, whose main purpose is to mobilise young IT professionals to create "
-"digital tools that help solve social problems. Code for Romania was founded "
-"and operates in accordance to  Romanian law, its constitutive documents, its "
-"statute and its code of conduct."
+"\n"
+"                Code for Romania is an independent, unaffiliated and "
+"apolitical NGO, founded in 2016, whose main purpose is to mobilise young IT "
+"professionals to create digital tools that help solve social problems. Code "
+"for Romania was founded and operates in accordance to  Romanian law, its "
+"constitutive documents, its statute and its <a href=\"%(link)s\" target="
+"\"%(target)s\">code of conduct</a>.\n"
+"                "
 msgstr ""
+"\n"
+"                Code for Romania este o organizație neguvernamentală "
+"independentă, neafiliată politic și apolitică, înființată în anul 2016, al "
+"cărei scop este de a mobiliza tinerii profesioniști din domeniul IT să "
+"creeze instrumente digitale care ajută în soluționarea problemelor sociale. "
+"Code for Romania este înființată și funcționează în conformitate cu legea "
+"română, actul constitutiv și statutul său și <a href=\"%(link)s\" target="
+"\"%(target)s\">codul de conduită</a>.\n"
+"                "
 
-#: hub/templates/terms_and_conditions.html:100
+#: hub/templates/terms_and_conditions.html:104
 msgid "11. Contact Code for Romania"
-msgstr ""
+msgstr "11. Contactează Code for Romania"
 
-#: hub/templates/terms_and_conditions.html:101
+#: hub/templates/terms_and_conditions.html:105
 msgid ""
 "For any questions or issues, as well as to ensure your rights in regards to "
 "the processing of personal data by Code for Romania, you can contact us at:"
 msgstr ""
+"Pentru orice întrebări sau preocupări, precum și pentru exercitarea "
+"drepturilor tale legate de prelucrarea datelor personale de către Code for "
+"Romania, ne poti contacta la:"
 
-#: hub/templates/terms_and_conditions.html:102
+#: hub/templates/terms_and_conditions.html:106
 msgid ""
 "Alba Iulia Place no. 7, I6 building, 1st floor, apt. 6, Bucharest, Romania"
 msgstr ""
+"Adresa: Piața Alba Iulia nr. 7, bloc I6, etaj 1, ap. 6, mun. București, "
+"Romania"
 
-#: hub/templates/terms_and_conditions.html:103
+#: hub/templates/terms_and_conditions.html:107
 msgid "rohelp@code4.ro"
-msgstr ""
+msgstr "E-mail: rohelp@code4.ro"
 
 #: hub/views.py:233
 msgid "Thank you for your help!"
