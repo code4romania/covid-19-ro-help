@@ -1,6 +1,11 @@
 {% extends "admin/base_site.html" %}
 {% load static i18n material %}
 
+{% block extrastyle %}
+{{block.super}}
+<link rel="stylesheet" href="{% static "css/admin/style.css" %}">
+{%endblock%}
+
 
 {% block userlinks %}
     {% block welcome-msg %}{% endblock %}
@@ -27,17 +32,15 @@
     </a>
     {% get_available_languages as LANGUAGES %}
     {% get_current_language as LANGUAGE_CODE %}
-    <div class="navbar-item">
-        <form class="d-inline" action="{% url 'set_language' %}" method="post">
+    <div class="lang-switch-wrapper">
+        <form class="" action="{% url 'set_language' %}" method="post">
             {% csrf_token %}
             <input name="next" type="hidden" value="{{ redirect_to }}"/>
-            <div class="select">
-              <select id="language" name="language" onchange="this.form.submit()">
+              <select class="select" id="language" name="language" onchange="this.form.submit()">
                 {% for language in LANGUAGES %}
                 <option {% if language.0 == LANGUAGE_CODE %} selected {% endif %} name="language" value="{{language.0}}">{{language.0 | upper}}</option>
                 {% endfor %}
               </select>
-            </div>
         </form>
     </div>
 {% endblock %}

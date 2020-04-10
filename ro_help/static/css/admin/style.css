@@ -1,0 +1,16 @@
+.lang-switch-wrapper {
+    display: inline-block;
+}
+
+.lang-switch-wrapper .select-dropdown, .lang-switch-wrapper .caret {
+    display:none !important;
+}
+
+select.select {
+    display: block;
+    border: none;
+    border-radius: 4px;
+    height: 2rem;
+    font-weight: 700;
+    margin: 10px;
+}
