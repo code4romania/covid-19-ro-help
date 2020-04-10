@@ -213,7 +213,8 @@ footer {
 
     .need-logo {
         margin: 1em;
-        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
     }
 }
 
@@ -307,7 +308,6 @@ footer {
 }
 
 .detail-header-img {
-    display: flex;
     width: 115px;
     height: auto;
     margin-right: 1.25em;
@@ -381,7 +381,7 @@ footer {
 
 .need-logo {
     margin-right: 1em;
-    width: 64px;
+    max-width: 64px;
     min-width: 64px;
 }
 
@@ -431,7 +431,8 @@ footer {
 
     .need-logo {
         margin: 1em;
-        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
     }
 }
 
