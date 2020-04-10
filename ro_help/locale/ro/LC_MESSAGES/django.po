@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 20:15+0000\n"
-"PO-Revision-Date: 2020-03-25 00:36+0200\n"
+"POT-Creation-Date: 2020-04-10 10:26+0000\n"
+"PO-Revision-Date: 2020-04-10 13:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -31,63 +31,61 @@ msgstr "Conturi bancare"
 msgid "To accept IBAN Transfers you need to add at least one account."
 msgstr ""
 "Pentru a accepta donații prin transfer bancar trebuie să adaugi cel puțin un "
-"cont bancar al organizației"
+"cont bancar al organizației."
 
-#: hub/admin.py:181 hub/admin.py:250
+#: hub/admin.py:178 hub/admin.py:247
 msgid "Helpers"
 msgstr "Voluntari"
 
-#: hub/admin.py:258
+#: hub/admin.py:255
 msgid "Resolve need"
 msgstr "Rezolvă nevoia"
 
-#: hub/admin.py:266
+#: hub/admin.py:263
 msgid "Close need"
 msgstr "Închide nevoia"
 
-#: hub/admin.py:280
+#: hub/admin.py:277
 msgid "Votes"
 msgstr "Voturi"
 
-#: hub/admin.py:345 hub/admin.py:413
+#: hub/admin.py:342 hub/admin.py:410
 msgid "Last balance"
 msgstr "Ultimul bilanț"
 
-#: hub/admin.py:352 hub/admin.py:420
+#: hub/admin.py:349 hub/admin.py:417
 msgid "Statute"
 msgstr "Statut"
 
-#: hub/admin.py:359
-#, fuzzy
-#| msgid "Avatar"
+#: hub/admin.py:356
 msgid "Avatar Preview"
 msgstr "Logo"
 
-#: hub/admin.py:364
+#: hub/admin.py:361
 msgid "Voters"
 msgstr "Decidenți"
 
-#: hub/admin.py:375
+#: hub/admin.py:372
 msgid "Create account"
 msgstr "Crează cont"
 
-#: hub/admin.py:461
+#: hub/admin.py:458
 msgid "s"
 msgstr "uri"
 
-#: hub/admin.py:460
+#: hub/admin.py:457
 msgid "Vote succesfully registered. {} email{} sent to others admins"
 msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:476
+#: hub/admin.py:473
 msgid "Vote NGO"
 msgstr "Votează"
 
 #: hub/forms.py:37 hub/forms.py:39 hub/forms.py:41 hub/forms.py:43
 msgid "To accept mobilpay donations this field is required."
-msgstr "Pentru a accepta donații prin Mobilpay acest câmp este obligatoriu"
+msgstr "Pentru a accepta donații prin Mobilpay acest câmp este obligatoriu."
 
 #: hub/forms.py:46 hub/forms.py:48
 msgid "To accept money transfer this field is required"
@@ -118,10 +116,8 @@ msgid "USD"
 msgstr ""
 
 #: hub/models.py:186 hub/templates/ngo/detail.html:113
-#, fuzzy
-#| msgid "Urgency"
 msgid "Currency"
-msgstr "Urgență"
+msgstr "Monedă"
 
 #: hub/models.py:198 hub/models.py:260 hub/models.py:345 hub/models.py:363
 #: hub/models.py:380 hub/templates/ngo/detail.html:107
@@ -181,8 +177,6 @@ msgid "Accepts transfers"
 msgstr "Acceptă donații prin transfer bancar"
 
 #: hub/models.py:220
-#, fuzzy
-#| msgid "Description"
 msgid "Donations description"
 msgstr "Descrierea donațiilor"
 
@@ -195,22 +189,18 @@ msgid "XXXX-XXXX-XXXX-XXXX-XXXX"
 msgstr "XXXX-XXXX-XXXX-XXXX-XXXX"
 
 #: hub/models.py:230
-msgid "mobilpay Public key"
-msgstr "Cheie publică mobilpay"
+msgid "Mobilpay Public key"
+msgstr "Cheie publică Mobilpay"
 
 #: hub/models.py:233
-msgid "mobilpay Private key"
-msgstr "Cheie privată mobilpay"
+msgid "Mobilpay Private key"
+msgstr "Cheie privată Mobilpay"
 
 #: hub/models.py:254
-#, fuzzy
-#| msgid "Organization"
 msgid "My organizations"
-msgstr "Organizațiile mele "
+msgstr "Organizațiile mele"
 
 #: hub/models.py:255
-#, fuzzy
-#| msgid "Organization"
 msgid "My organization"
 msgstr "Organizația mea"
 
@@ -266,16 +256,8 @@ msgstr "Document justificativ (factură, chitanță, referat, OP)"
 msgid "Amount spent (RON)"
 msgstr "Suma cheltuită (RON)"
 
-#: hub/models.py:338
-#, fuzzy
-#| msgid "Reporting"
-msgid "Reporta"
-msgstr "Raportare"
-
-#: hub/models.py:339
-#, fuzzy
-#| msgid "Reporting"
-msgid "Reports"
+#: hub/models.py:338 hub/models.py:339
+msgid "Report"
 msgstr "Raportare"
 
 #: hub/models.py:347
@@ -367,8 +349,6 @@ msgid "Vote"
 msgstr "Vot"
 
 #: hub/models.py:509
-#, fuzzy
-#| msgid "Motvation"
 msgid "Motivation"
 msgstr "Motivația"
 
@@ -377,8 +357,6 @@ msgid "Motivate your decision"
 msgstr "Motivează decizia"
 
 #: hub/models.py:514
-#, fuzzy
-#| msgid "Votes"
 msgid "My votes"
 msgstr "Voturile mele "
 
@@ -400,21 +378,21 @@ msgstr ""
 msgid "About"
 msgstr "Despre"
 
-#: hub/templates/admin/change_form.html:40
+#: hub/templates/admin/change_form.html:22
 #: hub/templates/admin/change_list.html:38
 msgid "Please correct the error below."
 msgstr "Te rog corectează eroarea următoare."
 
-#: hub/templates/admin/change_form.html:40
+#: hub/templates/admin/change_form.html:22
 #: hub/templates/admin/change_list.html:38
 msgid "Please correct the errors below."
 msgstr "Te rog corectează erorile următoare."
 
-#: hub/templates/admin/change_form.html:81
+#: hub/templates/admin/change_form.html:63
 msgid "Minimize"
 msgstr "Minimizează"
 
-#: hub/templates/admin/change_form.html:84
+#: hub/templates/admin/change_form.html:66
 msgid "Tools"
 msgstr "Instrumente"
 
@@ -505,7 +483,7 @@ msgstr ""
 
 #: hub/templates/contact.html:33
 msgid "The Code for Romania Task Force is powered by:"
-msgstr "Programul Code for Romania Task Force este susținut de: "
+msgstr "Programul Code for Romania Task Force este susținut de:"
 
 #: hub/templates/contact.html:50 hub/templates/cookies.html:102
 #: hub/templates/ngo/base.html:122 hub/templates/terms_and_conditions.html:116
@@ -639,11 +617,9 @@ msgstr ""
 "Exista cookie-uri folosite exclusiv pentru o singură sesiune - acestea nu "
 "mai sunt reținute după ce utilizatorul iese de pe website. Cookie-uri "
 "permanente - sunt reținute și refolosite de fiecare dată când utilizatorul "
-"revine pe acel website, însă pot fi șterse oricând de utilizator"
+"revine pe acel website, însă pot fi șterse oricând de utilizator."
 
 #: hub/templates/cookies.html:36
-#, fuzzy
-#| msgid "What are the advantages of “Cookies”?"
 msgid "What are third party cookies?"
 msgstr "Ce sunt cookie-urile plasate de terți?"
 
@@ -655,7 +631,13 @@ msgid ""
 "because they are not placed by the owner of the respective website, third "
 "party cookies do however have to abide by the law and by the site owner’s "
 "confidentiality policy."
-msgstr "Părți de conținut sau servicii pot fi plasate pe website-ul accesat, de către terțe părți prin intermediul bannerelor, boxurilor sau linkurilor - iar toate aceste instrumente pot conține cookie-uri. Ele se numesc “third party cookies“ pentru că nu sunt plasate de proprietarul website-ului respectiv, iar furnizorii terți se supun legilor îin vigoare și politicilor de confidențialitate ale deținătorului site-ului."
+msgstr ""
+"Părți de conținut sau servicii pot fi plasate pe website-ul accesat, de "
+"către terțe părți prin intermediul bannerelor, boxurilor sau linkurilor - "
+"iar toate aceste instrumente pot conține cookie-uri. Ele se numesc “third "
+"party cookies“ pentru că nu sunt plasate de proprietarul website-ului "
+"respectiv, iar furnizorii terți se supun legilor îin vigoare și politicilor "
+"de confidențialitate ale deținătorului site-ului."
 
 #: hub/templates/cookies.html:39
 msgid "How does this website use cookies?"
@@ -666,8 +648,6 @@ msgid "Upon visiting this website you may receive the following cookie types:"
 msgstr "O vizită pe acest site poate plasa cookie-uri în scopuri de:"
 
 #: hub/templates/cookies.html:42 hub/templates/cookies.html:48
-#, fuzzy
-#| msgid "Thank you for your donation!"
 msgid "Cookies used for finalizing your donation"
 msgstr "Cookie-uri folosite pentru finalizarea unei donații"
 
@@ -690,7 +670,12 @@ msgid ""
 "cookie that offers us a way to identify that donor (like a ticket). Every "
 "time the form is filled a new cookie is created or the existing one is "
 "overwritten."
-msgstr "Completarea formularului de donație cuprinde mai multi pași. Pentru a ține evidența unei persoane și pentru a-i oferi informația necesară vom salva un fisier cookie ce ne oferă o metodă de a-l identifica (precum un număr de ordine). Pentru fiecare completare a formularului se va crea un cookie nou sau se va suprascrie cel deja existent."
+msgstr ""
+"Completarea formularului de donație cuprinde mai multi pași. Pentru a ține "
+"evidența unei persoane și pentru a-i oferi informația necesară vom salva un "
+"fisier cookie ce ne oferă o metodă de a-l identifica (precum un număr de "
+"ordine). Pentru fiecare completare a formularului se va crea un cookie nou "
+"sau se va suprascrie cel deja existent."
 
 #: hub/templates/cookies.html:52
 msgid ""
@@ -701,7 +686,14 @@ msgid ""
 "generated. This allows us to Monitor the number of unique users visiting "
 "this website as well as how often they return. This cookie cannot be used to "
 "identify physical persons and it is only used for statistical purposes."
-msgstr "De fiecare dată când un utilizator vizitează acest site softul de analytics furnizat de o terță parte generează un cookie de analiză a utilizatorului. Acest cookie ne spune dacă ați mai vizitat acest site până acum. Browser-ul ne va spune dacă aveți acest cookie, iar dacă nu, vom genera unul. Acesta permite monitorizarea utilizatorilor unici care ne vizitează și cât de des o fac. Acest cookie nu poate fi folosit pentru a identifica persoanele fizice, ele sunt folosite doar în scop statistic."
+msgstr ""
+"De fiecare dată când un utilizator vizitează acest site softul de analytics "
+"furnizat de o terță parte generează un cookie de analiză a utilizatorului. "
+"Acest cookie ne spune dacă ați mai vizitat acest site până acum. Browser-ul "
+"ne va spune dacă aveți acest cookie, iar dacă nu, vom genera unul. Acesta "
+"permite monitorizarea utilizatorilor unici care ne vizitează și cât de des o "
+"fac. Acest cookie nu poate fi folosit pentru a identifica persoanele fizice, "
+"ele sunt folosite doar în scop statistic."
 
 #: hub/templates/cookies.html:55
 msgid ""
@@ -711,7 +703,11 @@ msgid ""
 "you do not follow through with all the registration steps.  However, this "
 "cookie will be overwritten the next time you attempt to register on this "
 "website."
-msgstr "Atunci când va înregistrați pe acest site, generăm un cookie cu datele de pe acesta. Cookie-ul ne ajută în pașii următori pentru a comunica cu server-ul. Este posibil ca acesta să rămână dacă nu urmați toți pașii înregistrării, dar el va fi rescris data următoare când vă veți înregistra din nou."
+msgstr ""
+"Atunci când va înregistrați pe acest site, generăm un cookie cu datele de pe "
+"acesta. Cookie-ul ne ajută în pașii următori pentru a comunica cu server-ul. "
+"Este posibil ca acesta să rămână dacă nu urmați toți pașii înregistrării, "
+"dar el va fi rescris data următoare când vă veți înregistra din nou."
 
 #: hub/templates/cookies.html:57
 msgid "Other third party cookies"
@@ -725,11 +721,19 @@ msgid ""
 "third parties cannot access the cookies that belong to this website. For "
 "example when you share a page using a “share to social network” button on "
 "this website, that social network can track your activity."
-msgstr "Pe unele pagini, terții pot seta propriile cookie-uri anonime, în scopul de a urmări succesul unei aplicații, sau pentru a customiza o aplicație. Datorită modului de utilizare, acest site nu poate accesa aceste cookie-uri, la fel cum terțele părți nu pot accesa cookie-urile deținute de acest site. De exemplu, când distribuiți o pagină folosind butonul pentru rețelele sociale aflat pe acest site, acea rețea socială va înregistra activitatea dvs."
+msgstr ""
+"Pe unele pagini, terții pot seta propriile cookie-uri anonime, în scopul de "
+"a urmări succesul unei aplicații, sau pentru a customiza o aplicație. "
+"Datorită modului de utilizare, acest site nu poate accesa aceste cookie-uri, "
+"la fel cum terțele părți nu pot accesa cookie-urile deținute de acest site. "
+"De exemplu, când distribuiți o pagină folosind butonul pentru rețelele "
+"sociale aflat pe acest site, acea rețea socială va înregistra activitatea "
+"dvs."
 
 #: hub/templates/cookies.html:60
 msgid "What kind of information is stored and accessed through cookies?"
-msgstr "Ce tip de informații sunt stocate și accesate prin intermediul cookie-urilor?"
+msgstr ""
+"Ce tip de informații sunt stocate și accesate prin intermediul cookie-urilor?"
 
 #: hub/templates/cookies.html:61
 msgid ""
@@ -737,7 +741,12 @@ msgid ""
 "recognize a browser. The web server will recognize the browser up until the "
 "cookie expires or is deleted. The cookie stores important information that "
 "improve the browsing experience (e.g. a serial number for your donation)"
-msgstr "Cookie-urile păstrează informații într-un fișier text de mici dimensiuni care permit unui website să recunoască un browser. Webserver-ul va recunoaște browserul până când cookie-ul expiră sau este șters. Cookie-ul stochează informații importante care îmbunătățesc experiența de navigare pe Internet (ex: un număr de ordine pentru donația ta)."
+msgstr ""
+"Cookie-urile păstrează informații într-un fișier text de mici dimensiuni "
+"care permit unui website să recunoască un browser. Webserver-ul va "
+"recunoaște browserul până când cookie-ul expiră sau este șters. Cookie-ul "
+"stochează informații importante care îmbunătățesc experiența de navigare pe "
+"Internet (ex: un număr de ordine pentru donația ta)."
 
 #: hub/templates/cookies.html:63
 msgid "Why are cookies important to the Internet?"
@@ -749,7 +758,11 @@ msgid ""
 "Internet experience, helping to generate friendly browsing experiences "
 "tailored to the needs of every user. Refusing to accept cookies or "
 "deactivating them can make some websites impossible to use."
-msgstr "Cookie-urile reprezintă punctul central al funcționării eficiente a Internetului, ajutând la generarea unei experiențe de navigare prietenoase și adaptată preferințelor și intereselor fiecărui utilizator. Refuzarea sau dezactivarea cookieurilor poate face unele site-uri imposibil de folosit."
+msgstr ""
+"Cookie-urile reprezintă punctul central al funcționării eficiente a "
+"Internetului, ajutând la generarea unei experiențe de navigare prietenoase "
+"și adaptată preferințelor și intereselor fiecărui utilizator. Refuzarea sau "
+"dezactivarea cookieurilor poate face unele site-uri imposibil de folosit."
 
 #: hub/templates/cookies.html:65
 msgid ""
@@ -757,7 +770,10 @@ msgid ""
 "no longer receive online ads, only that these ads will no longer take your "
 "interests or preferences into account as determined by your browsing "
 "behavior."
-msgstr "Refuzarea sau dezactivarea cookie-urilor nu înseamnă că nu veți mai primi publicitate online - ci doar că aceasta nu va mai putea ține cont de preferințele și interesele dvs, evidențiate prin comportamentul de navigare."
+msgstr ""
+"Refuzarea sau dezactivarea cookie-urilor nu înseamnă că nu veți mai primi "
+"publicitate online - ci doar că aceasta nu va mai putea ține cont de "
+"preferințele și interesele dvs, evidențiate prin comportamentul de navigare."
 
 #: hub/templates/cookies.html:67
 msgid "Security and confidentiality concerns"
@@ -770,7 +786,12 @@ msgid ""
 "activate themselves. They cannot duplicate or self-replicate across "
 "networks. As they cannot do any of the above that cannot be considered "
 "viruses."
-msgstr "Cookie-urile NU sunt viruși! Ele folosesc formate tip plain text. Nu sunt alcătuite din bucăți de cod așa că nu pot fi executate nici nu pot auto-rula. În consecință, nu se pot duplica sau replica pe alte rețele pentru a se rula sau replica din nou. Deoarece nu pot îndeplini aceste funcții, nu pot fi considerate viruși."
+msgstr ""
+"Cookie-urile NU sunt viruși! Ele folosesc formate tip plain text. Nu sunt "
+"alcătuite din bucăți de cod așa că nu pot fi executate nici nu pot auto-"
+"rula. În consecință, nu se pot duplica sau replica pe alte rețele pentru a "
+"se rula sau replica din nou. Deoarece nu pot îndeplini aceste funcții, nu "
+"pot fi considerate viruși."
 
 #: hub/templates/cookies.html:69
 msgid ""
@@ -779,14 +800,25 @@ msgid ""
 "broad selection of sites, cookies can be used as a form of spyware. Many "
 "anti-spyware products know this and constantly mark cookies to be deleted as "
 "part of anti-virus or anti-spyware scans."
-msgstr "Cookie-urile pot fi totuși folosite pentru scopuri negative. Deoarece stochează informații despre preferințele și istoricul de navigare al utilizatorilor, atât pe un anume site cât și pe mai multe alte siteuri, cookieurile pot fi folosite ca o formă de Spyware. Multe produse anti-spyware sunt conștiente de acest fapt și în mod constant marchează cookie-urile pentru a fi șterse în cadrul procedurilor de ștergere/scanare anti-virus/anti-spyware."
+msgstr ""
+"Cookie-urile pot fi totuși folosite pentru scopuri negative. Deoarece "
+"stochează informații despre preferințele și istoricul de navigare al "
+"utilizatorilor, atât pe un anume site cât și pe mai multe alte siteuri, "
+"cookieurile pot fi folosite ca o formă de Spyware. Multe produse anti-"
+"spyware sunt conștiente de acest fapt și în mod constant marchează cookie-"
+"urile pentru a fi șterse în cadrul procedurilor de ștergere/scanare anti-"
+"virus/anti-spyware."
 
 #: hub/templates/cookies.html:70
 msgid ""
 "Most browsers have privacy settings allowing you to select the types of "
 "cookies to accept, their duration as well as auto-delete features that "
 "remove cookies once the user has visited a certain site."
-msgstr "În general browserele au integrate setari de confidențialitate care furnizează diferite nivele de acceptare a cookieurilor, perioada de valabilitate și ștergere automată dupa ce utilizatorul a vizitat un anumit site."
+msgstr ""
+"În general browserele au integrate setari de confidențialitate care "
+"furnizează diferite nivele de acceptare a cookieurilor, perioada de "
+"valabilitate și ștergere automată dupa ce utilizatorul a vizitat un anumit "
+"site."
 
 #: hub/templates/cookies.html:72
 msgid "Other Cookie security aspects"
@@ -802,7 +834,15 @@ msgid ""
 "contained by cookies. Although this is very rare it can happen if your "
 "browser accesses the website by using an unencrypted network (e.g. an "
 "unsecured Wifi network)."
-msgstr "Deoarece protecția identității este foarte valoroasă și reprezintă dreptul fiecărui utilizator de internet, este indicat să se știe ce eventuale probleme pot crea cookieurile. Pentru că prin intermediul lor se transmit în mod constant în ambele sensuri informații între browser și website, dacă un atacator sau persoana neautorizată intervine în parcursul de transmitere a datelor, informațiile conținute de cookie pot fi interceptate. Deși foarte rar, acest lucru se poate întâmpla dacă browserul se conectează la server folosind o rețea necriptată (ex: o rețea WiFi nesecurizată)."
+msgstr ""
+"Deoarece protecția identității este foarte valoroasă și reprezintă dreptul "
+"fiecărui utilizator de internet, este indicat să se știe ce eventuale "
+"probleme pot crea cookieurile. Pentru că prin intermediul lor se transmit în "
+"mod constant în ambele sensuri informații între browser și website, dacă un "
+"atacator sau persoana neautorizată intervine în parcursul de transmitere a "
+"datelor, informațiile conținute de cookie pot fi interceptate. Deși foarte "
+"rar, acest lucru se poate întâmpla dacă browserul se conectează la server "
+"folosind o rețea necriptată (ex: o rețea WiFi nesecurizată)."
 
 #: hub/templates/cookies.html:74
 msgid ""
@@ -812,7 +852,14 @@ msgid ""
 "unencrypted channels. Attackers then use this information to access "
 "unauthorised websites. It is very important to take great care in choosing "
 "the right methods of protecting your personal information."
-msgstr "Alte atacuri bazate pe cookie implică setări greșite ale cookieurilor pe servere. Dacă un website nu solicită browserului să folosească doar canale criptate, atacatorii pot folosi această vulnerabilitate pentru a păcăli browserele în a trimite informații prin intermediul canalelor nesecurizate. Atacatorii utilizează apoi informațiile în scopuri de a accesa neautorizat anumite site-uri. Este foarte important să fiți atenți în alegerea metodei celei mai potrivite de protecție a informațiilor personale."
+msgstr ""
+"Alte atacuri bazate pe cookie implică setări greșite ale cookieurilor pe "
+"servere. Dacă un website nu solicită browserului să folosească doar canale "
+"criptate, atacatorii pot folosi această vulnerabilitate pentru a păcăli "
+"browserele în a trimite informații prin intermediul canalelor nesecurizate. "
+"Atacatorii utilizează apoi informațiile în scopuri de a accesa neautorizat "
+"anumite site-uri. Este foarte important să fiți atenți în alegerea metodei "
+"celei mai potrivite de protecție a informațiilor personale."
 
 #: hub/templates/cookies.html:76
 msgid "Advice for safe and responsible cookie-based browsing "
@@ -825,7 +872,13 @@ msgid ""
 "no longer allow user access to some of the most important websites such as "
 "Youtube, Gmail, Yahoo and others. Here's some advice that can help you "
 "browse safely while retaining cookies:"
-msgstr "Datorită flexibilitatii lor și a faptului ca majoritatea dintre cele mai vizitate site-uri și cele mai mari folosesc cookieuri, acestea sunt aproape inevitabile. Dezactivarea cookie-urilor nu va permite accesul utilizatorului pe site-urile cele mai răspândite și utilizate printre care Youtube, Gmail, Yahoo și altele. Iată câteva sfaturi care vă pot asigura că navigați fără griji însă cu ajutorul cookie-urilor:"
+msgstr ""
+"Datorită flexibilitatii lor și a faptului ca majoritatea dintre cele mai "
+"vizitate site-uri și cele mai mari folosesc cookieuri, acestea sunt aproape "
+"inevitabile. Dezactivarea cookie-urilor nu va permite accesul utilizatorului "
+"pe site-urile cele mai răspândite și utilizate printre care Youtube, Gmail, "
+"Yahoo și altele. Iată câteva sfaturi care vă pot asigura că navigați fără "
+"griji însă cu ajutorul cookie-urilor:"
 
 #: hub/templates/cookies.html:79
 msgid ""
@@ -837,7 +890,17 @@ msgid ""
 "individual browsing data every time it is closed. This is one way to access "
 "websites that place cookies on your shared computer while deleting all your "
 "browsing data when closing the session."
-msgstr "Particularizați-vă setările browserului în ceea ce privește cookie-urile pentru a reflecta un nivel confortabil pentru voi al securității utilizării cookie-urilor. Dacă nu vă deranjează cookie-urile și sunteți singura persoană care utilizează computerul, puteți seta termene lungi de expirare pentru stocarea istoricului de navigare și al datelor personale de acces. Dacă împărțiți accesul la calculator, puteți lua în considerare setarea browserului pentru a șterge datele individuale de navigare de fiecare dată când închideți browserul. Aceasta este o variantă de a accesa site-urile care plasează cookie-uri și de a șterge orice informație de vizitare la închiderea sesiunii navigare."
+msgstr ""
+"Particularizați-vă setările browserului în ceea ce privește cookie-urile "
+"pentru a reflecta un nivel confortabil pentru voi al securității utilizării "
+"cookie-urilor. Dacă nu vă deranjează cookie-urile și sunteți singura "
+"persoană care utilizează computerul, puteți seta termene lungi de expirare "
+"pentru stocarea istoricului de navigare și al datelor personale de acces. "
+"Dacă împărțiți accesul la calculator, puteți lua în considerare setarea "
+"browserului pentru a șterge datele individuale de navigare de fiecare dată "
+"când închideți browserul. Aceasta este o variantă de a accesa site-urile "
+"care plasează cookie-uri și de a șterge orice informație de vizitare la "
+"închiderea sesiunii navigare."
 
 #: hub/templates/cookies.html:80
 msgid "install an anti-spyware app and keep it up-to-date"
@@ -850,7 +913,13 @@ msgid ""
 "vulnerabilities or download dangerous software. Ensure your browser is up-to-"
 "date. Many cookie-based attacks exploit the weak points of old browser "
 "versions."
-msgstr "Multe dintre aplicațiile de detectare și prevenire a spyware-ului includ detectarea atacurilor pe site-uri. Astfel, impiedică browserul de la a accesa website-uri care ar putea să exploateze vulnerabilitățile browserului sau să descarce software periculos. Asigurați-vă că aveți browserul mereu updatat. Multe dintre atacurile bazate pe cookies se realizează exploatând punctele slabe ale versiunilor vechi ale browserelor."
+msgstr ""
+"Multe dintre aplicațiile de detectare și prevenire a spyware-ului includ "
+"detectarea atacurilor pe site-uri. Astfel, impiedică browserul de la a "
+"accesa website-uri care ar putea să exploateze vulnerabilitățile browserului "
+"sau să descarce software periculos. Asigurați-vă că aveți browserul mereu "
+"updatat. Multe dintre atacurile bazate pe cookies se realizează exploatând "
+"punctele slabe ale versiunilor vechi ale browserelor."
 
 #: hub/templates/cookies.html:83
 msgid ""
@@ -859,7 +928,12 @@ msgid ""
 "international. The clear understanding of the way cookies work and the "
 "benefits they bring you can take the necessary security measures so that you "
 "always have a safe and satisfactory browsing experience."
-msgstr "Cookie-urile sunt pretutindeni și nu pot fi evitate dacă doriți să vă bucurați de acces pe cele mai bune și cele mai mari site-uri de pe Internet - locale sau internaționale. Cu o înțelegere clară a modului lor de operare și a beneficiilor pe care le aduc, puteți lua măsurile necesare de securitate astel încât să puteți naviga cu încredere pe internet."
+msgstr ""
+"Cookie-urile sunt pretutindeni și nu pot fi evitate dacă doriți să vă "
+"bucurați de acces pe cele mai bune și cele mai mari site-uri de pe Internet "
+"- locale sau internaționale. Cu o înțelegere clară a modului lor de operare "
+"și a beneficiilor pe care le aduc, puteți lua măsurile necesare de "
+"securitate astel încât să puteți naviga cu încredere pe internet."
 
 #: hub/templates/cookies.html:85
 msgid "How can I turn cookies off?"
@@ -870,7 +944,10 @@ msgid ""
 "Refusing to accept cookies or deactivating them can make some websites "
 "difficult or impossible to navigate or use. Refusing to accept cookies also "
 "does not mean that you will no longer receive online ads."
-msgstr "Dezactivarea și refuzul de a primi cookie-uri pot face anumite site-uri impracticabile sau dificil de vizitat și folosit. De asemenea, refuzul de a accepta cookie-uri nu înseamnă că nu veți mai primi/vedea publicitate online."
+msgstr ""
+"Dezactivarea și refuzul de a primi cookie-uri pot face anumite site-uri "
+"impracticabile sau dificil de vizitat și folosit. De asemenea, refuzul de a "
+"accepta cookie-uri nu înseamnă că nu veți mai primi/vedea publicitate online."
 
 #: hub/templates/cookies.html:87
 msgid ""
@@ -878,21 +955,32 @@ msgid ""
 "select only some websites where cookies are enabled. But, for example, if "
 "you turn off cookies on this website you can not follow through with the "
 "next steps in filling out the form."
-msgstr "Este posibilă setarea din browser pentru ca aceste cookie-uri să nu mai fie acceptate sau poți seta browserul să accepte cookie-uri de la un site anume. Dar, de exemplu, dacă nu dorești să folosești cookie-urile nu poți să urmezi și pașii următori după înregistrarea completarea formularului."
+msgstr ""
+"Este posibilă setarea din browser pentru ca aceste cookie-uri să nu mai fie "
+"acceptate sau poți seta browserul să accepte cookie-uri de la un site anume. "
+"Dar, de exemplu, dacă nu dorești să folosești cookie-urile nu poți să urmezi "
+"și pașii următori după înregistrarea completarea formularului."
 
 #: hub/templates/cookies.html:88
 msgid ""
 "Modern browsers offer the ability to change cookie settings. You can usually "
 "find cookie settings under the “options” tab or the “preferences” menu of "
 "your browser."
-msgstr "Toate browserele moderne oferă posibilitatea de a schimba setarile cookie-urilor. Aceste setari se găsesc de regula în “opțiuni“ sau în meniul de “preferințe“ al browserului tău."
+msgstr ""
+"Toate browserele moderne oferă posibilitatea de a schimba setarile cookie-"
+"urilor. Aceste setari se găsesc de regula în “opțiuni“ sau în meniul de "
+"“preferințe“ al browserului tău."
 
 #: hub/templates/cookies.html:89
 msgid ""
 "For third-party cookies settings and for more information about online ad "
 "confidentiality, IAB Romania offers the following website: http://www."
 "youronlinechoices.com/ro/"
-msgstr "Pentru setarile cookie-urilor generate de terți, și pentru mai multe informații privind confidențialitatea legată de publicitatea online, IAB Romania pune la dispoziție următorul site: http://www.youronlinechoices.com/ro/"
+msgstr ""
+"Pentru setarile cookie-urilor generate de terți, și pentru mai multe "
+"informații privind confidențialitatea legată de publicitatea online, IAB "
+"Romania pune la dispoziție următorul site: http://www.youronlinechoices.com/"
+"ro/"
 
 #: hub/templates/developed-by.html:7
 msgid "A project in partnership with"
@@ -953,8 +1041,6 @@ msgid "Login"
 msgstr ""
 
 #: hub/templates/header.html:45
-#, fuzzy
-#| msgid "Registered on"
 msgid "Register"
 msgstr "Înregistrat la"
 
@@ -980,11 +1066,11 @@ msgid ""
 "makes it easy for you to chose the cause you donate to, or the efforts you "
 "contribute to."
 msgstr ""
-"RoHelp este o platformă digitală completă pusa la dispozitia organizațiilor "
+"RoHelp este o platformă digitală completă pusă la dispoziția organizațiilor "
 "implicate activ în limitarea efectelor epidemiei de Covid-19 pentru a "
 "colecta resursele de care acestea au mare nevoie. Cu ajutorul acestei "
 "platforme vei putea vedea care sunt cele mai presante nevoi ale "
-"organizațiilor de pe teriotoriul tării și vei putea alege către ce cauză "
+"organizațiilor de pe teriotoriul țării și vei putea alege către ce cauză "
 "vrei să donezi sau la ce eforturi îți dorești să contribui."
 
 #: hub/templates/ngo/base.html:46 hub/templates/ngo/base.html:48
@@ -1011,11 +1097,11 @@ msgstr "Donează"
 
 #: hub/templates/ngo/base.html:75
 msgid "I want to help with money"
-msgstr "Vreau sa ajut cu bani"
+msgstr "Vreau să ajut cu bani"
 
 #: hub/templates/ngo/base.html:87
 msgid "I want to help with resources"
-msgstr "Vreau sa ajut cu resurse"
+msgstr "Vreau să ajut cu resurse"
 
 #: hub/templates/ngo/base.html:99
 msgid "I want to volunteer"
@@ -1055,7 +1141,7 @@ msgstr "Donează resurse"
 
 #: hub/templates/ngo/detail.html:169
 msgid "Join as volunteer"
-msgstr "Fi voluntar"
+msgstr "Fii voluntar"
 
 #: hub/templates/ngo/detail.html:203
 msgid "Donations"
@@ -1164,12 +1250,7 @@ msgid "previous"
 msgstr "precedenta"
 
 #: hub/templates/shared/pagination.html:19
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "            Page %(page)s of %(no_pages)s\n"
-#| "            \n"
-#| "        "
+#, python-format
 msgid ""
 "\n"
 "            Page %(page)s of %(no_pages)s\n"
@@ -1290,8 +1371,6 @@ msgid "name and surname"
 msgstr ""
 
 #: hub/templates/terms_and_conditions.html:45
-#, fuzzy
-#| msgid "Email"
 msgid "e-mail"
 msgstr "Email"
 
@@ -1535,9 +1614,6 @@ msgid "Missing or invalid NGO need."
 msgstr "Nevoie ONG lipsă sau invalidă."
 
 #: hub/views.py:303
-#, fuzzy
-#| msgid ""
-#| "Thank you for registering your NGO. An email was sent with the next steps."
 msgid ""
 "Thank you for registering your ONG. An email was sent with the next steps."
 msgstr ""
@@ -1599,6 +1675,9 @@ msgstr "COVID-19 RO HELP"
 #: ro_help/settings/base.py:212
 msgid "RO HELP"
 msgstr "RO HELP"
+
+#~ msgid "Reports"
+#~ msgstr "Raportare"
 
 #~ msgid ""
 #~ "Direct your aid towards one of the verified organizations below. They "
