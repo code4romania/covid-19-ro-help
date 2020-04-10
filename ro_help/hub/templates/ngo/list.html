@@ -128,6 +128,7 @@
                 </div>
             </div>
         </div>
+        {% if current_kind != 'money' %}
         <div class="column is-narrow filter-dropdown is-marginless">
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
@@ -166,6 +167,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         <div class="column is-hidden-mobile">
             <a class="button" href="{% url 'ngos' %}">{% trans "Reset filters" %}</a>
         </div>
