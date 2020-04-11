@@ -1,5 +1,29 @@
 [
   {
+    "app": "Find out what you have to do",
+    "call_to_action": "Find out what you have to do in any situation",
+    "description": "",
+    "button_text": "What do I have to do?",
+    "color": "#ffdd57",
+    "url": "https://cemafac.ro/"
+  },
+  {
+    "app": "Offical news",
+    "call_to_action": "Official news and up-to-date information",
+    "description": "",
+    "button_text": "Latest daily news",
+    "color": "#05d6c8",
+    "url": "https://stirioficiale.ro/informatii"
+  },
+  {
+    "app": "Daily data",
+    "call_to_action": "Daily data",
+    "description": "",
+    "button_text": "View daily data",
+    "color": "#f5bcd6",
+    "url": "https://datelazi.ro/"
+  },
+  {
     "app": "Chrome Extension",
     "call_to_action": "Install the Chrome extension which can help you spot fake news",
     "description": "",
@@ -14,21 +38,5 @@
     "button_text": "Install extension",
     "color": "#05d6c8",
     "url": "https://addons.mozilla.org/en-US/firefox/addon/covid-19-%C8%99tiri-oficiale/"
-  },
-  {
-    "app": "Find out what you have to do",
-    "call_to_action": "Find out what you have to do in any situation",
-    "description": "",
-    "button_text": "What do I have to do?",
-    "color": "#ffdd57",
-    "url": "https://cemafac.ro/"
-  },
-  {
-    "app": "Daily data",
-    "call_to_action": "Daily data",
-    "description": "",
-    "button_text": "View daily data",
-    "color": "#f5bcd6",
-    "url": "https://datelazi.ro/"
   }
 ]
