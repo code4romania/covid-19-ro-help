@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-11 10:47+0000\n"
-"PO-Revision-Date: 2020-04-11 13:47+0300\n"
+"POT-Creation-Date: 2020-04-11 13:21+0000\n"
+"PO-Revision-Date: 2020-04-11 16:21+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -19,67 +19,67 @@ msgstr ""
 "2:1));\n"
 "X-Generator: Poedit 2.3\n"
 
-#: hub/admin.py:39
+#: hub/admin.py:42
 msgid "active"
 msgstr "activ"
 
-#: hub/admin.py:65
+#: hub/admin.py:68
 msgid "Bank Accounts"
 msgstr "Conturi bancare"
 
-#: hub/admin.py:121
+#: hub/admin.py:124
 msgid "To accept IBAN Transfers you need to add at least one account."
 msgstr ""
 "Pentru a accepta donații prin transfer bancar trebuie să adaugi cel puțin un "
 "cont bancar al organizației."
 
-#: hub/admin.py:178 hub/admin.py:247
+#: hub/admin.py:182 hub/admin.py:251
 msgid "Helpers"
 msgstr "Voluntari"
 
-#: hub/admin.py:255
+#: hub/admin.py:259
 msgid "Resolve need"
 msgstr "Rezolvă nevoia"
 
-#: hub/admin.py:263
+#: hub/admin.py:267
 msgid "Close need"
 msgstr "Închide nevoia"
 
-#: hub/admin.py:277
+#: hub/admin.py:281
 msgid "Votes"
 msgstr "Voturi"
 
-#: hub/admin.py:342 hub/admin.py:410
+#: hub/admin.py:346 hub/admin.py:414
 msgid "Last balance"
 msgstr "Ultimul bilanț"
 
-#: hub/admin.py:349 hub/admin.py:417
+#: hub/admin.py:353 hub/admin.py:421
 msgid "Statute"
 msgstr "Statut"
 
-#: hub/admin.py:356
+#: hub/admin.py:360
 msgid "Avatar Preview"
 msgstr "Logo"
 
-#: hub/admin.py:361
+#: hub/admin.py:365
 msgid "Voters"
 msgstr "Decidenți"
 
-#: hub/admin.py:372
+#: hub/admin.py:376
 msgid "Create account"
 msgstr "Crează cont"
 
-#: hub/admin.py:458
+#: hub/admin.py:462
 msgid "s"
 msgstr "uri"
 
-#: hub/admin.py:457
+#: hub/admin.py:461
 msgid "Vote succesfully registered. {} email{} sent to others admins"
 msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:473
+#: hub/admin.py:477
 msgid "Vote NGO"
 msgstr "Votează"
 
@@ -115,7 +115,7 @@ msgstr ""
 msgid "USD"
 msgstr ""
 
-#: hub/models.py:186 hub/templates/ngo/detail.html:113
+#: hub/models.py:186 hub/templates/ngo/detail.html:115
 msgid "Currency"
 msgstr "Monedă"
 
@@ -216,7 +216,7 @@ msgstr "Tag resurse"
 msgid "NGO"
 msgstr "ONG"
 
-#: hub/models.py:302 hub/models.py:330 hub/templates/ngo/detail.html:275
+#: hub/models.py:302 hub/models.py:330 hub/templates/ngo/detail.html:277
 msgid "Title"
 msgstr "Titlu"
 
@@ -244,7 +244,7 @@ msgstr "Administrare nevoi"
 msgid "Manage need"
 msgstr "Administrare nevoie"
 
-#: hub/models.py:329 hub/models.py:511 hub/templates/ngo/detail.html:274
+#: hub/models.py:329 hub/models.py:511 hub/templates/ngo/detail.html:276
 msgid "Date"
 msgstr "Dată"
 
@@ -322,7 +322,7 @@ msgstr "Avatar"
 
 #: hub/models.py:407
 msgid "Image should be 500x500px"
-msgstr "Imaginea ar trebui să aibă dimensiunile 500x500px."
+msgstr ""
 
 #: hub/models.py:413 mobilpay/models.py:29 mobilpay/models.py:48
 msgid "Registered on"
@@ -556,29 +556,33 @@ msgstr ""
 "de ING Bank, Fundația Vodafone România și Romanian American Foundation, "
 "cărora le mulțumim."
 
-#: hub/templates/about.html:65 hub/templates/contact.html:52
+#: hub/templates/about.html:52
+msgid "Media partners"
+msgstr "Parteneri media"
+
+#: hub/templates/about.html:69 hub/templates/contact.html:52
 #: hub/templates/cookies.html:102 hub/templates/ngo/base.html:122
 #: hub/templates/rules.html:82 hub/templates/terms_and_conditions.html:122
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
-#: hub/templates/admin/base_site.html:8
+#: hub/templates/admin/base_site.html:13
 msgid "View site"
 msgstr "Vezi site-ul"
 
-#: hub/templates/admin/base_site.html:11
+#: hub/templates/admin/base_site.html:16
 msgid "Themes"
 msgstr ""
 
-#: hub/templates/admin/base_site.html:16
+#: hub/templates/admin/base_site.html:21
 msgid "Documentation"
 msgstr "Documentation"
 
-#: hub/templates/admin/base_site.html:21
+#: hub/templates/admin/base_site.html:26
 msgid "Change password"
 msgstr "Change password"
 
-#: hub/templates/admin/base_site.html:25
+#: hub/templates/admin/base_site.html:30
 msgid "Log out"
 msgstr "Deloghează-te"
 
@@ -1347,47 +1351,47 @@ msgstr "Donează prin Netopia"
 msgid "Donate via transfer"
 msgstr "Doneaza via transfer bancar"
 
-#: hub/templates/ngo/detail.html:109
+#: hub/templates/ngo/detail.html:110
 msgid "CIF"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:110
+#: hub/templates/ngo/detail.html:112
 msgid "CUI"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:113
+#: hub/templates/ngo/detail.html:115
 msgid "Bank"
 msgstr "Banca"
 
-#: hub/templates/ngo/detail.html:133
+#: hub/templates/ngo/detail.html:135
 msgid "Donate resources"
 msgstr "Donează resurse"
 
-#: hub/templates/ngo/detail.html:169
+#: hub/templates/ngo/detail.html:171
 msgid "Join as volunteer"
 msgstr "Fii voluntar"
 
-#: hub/templates/ngo/detail.html:203
+#: hub/templates/ngo/detail.html:205
 msgid "Donations"
 msgstr "Donatii"
 
-#: hub/templates/ngo/detail.html:222
+#: hub/templates/ngo/detail.html:224
 msgid "Firstname"
 msgstr "Prenume"
 
-#: hub/templates/ngo/detail.html:223
+#: hub/templates/ngo/detail.html:225
 msgid "Lastname"
 msgstr "Nume"
 
-#: hub/templates/ngo/detail.html:224 hub/templates/ngo/detail.html:276
+#: hub/templates/ngo/detail.html:226 hub/templates/ngo/detail.html:278
 msgid "Sum (RON)"
 msgstr "Suma (RON)"
 
-#: hub/templates/ngo/detail.html:234 hub/templates/ngo/detail.html:240
+#: hub/templates/ngo/detail.html:236 hub/templates/ngo/detail.html:242
 msgid "Anonymous"
 msgstr "Anonim"
 
-#: hub/templates/ngo/detail.html:255
+#: hub/templates/ngo/detail.html:257
 msgid "Reporting"
 msgstr "Raportare"
 
@@ -1685,9 +1689,20 @@ msgstr ""
 "deciziei, prin transmiterea de documente și informații suplimentare."
 
 #: hub/templates/rules.html:64
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                Any applicant deemed eligible will sing a Partnership "
+#| "Agreement with Code for Romania, agreement that will detail each party’s "
+#| "rights and obligations regarding the use of the RoHelp Platform, "
+#| "<b>including the obligation of the association or foundation to declare "
+#| "and respect the destination of the material and financial resources "
+#| "collected through the Platform and the obligation to report how said "
+#| "resources are being used.</b>\n"
+#| "                "
 msgid ""
 "\n"
-"                Any applicant deemed eligible will sing a Partnership "
+"                Any applicant deemed eligible will sign a Partnership "
 "Agreement with Code for Romania, agreement that will detail each party’s "
 "rights and obligations regarding the use of the RoHelp Platform, "
 "<b>including the obligation of the association or foundation to declare and "
