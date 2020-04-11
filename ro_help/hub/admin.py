@@ -1,16 +1,19 @@
 from admin_auto_filters.filters import AutocompleteFilter
+
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter, helpers
-from django.shortcuts import render
 from django.contrib.auth.models import Group, User
+from django.db import models, transaction
+from django.shortcuts import render
 from django.template.defaultfilters import pluralize
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import activate
-from django.db import models, transaction
+from django.utils.translation import ugettext_lazy as _
+
 from hub import utils
+
 from .forms import RegisterNGORequestVoteForm, NGOForm
 from .models import (
     NGO,
@@ -122,8 +125,9 @@ class NGOAdmin(admin.ModelAdmin):
                 )
                 ngo.accepts_transfer = False
                 ngo.save()
+
         if ngo.accepts_transfer or ngo.accepts_mobilpay:
-            need, _ = NGONeed.objects.get_or_create(
+            need, created = NGONeed.objects.get_or_create(
                 ngo=ngo, title=ngo.name, kind=KIND.MONEY, city=ngo.city, county=ngo.county,
             )
             need.description = ngo.donations_description
@@ -499,15 +503,6 @@ class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
-
-    # def get_form(self, request, obj=None, **kwargs):
-    #     user = request.user
-    #     form = super().get_form(request, obj, **kwargs)
-
-    #     if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
-    #         form.base_fields["user"].queryset = User.objects.filter(pk=user.pk)
-
-    #     return form
 
     def get_changeform_initial_data(self, request):
         user = request.user
