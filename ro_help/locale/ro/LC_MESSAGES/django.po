@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-11 13:21+0000\n"
-"PO-Revision-Date: 2020-04-11 19:31+0300\n"
+"POT-Creation-Date: 2020-04-11 20:51+0000\n"
+"PO-Revision-Date: 2020-04-11 23:48+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -90,6 +90,22 @@ msgstr "Pentru a accepta donații prin Mobilpay acest câmp este obligatoriu."
 #: hub/forms.py:46 hub/forms.py:48
 msgid "To accept money transfer this field is required"
 msgstr "Pentru a aacepta transfer în bani, acest câmpt este obligatoriu"
+
+#: hub/models.py:26
+msgid "critical"
+msgstr "Critic"
+
+#: hub/models.py:27
+msgid "high"
+msgstr "Urgent"
+
+#: hub/models.py:28
+msgid "medium"
+msgstr "Moderat"
+
+#: hub/models.py:29
+msgid "low"
+msgstr "Redus"
 
 #: hub/models.py:137
 msgid "YES"
@@ -556,11 +572,11 @@ msgstr ""
 "de ING Bank, Fundația Vodafone România și Romanian American Foundation, "
 "cărora le mulțumim."
 
-#: hub/templates/about.html:52
+#: hub/templates/about.html:60
 msgid "Media partners"
 msgstr "Parteneri media"
 
-#: hub/templates/about.html:69 hub/templates/contact.html:52
+#: hub/templates/about.html:78 hub/templates/contact.html:45
 #: hub/templates/cookies.html:102 hub/templates/ngo/base.html:122
 #: hub/templates/rules.html:82 hub/templates/terms_and_conditions.html:122
 msgid "Useful instruments"
@@ -709,10 +725,6 @@ msgid ""
 msgstr ""
 "Dacă întâmpini orice dificultate tehnică, te rugăm să ne transmiți un mesaj "
 "pe adresa: rohelp@code4.ro"
-
-#: hub/templates/contact.html:35
-msgid "The Code for Romania Task Force is powered by:"
-msgstr "Programul Code for Romania Task Force este susținut de:"
 
 #: hub/templates/cookies.html:17
 msgid "Confidentiality Policy"
@@ -2312,6 +2324,9 @@ msgstr "COVID-19 RO HELP"
 #: ro_help/settings/base.py:210
 msgid "RO HELP"
 msgstr "RO HELP"
+
+#~ msgid "The Code for Romania Task Force is powered by:"
+#~ msgstr "Programul Code for Romania Task Force este susținut de:"
 
 #~ msgid ""
 #~ "Ro Help is an aid management platform developed by Code for Romania, in "
