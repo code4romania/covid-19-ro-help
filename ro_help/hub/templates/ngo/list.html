@@ -41,7 +41,7 @@
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' remove_query_param='page' %}"
                                 class="dropdown-item">
-                                -
+                                {% trans "All" %}
                             </a>
                         </div>
                         {% for county in counties %}
@@ -76,7 +76,7 @@
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' remove_query_param='page' %}"
                                 class="dropdown-item">
-                                -
+                                {% trans "All" %}
                             </a>
                         </div>
                         {% for city in cities %}
@@ -144,7 +144,7 @@
                         <div class="dropdown-item">
                             <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='tag' remove_query_param='page' %}"
                                class="dropdown-item">
-                                -
+                               {% trans "All" %}
                             </a>
                         </div>
                         {% for tag in tags %}
