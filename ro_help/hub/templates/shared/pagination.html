@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% with page_parameter_name|default:"page" as page %}
+{% with kind|default:"" as kind %}
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -36,4 +37,5 @@
     </span>
 
 </nav>
+{% endwith %}
 {% endwith %}
