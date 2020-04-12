@@ -89,7 +89,7 @@ msgstr "Pentru a accepta donații prin Mobilpay acest câmp este obligatoriu."
 
 #: hub/forms.py:46 hub/forms.py:48
 msgid "To accept money transfer this field is required"
-msgstr "Pentru a aacepta transfer în bani, acest câmpt este obligatoriu"
+msgstr "Pentru a accepta transfer în bani, acest câmpt este obligatoriu"
 
 #: hub/models.py:26
 msgid "critical"
@@ -178,7 +178,7 @@ msgstr "Logo"
 
 #: hub/models.py:212 hub/models.py:409
 msgid "First page of last balance sheet"
-msgstr "Prima pagina a ultimului bilanț contabil"
+msgstr "Prima pagină a ultimului bilanț contabil"
 
 #: hub/models.py:215 hub/models.py:411
 msgid "NGO Statute"
@@ -588,15 +588,15 @@ msgstr "Vezi site-ul"
 
 #: hub/templates/admin/base_site.html:16
 msgid "Themes"
-msgstr ""
+msgstr "Teme"
 
 #: hub/templates/admin/base_site.html:21
 msgid "Documentation"
-msgstr "Documentation"
+msgstr "Documentație"
 
 #: hub/templates/admin/base_site.html:26
 msgid "Change password"
-msgstr "Change password"
+msgstr "Schimbă parola"
 
 #: hub/templates/admin/base_site.html:30
 msgid "Log out"
@@ -1385,7 +1385,7 @@ msgstr "Fii voluntar"
 
 #: hub/templates/ngo/detail.html:205
 msgid "Donations"
-msgstr "Donatii"
+msgstr "Donații"
 
 #: hub/templates/ngo/detail.html:224
 msgid "Firstname"
@@ -1437,7 +1437,7 @@ msgstr "Resetează filtrele"
 
 #: hub/templates/ngo/list.html:222 hub/templates/shared/need_form.html:55
 msgid "I can help"
-msgstr "Pot sa ajut eu!"
+msgstr "Pot să ajut eu!"
 
 #: hub/templates/ngo/list.html:236
 msgid "No results matching query"
@@ -1474,7 +1474,7 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"Linkul de plată este invalid. Probabil este din cauză ca a fost deja "
+"Linkul este invalid. Probabil este din cauză ca a fost deja "
 "folosit. Te rugăm fă o cerere nouă de resetare a parolei."
 
 #: hub/templates/rules.html:17
@@ -2311,7 +2311,7 @@ msgstr "Răspunsuri plată"
 
 #: mobilpay/models.py:55
 msgid "Payment response"
-msgstr "Raspuns plată"
+msgstr "Răspuns plată"
 
 #: mobilpay/templates/mobilpay/initialize_payment.html:10
 msgid "You are being redirected to payment website"

@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     "django_crispy_bulma",
     "storages",
     "captcha",
-    "file_resubmit"
+    "file_resubmit",
 ]
 
 MIDDLEWARE = [

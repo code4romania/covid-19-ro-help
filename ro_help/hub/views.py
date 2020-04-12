@@ -23,7 +23,7 @@ from hub.models import (
     NGONeed,
     NGO_GROUP_NAME,
     RegisterNGORequest,
-    URGENCY
+    URGENCY,
 )
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.forms import PaymentOrderForm
@@ -138,10 +138,13 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
         self.needs = (
             NGONeed.objects.filter(**filters)
-            .order_by("created")
+            .order_by("ngo__name")
             .select_related("ngo")
             .prefetch_related("resource_tags")
         )
+
+        if kind and kind == KIND.MONEY:
+            self.needs = self.needs.exclude(ngo__name=settings.RED_CROSS_NAME, kind=KIND.MONEY)
 
         return self.needs
 
@@ -180,18 +183,19 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         needs = self.search(self.get_needs())
         filters = {name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
 
-        tags = self.request.GET.getlist("tag", [])
-        tags = [t for t in tags if t]
+        tags = [tag for tag in self.request.GET.getlist("tag", []) if tag]
         if tags:
             filters["resource_tags__name__in"] = tags
+
         return needs.filter(**filters)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         needs = self.search(self.get_needs())
+
         # We need a filter for the Red Cross in order to use it for the red
         # banner.
-        context["red_cross_need"] = needs.filter(ngo__name=settings.RED_CROSS_NAME, kind=KIND.MONEY).first()
+        context["red_cross_need"] = NGONeed.objects.filter(ngo__name=settings.RED_CROSS_NAME, kind=KIND.MONEY).first()
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
@@ -205,12 +209,9 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
             needs = needs.filter(county=self.request.GET.get("county"))
 
         context["cities"] = set(needs.values_list("city", flat=True))
-
-        if self.request.GET.get("city"):
-            needs = needs.filter(city=self.request.GET.get("city"))
-
-        urgencies = {urgency: URGENCY.order(urgency) for urgency in (needs.values_list("urgency", flat=True))}
-        context["urgencies"] = [k for k, _ in sorted(urgencies.items(), key=lambda item: item[1], reverse=True)]
+        context["urgencies"] = [
+            urgency for urgency, _ in sorted(URGENCY.ORDER.items(), key=lambda item: item[1], reverse=True)
+        ]
 
         return context
 
