@@ -190,15 +190,15 @@
                         <div class="card-image need-logo is-hidden-tablet">
                             <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
                         </div>
-                        <div class="need-title is-hidden-tablet">{{need.ngo.name}}</div>
+                        <div class="need-subtitle is-hidden-tablet">{{need.ngo.name}}</div>
                     </div>
-                    <div class="need-title is-hidden-mobile">
+                    <div class="need-subtitle is-hidden-mobile">
                         <a class="has-text-black" href="{% url 'ngo-detail' need.ngo.pk %}">{{need.ngo.name}}</a>
                     </div>
                     {% if need.kind != "money" %}
-                        <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
+                        <div class="need-title">{{ need.title|truncatechars:50 }}</div>
                     {% endif %}
-                    <div class="need-description">{{ need.description }}</div>
+                    <div class="need-description">{{ need.description|truncatechars:400 }}</div>
                     {% if need.resource_tags.all  %}
                         <div class="tag-bar">
                             {% for tag in need.resource_tags.all %}
