@@ -138,7 +138,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
         self.needs = (
             NGONeed.objects.filter(**filters)
-            .order_by("created")
+            .order_by("ngo__name")
             .select_related("ngo")
             .prefetch_related("resource_tags")
         )
@@ -180,10 +180,10 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         needs = self.search(self.get_needs())
         filters = {name: self.request.GET[name] for name in self.allow_filters if name in self.request.GET}
 
-        tags = self.request.GET.getlist("tag", [])
-        tags = [t for t in tags if t]
+        tags = [tag for tag in self.request.GET.getlist("tag", []) if tag]
         if tags:
             filters["resource_tags__name__in"] = tags
+
         return needs.filter(**filters)
 
     def get_context_data(self, **kwargs):
