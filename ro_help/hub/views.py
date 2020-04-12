@@ -143,6 +143,9 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
             .prefetch_related("resource_tags")
         )
 
+        if kind and kind == KIND.MONEY:
+            self.needs = self.needs.exclude(ngo__name=settings.RED_CROSS_NAME, kind=KIND.MONEY)
+
         return self.needs
 
     def search(self, queryset):
