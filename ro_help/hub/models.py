@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
 from django_extensions.db.models import TimeStampedModel
 
-from .storage_backends import PublicMediaStorage, PrivateMediaStorage
+from .storage_backends import PrivateMediaStorage
 
 
 ADMIN_GROUP_NAME = "Admin"
@@ -23,18 +23,25 @@ PublicMediaStorageClass = get_storage_class(settings.DEFAULT_FILE_STORAGE)
 
 
 class URGENCY:
-    CRITICAL = _("critical")
-    HIGH = _("high")
-    MEDIUM = _("medium")
-    LOW = _("low")
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+    CRITICAL = "critical"
+
+    ORDER = {
+        LOW: 1,
+        MEDIUM: 2,
+        HIGH: 3,
+        CRITICAL: 4,
+    }
 
     @classmethod
     def to_choices(cls):
         return [
-            (URGENCY.CRITICAL, URGENCY.CRITICAL),
-            (URGENCY.HIGH, URGENCY.HIGH),
-            (URGENCY.MEDIUM, URGENCY.MEDIUM),
             (URGENCY.LOW, URGENCY.LOW),
+            (URGENCY.MEDIUM, URGENCY.MEDIUM),
+            (URGENCY.HIGH, URGENCY.HIGH),
+            (URGENCY.CRITICAL, URGENCY.CRITICAL),
         ]
 
     @classmethod
@@ -43,7 +50,11 @@ class URGENCY:
 
     @classmethod
     def to_list(cls):
-        return [URGENCY.CRITICAL, URGENCY.HIGH, URGENCY.MEDIUM, URGENCY.LOW]
+        return [URGENCY.LOW, URGENCY.MEDIUM, URGENCY.HIGH, URGENCY.CRITICAL]
+
+    @classmethod
+    def order(cls, urgency):
+        return URGENCY.ORDER.get(urgency, -1)
 
 
 class KIND:
