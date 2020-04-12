@@ -189,9 +189,10 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         needs = self.search(self.get_needs())
+
         # We need a filter for the Red Cross in order to use it for the red
         # banner.
-        context["red_cross_need"] = needs.filter(ngo__name=settings.RED_CROSS_NAME, kind=KIND.MONEY).first()
+        context["red_cross_need"] = NGONeed.objects.filter(ngo__name=settings.RED_CROSS_NAME, kind=KIND.MONEY).first()
 
         context["current_county"] = self.request.GET.get("county")
         context["current_city"] = self.request.GET.get("city")
