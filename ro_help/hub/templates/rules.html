@@ -61,8 +61,9 @@
             <p>{% trans "If an applicant is refused access to the Platform they have the right to ask, a single time, for a re-evaluation, by transmitting setra documents and information." %}</p>
 
             <p>
-                {% blocktrans %}
-                Any applicant deemed eligible will sign a Partnership Agreement with Code for Romania, agreement that will detail each party’s rights and obligations regarding the use of the RoHelp Platform, <b>including the obligation of the association or foundation to declare and respect the destination of the material and financial resources collected through the Platform and the obligation to report how said resources are being used.</b>
+                {% static "data/acord_de_parteneriat.pdf" as the_url %}
+                {% blocktrans with target="_blank" %}
+                Any applicant deemed eligible will sign a <a href="{{ the_url }}" target="{{ target }}">Partnership Agreement</a> with Code for Romania, agreement that will detail each party’s rights and obligations regarding the use of the RoHelp Platform, <b>including the obligation of the association or foundation to declare and respect the destination of the material and financial resources collected through the Platform and the obligation to report how said resources are being used.</b>
                 {% endblocktrans %}
             </p>
             
