@@ -28,6 +28,13 @@ class URGENCY:
     HIGH = "high"
     CRITICAL = "critical"
 
+    TRANSLATION = {
+        LOW: _("low"),
+        MEDIUM: _("medium"),
+        HIGH: _("high"),
+        CRITICAL: _("critical"),
+    }
+
     ORDER = {
         LOW: 1,
         MEDIUM: 2,
