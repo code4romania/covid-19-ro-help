@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-11 20:51+0000\n"
-"PO-Revision-Date: 2020-04-11 23:48+0300\n"
+"PO-Revision-Date: 2020-04-12 19:18+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -1262,7 +1262,7 @@ msgstr "Despre"
 
 #: hub/templates/header.html:25
 msgid "General rules"
-msgstr "Regulament"
+msgstr "Reguli RoHelp"
 
 #: hub/templates/header.html:29
 msgid "Contact"
@@ -1474,8 +1474,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"Linkul este invalid. Probabil este din cauză ca a fost deja "
-"folosit. Te rugăm fă o cerere nouă de resetare a parolei."
+"Linkul este invalid. Probabil este din cauză ca a fost deja folosit. Te "
+"rugăm fă o cerere nouă de resetare a parolei."
 
 #: hub/templates/rules.html:17
 msgid ""
