@@ -9,20 +9,21 @@ from django.db.models import Q
 from django.http import Http404
 from django.urls import reverse
 from django.utils import translation
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 from django.views.generic import ListView, DetailView, CreateView
 
 from hub import utils
 from hub.models import (
-    NGO,
-    NGONeed,
-    NGOHelper,
-    KIND,
-    RegisterNGORequest,
     ADMIN_GROUP_NAME,
-    NGO_GROUP_NAME,
     DSU_GROUP_NAME,
     FFC_GROUP_NAME,
+    KIND,
+    NGO,
+    NGOHelper,
+    NGONeed,
+    NGO_GROUP_NAME,
+    RegisterNGORequest,
+    URGENCY
 )
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.forms import PaymentOrderForm
@@ -48,7 +49,6 @@ class NGOKindFilterMixin:
         context = super().get_context_data(**kwargs)
 
         context["current_kind"] = self.request.GET.get("kind")
-        # context["current_page"] = self.request.GET.get("current_page")
 
         if not self.request.GET.get("q"):
             context["current_kind"] = context["current_kind"] or KIND.default()
@@ -120,8 +120,6 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
     paginate_by = 9
 
     template_name = "ngo/list.html"
-
-    URGENCY_ORDER = {"low": 1, "medium": 2, "high": 3, "critical": 4}
 
     def get_needs(self):
         if hasattr(self, "needs"):
@@ -211,7 +209,7 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if self.request.GET.get("city"):
             needs = needs.filter(city=self.request.GET.get("city"))
 
-        urgencies = {x: self.URGENCY_ORDER[x] for x in (needs.values_list("urgency", flat=True))}
+        urgencies = {urgency: URGENCY.order(urgency) for urgency in (needs.values_list("urgency", flat=True))}
         context["urgencies"] = [k for k, _ in sorted(urgencies.items(), key=lambda item: item[1], reverse=True)]
 
         return context

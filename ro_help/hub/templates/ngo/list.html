@@ -97,7 +97,7 @@
                 <div class="dropdown-trigger">
                     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
                         {% if current_urgency %}
-                            <span>{{ current_urgency }}</span>
+                            <span>{% trans current_urgency %}</span>
                         {% else %}
                             <span>{% trans "Urgency" %}</span>
                         {% endif %}
@@ -119,7 +119,7 @@
                             <div class="dropdown-item">
                                 <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
                                    class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
-                                    {{ urgency|title }}
+                                    {% trans urgency|title %}
                                 </a>
                             </div>
                         {% endfor %}
