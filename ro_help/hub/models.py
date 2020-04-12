@@ -23,10 +23,10 @@ PublicMediaStorageClass = get_storage_class(settings.DEFAULT_FILE_STORAGE)
 
 
 class URGENCY:
-    CRITICAL = "critical"
-    HIGH = "high"
-    MEDIUM = "medium"
-    LOW = "low"
+    CRITICAL = _("critical")
+    HIGH = _("high")
+    MEDIUM = _("medium")
+    LOW = _("low")
 
     @classmethod
     def to_choices(cls):
