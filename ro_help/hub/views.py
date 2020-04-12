@@ -23,7 +23,7 @@ from hub.models import (
     NGONeed,
     NGO_GROUP_NAME,
     RegisterNGORequest,
-    URGENCY
+    URGENCY,
 )
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.forms import PaymentOrderForm
@@ -205,12 +205,9 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
             needs = needs.filter(county=self.request.GET.get("county"))
 
         context["cities"] = set(needs.values_list("city", flat=True))
-
-        if self.request.GET.get("city"):
-            needs = needs.filter(city=self.request.GET.get("city"))
-
-        urgencies = {urgency: URGENCY.order(urgency) for urgency in (needs.values_list("urgency", flat=True))}
-        context["urgencies"] = [k for k, _ in sorted(urgencies.items(), key=lambda item: item[1], reverse=True)]
+        context["urgencies"] = [
+            urgency for urgency, _ in sorted(URGENCY.ORDER.items(), key=lambda item: item[1], reverse=True)
+        ]
 
         return context
 
