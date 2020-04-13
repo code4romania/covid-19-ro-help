@@ -30,7 +30,7 @@ class PaymentOrder(TimeStampedModel):
     success = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"[{self.ngo.name}] {self.first_name} {self.last_name} {self.amount}"
+        return f"{self.first_name} {self.last_name} {self.amount}"
 
     class Meta:
         verbose_name_plural = _("Payment Orders")
