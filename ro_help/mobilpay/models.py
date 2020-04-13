@@ -39,7 +39,8 @@ class PaymentOrder(TimeStampedModel):
     def is_pending(self):
         confirmed_pending = self.responses.filter(action="confirmed_pending").exists()
         paid_pending = self.responses.filter(action="paid_pending").exists()
-        return confirmed_pending or paid_pending
+        canceled = self.responses.filter(action="canceled").exists()
+        return (confirmed_pending or paid_pending) and not canceled
 
 class PaymentResponse(TimeStampedModel):
     payment_order = models.ForeignKey(
