@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-13 08:30+0000\n"
-"PO-Revision-Date: 2020-04-13 10:44+0300\n"
+"POT-Creation-Date: 2020-04-13 15:23+0000\n"
+"PO-Revision-Date: 2020-04-13 18:24+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -340,7 +340,7 @@ msgstr "Avatar"
 msgid "Image should be 500x500px"
 msgstr ""
 
-#: hub/models.py:431 mobilpay/models.py:29 mobilpay/models.py:48
+#: hub/models.py:431 mobilpay/models.py:29 mobilpay/models.py:53
 msgid "Registered on"
 msgstr "Înregistrare"
 
@@ -392,11 +392,11 @@ msgstr ""
 "Te rog corectează următoarea eroare. Parola nouă trebuie să fie diferită. Te "
 "rog încearcă din nou."
 
-#: hub/templates/about.html:17
+#: hub/templates/about.html:18
 msgid "About RoHelp"
 msgstr "Despre RoHelp"
 
-#: hub/templates/about.html:20
+#: hub/templates/about.html:21
 msgid ""
 "Right now we are in the midst of what is probably the biggest crisis of our "
 "lifetime, a crisis that we are all vulnerable to, regardless of where we are "
@@ -416,7 +416,7 @@ msgstr ""
 "și la sprijinul oferit celor vulnerabili în această perioada, ONG-urile mici "
 "și mari din România au fost vitale în a ne proteja pe fiecare dintre noi.  "
 
-#: hub/templates/about.html:22
+#: hub/templates/about.html:23
 msgid ""
 "Despite consistent support from the business sector, NGO efforts that we "
 "depend upon can't go on as is in the months to come and can become "
@@ -427,7 +427,7 @@ msgstr ""
 "urmează și pot deveni sustenabile doar prin contribuția noastră, "
 "individuală. "
 
-#: hub/templates/about.html:24
+#: hub/templates/about.html:25
 msgid ""
 "Code for Romania, through its volunteer community, had developed RoHelp.ro, "
 "a complete digital platform offered to NGOs actively involved in limiting "
@@ -451,7 +451,7 @@ msgstr ""
 "tuturor organizațiilor prezente în platformă pot fi vizualizate în funcție "
 "de urgență și locația geografică."
 
-#: hub/templates/about.html:26
+#: hub/templates/about.html:27
 msgid ""
 "RoHelp.ro is a platform built with the support of the Romanian American "
 "Foundation, ING Bank and The Vodafone Foundation Romania in partnership with "
@@ -475,7 +475,7 @@ msgstr ""
 "sau psihice sau de apartenență la una sau mai multe categorii sociale sau "
 "economice. "
 
-#: hub/templates/about.html:28
+#: hub/templates/about.html:29
 msgid ""
 "To ensure that every donation is accounted for and used for its intended "
 "purpose Code for Romania in partnership with the Romanian Community "
@@ -489,27 +489,42 @@ msgstr ""
 "și un sistem de validare și raportare transparent și ne vom asigura că "
 "platforma este administrată în beneficiul societății."
 
-#: hub/templates/about.html:31
+#: hub/templates/about.html:32
 msgid "How RoHelp got started"
 msgstr "De unde a pornit RoHelp"
 
-#: hub/templates/about.html:33
-#, python-format
+#: hub/templates/about.html:34
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                    “There is no uniform distribution of resources” is "
+#| "the 19th issue identified in Code for Romania’s own <a href=\"%(link)s\" "
+#| "target=\"%(target)s\" rel=\"%(rel)s\">2019-2020 Civic Labs year 1</a> "
+#| "research paper in the field of Emergency Preparedness and Disaster "
+#| "Management in the case of a major earthquake. In brief, starting from the "
+#| "analysis of the response in the case of Mexico or Italy, two countries "
+#| "that have had to manage response to a major earthquake recently (2017 and "
+#| "2016, respectively) we realized that any fundraising effort during or "
+#| "after a major disaster comes together with a multitude of risks, "
+#| "including the sudden appearance of phantom organizations or focusing aid "
+#| "to just a few areas of intervention,, either thematic or geographical, "
+#| "according to the communication capacity of  NGOs in the field. \n"
+#| "                "
 msgid ""
 "\n"
-"                    “There is no uniform distribution of resources” is the "
-"19th issue identified in Code for Romania’s own <a href=\"%(link)s\" target="
-"\"%(target)s\" rel=\"%(rel)s\">2019-2020 Civic Labs year 1</a> research "
-"paper in the field of Emergency Preparedness and Disaster Management in the "
-"case of a major earthquake. In brief, starting from the analysis of the "
-"response in the case of Mexico or Italy, two countries that have had to "
-"manage response to a major earthquake recently (2017 and 2016, respectively) "
-"we realized that any fundraising effort during or after a major disaster "
-"comes together with a multitude of risks, including the sudden appearance of "
-"phantom organizations or focusing aid to just a few areas of intervention,, "
-"either thematic or geographical, according to the communication capacity of  "
-"NGOs in the field. \n"
-"                "
+"                        “There is no uniform distribution of resources” is "
+"the 19th issue identified in Code for Romania’s own <a href=\"%(link)s\" "
+"target=\"%(target)s\" rel=\"%(rel)s\">2019-2020 Civic Labs year 1</a> "
+"research paper in the field of Emergency Preparedness and Disaster "
+"Management in the case of a major earthquake. In brief, starting from the "
+"analysis of the response in the case of Mexico or Italy, two countries that "
+"have had to manage response to a major earthquake recently (2017 and 2016, "
+"respectively) we realized that any fundraising effort during or after a "
+"major disaster comes together with a multitude of risks, including the "
+"sudden appearance of phantom organizations or focusing aid to just a few "
+"areas of intervention,, either thematic or geographical, according to the "
+"communication capacity of  NGOs in the field.\n"
+"                    "
 msgstr ""
 "\n"
 "                    “Nu va exista o distribuție uniformă de resurse” este a "
@@ -526,17 +541,26 @@ msgstr ""
 "activează în respectivul domeniu.  \n"
 "                "
 
-#: hub/templates/about.html:38
-#, python-format
+#: hub/templates/about.html:39
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                    The Code for Romania COVID-19 Task Force used the "
+#| "Civic Labs research program results in the field of\n"
+#| "                    emergency response, and adapted our <a href=\"%(link)s"
+#| "\" target=\"%(target)s\" rel=\"%(rel)s\">Aid Management Hub</a>\n"
+#| "                    prototype to the present situation, developing RoHelp."
+#| "ro in record time.\n"
+#| "                "
 msgid ""
 "\n"
-"                    The Code for Romania COVID-19 Task Force used the Civic "
-"Labs research program results in the field of\n"
-"                    emergency response, and adapted our <a href=\"%(link)s\" "
-"target=\"%(target)s\" rel=\"%(rel)s\">Aid Management Hub</a>\n"
-"                    prototype to the present situation, developing RoHelp.ro "
-"in record time.\n"
-"                "
+"                        The Code for Romania COVID-19 Task Force used the "
+"Civic Labs research program results in the field of\n"
+"                        emergency response, and adapted our <a href="
+"\"%(link)s\" target=\"%(target)s\" rel=\"%(rel)s\">Aid Management Hub</a>\n"
+"                        prototype to the present situation, developing "
+"RoHelp.ro in record time.\n"
+"                    "
 msgstr ""
 "\n"
 "                    În cadrul Code for Romania Task Force am folosit "
@@ -546,7 +570,7 @@ msgstr ""
 "rel=\"%(rel)s\">Aid Management Hub</a>\n"
 "                "
 
-#: hub/templates/about.html:47
+#: hub/templates/about.html:48
 msgid ""
 "RoHelp is a project done through the efforts of the Code for Romania "
 "volunteers and team. Code for Romania is an independent, unaffiliated and "
@@ -562,7 +586,7 @@ msgstr ""
 "României prin Autoritatea pentru Digitalizarea României și Departamentul "
 "pentru Situații de Urgență."
 
-#: hub/templates/about.html:48
+#: hub/templates/about.html:49
 msgid ""
 "The Code for Romania Task Force is a program supported by ING Bank, The "
 "Vodafone Foundation Romania and the Romanian American Foundation to which we "
@@ -572,13 +596,13 @@ msgstr ""
 "de ING Bank, Fundația Vodafone România și Romanian American Foundation, "
 "cărora le mulțumim."
 
-#: hub/templates/about.html:60
+#: hub/templates/about.html:61
 msgid "Media partners"
 msgstr "Parteneri media"
 
-#: hub/templates/about.html:78 hub/templates/contact.html:45
-#: hub/templates/cookies.html:102 hub/templates/ngo/base.html:122
-#: hub/templates/rules.html:89 hub/templates/terms_and_conditions.html:122
+#: hub/templates/about.html:91 hub/templates/contact.html:46
+#: hub/templates/cookies.html:103 hub/templates/ngo/base.html:122
+#: hub/templates/rules.html:90 hub/templates/terms_and_conditions.html:122
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -671,22 +695,33 @@ msgstr "Înapoi"
 msgid "Upload file"
 msgstr "Încarcă fișier"
 
-#: hub/templates/contact.html:17 hub/templates/footer.html:30
+#: hub/templates/contact.html:18 hub/templates/footer.html:30
 msgid "Contact us"
 msgstr "Contactează-ne"
 
-#: hub/templates/contact.html:20
-#, python-format
+#: hub/templates/contact.html:21
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                <span class=\"%(class)s\">If you are an NGO "
+#| "representative</span>, and your NGO is legally registered in Romania "
+#| "while also directly participating in the COVID-19 relief response you can "
+#| "join RoHelp here. If you meet all eligibility criteria and your "
+#| "organization is validated in accordance to the rules and terms of use of "
+#| "the platform you'll be able to access your NGO account on the platform "
+#| "and will be able to solicit support, be it financial, material or "
+#| "volunteer-based.\n"
+#| "                "
 msgid ""
 "\n"
-"                <span class=\"%(class)s\">If you are an NGO representative</"
-"span>, and your NGO is legally registered in Romania while also directly "
-"participating in the COVID-19 relief response you can join RoHelp here. If "
-"you meet all eligibility criteria and your organization is validated in "
-"accordance to the rules and terms of use of the platform you'll be able to "
-"access your NGO account on the platform and will be able to solicit support, "
-"be it financial, material or volunteer-based.\n"
-"                "
+"                    <span class=\"%(class)s\">If you are an NGO "
+"representative</span>, and your NGO is legally registered in Romania while "
+"also directly participating in the COVID-19 relief response you can join "
+"RoHelp here. If you meet all eligibility criteria and your organization is "
+"validated in accordance to the rules and terms of use of the platform you'll "
+"be able to access your NGO account on the platform and will be able to "
+"solicit support, be it financial, material or volunteer-based.\n"
+"                    "
 msgstr ""
 "\n"
 "                <span class=\"%(class)s\">Dacă reprezinți o organizație</"
@@ -698,17 +733,26 @@ msgstr ""
 "solicita sprijin financiar, în resurse materiale sau voluntari.\n"
 "                "
 
-#: hub/templates/contact.html:25
-#, python-format
+#: hub/templates/contact.html:26
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                <span class=\"%(class)s\">If you want to help out</span>, "
+#| "you can use the platform to identify the most stringent needs and active "
+#| "NGOs in your area or at the national level, and help out in any way you "
+#| "can, by donations, material support or through your skillset, as a "
+#| "volunteer. Even any social media share of a NGO page or city page from "
+#| "the RoHelp platform helps in the COVID-19 relief effort.\n"
+#| "                "
 msgid ""
 "\n"
-"                <span class=\"%(class)s\">If you want to help out</span>, "
-"you can use the platform to identify the most stringent needs and active "
-"NGOs in your area or at the national level, and help out in any way you can, "
-"by donations, material support or through your skillset, as a volunteer. "
-"Even any social media share of a NGO page or city page from the RoHelp "
-"platform helps in the COVID-19 relief effort.\n"
-"                "
+"                    <span class=\"%(class)s\">If you want to help out</"
+"span>, you can use the platform to identify the most stringent needs and "
+"active NGOs in your area or at the national level, and help out in any way "
+"you can, by donations, material support or through your skillset, as a "
+"volunteer. Even any social media share of a NGO page or city page from the "
+"RoHelp platform helps in the COVID-19 relief effort.\n"
+"                    "
 msgstr ""
 "\n"
 "                <span class=\"%(class)s\">Dacă vrei să ajuți</span>, "
@@ -719,18 +763,18 @@ msgstr ""
 "de oraș din RoHelp ajută la eforturile de combatere a crizei. \n"
 "                "
 
-#: hub/templates/contact.html:31
+#: hub/templates/contact.html:32
 msgid ""
 "If you encounter any technical difficulty, send us an e-mail: rohelp@code4.ro"
 msgstr ""
 "Dacă întâmpini orice dificultate tehnică, te rugăm să ne transmiți un mesaj "
 "pe adresa: rohelp@code4.ro"
 
-#: hub/templates/cookies.html:17
+#: hub/templates/cookies.html:18
 msgid "Confidentiality Policy"
 msgstr "Politica de confidențialitate"
 
-#: hub/templates/cookies.html:20
+#: hub/templates/cookies.html:21
 msgid ""
 "This website uses cookies in order to provide users with a better browsing "
 "experience as well as services tailored to their needs and interests."
@@ -739,7 +783,7 @@ msgstr ""
 "experiență mult mai bună de navigare și servicii adaptate nevoilor și "
 "interesului fiecăruia."
 
-#: hub/templates/cookies.html:21
+#: hub/templates/cookies.html:22
 msgid ""
 "“Cookies” are used to facilitate access and delivery for the services "
 "required by Internet users such as personalizing settings (language, "
@@ -759,11 +803,11 @@ msgstr ""
 "multimedia sau de alt tip de pe alte site-uri să fie incluse într-un anumit "
 "site pentru a face navigarea mai utilă."
 
-#: hub/templates/cookies.html:23
+#: hub/templates/cookies.html:24
 msgid "What is a “Cookie”?"
 msgstr "Ce este un “cookie“?"
 
-#: hub/templates/cookies.html:24
+#: hub/templates/cookies.html:25
 msgid ""
 "Cookie (\"browser cookie\" or \"HTTP cookie\") is a small file, a succession "
 "of letters and numbers, that is stored on any terminal with Internet access "
@@ -780,7 +824,7 @@ msgstr ""
 "software, viruși sau spyware și nu pot accesa informațiile de pe hard drive-"
 "ul utilizatorului."
 
-#: hub/templates/cookies.html:25
+#: hub/templates/cookies.html:26
 msgid ""
 "Cookie consists of a name and content, the length of its existence is "
 "limited, and it can be accessed again by the webserver when a user returns "
@@ -790,7 +834,7 @@ msgstr ""
 "fiind determinată, putând fi accesat din nou de webserver în momentul în "
 "care un utilizator se întoarce pe website-ul asociat webserverului respectiv."
 
-#: hub/templates/cookies.html:26
+#: hub/templates/cookies.html:27
 msgid ""
 "Cookies do not request personal information nor do they personally identify "
 "internet users."
@@ -798,7 +842,7 @@ msgstr ""
 "Cookie-urile nu solicită informații cu caracter personal și nu identifică "
 "personal utilizatorii de internet."
 
-#: hub/templates/cookies.html:27
+#: hub/templates/cookies.html:28
 msgid ""
 "Session cookies - are cookies temporarily stored in the browser’s history "
 "where they are stored until the user leaves that website or closes the "
@@ -808,7 +852,7 @@ msgstr ""
 "ului care le memorează până când utilizatorul iese de pe web-siteul "
 "respectiv sau închide fereastra browserului."
 
-#: hub/templates/cookies.html:28
+#: hub/templates/cookies.html:29
 msgid ""
 "Persistent Cookies - These are stored, for a predetermined length of time, "
 "on a computer hard drive or similar equipment. Persistent cookies include "
@@ -825,11 +869,11 @@ msgstr ""
 "interesele unui utilizator, astfel încât să fie livrată publicitate cât mai "
 "relevantă pentru utilizatori."
 
-#: hub/templates/cookies.html:30
+#: hub/templates/cookies.html:31
 msgid "What are the advantages of “Cookies”?"
 msgstr "Care sunt avantajele cookie-urilor?"
 
-#: hub/templates/cookies.html:31
+#: hub/templates/cookies.html:32
 msgid ""
 "A cookie contains information that connects users to a specific website. If "
 "a browser accesses the same server again it can read the information already "
@@ -839,11 +883,11 @@ msgstr ""
 "website. Dacă un browser accesează acel web-server din nou, acesta poate "
 "citi informația deja stocată și reacționa în consecință."
 
-#: hub/templates/cookies.html:33
+#: hub/templates/cookies.html:34
 msgid "What is the average lifespan of a cookie?"
 msgstr "Care este durata de viață a unui cookie?"
 
-#: hub/templates/cookies.html:34
+#: hub/templates/cookies.html:35
 msgid ""
 "There are cookies that are exclusively used for a single session - these are "
 "no longer stored after the user has left the website. Permanent cookies are "
@@ -855,11 +899,11 @@ msgstr ""
 "permanente - sunt reținute și refolosite de fiecare dată când utilizatorul "
 "revine pe acel website, însă pot fi șterse oricând de utilizator."
 
-#: hub/templates/cookies.html:36
+#: hub/templates/cookies.html:37
 msgid "What are third party cookies?"
 msgstr "Ce sunt cookie-urile plasate de terți?"
 
-#: hub/templates/cookies.html:37
+#: hub/templates/cookies.html:38
 msgid ""
 "Some parts of the content or services on the accessed website can be placed "
 "there by third parties via banners, boxes or links - and all these "
@@ -875,31 +919,31 @@ msgstr ""
 "respectiv, iar furnizorii terți se supun legilor îin vigoare și politicilor "
 "de confidențialitate ale deținătorului site-ului."
 
-#: hub/templates/cookies.html:39
+#: hub/templates/cookies.html:40
 msgid "How does this website use cookies?"
 msgstr "Cum sunt folosite cookie-urile de către acest site?"
 
-#: hub/templates/cookies.html:40
+#: hub/templates/cookies.html:41
 msgid "Upon visiting this website you may receive the following cookie types:"
 msgstr "O vizită pe acest site poate plasa cookie-uri în scopuri de:"
 
-#: hub/templates/cookies.html:42 hub/templates/cookies.html:48
+#: hub/templates/cookies.html:43 hub/templates/cookies.html:49
 msgid "Cookies used for finalizing your donation"
 msgstr "Cookie-uri folosite pentru finalizarea unei donații"
 
-#: hub/templates/cookies.html:43 hub/templates/cookies.html:51
+#: hub/templates/cookies.html:44 hub/templates/cookies.html:52
 msgid "Cookies that are used to analyse general user data"
 msgstr "Cookie-uri pentru analiza vizitatorilor"
 
-#: hub/templates/cookies.html:44 hub/templates/cookies.html:54
+#: hub/templates/cookies.html:45 hub/templates/cookies.html:55
 msgid "Registration cookies"
 msgstr "Cookie-uri de înregistrare"
 
-#: hub/templates/cookies.html:46
+#: hub/templates/cookies.html:47
 msgid "Some cookies can be third-party cookies."
 msgstr "Unele cookie-uri pot proveni de la terți."
 
-#: hub/templates/cookies.html:49
+#: hub/templates/cookies.html:50
 msgid ""
 "Filling out the donation form consists of several steps. In order to follow "
 "up with a donor and offering them the needed documentation we will save a "
@@ -913,7 +957,7 @@ msgstr ""
 "ordine). Pentru fiecare completare a formularului se va crea un cookie nou "
 "sau se va suprascrie cel deja existent."
 
-#: hub/templates/cookies.html:52
+#: hub/templates/cookies.html:53
 msgid ""
 "Every time I use your visit this website the analytics software provided by "
 "a third-party generates a cookie used to analyze the user profile. Cookie "
@@ -931,7 +975,7 @@ msgstr ""
 "fac. Acest cookie nu poate fi folosit pentru a identifica persoanele fizice, "
 "ele sunt folosite doar în scop statistic."
 
-#: hub/templates/cookies.html:55
+#: hub/templates/cookies.html:56
 msgid ""
 "When registering to this website, we generate a cookie with your "
 "registration data. The cookie helps us in the next steps for communicating "
@@ -945,11 +989,11 @@ msgstr ""
 "Este posibil ca acesta să rămână dacă nu urmați toți pașii înregistrării, "
 "dar el va fi rescris data următoare când vă veți înregistra din nou."
 
-#: hub/templates/cookies.html:57
+#: hub/templates/cookies.html:58
 msgid "Other third party cookies"
 msgstr "Alte cookie-uri ale terțelor părți"
 
-#: hub/templates/cookies.html:58
+#: hub/templates/cookies.html:59
 msgid ""
 "On some pages third parties can set up their own anonymous cookies for "
 "purposes of tracking an app’s success rate, or for customizing that app. Due "
@@ -966,12 +1010,12 @@ msgstr ""
 "sociale aflat pe acest site, acea rețea socială va înregistra activitatea "
 "dvs."
 
-#: hub/templates/cookies.html:60
+#: hub/templates/cookies.html:61
 msgid "What kind of information is stored and accessed through cookies?"
 msgstr ""
 "Ce tip de informații sunt stocate și accesate prin intermediul cookie-urilor?"
 
-#: hub/templates/cookies.html:61
+#: hub/templates/cookies.html:62
 msgid ""
 "Cookies save information in a small text file allowing a website to "
 "recognize a browser. The web server will recognize the browser up until the "
@@ -984,11 +1028,11 @@ msgstr ""
 "stochează informații importante care îmbunătățesc experiența de navigare pe "
 "Internet (ex: un număr de ordine pentru donația ta)."
 
-#: hub/templates/cookies.html:63
+#: hub/templates/cookies.html:64
 msgid "Why are cookies important to the Internet?"
 msgstr "De ce sunt cookie-urile importante pentru Internet?"
 
-#: hub/templates/cookies.html:64
+#: hub/templates/cookies.html:65
 msgid ""
 "Cookies are one of the most important tools for a seamless, efficient "
 "Internet experience, helping to generate friendly browsing experiences "
@@ -1000,7 +1044,7 @@ msgstr ""
 "și adaptată preferințelor și intereselor fiecărui utilizator. Refuzarea sau "
 "dezactivarea cookieurilor poate face unele site-uri imposibil de folosit."
 
-#: hub/templates/cookies.html:65
+#: hub/templates/cookies.html:66
 msgid ""
 "Refusing to accept cookies or deactivating them does not mean that you will "
 "no longer receive online ads, only that these ads will no longer take your "
@@ -1011,11 +1055,11 @@ msgstr ""
 "publicitate online - ci doar că aceasta nu va mai putea ține cont de "
 "preferințele și interesele dvs, evidențiate prin comportamentul de navigare."
 
-#: hub/templates/cookies.html:67
+#: hub/templates/cookies.html:68
 msgid "Security and confidentiality concerns"
 msgstr "Securitate si probleme legate de confidentialitate"
 
-#: hub/templates/cookies.html:68
+#: hub/templates/cookies.html:69
 msgid ""
 "Cookies are NOT viruses! They use plain text formats. They do not contain "
 "code strings and therefore cannot be triggered remotely nor can they "
@@ -1029,7 +1073,7 @@ msgstr ""
 "se rula sau replica din nou. Deoarece nu pot îndeplini aceste funcții, nu "
 "pot fi considerate viruși."
 
-#: hub/templates/cookies.html:69
+#: hub/templates/cookies.html:70
 msgid ""
 "However, some cookies can be used for bad purposes. As they can store user "
 "preferences and navigation history, both from a specific website and for a "
@@ -1045,7 +1089,7 @@ msgstr ""
 "urile pentru a fi șterse în cadrul procedurilor de ștergere/scanare anti-"
 "virus/anti-spyware."
 
-#: hub/templates/cookies.html:70
+#: hub/templates/cookies.html:71
 msgid ""
 "Most browsers have privacy settings allowing you to select the types of "
 "cookies to accept, their duration as well as auto-delete features that "
@@ -1056,11 +1100,11 @@ msgstr ""
 "valabilitate și ștergere automată dupa ce utilizatorul a vizitat un anumit "
 "site."
 
-#: hub/templates/cookies.html:72
+#: hub/templates/cookies.html:73
 msgid "Other Cookie security aspects"
 msgstr "Alte aspecte de securitate legate de cookie-uri"
 
-#: hub/templates/cookies.html:73
+#: hub/templates/cookies.html:74
 msgid ""
 "As identity protection is very important and represents the right of every "
 "internet user, it is important for you to know what potential problems may "
@@ -1080,7 +1124,7 @@ msgstr ""
 "rar, acest lucru se poate întâmpla dacă browserul se conectează la server "
 "folosind o rețea necriptată (ex: o rețea WiFi nesecurizată)."
 
-#: hub/templates/cookies.html:74
+#: hub/templates/cookies.html:75
 msgid ""
 "Other cookie-based attacks use wrong cookie settings on servers. If a "
 "website does not ask the browser to use encrypted channels only, attackers "
@@ -1097,11 +1141,11 @@ msgstr ""
 "anumite site-uri. Este foarte important să fiți atenți în alegerea metodei "
 "celei mai potrivite de protecție a informațiilor personale."
 
-#: hub/templates/cookies.html:76
+#: hub/templates/cookies.html:77
 msgid "Advice for safe and responsible cookie-based browsing "
 msgstr "Sfaturi pentru o navigare sigură și responsabilă, bazată pe cookies"
 
-#: hub/templates/cookies.html:77
+#: hub/templates/cookies.html:78
 msgid ""
 "To the flexibility and the fact that the majority of the largest and most "
 "visited websites use cookies, they are inevitable. Deactivating cookies will "
@@ -1116,7 +1160,7 @@ msgstr ""
 "Yahoo și altele. Iată câteva sfaturi care vă pot asigura că navigați fără "
 "griji însă cu ajutorul cookie-urilor:"
 
-#: hub/templates/cookies.html:79
+#: hub/templates/cookies.html:80
 msgid ""
 "Customize your browser cookie settings to allow for a comfortable security "
 "level. If cookies are not a problem for you and you are the only person "
@@ -1138,11 +1182,11 @@ msgstr ""
 "care plasează cookie-uri și de a șterge orice informație de vizitare la "
 "închiderea sesiunii navigare."
 
-#: hub/templates/cookies.html:80
+#: hub/templates/cookies.html:81
 msgid "install an anti-spyware app and keep it up-to-date"
 msgstr "Instalați-vă și updatați-vă constant aplicații antispyware."
 
-#: hub/templates/cookies.html:82
+#: hub/templates/cookies.html:83
 msgid ""
 "Many anti-spyware apps include website attack detection. These apps prevent "
 "the browser from accessing websites that might exploit the browser’s "
@@ -1157,7 +1201,7 @@ msgstr ""
 "updatat. Multe dintre atacurile bazate pe cookies se realizează exploatând "
 "punctele slabe ale versiunilor vechi ale browserelor."
 
-#: hub/templates/cookies.html:83
+#: hub/templates/cookies.html:84
 msgid ""
 "Cookies are everywhere and cannot be avoided if you wish to access some of "
 "the largest and best websites on the internet, either local or "
@@ -1171,11 +1215,11 @@ msgstr ""
 "și a beneficiilor pe care le aduc, puteți lua măsurile necesare de "
 "securitate astel încât să puteți naviga cu încredere pe internet."
 
-#: hub/templates/cookies.html:85
+#: hub/templates/cookies.html:86
 msgid "How can I turn cookies off?"
 msgstr "Cum pot opri cookie-urile?"
 
-#: hub/templates/cookies.html:86
+#: hub/templates/cookies.html:87
 msgid ""
 "Refusing to accept cookies or deactivating them can make some websites "
 "difficult or impossible to navigate or use. Refusing to accept cookies also "
@@ -1185,7 +1229,7 @@ msgstr ""
 "impracticabile sau dificil de vizitat și folosit. De asemenea, refuzul de a "
 "accepta cookie-uri nu înseamnă că nu veți mai primi/vedea publicitate online."
 
-#: hub/templates/cookies.html:87
+#: hub/templates/cookies.html:88
 msgid ""
 "You can set up your browser to reject cookies automatically or you can "
 "select only some websites where cookies are enabled. But, for example, if "
@@ -1197,7 +1241,7 @@ msgstr ""
 "Dar, de exemplu, dacă nu dorești să folosești cookie-urile nu poți să urmezi "
 "și pașii următori după înregistrarea completarea formularului."
 
-#: hub/templates/cookies.html:88
+#: hub/templates/cookies.html:89
 msgid ""
 "Modern browsers offer the ability to change cookie settings. You can usually "
 "find cookie settings under the “options” tab or the “preferences” menu of "
@@ -1207,7 +1251,7 @@ msgstr ""
 "urilor. Aceste setari se găsesc de regula în “opțiuni“ sau în meniul de "
 "“preferințe“ al browserului tău."
 
-#: hub/templates/cookies.html:89
+#: hub/templates/cookies.html:90
 msgid ""
 "For third-party cookies settings and for more information about online ad "
 "confidentiality, IAB Romania offers the following website: http://www."
@@ -1482,14 +1526,14 @@ msgstr ""
 "Linkul este invalid. Probabil este din cauză ca a fost deja folosit. Te "
 "rugăm fă o cerere nouă de resetare a parolei."
 
-#: hub/templates/rules.html:17
+#: hub/templates/rules.html:18
 msgid ""
 "General Rules for associations and foundations accessing the RoHelp Platform"
 msgstr ""
 "Condiții pentru accesarea și utilizarea Platformei RoHelp de către asociații "
 "și fundații"
 
-#: hub/templates/rules.html:19
+#: hub/templates/rules.html:20
 msgid ""
 "RoHelp is a relief management platform developed by the Code for Romania "
 "Association in partnership with the Romanian Government through the "
@@ -1500,7 +1544,7 @@ msgstr ""
 "Code for România în parteneriat cu Guvernul României prin Autoritatea pentru "
 "Digitalizarea României și administrată de Code for Romania."
 
-#: hub/templates/rules.html:20
+#: hub/templates/rules.html:21
 msgid ""
 "RoHelp centralizes all the associations and foundations that are actively "
 "working to ameliorate the crisis generated by the COVID-19 epidemic by "
@@ -1514,7 +1558,7 @@ msgstr ""
 "necesare în acest scop (e.g. sume de bani, ajutoare materiale, muncă "
 "prestată de voluntari etc)."
 
-#: hub/templates/rules.html:21
+#: hub/templates/rules.html:22
 msgid ""
 "Financial Resources are collected by the associations and foundations that "
 "have registered an account with the Platform directly, through their "
@@ -1525,7 +1569,7 @@ msgstr ""
 "Platformă în mod direct, prin intermediul contului alocat acestora, pe baza "
 "unui contract încheiat cu operatorul de plăți Netopia."
 
-#: hub/templates/rules.html:22
+#: hub/templates/rules.html:23
 msgid ""
 "The following types of entities are eligible for enrollment on the RoHelp "
 "Platform:"
@@ -1533,7 +1577,7 @@ msgstr ""
 "Următoarele tipuri de entități sunt eligibile pentru înscrierea pe Platforma "
 "RoHelp:"
 
-#: hub/templates/rules.html:26
+#: hub/templates/rules.html:27
 msgid ""
 "\n"
 "                    <b>active associations and foundations that are directly "
@@ -1546,7 +1590,7 @@ msgstr ""
 "COVID-19\n"
 "                    "
 
-#: hub/templates/rules.html:31
+#: hub/templates/rules.html:32
 msgid ""
 "\n"
 "                    <b>Associations and foundations that collect financial "
@@ -1560,7 +1604,7 @@ msgstr ""
 "gazdă sau alte inițiative compatibile (administratori de fonduri)\n"
 "                    "
 
-#: hub/templates/rules.html:36
+#: hub/templates/rules.html:37
 msgid ""
 "\n"
 "                    <b>The Red Cross</b>\n"
@@ -1570,7 +1614,7 @@ msgstr ""
 "                    <b>Crucea Roșie</b>\n"
 "                    "
 
-#: hub/templates/rules.html:43
+#: hub/templates/rules.html:44
 msgid ""
 "\n"
 "                All associations and foundations that will use the RoHelp "
@@ -1586,7 +1630,7 @@ msgstr ""
 "b>\n"
 "                "
 
-#: hub/templates/rules.html:47
+#: hub/templates/rules.html:48
 msgid ""
 "In order to enroll in and use the RoHelp Platform, associations and "
 "foundations have to submit a written request form, a request that will be "
@@ -1596,7 +1640,7 @@ msgstr ""
 "fundațiile vor depune o cerere în acest sens către o comisie care va stabili "
 "eligibilitatea acestora."
 
-#: hub/templates/rules.html:48
+#: hub/templates/rules.html:49
 msgid ""
 "The  written request must include a description of the main activities that "
 "the association or foundation has been undergoing, with a focus on any "
@@ -1623,20 +1667,20 @@ msgstr ""
 "confidențiale, și documente care dovedesc înscrierea în Registrul "
 "Asociațiilor și Fundațiilor."
 
-#: hub/templates/rules.html:49
+#: hub/templates/rules.html:50
 msgid ""
 "The eligibility criteria for enrolling in the platform are the following:"
 msgstr "Criteriile de eligibilitate pentru înscrierea pe platformă sunt:"
 
-#: hub/templates/rules.html:52
+#: hub/templates/rules.html:53
 msgid "Filling out the enrollment form (in Romanian),"
 msgstr "Formularul de înscriere este completat integral, în limba română;"
 
-#: hub/templates/rules.html:53
+#: hub/templates/rules.html:54
 msgid "Submitting all required paperwork (see above)"
 msgstr "Sunt transmise copii după documentele anexă indicate mai sus;"
 
-#: hub/templates/rules.html:54
+#: hub/templates/rules.html:55
 msgid ""
 "The enrolling organization is involved in actions to solve or ameliorate the "
 "effects gof the COVID-19 epidemic crisis,"
@@ -1644,7 +1688,7 @@ msgstr ""
 "Entitatea solicitantă derulează activitati pentru ameliorarea crizei "
 "generate de epidemia COVID-19"
 
-#: hub/templates/rules.html:55
+#: hub/templates/rules.html:56
 msgid ""
 "The enrolling organization is not involved in actions nor does it support "
 "causes of a political nature or that discriminate on the basis of ethnic "
@@ -1658,7 +1702,7 @@ msgstr ""
 "la una sau mai multe categorii sociale sau economice, iar membrii conducerii "
 "organizației nu sunt implicați politic."
 
-#: hub/templates/rules.html:58
+#: hub/templates/rules.html:59
 msgid ""
 "An applicant’s eligibility will be determined by a committee formed by the "
 "following three members: a Code for Romania Representative, an Emergency "
@@ -1670,7 +1714,7 @@ msgstr ""
 "reprezentant al Departamentului pentru Situații de Urgență (DSU) și un "
 "reprezentant al Federației Fundațiile Comunitare din România. "
 
-#: hub/templates/rules.html:59
+#: hub/templates/rules.html:60
 msgid ""
 "The committee members will ensure that there is no conflict of interest to "
 "hinder them from participating in this evaluatory capacity and, therefore, "
@@ -1683,7 +1727,7 @@ msgstr ""
 "personal sau de altă natură, care ar putea aduce atingere imparţialității și "
 "independenţei lor."
 
-#: hub/templates/rules.html:60
+#: hub/templates/rules.html:61
 msgid ""
 "The committee will analyse the documents submitted by applicants and can ask "
 "for further documents or information. The decision regarding the applicant’s "
@@ -1695,7 +1739,7 @@ msgstr ""
 "solicitantului va fi comunicată acestuia cu indicarea motivelor care au stat "
 "la baza respectivei decizii."
 
-#: hub/templates/rules.html:61
+#: hub/templates/rules.html:62
 msgid ""
 "If an applicant is refused access to the Platform they have the right to "
 "ask, a single time, for a re-evaluation, by transmitting setra documents and "
@@ -1705,18 +1749,8 @@ msgstr ""
 "Platformei acesta are drept de a solicita, o singură dată, reevaluarea "
 "deciziei, prin transmiterea de documente și informații suplimentare."
 
-#: hub/templates/rules.html:65
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                Any applicant deemed eligible will sign a Partnership "
-#| "Agreement with Code for Romania, agreement that will detail each party’s "
-#| "rights and obligations regarding the use of the RoHelp Platform, "
-#| "<b>including the obligation of the association or foundation to declare "
-#| "and respect the destination of the material and financial resources "
-#| "collected through the Platform and the obligation to report how said "
-#| "resources are being used.</b>\n"
-#| "                "
+#: hub/templates/rules.html:66
+#, python-format
 msgid ""
 "\n"
 "                Any applicant deemed eligible will sign a <a href="
@@ -1729,15 +1763,16 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"            Orice solicitant declarat eligibil va încheia un Acord de "
-"Parteneriat cu Code for Romania în care vor fi detaliate drepturile și "
-"obligațiile părților cu privire la utilizarea Platformei RoHelp,  <b>între "
-"care și obligația asociației sau fundației de a declara și respecta "
-"destinația resurselor materiale și financiare colectate prin intermediul "
-"Platformei și obligația de a raporta cu privire la utilizarea acestora.</b>\n"
+"            Orice solicitant declarat eligibil va încheia un <a href="
+"\"%(the_url)s\" target=\"%(target)s\">Acord de Parteneriat</a> cu Code for "
+"Romania în care vor fi detaliate drepturile și obligațiile părților cu "
+"privire la utilizarea Platformei RoHelp,  <b>între care și obligația "
+"asociației sau fundației de a declara și respecta destinația resurselor "
+"materiale și financiare colectate prin intermediul Platformei și obligația "
+"de a raporta cu privire la utilizarea acestora.</b>\n"
 "            "
 
-#: hub/templates/rules.html:70
+#: hub/templates/rules.html:71
 msgid ""
 "The reporting regarding the usage of resources collected through the "
 "Platform must be done after the first month of Platform use and every "
@@ -1755,11 +1790,11 @@ msgstr ""
 "intermediul platformei, fiecare entitate având obligația de a furniza toate "
 "informațiile solicitate."
 
-#: hub/templates/rules.html:71
+#: hub/templates/rules.html:72
 msgid "The committee members are as follows"
 msgstr "Comisa de validare a platformei RoHelp este alcătuită din:"
 
-#: hub/templates/rules.html:73
+#: hub/templates/rules.html:74
 msgid ""
 "Romanian Community Foundations Federation: Cristina Vaileanu, Luiza Zamora, "
 "Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
@@ -1767,11 +1802,11 @@ msgstr ""
 "Romanian Community Foundations Federation: Cristina Vaileanu, Luiza Zamora, "
 "Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
 
-#: hub/templates/rules.html:74
+#: hub/templates/rules.html:75
 msgid "The Department for Emergency Situations: George Manea"
 msgstr "Departamentul pentru Situații de Urgență: George Manea"
 
-#: hub/templates/rules.html:75
+#: hub/templates/rules.html:76
 msgid "Code for Romania: Septimius Pârvu, Raul Ritea"
 msgstr "Code for Romania: Septimius Pârvu, Raul Ritea"
 
@@ -2341,17 +2376,46 @@ msgstr "Ordine de plată"
 msgid "Payment Order"
 msgstr "Ordin de plată"
 
-#: mobilpay/models.py:54
+#: mobilpay/models.py:59
 msgid "Payment responses"
 msgstr "Răspunsuri plată"
 
-#: mobilpay/models.py:55
+#: mobilpay/models.py:60
 msgid "Payment response"
 msgstr "Răspuns plată"
 
 #: mobilpay/templates/mobilpay/initialize_payment.html:10
 msgid "You are being redirected to payment website"
 msgstr "Ești redirecționat către site-ul de plată"
+
+#: mobilpay/templates/mobilpay/response.html:12
+#, python-format
+msgid ""
+"\n"
+"                    Plata pentru %(ngo)s a fost confirmata! Îți mulțumim "
+"pentru sprijinul tău în această perioadă! Orice ajutor ne crește capacitatea "
+"de a face bine mai departe.\n"
+"                "
+msgstr ""
+
+#: mobilpay/templates/mobilpay/response.html:17
+#, python-format
+msgid ""
+"\n"
+"                        Plata pentru %(ngo)s este în curs de procesare. Îți "
+"mulțumim pentru sprijinul tău în această perioadă! Orice ajutor ne crește "
+"capacitatea de a face bine mai departe.\n"
+"                    "
+msgstr ""
+
+#: mobilpay/templates/mobilpay/response.html:21
+#, python-format
+msgid ""
+"\n"
+"                        Plata pentru %(ngo)s nu a putut fi confirmată. Te "
+"rugăm să încerci din nou. Îți mulțumim pentru sprijin și răbdare.\n"
+"                    "
+msgstr ""
 
 #: ro_help/settings/base.py:208
 msgid "COVID-19 RO HELP"
