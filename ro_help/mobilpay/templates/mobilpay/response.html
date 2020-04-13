@@ -9,19 +9,20 @@
     <article class="message {% if order.success %}is-success {% elif order.is_pending %} is-warning {% else %} is-danger{% endif %}">
         <div class="message-body">
             {% if order.success %}
-                {% blocktrans %}
-                    <h1>Plata pentru <b>{{order.ngo}}</b> a fost confirmată.</h1>
+                {% blocktrans with ngo=order.ngo%}
+                    <h1>Plata pentru <b>{{ngo}}</b> a fost confirmată.</h1>
                     Îți mulțumim!
                 {% endblocktrans %}
             {% else %}
                 {% if order.is_pending %}
-                    {% blocktrans %}
-                        <h1>Plata pentru <b>{{order.ngo}}</b> este în curs de procesare.</h1>
+                    {% blocktrans with ngo=order.ngo%}
+                        <h1>Plata pentru <b>{{ngo}}</b> este în curs de procesare.</h1>
                     {% endblocktrans %}    
+                {% else %}
+                    {% blocktrans with ngo=order.ngo%}
+                        <h1>Plata pentru <b>{{ngo}}</b> nu a putut fi confirmată.</h1>
+                    {% endblocktrans %}
                 {% endif %}
-                {% blocktrans %}
-                    <h1>Plata pentru <b>{{order.ngo}}</b> nu a putut fi confirmată.</h1>
-                {% endblocktrans %}
             {% endif %}
         </div>    
     </article>
