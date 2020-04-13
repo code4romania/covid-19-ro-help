@@ -6,123 +6,125 @@
 
 
 {% block content %}
-<div class="columns">
-    <div class="column is-two-thirds">
-        {% block left-side-view %}
-        <div id="donate_safely" class="container content">
-            <h1>
-                <span>
-                    <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
-                </span>
-                {% trans "Confidentiality Policy" %}
-            </h1>
+<div class="container">
+    <div class="columns">
+        <div class="column is-two-thirds">
+            {% block left-side-view %}
+            <div id="donate_safely" class="container content">
+                <h1>
+                    <span>
+                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                    </span>
+                    {% trans "Confidentiality Policy" %}
+                </h1>
 
-            <p>{% trans "This website uses cookies in order to provide users with a better browsing experience as well as services tailored to their needs and interests." %}</p>
-            <p>{% trans '“Cookies” are used to facilitate access and delivery for the services required by Internet users such as personalizing settings (language, country, prices displayed in local currency etc.) “Cookies”, based on the information about users that they gather, help operators make their websites more effective so that they can be easier to access by users. They also make online advertising more effective and can help multimedia apps and content from other websites be more easily embedded, to make navigation easier.' %}</p>
+                <p>{% trans "This website uses cookies in order to provide users with a better browsing experience as well as services tailored to their needs and interests." %}</p>
+                <p>{% trans '“Cookies” are used to facilitate access and delivery for the services required by Internet users such as personalizing settings (language, country, prices displayed in local currency etc.) “Cookies”, based on the information about users that they gather, help operators make their websites more effective so that they can be easier to access by users. They also make online advertising more effective and can help multimedia apps and content from other websites be more easily embedded, to make navigation easier.' %}</p>
 
-            <h2>{% trans 'What is a “Cookie”?' %}</h2>
-            <p>{% trans 'Cookie ("browser cookie" or "HTTP cookie") is a small file, a succession of letters and numbers, that is stored on any terminal with Internet access (computers, mobile phones, tablets etc.) and is installed  upon a request from a server to a browser (ex: Internet Explorer, Chrome). “Cookies” do not contain any software programs, viruses or spyware and cannot access information on the user’s hard drive.' %}</p>
-            <p>{% trans "Cookie consists of a name and content, the length of its existence is limited, and it can be accessed again by the webserver when a user returns to the  website associated with that server." %}</p>
-            <p>{% trans "Cookies do not request personal information nor do they personally identify internet users." %}</p>
-            <p>{% trans "Session cookies - are cookies temporarily stored in the browser’s history where they are stored until the user leaves that website or closes the browser window." %}</p>
-            <p>{% trans 'Persistent Cookies - These are stored, for a predetermined length of time, on a computer hard drive or similar equipment. Persistent cookies include those placed by a different website than the one  the user is visiting at the time, so-called “third-party cookies”- that can be anonymously used to track a user’s interests - allowing them to receive ads more relevant to their interests.' %}</p>
+                <h2>{% trans 'What is a “Cookie”?' %}</h2>
+                <p>{% trans 'Cookie ("browser cookie" or "HTTP cookie") is a small file, a succession of letters and numbers, that is stored on any terminal with Internet access (computers, mobile phones, tablets etc.) and is installed  upon a request from a server to a browser (ex: Internet Explorer, Chrome). “Cookies” do not contain any software programs, viruses or spyware and cannot access information on the user’s hard drive.' %}</p>
+                <p>{% trans "Cookie consists of a name and content, the length of its existence is limited, and it can be accessed again by the webserver when a user returns to the  website associated with that server." %}</p>
+                <p>{% trans "Cookies do not request personal information nor do they personally identify internet users." %}</p>
+                <p>{% trans "Session cookies - are cookies temporarily stored in the browser’s history where they are stored until the user leaves that website or closes the browser window." %}</p>
+                <p>{% trans 'Persistent Cookies - These are stored, for a predetermined length of time, on a computer hard drive or similar equipment. Persistent cookies include those placed by a different website than the one  the user is visiting at the time, so-called “third-party cookies”- that can be anonymously used to track a user’s interests - allowing them to receive ads more relevant to their interests.' %}</p>
 
-            <h2>{% trans 'What are the advantages of “Cookies”?' %}</h2>
-            <p>{% trans "A cookie contains information that connects users to a specific website. If a browser accesses the same server again it can read the information already stored in the cookie and react accordingly." %}</p>
+                <h2>{% trans 'What are the advantages of “Cookies”?' %}</h2>
+                <p>{% trans "A cookie contains information that connects users to a specific website. If a browser accesses the same server again it can read the information already stored in the cookie and react accordingly." %}</p>
 
-            <h2>{% trans 'What is the average lifespan of a cookie?' %}</h2>
-            <p>{% trans "There are cookies that are exclusively used for a single session - these are no longer stored after the user has left the website. Permanent cookies are stored and reused every time the user returns to that website but can be deleted at any time by the user." %}</p>
+                <h2>{% trans 'What is the average lifespan of a cookie?' %}</h2>
+                <p>{% trans "There are cookies that are exclusively used for a single session - these are no longer stored after the user has left the website. Permanent cookies are stored and reused every time the user returns to that website but can be deleted at any time by the user." %}</p>
 
-            <h2>{% trans "What are third party cookies?" %}</h2>
-            <p>{% trans "Some parts of the content or services on the accessed website can be placed there by third parties via banners, boxes or links - and all these instruments can contain cookies. These are called “third-party cookies” because they are not placed by the owner of the respective website, third party cookies do however have to abide by the law and by the site owner’s confidentiality policy." %}</p>
+                <h2>{% trans "What are third party cookies?" %}</h2>
+                <p>{% trans "Some parts of the content or services on the accessed website can be placed there by third parties via banners, boxes or links - and all these instruments can contain cookies. These are called “third-party cookies” because they are not placed by the owner of the respective website, third party cookies do however have to abide by the law and by the site owner’s confidentiality policy." %}</p>
 
-            <h2>{% trans 'How does this website use cookies?' %}</h2>
-            <p>{% trans "Upon visiting this website you may receive the following cookie types:" %}</p>
-            <ul>
-                <li>{% trans "Cookies used for finalizing your donation" %}</li>
-                <li>{% trans "Cookies that are used to analyse general user data" %}</li>
-                <li>{% trans "Registration cookies" %}</li>
-            </ul>
-            <p>{% trans "Some cookies can be third-party cookies." %}</p>
+                <h2>{% trans 'How does this website use cookies?' %}</h2>
+                <p>{% trans "Upon visiting this website you may receive the following cookie types:" %}</p>
+                <ul>
+                    <li>{% trans "Cookies used for finalizing your donation" %}</li>
+                    <li>{% trans "Cookies that are used to analyse general user data" %}</li>
+                    <li>{% trans "Registration cookies" %}</li>
+                </ul>
+                <p>{% trans "Some cookies can be third-party cookies." %}</p>
 
-            <h3>{% trans 'Cookies used for finalizing your donation' %}</h3>
-            <p>{% trans "Filling out the donation form consists of several steps. In order to follow up with a donor and offering them the needed documentation we will save a cookie that offers us a way to identify that donor (like a ticket). Every time the form is filled a new cookie is created or the existing one is overwritten." %}</p>
+                <h3>{% trans 'Cookies used for finalizing your donation' %}</h3>
+                <p>{% trans "Filling out the donation form consists of several steps. In order to follow up with a donor and offering them the needed documentation we will save a cookie that offers us a way to identify that donor (like a ticket). Every time the form is filled a new cookie is created or the existing one is overwritten." %}</p>
 
-            <h3>{% trans 'Cookies that are used to analyse general user data' %}</h3>
-            <p>{% trans "Every time I use your visit this website the analytics software provided by a third-party generates a cookie used to analyze the user profile. Cookie tells us if you've ever visited this website before. The browser will let us know if you have this cookie installed, and if not, this cookie is generated. This allows us to Monitor the number of unique users visiting this website as well as how often they return. This cookie cannot be used to identify physical persons and it is only used for statistical purposes." %}</p>
+                <h3>{% trans 'Cookies that are used to analyse general user data' %}</h3>
+                <p>{% trans "Every time I use your visit this website the analytics software provided by a third-party generates a cookie used to analyze the user profile. Cookie tells us if you've ever visited this website before. The browser will let us know if you have this cookie installed, and if not, this cookie is generated. This allows us to Monitor the number of unique users visiting this website as well as how often they return. This cookie cannot be used to identify physical persons and it is only used for statistical purposes." %}</p>
 
-            <h3>{% trans 'Registration cookies' %}</h3>
-            <p>{% trans "When registering to this website, we generate a cookie with your registration data. The cookie helps us in the next steps for communicating with the server. It is possible for this cookie to remain on your device if you do not follow through with all the registration steps.  However, this cookie will be overwritten the next time you attempt to register on this website." %}</p>
+                <h3>{% trans 'Registration cookies' %}</h3>
+                <p>{% trans "When registering to this website, we generate a cookie with your registration data. The cookie helps us in the next steps for communicating with the server. It is possible for this cookie to remain on your device if you do not follow through with all the registration steps.  However, this cookie will be overwritten the next time you attempt to register on this website." %}</p>
 
-            <h3>{% trans 'Other third party cookies' %}</h3>
-            <p>{% trans 'On some pages third parties can set up their own anonymous cookies for purposes of tracking an app’s success rate, or for customizing that app. Due to the way it is used, this website cannot access these cookies, just as third parties cannot access the cookies that belong to this website. For example when you share a page using a “share to social network” button on this website, that social network can track your activity.' %}</p>
+                <h3>{% trans 'Other third party cookies' %}</h3>
+                <p>{% trans 'On some pages third parties can set up their own anonymous cookies for purposes of tracking an app’s success rate, or for customizing that app. Due to the way it is used, this website cannot access these cookies, just as third parties cannot access the cookies that belong to this website. For example when you share a page using a “share to social network” button on this website, that social network can track your activity.' %}</p>
 
-            <h2>{% trans 'What kind of information is stored and accessed through cookies?' %}</h2>
-            <p>{% trans "Cookies save information in a small text file allowing a website to recognize a browser. The web server will recognize the browser up until the cookie expires or is deleted. The cookie stores important information that improve the browsing experience (e.g. a serial number for your donation)" %}</p>
+                <h2>{% trans 'What kind of information is stored and accessed through cookies?' %}</h2>
+                <p>{% trans "Cookies save information in a small text file allowing a website to recognize a browser. The web server will recognize the browser up until the cookie expires or is deleted. The cookie stores important information that improve the browsing experience (e.g. a serial number for your donation)" %}</p>
 
-            <h2>{% trans 'Why are cookies important to the Internet?' %}</h2>
-            <p>{% trans "Cookies are one of the most important tools for a seamless, efficient Internet experience, helping to generate friendly browsing experiences tailored to the needs of every user. Refusing to accept cookies or deactivating them can make some websites impossible to use." %}</p>
-            <p>{% trans "Refusing to accept cookies or deactivating them does not mean that you will no longer receive online ads, only that these ads will no longer take your interests or preferences into account as determined by your browsing behavior." %}</p>
+                <h2>{% trans 'Why are cookies important to the Internet?' %}</h2>
+                <p>{% trans "Cookies are one of the most important tools for a seamless, efficient Internet experience, helping to generate friendly browsing experiences tailored to the needs of every user. Refusing to accept cookies or deactivating them can make some websites impossible to use." %}</p>
+                <p>{% trans "Refusing to accept cookies or deactivating them does not mean that you will no longer receive online ads, only that these ads will no longer take your interests or preferences into account as determined by your browsing behavior." %}</p>
 
-            <h2>{% trans 'Security and confidentiality concerns' %}</h2>
-            <p>{% trans "Cookies are NOT viruses! They use plain text formats. They do not contain code strings and therefore cannot be triggered remotely nor can they activate themselves. They cannot duplicate or self-replicate across networks. As they cannot do any of the above that cannot be considered viruses." %}</p>
-            <p>{% trans "However, some cookies can be used for bad purposes. As they can store user preferences and navigation history, both from a specific website and for a broad selection of sites, cookies can be used as a form of spyware. Many anti-spyware products know this and constantly mark cookies to be deleted as part of anti-virus or anti-spyware scans." %}</p>
-            <p>{% trans "Most browsers have privacy settings allowing you to select the types of cookies to accept, their duration as well as auto-delete features that remove cookies once the user has visited a certain site." %}</p>
+                <h2>{% trans 'Security and confidentiality concerns' %}</h2>
+                <p>{% trans "Cookies are NOT viruses! They use plain text formats. They do not contain code strings and therefore cannot be triggered remotely nor can they activate themselves. They cannot duplicate or self-replicate across networks. As they cannot do any of the above that cannot be considered viruses." %}</p>
+                <p>{% trans "However, some cookies can be used for bad purposes. As they can store user preferences and navigation history, both from a specific website and for a broad selection of sites, cookies can be used as a form of spyware. Many anti-spyware products know this and constantly mark cookies to be deleted as part of anti-virus or anti-spyware scans." %}</p>
+                <p>{% trans "Most browsers have privacy settings allowing you to select the types of cookies to accept, their duration as well as auto-delete features that remove cookies once the user has visited a certain site." %}</p>
 
-            <h2>{% trans 'Other Cookie security aspects' %}</h2>
-            <p>{% trans "As identity protection is very important and represents the right of every internet user, it is important for you to know what potential problems may be caused by cookies. Because cookies are used to constantly transmit information both ways between the browser and the website, unauthorised persons looking to compromise your security may intercept the information contained by cookies. Although this is very rare it can happen if your browser accesses the website by using an unencrypted network (e.g. an unsecured Wifi network)." %}</p>
-            <p>{% trans "Other cookie-based attacks use wrong cookie settings on servers. If a website does not ask the browser to use encrypted channels only, attackers can use this vulnerability to trick browsers into  sending information via unencrypted channels. Attackers then use this information to access unauthorised websites. It is very important to take great care in choosing the right methods of protecting your personal information." %}</p>
+                <h2>{% trans 'Other Cookie security aspects' %}</h2>
+                <p>{% trans "As identity protection is very important and represents the right of every internet user, it is important for you to know what potential problems may be caused by cookies. Because cookies are used to constantly transmit information both ways between the browser and the website, unauthorised persons looking to compromise your security may intercept the information contained by cookies. Although this is very rare it can happen if your browser accesses the website by using an unencrypted network (e.g. an unsecured Wifi network)." %}</p>
+                <p>{% trans "Other cookie-based attacks use wrong cookie settings on servers. If a website does not ask the browser to use encrypted channels only, attackers can use this vulnerability to trick browsers into  sending information via unencrypted channels. Attackers then use this information to access unauthorised websites. It is very important to take great care in choosing the right methods of protecting your personal information." %}</p>
 
-            <h2>{% trans 'Advice for safe and responsible cookie-based browsing ' %}</h2>
-            <p>{% trans "To the flexibility and the fact that the majority of the largest and most visited websites use cookies, they are inevitable. Deactivating cookies will no longer allow user access to some of the most important websites such as Youtube, Gmail, Yahoo and others. Here's some advice that can help you browse safely while retaining cookies:" %}</p>
-            <ul>
-                <li>{% trans "Customize your browser cookie settings to allow for a comfortable security level. If cookies are not a problem for you and you are the only person using that device you can set long cookie retention intervals in order to store your browsing history and your personal access data. If you share the device or computer you may want to set up the browser to delete your individual browsing data every time it is closed. This is one way to access websites that place cookies on your shared computer while deleting all your browsing data when closing the session." %}</li>
-                <li>{% trans "install an anti-spyware app and keep it up-to-date" %}</li>
-            </ul>
-            <p>{% trans "Many anti-spyware apps include website attack detection. These apps prevent the browser from accessing websites that might exploit the browser’s vulnerabilities or download dangerous software. Ensure your browser is up-to-date. Many cookie-based attacks exploit the weak points of old browser versions." %}</p>
-            <p>{% trans "Cookies are everywhere and cannot be avoided if you wish to access some of the largest and best websites on the internet, either local or international. The clear understanding of the way cookies work and the benefits they bring you can take the necessary security measures so that you always have a safe and satisfactory browsing experience." %}</p>
+                <h2>{% trans 'Advice for safe and responsible cookie-based browsing ' %}</h2>
+                <p>{% trans "To the flexibility and the fact that the majority of the largest and most visited websites use cookies, they are inevitable. Deactivating cookies will no longer allow user access to some of the most important websites such as Youtube, Gmail, Yahoo and others. Here's some advice that can help you browse safely while retaining cookies:" %}</p>
+                <ul>
+                    <li>{% trans "Customize your browser cookie settings to allow for a comfortable security level. If cookies are not a problem for you and you are the only person using that device you can set long cookie retention intervals in order to store your browsing history and your personal access data. If you share the device or computer you may want to set up the browser to delete your individual browsing data every time it is closed. This is one way to access websites that place cookies on your shared computer while deleting all your browsing data when closing the session." %}</li>
+                    <li>{% trans "install an anti-spyware app and keep it up-to-date" %}</li>
+                </ul>
+                <p>{% trans "Many anti-spyware apps include website attack detection. These apps prevent the browser from accessing websites that might exploit the browser’s vulnerabilities or download dangerous software. Ensure your browser is up-to-date. Many cookie-based attacks exploit the weak points of old browser versions." %}</p>
+                <p>{% trans "Cookies are everywhere and cannot be avoided if you wish to access some of the largest and best websites on the internet, either local or international. The clear understanding of the way cookies work and the benefits they bring you can take the necessary security measures so that you always have a safe and satisfactory browsing experience." %}</p>
 
-            <h2>{% trans 'How can I turn cookies off?' %}</h2>
-            <p>{% trans "Refusing to accept cookies or deactivating them can make some websites difficult or impossible to navigate or use. Refusing to accept cookies also does not mean that you will no longer receive online ads." %}</p>
-            <p>{% trans "You can set up your browser to reject cookies automatically or you can select only some websites where cookies are enabled. But, for example, if you turn off cookies on this website you can not follow through with the next steps in filling out the form." %}</p>
-            <p>{% trans 'Modern browsers offer the ability to change cookie settings. You can usually find cookie settings under the “options” tab or the “preferences” menu of your browser.' %}</p>
-            <p>{% trans "For third-party cookies settings and for more information about online ad confidentiality, IAB Romania offers the following website: http://www.youronlinechoices.com/ro/" %}</p>
-        </div>
-        {% endblock %}
-    </div>
-
-    <div id="right_sidebar" class="column is-one-third">
-        {% block right-side-view %}
-        <div class="container">
-
-            <h1 class="donate-title">
-                <span>
-                    <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
-                </span>
-                {% trans "Useful instruments" %}
-            </h1>
-
-            {% for project in info %}
-            <div class="tool">
-                <div class="is-flex">
-                    <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
-                    <h1 class="card-content" style="background-color: #f0f0f0;">
-                        {{ project.call_to_action }}</h1>
-                </div>
-                <div class="card-content" style="background-color: #fafafa;">
-                    {% if project.description %}
-                    <p class="call-to-action">{{project.description}}</p>
-                    {% endif %}
-                    <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold sidebar-btn"
-                        style="background-color: {{ project.color }};" href="{{project.url}}" rel="nofollow">
-                        {{ project.button_text }}
-                    </a>
-                </div>
+                <h2>{% trans 'How can I turn cookies off?' %}</h2>
+                <p>{% trans "Refusing to accept cookies or deactivating them can make some websites difficult or impossible to navigate or use. Refusing to accept cookies also does not mean that you will no longer receive online ads." %}</p>
+                <p>{% trans "You can set up your browser to reject cookies automatically or you can select only some websites where cookies are enabled. But, for example, if you turn off cookies on this website you can not follow through with the next steps in filling out the form." %}</p>
+                <p>{% trans 'Modern browsers offer the ability to change cookie settings. You can usually find cookie settings under the “options” tab or the “preferences” menu of your browser.' %}</p>
+                <p>{% trans "For third-party cookies settings and for more information about online ad confidentiality, IAB Romania offers the following website: http://www.youronlinechoices.com/ro/" %}</p>
             </div>
-
-            {% endfor %}
+            {% endblock %}
         </div>
-        {% endblock %}
+
+        <div id="right_sidebar" class="column is-one-third">
+            {% block right-side-view %}
+            <div class="container">
+
+                <h1 class="donate-title">
+                    <span>
+                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                    </span>
+                    {% trans "Useful instruments" %}
+                </h1>
+
+                {% for project in info %}
+                <div class="tool">
+                    <div class="is-flex">
+                        <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
+                        <h1 class="card-content" style="background-color: #f0f0f0;">
+                            {{ project.call_to_action }}</h1>
+                    </div>
+                    <div class="card-content" style="background-color: #fafafa;">
+                        {% if project.description %}
+                        <p class="call-to-action">{{project.description}}</p>
+                        {% endif %}
+                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold sidebar-btn"
+                            style="background-color: {{ project.color }};" href="{{project.url}}" rel="nofollow">
+                            {{ project.button_text }}
+                        </a>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+            {% endblock %}
+        </div>
     </div>
 </div>
 {% endblock %}
