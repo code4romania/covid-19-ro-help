@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-13 15:23+0000\n"
-"PO-Revision-Date: 2020-04-13 18:24+0300\n"
+"POT-Creation-Date: 2020-04-13 17:41+0000\n"
+"PO-Revision-Date: 2020-04-13 20:45+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -131,12 +131,12 @@ msgstr ""
 msgid "USD"
 msgstr ""
 
-#: hub/models.py:204 hub/templates/ngo/detail.html:115
+#: hub/models.py:204 hub/templates/ngo/detail.html:118
 msgid "Currency"
 msgstr "Monedă"
 
 #: hub/models.py:216 hub/models.py:278 hub/models.py:363 hub/models.py:381
-#: hub/models.py:398 hub/templates/ngo/detail.html:107
+#: hub/models.py:398 hub/templates/ngo/detail.html:110
 msgid "Name"
 msgstr "Nume"
 
@@ -158,7 +158,7 @@ msgid "Phone"
 msgstr "Telefon"
 
 #: hub/models.py:222 hub/models.py:386 hub/models.py:416
-#: hub/templates/ngo/detail.html:108 mobilpay/models.py:26
+#: hub/templates/ngo/detail.html:111 mobilpay/models.py:26
 msgid "Address"
 msgstr "Adresa"
 
@@ -232,7 +232,7 @@ msgstr "Tag resurse"
 msgid "NGO"
 msgstr "ONG"
 
-#: hub/models.py:320 hub/models.py:348 hub/templates/ngo/detail.html:277
+#: hub/models.py:320 hub/models.py:348 hub/templates/ngo/detail.html:280
 msgid "Title"
 msgstr "Titlu"
 
@@ -260,7 +260,7 @@ msgstr "Administrare nevoi"
 msgid "Manage need"
 msgstr "Administrare nevoie"
 
-#: hub/models.py:347 hub/models.py:529 hub/templates/ngo/detail.html:276
+#: hub/models.py:347 hub/models.py:529 hub/templates/ngo/detail.html:279
 msgid "Date"
 msgstr "Dată"
 
@@ -494,22 +494,7 @@ msgid "How RoHelp got started"
 msgstr "De unde a pornit RoHelp"
 
 #: hub/templates/about.html:34
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                    “There is no uniform distribution of resources” is "
-#| "the 19th issue identified in Code for Romania’s own <a href=\"%(link)s\" "
-#| "target=\"%(target)s\" rel=\"%(rel)s\">2019-2020 Civic Labs year 1</a> "
-#| "research paper in the field of Emergency Preparedness and Disaster "
-#| "Management in the case of a major earthquake. In brief, starting from the "
-#| "analysis of the response in the case of Mexico or Italy, two countries "
-#| "that have had to manage response to a major earthquake recently (2017 and "
-#| "2016, respectively) we realized that any fundraising effort during or "
-#| "after a major disaster comes together with a multitude of risks, "
-#| "including the sudden appearance of phantom organizations or focusing aid "
-#| "to just a few areas of intervention,, either thematic or geographical, "
-#| "according to the communication capacity of  NGOs in the field. \n"
-#| "                "
+#, python-format
 msgid ""
 "\n"
 "                        “There is no uniform distribution of resources” is "
@@ -542,16 +527,7 @@ msgstr ""
 "                "
 
 #: hub/templates/about.html:39
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                    The Code for Romania COVID-19 Task Force used the "
-#| "Civic Labs research program results in the field of\n"
-#| "                    emergency response, and adapted our <a href=\"%(link)s"
-#| "\" target=\"%(target)s\" rel=\"%(rel)s\">Aid Management Hub</a>\n"
-#| "                    prototype to the present situation, developing RoHelp."
-#| "ro in record time.\n"
-#| "                "
+#, python-format
 msgid ""
 "\n"
 "                        The Code for Romania COVID-19 Task Force used the "
@@ -700,18 +676,7 @@ msgid "Contact us"
 msgstr "Contactează-ne"
 
 #: hub/templates/contact.html:21
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                <span class=\"%(class)s\">If you are an NGO "
-#| "representative</span>, and your NGO is legally registered in Romania "
-#| "while also directly participating in the COVID-19 relief response you can "
-#| "join RoHelp here. If you meet all eligibility criteria and your "
-#| "organization is validated in accordance to the rules and terms of use of "
-#| "the platform you'll be able to access your NGO account on the platform "
-#| "and will be able to solicit support, be it financial, material or "
-#| "volunteer-based.\n"
-#| "                "
+#, python-format
 msgid ""
 "\n"
 "                    <span class=\"%(class)s\">If you are an NGO "
@@ -734,16 +699,7 @@ msgstr ""
 "                "
 
 #: hub/templates/contact.html:26
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                <span class=\"%(class)s\">If you want to help out</span>, "
-#| "you can use the platform to identify the most stringent needs and active "
-#| "NGOs in your area or at the national level, and help out in any way you "
-#| "can, by donations, material support or through your skillset, as a "
-#| "volunteer. Even any social media share of a NGO page or city page from "
-#| "the RoHelp platform helps in the COVID-19 relief effort.\n"
-#| "                "
+#, python-format
 msgid ""
 "\n"
 "                    <span class=\"%(class)s\">If you want to help out</"
@@ -1378,7 +1334,7 @@ msgid ""
 msgstr ""
 
 #: hub/templates/ngo/base.html:56 hub/templates/ngo/base.html:58
-#: hub/templates/ngo/detail.html:86 hub/templates/ngo/donate.html:26
+#: hub/templates/ngo/detail.html:87 hub/templates/ngo/donate.html:26
 #: hub/templates/ngo/list.html:217
 msgid "Donate"
 msgstr "Donează"
@@ -1403,55 +1359,55 @@ msgstr "Despre organizație"
 msgid "Donate money"
 msgstr "Donează bani"
 
-#: hub/templates/ngo/detail.html:73
+#: hub/templates/ngo/detail.html:74
 msgid "Donate via Netopia"
 msgstr "Donează prin Netopia"
 
-#: hub/templates/ngo/detail.html:101
+#: hub/templates/ngo/detail.html:104
 msgid "Donate via transfer"
 msgstr "Doneaza via transfer bancar"
 
-#: hub/templates/ngo/detail.html:110
+#: hub/templates/ngo/detail.html:113
 msgid "CIF"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:112
+#: hub/templates/ngo/detail.html:115
 msgid "CUI"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:115
+#: hub/templates/ngo/detail.html:118
 msgid "Bank"
 msgstr "Banca"
 
-#: hub/templates/ngo/detail.html:135
+#: hub/templates/ngo/detail.html:138
 msgid "Donate resources"
 msgstr "Donează resurse"
 
-#: hub/templates/ngo/detail.html:171
+#: hub/templates/ngo/detail.html:174
 msgid "Join as volunteer"
 msgstr "Fii voluntar"
 
-#: hub/templates/ngo/detail.html:205
+#: hub/templates/ngo/detail.html:208
 msgid "Donations"
 msgstr "Donații"
 
-#: hub/templates/ngo/detail.html:224
+#: hub/templates/ngo/detail.html:227
 msgid "Firstname"
 msgstr "Prenume"
 
-#: hub/templates/ngo/detail.html:225
+#: hub/templates/ngo/detail.html:228
 msgid "Lastname"
 msgstr "Nume"
 
-#: hub/templates/ngo/detail.html:226 hub/templates/ngo/detail.html:278
+#: hub/templates/ngo/detail.html:229 hub/templates/ngo/detail.html:281
 msgid "Sum (RON)"
 msgstr "Suma (RON)"
 
-#: hub/templates/ngo/detail.html:236 hub/templates/ngo/detail.html:242
+#: hub/templates/ngo/detail.html:239 hub/templates/ngo/detail.html:245
 msgid "Anonymous"
 msgstr "Anonim"
 
-#: hub/templates/ngo/detail.html:257
+#: hub/templates/ngo/detail.html:260
 msgid "Reporting"
 msgstr "Raportare"
 
@@ -1799,8 +1755,8 @@ msgid ""
 "Romanian Community Foundations Federation: Cristina Vaileanu, Luiza Zamora, "
 "Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
 msgstr ""
-"Romanian Community Foundations Federation: Cristina Vaileanu, Luiza Zamora, "
-"Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
+"Federația Fundațiilor Comunitare din România: Cristina Vaileanu, Luiza "
+"Zamora, Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
 
 #: hub/templates/rules.html:75
 msgid "The Department for Emergency Situations: George Manea"
