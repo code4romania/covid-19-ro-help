@@ -36,11 +36,11 @@ def confirm(request, order):
     ngo = order.ngo
     error_code = 0
     error_type = Request.CONFIRM_ERROR_TYPE_NONE
+    clean_response = False
     error_message = ""
     payment_response = PaymentResponse()
     payment_response.payment_order = order
     base_path = f"{request.scheme}://{request.META['HTTP_HOST']}"
-
     if request.method == "POST":
         """calea catre cheia privata aflata pe serverul dumneavoastra"""
         private_key_path = order.ngo.mobilpay_private_key.url
@@ -129,10 +129,12 @@ def confirm(request, order):
                         error_message = "mobilpay_refference_action paramaters is invalid"
                 else:
                     """  # update DB, SET status = "rejected"""
+                    clean_response = True
                     error_message = notify.errorMessage
                     error_type = Request.CONFIRM_ERROR_TYPE_TEMPORARY
                     error_code = notify.errorCode
             except Exception as e:
+                clean_response = True
                 error_type = Request.CONFIRM_ERROR_TYPE_TEMPORARY
                 error_message, error_code = e.args[0], e.args[1]
         else:
@@ -147,5 +149,9 @@ def confirm(request, order):
     payment_response.error_type = error_type
     payment_response.error_message = error_message
     payment_response.save()
+    if clean_response:
+        error_code = 0
+        error_type = Request.CONFIRM_ERROR_TYPE_NONE
+        error_message = ""
     crc = Crc(error_code, error_type, error_message).create_crc()
     return HttpResponse(crc.toprettyxml(indent="\t", encoding="utf-8"), content_type="text/xml")
