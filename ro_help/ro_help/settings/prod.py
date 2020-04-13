@@ -7,6 +7,8 @@ DEBUG = TEMPLATE_DEBUG = False
 
 SECRET_KEY = env("SECRET_KEY")
 
+ALLOWED_HOSTS = ["rohelp.ro", "www.rohep.ro"]
+
 MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
 
 STATIC_ROOT = os.path.join(BASE_DIR, "../", "static")
