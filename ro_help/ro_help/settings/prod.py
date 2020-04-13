@@ -7,7 +7,7 @@ DEBUG = TEMPLATE_DEBUG = False
 
 SECRET_KEY = env("SECRET_KEY")
 
-ALLOWED_HOSTS = ["rohelp.ro", "www.rohep.ro"]
+ALLOWED_HOSTS = ["rohelp.ro", "www.rohelp.ro"]
 
 MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
 
