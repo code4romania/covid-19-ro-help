@@ -36,6 +36,10 @@ class PaymentOrder(TimeStampedModel):
         verbose_name_plural = _("Payment Orders")
         verbose_name = _("Payment Order")
 
+    def is_pending(self):
+        confirmed_pending = self.responses.filter(action="confirmed_pending").exists()
+        paid_pending = self.responses.filter(action="paid_pending").exists()
+        return confirmed_pending or paid_pending
 
 class PaymentResponse(TimeStampedModel):
     payment_order = models.ForeignKey(
