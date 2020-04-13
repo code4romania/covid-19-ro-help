@@ -15,7 +15,7 @@ def meta_tags(context):
     return {
         "url": request.build_absolute_uri,
         "type": "website",
-        "title": _(context.get("title", "RO Help")),
+        "title": _(context.get("title", "Luptă împotriva pandemiei de Covid-19.")),
         "image": request.build_absolute_uri(image_path),
-        "description": _(context.get("description", "A coherent and safe collection of aid.")),
+        "description": _(context.get("description", "Intră pe rohelp.ro și donează exact acolo unde este nevoie! Transparent, ușor, eficient!")),
     }
