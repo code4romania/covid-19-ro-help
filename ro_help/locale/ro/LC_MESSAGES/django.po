@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 17:58+0000\n"
-"PO-Revision-Date: 2020-04-12 19:26+0300\n"
+"POT-Creation-Date: 2020-04-13 07:44+0000\n"
+"PO-Revision-Date: 2020-04-13 10:44+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -578,7 +578,7 @@ msgstr "Parteneri media"
 
 #: hub/templates/about.html:78 hub/templates/contact.html:45
 #: hub/templates/cookies.html:102 hub/templates/ngo/base.html:122
-#: hub/templates/rules.html:88 hub/templates/terms_and_conditions.html:122
+#: hub/templates/rules.html:89 hub/templates/terms_and_conditions.html:122
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -671,7 +671,7 @@ msgstr "Înapoi"
 msgid "Upload file"
 msgstr "Încarcă fișier"
 
-#: hub/templates/contact.html:17 hub/templates/footer.html:27
+#: hub/templates/contact.html:17 hub/templates/footer.html:30
 msgid "Contact us"
 msgstr "Contactează-ne"
 
@@ -1243,14 +1243,18 @@ msgid "Ministry of Health"
 msgstr "Ministerul Sănătății"
 
 #: hub/templates/footer.html:23
+msgid "GitHub repository"
+msgstr "Codul sursă în GitHub"
+
+#: hub/templates/footer.html:26
 msgid "Terms and conditions"
 msgstr "Termeni și condiții de utilizare"
 
-#: hub/templates/footer.html:25
+#: hub/templates/footer.html:28
 msgid "Cookie policy"
 msgstr "Politică de confidențialitate"
 
-#: hub/templates/footer.html:37
+#: hub/templates/footer.html:40
 msgid ""
 "An independent, non-partisan, non-political, non-govermental organization."
 msgstr ""
@@ -1701,16 +1705,27 @@ msgstr ""
 "Platformei acesta are drept de a solicita, o singură dată, reevaluarea "
 "deciziei, prin transmiterea de documente și informații suplimentare."
 
-#: hub/templates/rules.html:64
+#: hub/templates/rules.html:65
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                Any applicant deemed eligible will sign a Partnership "
+#| "Agreement with Code for Romania, agreement that will detail each party’s "
+#| "rights and obligations regarding the use of the RoHelp Platform, "
+#| "<b>including the obligation of the association or foundation to declare "
+#| "and respect the destination of the material and financial resources "
+#| "collected through the Platform and the obligation to report how said "
+#| "resources are being used.</b>\n"
+#| "                "
 msgid ""
 "\n"
-"                Any applicant deemed eligible will sign a Partnership "
-"Agreement with Code for Romania, agreement that will detail each party’s "
-"rights and obligations regarding the use of the RoHelp Platform, "
-"<b>including the obligation of the association or foundation to declare and "
-"respect the destination of the material and financial resources collected "
-"through the Platform and the obligation to report how said resources are "
-"being used.</b>\n"
+"                Any applicant deemed eligible will sign a <a href="
+"\"%(the_url)s\" target=\"%(target)s\">Partnership Agreement</a> with Code "
+"for Romania, agreement that will detail each party’s rights and obligations "
+"regarding the use of the RoHelp Platform, <b>including the obligation of the "
+"association or foundation to declare and respect the destination of the "
+"material and financial resources collected through the Platform and the "
+"obligation to report how said resources are being used.</b>\n"
 "                "
 msgstr ""
 "\n"
@@ -1722,7 +1737,7 @@ msgstr ""
 "Platformei și obligația de a raporta cu privire la utilizarea acestora.</b>\n"
 "            "
 
-#: hub/templates/rules.html:69
+#: hub/templates/rules.html:70
 msgid ""
 "The reporting regarding the usage of resources collected through the "
 "Platform must be done after the first month of Platform use and every "
@@ -1740,11 +1755,11 @@ msgstr ""
 "intermediul platformei, fiecare entitate având obligația de a furniza toate "
 "informațiile solicitate."
 
-#: hub/templates/rules.html:70
+#: hub/templates/rules.html:71
 msgid "The committee members are as follows"
 msgstr "Comisa de validare a platformei RoHelp este alcătuită din:"
 
-#: hub/templates/rules.html:72
+#: hub/templates/rules.html:73
 msgid ""
 "Romanian Community Foundations Federation: Cristina Vaileanu, Luiza Zamora, "
 "Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
@@ -1752,11 +1767,11 @@ msgstr ""
 "Romanian Community Foundations Federation: Cristina Vaileanu, Luiza Zamora, "
 "Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
 
-#: hub/templates/rules.html:73
+#: hub/templates/rules.html:74
 msgid "The Department for Emergency Situations: George Manea"
 msgstr "Departamentul pentru Situații de Urgență: George Manea"
 
-#: hub/templates/rules.html:74
+#: hub/templates/rules.html:75
 msgid "Code for Romania: Septimius Pârvu, Raul Ritea"
 msgstr "Code for Romania: Septimius Pârvu, Raul Ritea"
 
