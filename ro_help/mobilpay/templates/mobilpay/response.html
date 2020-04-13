@@ -8,12 +8,16 @@
 
     <article class="message {% if order.success %}is-success {% else %} is-danger{% endif %}">
         <div class="message-body">
-                {% if order.success %}
-                    <h1>Plata pentru  {{order.ngo}} a fost confirmată.</h1>
-                    Îț mulțumim!
-                    {% else %}
-                    <h1>Plata pentru  {{order.ngo}} nu a putut fi confirmată.</h1>
-                {% endif %}
+            {% if order.success %}
+                {% blocktrans %}
+                    <h1>Plata pentru <b>{{order.ngo}}</b> a fost confirmată.</h1>
+                    Îți mulțumim!
+                {% endblocktrans %}
+            {% else %}
+                {% blocktrans %}
+                    <h1>Plata pentru <b>{{order.ngo}}</b> nu a putut fi confirmată.</h1>
+                {% endblocktrans %}
+            {% endif %}
         </div>    
     </article>
 
