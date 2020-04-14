@@ -37,6 +37,16 @@ class PaymentOrderAdmin(admin.ModelAdmin):
     list_filter = ["ngo", "date"]
     inlines = [PaymentResponseInline]
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+
+        user = request.user
+        authorized_groups = [ADMIN_GROUP_NAME]
+        if not user.groups.filter(name__in=authorized_groups).exists():
+            return qs.filter(ngo__pk__in=[user.ngos.values_list("pk", flat=True)])
+
+        return qs
+
 
 @admin.register(PaymentResponse)
 class PaymentResponseAdmin(admin.ModelAdmin):
@@ -55,9 +65,9 @@ class PaymentResponseAdmin(admin.ModelAdmin):
         qs = super().get_queryset(request)
 
         user = request.user
-        authorized_groups = [ADMIN_GROUP_NAME, DSU_GROUP_NAME, FFC_GROUP_NAME]
+        authorized_groups = [ADMIN_GROUP_NAME]
         if not user.groups.filter(name__in=authorized_groups).exists():
-            return qs.filter(payment_order__ngo__users__pk__in=[user.ngos.values_list("pk", flat=True)])
+            return qs.filter(payment_order__ngo__pk__in=[user.ngos.values_list("pk", flat=True)])
 
         return qs
 
