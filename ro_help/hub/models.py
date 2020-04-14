@@ -271,6 +271,7 @@ class NGO(TimeStampedModel):
     class Meta:
         verbose_name_plural = _("My organizations")
         verbose_name = _("My organization")
+        ordering = ["name"]
 
 
 class ResourceTag(TimeStampedModel):
