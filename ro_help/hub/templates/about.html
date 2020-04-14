@@ -46,6 +46,11 @@
                 <br />
 
                 <p>{% trans "RoHelp is a project done through the efforts of the Code for Romania volunteers and team. Code for Romania is an independent, unaffiliated and apolitical NGO. This project is developed as part of the Code for Romania Task Force, in partnership with the Romanian Community Foundations Federation, the Romanian Government via the Authority for the Digitalization of Romania and the Emergency Services Department." %}</p>
+                
+                {% blocktrans with link="https://civiclabs.ro/ro/solutions/aid-management-hub" target="_blank" rel="noopener noreferrer" %}
+                    <a href="{{ link }}" target="{{ target }}" rel="{{ rel }}">Questions and answers</a> about the RoHelp.ro project.
+                {% endblocktrans %}
+
                 <p>{% trans "The Code for Romania Task Force is a program supported by ING Bank, The Vodafone Foundation Romania and the Romanian American Foundation to which we owe our thanks." %}</p>
                 <div class="columns is-mobile is-multiline is-centered">
                     <div class="column is-6-mobile is-4-tablet is-3-desktop is-paddingless">
