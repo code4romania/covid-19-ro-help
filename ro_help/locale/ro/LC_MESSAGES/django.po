@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-14 08:21+0000\n"
-"PO-Revision-Date: 2020-04-14 11:22+0300\n"
+"POT-Creation-Date: 2020-04-14 12:29+0000\n"
+"PO-Revision-Date: 2020-04-14 15:30+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -589,7 +589,7 @@ msgstr ""
 msgid "Media partners"
 msgstr "Parteneri media"
 
-#: hub/templates/about.html:96 hub/templates/contact.html:46
+#: hub/templates/about.html:96 hub/templates/contact.html:47
 #: hub/templates/cookies.html:103 hub/templates/ngo/base.html:122
 #: hub/templates/rules.html:90 hub/templates/terms_and_conditions.html:122
 msgid "Useful instruments"
@@ -688,30 +688,32 @@ msgstr "Încarcă fișier"
 msgid "Contact us"
 msgstr "Contactează-ne"
 
-#: hub/templates/contact.html:21
+#: hub/templates/contact.html:22
 #, python-format
 msgid ""
 "\n"
 "                    <span class=\"%(class)s\">If you are an NGO "
 "representative</span>, and your NGO is legally registered in Romania while "
 "also directly participating in the COVID-19 relief response you can join "
-"RoHelp here. If you meet all eligibility criteria and your organization is "
-"validated in accordance to the rules and terms of use of the platform you'll "
-"be able to access your NGO account on the platform and will be able to "
-"solicit support, be it financial, material or volunteer-based.\n"
+"RoHelp <a href=\"%(the_url)s\" target=\"%(target)s\">here</a>. If you meet "
+"all eligibility criteria and your organization is validated in accordance to "
+"the rules and terms of use of the platform you'll be able to access your NGO "
+"account on the platform and will be able to solicit support, be it "
+"financial, material or volunteer-based.\n"
 "                    "
 msgstr ""
 "\n"
 "                <span class=\"%(class)s\">Dacă reprezinți o organizație</"
 "span>, legal constituită și derulezi activități menite să contribuie la "
 "ameliorarea efectelor epidemiei cu COVID-19, te poți înregistra în platformă "
-"aici (insert link). Dacă îndeplinești toate criteriile de eligibilitate și "
-"organizația ta este validată conform regulamentului de utilizare a "
-"platformei îți vei putea accesa contul de ONG din platformă și vei putea "
-"solicita sprijin financiar, în resurse materiale sau voluntari.\n"
+"<a href=\"%(the_url)s\" target=\"%(target)s\">aici</a>. Dacă îndeplinești "
+"toate criteriile de eligibilitate și organizația ta este validată conform "
+"regulamentului de utilizare a platformei îți vei putea accesa contul de ONG "
+"din platformă și vei putea solicita sprijin financiar, în resurse materiale "
+"sau voluntari.\n"
 "                "
 
-#: hub/templates/contact.html:26
+#: hub/templates/contact.html:27
 #, python-format
 msgid ""
 "\n"
@@ -732,7 +734,7 @@ msgstr ""
 "de oraș din RoHelp ajută la eforturile de combatere a crizei. \n"
 "                "
 
-#: hub/templates/contact.html:32
+#: hub/templates/contact.html:33
 msgid ""
 "If you encounter any technical difficulty, send us an e-mail: rohelp@code4.ro"
 msgstr ""
