@@ -60,6 +60,8 @@ before a commit will do the trick.
 ## Deployment
 The deployment process is fully automated using AWS CodeBuild and ECS. Each time a PR is merged on master, a new docker image build is trigger and if it's successful, [the staging environment](https://dev.rohelp.ro/) will point to your latest changes.
 
+The production environment is closely monitored by [Sentry](https://sentry.io).
+
 ## Feedback
 
 * Request a new feature on GitHub.
