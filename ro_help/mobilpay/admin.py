@@ -34,7 +34,7 @@ class PaymentOrderAdmin(admin.ModelAdmin):
     icon_name = "shopping_cart"
     list_display = ["date", "order_id", "ngo", "first_name", "last_name", "amount", "success"]
     search_fields = ["ngo__name"]
-    list_filter = ["ngo", "date"]
+    list_filter = ["ngo", "date", "success"]
     inlines = [PaymentResponseInline]
 
     def get_queryset(self, request):
