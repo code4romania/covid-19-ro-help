@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 09:01+0000\n"
-"PO-Revision-Date: 2020-04-15 12:01+0300\n"
+"POT-Creation-Date: 2020-04-15 10:15+0000\n"
+"PO-Revision-Date: 2020-04-15 13:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -615,21 +615,21 @@ msgstr "Schimbă parola"
 msgid "Log out"
 msgstr "Deloghează-te"
 
-#: hub/templates/admin/change_form.html:22
+#: hub/templates/admin/change_form.html:36
 #: hub/templates/admin/change_list.html:38
 msgid "Please correct the error below."
 msgstr "Te rog corectează eroarea următoare."
 
-#: hub/templates/admin/change_form.html:22
+#: hub/templates/admin/change_form.html:36
 #: hub/templates/admin/change_list.html:38
 msgid "Please correct the errors below."
 msgstr "Te rog corectează erorile următoare."
 
-#: hub/templates/admin/change_form.html:63
+#: hub/templates/admin/change_form.html:77
 msgid "Minimize"
 msgstr "Minimizează"
 
-#: hub/templates/admin/change_form.html:66
+#: hub/templates/admin/change_form.html:80
 msgid "Tools"
 msgstr "Instrumente"
 
@@ -2310,7 +2310,7 @@ msgid ""
 "from the RoHelp team will reach out to you as soon as your organization is "
 "validated. If you have any further questions, e-mail us at rohelp@code4.ro"
 msgstr ""
-"ți mulțumim pentru înscriere, formularul a ajuns la noi. Cineva din echipa "
+"Îți mulțumim pentru înscriere, formularul a ajuns la noi. Cineva din echipa "
 "RoHelp te va contacta imediat ce organizația trece de procesul de validare. "
 "Dacă ai întrebări suplimentare ne poți scrie un e-mail la adresa "
 "rohelp@code4.ro."
