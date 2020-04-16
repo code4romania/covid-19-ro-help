@@ -10,8 +10,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
 from django_extensions.db.models import TimeStampedModel
 
-from .storage_backends import PrivateMediaStorage
-
 
 ADMIN_GROUP_NAME = "Admin"
 NGO_GROUP_NAME = "ONG"
@@ -425,27 +423,15 @@ class RegisterNGORequest(TimeStampedModel):
 
     avatar = models.ImageField(_("Avatar"), max_length=300, help_text=_("Image should be 500x500px"))
     last_balance_sheet = models.FileField(
-        _("First page of last balance sheet"), max_length=300, storage=PrivateMediaStorage()
+        _("First page of last balance sheet"), max_length=300, storage=PrivateMediaStorageClass()
     )
-    statute = models.FileField(_("NGO Statute"), max_length=300, storage=PrivateMediaStorage())
+    statute = models.FileField(_("NGO Statute"), max_length=300, storage=PrivateMediaStorageClass())
 
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
     class Meta:
         verbose_name_plural = _("Votes history")
         verbose_name = _("Vote history")
-
-    @classmethod
-    def last_balance_sheet_link(self):
-        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.last_balance_sheet.url}'>Vezi</a>")
-
-    @classmethod
-    def statute_link(self):
-        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.statute.url}'>Vezi</a>")
-
-    @classmethod
-    def avatar_link(self):
-        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.avatar.url}'>Vezi</a>")
 
     def yes(self):
         return self.votes.filter(vote="YES").count()
