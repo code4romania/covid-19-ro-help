@@ -435,12 +435,15 @@ class RegisterNGORequest(TimeStampedModel):
 
     def yes(self):
         return self.votes.filter(vote="YES").count()
+    yes.short_description = _("Yes")
 
     def no(self):
         return self.votes.filter(vote="NO").count()
+    no.short_description = _("No")
 
     def abstention(self):
         return self.votes.filter(vote="ABSTENTION").count()
+    abstention.short_description = _("Abstention")
 
     def create_ngo_owner(self, request, ngo_group):
         user, created = User.objects.get_or_create(username=self.email)

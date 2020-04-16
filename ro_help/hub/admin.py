@@ -333,6 +333,7 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         return obj.votes_count
 
     votes_count.admin_order_field = "votes_count"
+    votes_count.short_description = _("Votes Count")
 
     def get_queryset(self, request):
         return self.model.objects.annotate(votes_count=Count("votes")).order_by("-votes_count")
