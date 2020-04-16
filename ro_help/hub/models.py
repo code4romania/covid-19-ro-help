@@ -10,8 +10,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
 from django_extensions.db.models import TimeStampedModel
 
-from .storage_backends import PrivateMediaStorage
-
 
 ADMIN_GROUP_NAME = "Admin"
 NGO_GROUP_NAME = "ONG"
@@ -260,6 +258,14 @@ class NGO(TimeStampedModel):
     def get_funders(self):
         return self.payment_orders.filter(success=True)
 
+    def get_total_funded(self):
+        num_funders = self.payment_orders.filter(success=True).count()
+        if num_funders:
+            sum_funded = int(self.payment_orders.filter(success=True).aggregate(models.Sum('amount'))['amount__sum'])
+        else:
+            sum_funded = 0
+        return num_funders, sum_funded
+
     def get_avatar(self):
         if self.avatar:
             if "http" in str(self.avatar):
@@ -425,9 +431,9 @@ class RegisterNGORequest(TimeStampedModel):
 
     avatar = models.ImageField(_("Avatar"), max_length=300, help_text=_("Image should be 500x500px"))
     last_balance_sheet = models.FileField(
-        _("First page of last balance sheet"), max_length=300, storage=PrivateMediaStorage()
+        _("First page of last balance sheet"), max_length=300, storage=PrivateMediaStorageClass()
     )
-    statute = models.FileField(_("NGO Statute"), max_length=300, storage=PrivateMediaStorage())
+    statute = models.FileField(_("NGO Statute"), max_length=300, storage=PrivateMediaStorageClass())
 
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
@@ -435,26 +441,17 @@ class RegisterNGORequest(TimeStampedModel):
         verbose_name_plural = _("Votes history")
         verbose_name = _("Vote history")
 
-    @classmethod
-    def last_balance_sheet_link(self):
-        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.last_balance_sheet.url}'>Vezi</a>")
-
-    @classmethod
-    def statute_link(self):
-        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.statute.url}'>Vezi</a>")
-
-    @classmethod
-    def avatar_link(self):
-        return format_html(f"<a class='' href='http://local.rohelp.ro:8000{self.avatar.url}'>Vezi</a>")
-
     def yes(self):
         return self.votes.filter(vote="YES").count()
+    yes.short_description = _("Yes")
 
     def no(self):
         return self.votes.filter(vote="NO").count()
+    no.short_description = _("No")
 
     def abstention(self):
         return self.votes.filter(vote="ABSTENTION").count()
+    abstention.short_description = _("Abstention")
 
     def create_ngo_owner(self, request, ngo_group):
         user, created = User.objects.get_or_create(username=self.email)

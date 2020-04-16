@@ -29,6 +29,20 @@
 
 <hr/>
 
+{% with donations=ngo.get_total_funded %}
+    {% if donations.0 %}
+        <div class="columns">
+            <div class="column is-4">
+                <b>{{donations.0}}</b> {% trans "donations" %}
+            </div>
+            <div class="column is-5">
+            </div>
+            <div class="column is-3">
+                <b>{{donations.1}}</b> {% trans "RON donated" %}
+            </div>
+        </div>
+    {% endif %}
+{% endwith %}
 <div class="container detail-desc">
     <div class="detail-desc-title">{% trans "About the organization" %}</div>
     <p>{{ ngo.description }}</p>
