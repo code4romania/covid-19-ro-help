@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-16 09:14+0000\n"
+"POT-Creation-Date: 2020-04-16 10:28+0000\n"
 "PO-Revision-Date: 2020-04-15 13:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1371,8 +1371,8 @@ msgid "donations"
 msgstr "donații"
 
 #: hub/templates/ngo/detail.html:41
-msgid "lei donated"
-msgstr "lei donați"
+msgid "RON donated"
+msgstr "RON donați"
 
 #: hub/templates/ngo/detail.html:47
 msgid "About the organization"

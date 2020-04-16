@@ -261,12 +261,12 @@ class NGO(TimeStampedModel):
         return self.payment_orders.filter(success=True)
 
     def get_total_funded(self):
-        no_funders = self.payment_orders.filter(success=True).count()
-        if no_funders:
+        num_funders = self.payment_orders.filter(success=True).count()
+        if num_funders:
             sum_funded = int(self.payment_orders.filter(success=True).aggregate(models.Sum('amount'))['amount__sum'])
         else:
             sum_funded = 0
-        return no_funders, sum_funded
+        return num_funders, sum_funded
 
     def get_avatar(self):
         if self.avatar:
