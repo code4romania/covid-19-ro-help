@@ -214,7 +214,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 
         user = request.user
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
-            return qs.filter(ngo__users__in=[user])
+            return qs.filter(ngo__users__in=[user]).exclude(kind=KIND.MONEY)
 
         return qs
 
