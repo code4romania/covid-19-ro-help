@@ -4,6 +4,7 @@ from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter, helpers
 from django.contrib.auth.models import Group, User
 from django.db import models, transaction
+from django.db.models import Count
 from django.shortcuts import render
 from django.template.defaultfilters import pluralize
 from django.urls import reverse
@@ -315,6 +316,7 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         "yes",
         "no",
         "abstention",
+        "votes_count",
         "active",
         "registered_on",
         "resolved_on",
@@ -326,6 +328,15 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
     list_filter = ("city", "county", "registered_on")
     inlines = [RegisterNGORequestVoteInline]
     search_fields = ("name",)
+
+    def votes_count(self, obj):
+        return obj.votes_count
+
+    votes_count.admin_order_field = "votes_count"
+    votes_count.short_description = _("Votes Count")
+
+    def get_queryset(self, request):
+        return self.model.objects.annotate(votes_count=Count("votes")).order_by("-votes_count")
 
     def get_changeform_initial_data(self, request):
         user = request.user
