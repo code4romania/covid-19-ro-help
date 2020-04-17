@@ -3,8 +3,9 @@ import random
 import requests
 from faker import Faker
 
-from django.core.management.base import BaseCommand
+from django.conf import settings
 from django.contrib.auth.models import User, Group, Permission
+from django.core.management.base import BaseCommand
 from django.utils import timezone
 
 from hub.models import (
@@ -57,7 +58,7 @@ NGOS = (
             "avatar": "http://www.habitat.ro/wp-content/uploads/2014/11/logo.png",
         },
         {
-            "name": "Crucea Rosie",
+            "name": settings.RED_CROSS_NAME,
             "email": "matei@crucearosie.ro",
             "description": """
          Crucea Rosie Romana asista persoanele vulnerabile in situatii de dezastre si de criza. Prin programele si 
@@ -70,6 +71,9 @@ NGOS = (
             "city": "Bucuresti",
             "county": "Sector 1",
             "avatar": "https://crucearosie.ro/themes/redcross/images/emblema_crr_desktop.png",
+            "accepts_transfer": True,
+            "donations_description": "Monedă RON: RO44BRDE410SV20462054100 (Banca: BRD - Piata Romana)",
+            "CUI": "4219659",
         },
         {
             "name": "MKBT: Make Better",
@@ -195,12 +199,12 @@ class Command(BaseCommand):
             tags.append(tag)
 
         NGO.objects.filter(
-            pk__in=NGO.objects.exclude(name__in=["Code4Romania", "Crucea Rosie"])
+            pk__in=NGO.objects.exclude(name__in=["Code4Romania", settings.RED_CROSS_NAME])
             .order_by("created")
             .values_list("pk")[100:]
         ).delete()
 
-        NGONeed.objects.filter(kind="money").exclude(ngo__name="Code4Romania").delete()
+        NGONeed.objects.filter(kind="money").exclude(ngo__name__in=["Code4Romania", settings.RED_CROSS_NAME]).delete()
 
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)
