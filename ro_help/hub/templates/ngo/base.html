@@ -34,6 +34,7 @@
     {% endblock %}
 
     {% block kind-kind-filters %}
+
     <div id="aid_types" class="container">
         <div class="columns is-multiline">
             <div class="column is-4 filter">
@@ -75,6 +76,32 @@
     </div>
     {% endblock %}
 
+    {% if red_cross_need %}
+    <div id="redcross-banner" class="containe is-hidden-tablet">
+        <div class="card-info">
+            <div class="flex-align-center">
+                <div class="card-image">
+                    <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+                </div>
+                <div class="need-title">{% trans "Red Cross" %}</div>
+            </div>
+            <div class="redcross-text">
+                {% blocktrans %}
+                Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
+                {% endblocktrans %}
+            </div>
+        </div>
+
+        {% url 'ngo-need' red_cross_need.ngo.id red_cross_need.pk as base %}
+        <div class="need-call2action">
+            <a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross_need.kind }}' %}" class="button is-success is-block">
+                {% trans "Donate" %}
+            </a>
+        </div>
+
+    </div>
+    {% endif %}
+
     <div class="columns">
 
         <div class="column is-two-thirds">
@@ -85,16 +112,8 @@
         <div id="right_sidebar" class="column is-one-third">
             {% block right-side-view %}
             <div class="container">
-
-                <h1 class="donate-title">
-                    <span>
-                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
-                    </span>
-                    {% trans "Useful instruments" %}
-                </h1>
-
                 {% if red_cross_need %}
-                <div id="redcross-banner" class="container">
+                <div id="redcross-banner" class="container is-hidden-mobile">
                     <div class="card-info">
                         <div class="flex-align-center">
                             <div class="card-image">
@@ -104,7 +123,7 @@
                         </div>
                         <div class="redcross-text">
                             {% blocktrans %}
-                                Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
+                            Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -115,10 +134,16 @@
                             {% trans "Donate" %}
                         </a>
                     </div>
-        
+
                 </div>
                 {% endif %}
 
+                <h1 class="donate-title">
+                    <span>
+                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                    </span>
+                    {% trans "Useful instruments" %}
+                </h1>
                 {% for project in info %}
                 <div class="tool">
                     <div class="is-flex">
