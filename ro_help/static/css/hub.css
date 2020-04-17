@@ -199,13 +199,10 @@ footer {
 
 .redcross-text {
     font-size: 14px;
+    text-align: justify;
 }
 
 @media (min-width: 768px) {
-    #redcross-banner {
-        flex-direction: row;
-        align-items: center;
-    }
 
     .need-call2action {
         margin: 2em;
