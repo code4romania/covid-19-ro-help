@@ -31,35 +31,6 @@
             </p>
         </div>
 
-        {% if red_cross_need %}
-        <div id="redcross-banner" class="container is-flex">
-            <div class="card-image is-hidden-mobile" style="min-width:115px;">
-                <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
-            </div>
-            <div class="card-info">
-                <div class="flex-align-center">
-                    <div class="card-image is-hidden-tablet">
-                        <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
-                    </div>
-                    <div class="need-title is-hidden-tablet">{% trans "Red Cross" %}</div>
-                </div>
-                <div class="need-title is-hidden-mobile">{% trans "Red Cross" %}</div>
-                <div class="redcross-text">
-                    {% blocktrans %}
-                        Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
-                    {% endblocktrans %}
-                </div>
-            </div>
-
-            {% if red_cross_need %}
-                {% url 'ngo-need' red_cross_need.ngo.id red_cross_need.pk as base %}
-                <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross_need.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
-            {% else %}
-                <div class="need-call2action"><a href="{% url 'ngo-detail' red_cross.obj.pk %}" class="button is-success">{% trans "Donate" %}</a></div>
-            {% endif %}
-
-        </div>
-        {% endif %}
     {% endblock %}
 
     {% block kind-kind-filters %}
@@ -121,6 +92,36 @@
                     </span>
                     {% trans "Useful instruments" %}
                 </h1>
+
+                {% if red_cross_need %}
+                <div id="redcross-banner" class="container">
+                    <div class="card-image is-hidden-mobile" style="min-width:115px;">
+                        <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+                    </div>
+                    <div class="card-info">
+                        <div class="flex-align-center">
+                            <div class="card-image is-hidden-tablet">
+                                <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+                            </div>
+                            <div class="need-title is-hidden-tablet">{% trans "Red Cross" %}</div>
+                        </div>
+                        <div class="need-title is-hidden-mobile">{% trans "Red Cross" %}</div>
+                        <div class="redcross-text">
+                            {% blocktrans %}
+                                Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+        
+                    {% if red_cross_need %}
+                        {% url 'ngo-need' red_cross_need.ngo.id red_cross_need.pk as base %}
+                        <div class="need-call2action"><a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross_need.kind }}' %}" class="button is-success">{% trans "Donate" %}</a></div>
+                    {% else %}
+                        <div class="need-call2action"><a href="{% url 'ngo-detail' red_cross.obj.pk %}" class="button is-success">{% trans "Donate" %}</a></div>
+                    {% endif %}
+        
+                </div>
+                {% endif %}
 
                 {% for project in info %}
                 <div class="tool">
