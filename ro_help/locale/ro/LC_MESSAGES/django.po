@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-16 13:43+0000\n"
+"POT-Creation-Date: 2020-04-21 09:42+0000\n"
 "PO-Revision-Date: 2020-04-15 13:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -53,37 +53,41 @@ msgstr "Voturi"
 msgid "Votes Count"
 msgstr "Număr voturi"
 
-#: hub/admin.py:357 hub/admin.py:425
+#: hub/admin.py:367 hub/admin.py:446
 msgid "Last balance"
 msgstr "Ultimul bilanț"
 
-#: hub/admin.py:364 hub/admin.py:432
+#: hub/admin.py:374 hub/admin.py:453
 msgid "Statute"
 msgstr "Statut"
 
-#: hub/admin.py:371
+#: hub/admin.py:381
 msgid "Avatar Preview"
 msgstr "Logo"
 
-#: hub/admin.py:376
+#: hub/admin.py:386
 msgid "Voters"
 msgstr "Decidenți"
 
-#: hub/admin.py:387
+#: hub/admin.py:397
 msgid "Create account"
 msgstr "Crează cont"
 
-#: hub/admin.py:473
+#: hub/admin.py:408
+msgid "Close aplication"
+msgstr "Închide aplicație"
+
+#: hub/admin.py:494
 msgid "s"
 msgstr "uri"
 
-#: hub/admin.py:472
+#: hub/admin.py:493
 msgid "Vote succesfully registered. {} email{} sent to others admins"
 msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:488
+#: hub/admin.py:509
 msgid "Vote NGO"
 msgstr "Votează"
 
@@ -264,7 +268,7 @@ msgstr "Administrare nevoi"
 msgid "Manage need"
 msgstr "Administrare nevoie"
 
-#: hub/models.py:354 hub/models.py:527 hub/templates/ngo/detail.html:290
+#: hub/models.py:354 hub/models.py:529 hub/templates/ngo/detail.html:290
 msgid "Date"
 msgstr "Dată"
 
@@ -348,53 +352,53 @@ msgstr ""
 msgid "Registered on"
 msgstr "Înregistrare"
 
-#: hub/models.py:441
+#: hub/models.py:443
 msgid "Votes history"
 msgstr "Istoric voturi"
 
-#: hub/models.py:442
+#: hub/models.py:444
 msgid "Vote history"
 msgstr "Istoric voturi"
 
-#: hub/models.py:446
+#: hub/models.py:448
 #, fuzzy
 #| msgid "Yes, I\\"
 msgid "Yes"
 msgstr "Da"
 
-#: hub/models.py:450
+#: hub/models.py:452
 msgid "No"
 msgstr "Nu"
 
-#: hub/models.py:454
+#: hub/models.py:456
 msgid "Abstention"
 msgstr "Abţinere"
 
-#: hub/models.py:515
+#: hub/models.py:517
 msgid "Pending NGOs"
 msgstr "Organizații în așteptare"
 
-#: hub/models.py:516
+#: hub/models.py:518
 msgid "Pending NGO"
 msgstr "Organizație în așteptare"
 
-#: hub/models.py:523
+#: hub/models.py:525
 msgid "Vote"
 msgstr "Vot"
 
-#: hub/models.py:525
+#: hub/models.py:527
 msgid "Motivation"
 msgstr "Motivația"
 
-#: hub/models.py:525
+#: hub/models.py:527
 msgid "Motivate your decision"
 msgstr "Motivează decizia"
 
-#: hub/models.py:530
+#: hub/models.py:532
 msgid "My votes"
 msgstr "Voturile mele "
 
-#: hub/models.py:531
+#: hub/models.py:533
 msgid "My vote"
 msgstr "Votul meu"
 
@@ -608,7 +612,7 @@ msgid "Media partners"
 msgstr "Parteneri media"
 
 #: hub/templates/about.html:96 hub/templates/contact.html:47
-#: hub/templates/cookies.html:103 hub/templates/ngo/base.html:122
+#: hub/templates/cookies.html:103 hub/templates/ngo/base.html:145
 #: hub/templates/rules.html:90 hub/templates/terms_and_conditions.html:122
 msgid "Useful instruments"
 msgstr "Instrumente utile"
@@ -691,8 +695,6 @@ msgid "Close"
 msgstr "Închide"
 
 #: hub/templates/admin/vote_motivation.html:46
-#, fuzzy
-#| msgid "Yes, I\\"
 msgid "Yes, I\\"
 msgstr "Da, sunt"
 
@@ -1352,39 +1354,51 @@ msgstr ""
 "organizațiilor de pe teritoriul țării și vei putea alege către ce cauză vrei "
 "să donezi sau la ce eforturi îți dorești să contribui."
 
-#: hub/templates/ngo/base.html:44 hub/templates/ngo/base.html:46
+#: hub/templates/ngo/base.html:47
+msgid "I want to help with money"
+msgstr "Vreau să ajut cu bani"
+
+#: hub/templates/ngo/base.html:59
+msgid "I want to help with resources"
+msgstr "Vreau să ajut cu resurse"
+
+#: hub/templates/ngo/base.html:71
+msgid "I want to volunteer"
+msgstr "Vreau să devin voluntar"
+
+#: hub/templates/ngo/base.html:86 hub/templates/ngo/base.html:122
 msgid "Red Cross"
 msgstr "Crucea Roșie"
 
-#: hub/templates/ngo/base.html:48
+#: hub/templates/ngo/base.html:89
 msgid ""
 "\n"
-"                        Societatea Națională de Cruce Roșie Română "
-"reprezintă punctul principal de colectare la nivel național, atât pentru "
-"donații financiare care vor fi utilizate în vederea achiziționarii de "
-"echipamente și materiale sanitare, respectiv produse și bunuri materiale "
-"care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe "
-"teritoriul național.\n"
-"                    "
+"                Societatea Națională de Cruce Roșie Română reprezintă "
+"punctul principal de colectare la nivel național, atât pentru donații "
+"financiare care vor fi utilizate în vederea achiziționarii de echipamente și "
+"materiale sanitare, respectiv produse și bunuri materiale care vor fi "
+"distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul "
+"național.\n"
+"                "
 msgstr ""
 
-#: hub/templates/ngo/base.html:56 hub/templates/ngo/base.html:58
+#: hub/templates/ngo/base.html:98 hub/templates/ngo/base.html:134
 #: hub/templates/ngo/detail.html:100 hub/templates/ngo/donate.html:26
 #: hub/templates/ngo/list.html:217
 msgid "Donate"
 msgstr "Donează"
 
-#: hub/templates/ngo/base.html:75
-msgid "I want to help with money"
-msgstr "Vreau să ajut cu bani"
-
-#: hub/templates/ngo/base.html:87
-msgid "I want to help with resources"
-msgstr "Vreau să ajut cu resurse"
-
-#: hub/templates/ngo/base.html:99
-msgid "I want to volunteer"
-msgstr "Vreau să devin voluntar"
+#: hub/templates/ngo/base.html:125
+msgid ""
+"\n"
+"                            Societatea Națională de Cruce Roșie Română "
+"reprezintă punctul principal de colectare la nivel național, atât pentru "
+"donații financiare care vor fi utilizate în vederea achiziționarii de "
+"echipamente și materiale sanitare, respectiv produse și bunuri materiale "
+"care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe "
+"teritoriul național.\n"
+"                            "
+msgstr ""
 
 #: hub/templates/ngo/detail.html:36
 msgid "donations"
