@@ -73,7 +73,6 @@ NGOS = (
             "avatar": "https://crucearosie.ro/themes/redcross/images/emblema_crr_desktop.png",
             "accepts_transfer": True,
             "donations_description": "Monedă RON: RO44BRDE410SV20462054100 (Banca: BRD - Piata Romana)",
-            "CUI": "4219659",
         },
         {
             "name": "MKBT: Make Better",
