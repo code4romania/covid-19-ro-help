@@ -437,6 +437,8 @@ class RegisterNGORequest(TimeStampedModel):
 
     registered_on = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
+    closed = models.BooleanField(default=False)
+
     class Meta:
         verbose_name_plural = _("Votes history")
         verbose_name = _("Vote history")

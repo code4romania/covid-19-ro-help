@@ -68,6 +68,8 @@ INSTALLED_APPS = [
     "storages",
     "captcha",
     "file_resubmit",
+    "rangefilter",
+    "admin_totals",
 ]
 
 MIDDLEWARE = [

@@ -323,9 +323,9 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         "get_last_balance_sheet",
         "get_statute",
     ]
-    actions = ["create_account"]
+    actions = ["create_account", "close_request"]
     readonly_fields = ["active", "resolved_on", "registered_on", "get_avatar"]
-    list_filter = ("city", "county", "registered_on")
+    list_filter = ("city", "county", "registered_on", "closed")
     inlines = [RegisterNGORequestVoteInline]
     search_fields = ("name",)
 
@@ -347,7 +347,17 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         actions = super().get_actions(request)
         if not "Admin" in request.user.groups.values_list("name", flat=True):
             del actions["create_account"]
+            del actions["close_request"]
         return actions
+
+
+    def changelist_view(self, request, extra_context=None):
+        q = request.GET.copy()
+        if not "closed__exact" in request.GET.keys():
+            q["closed__exact"] = "0"
+        request.GET = q
+        request.META["QUERY_STRING"] = request.GET.urlencode()
+        return super().changelist_view(request, extra_context=extra_context)
 
     def get_last_balance_sheet(self, obj):
         if obj.last_balance_sheet:
@@ -385,6 +395,17 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         return self.message_user(request, user_msg, level=messages.INFO)
 
     create_account.short_description = _("Create account")
+
+    def close_request(self, request, queryset):
+
+        for register_request in queryset:
+            register_request.closed = True
+            register_request.save()
+
+        user_msg = f"{queryset.count()} request{pluralize(queryset.count(), 's')} closed"
+        return self.message_user(request, user_msg, level=messages.INFO)
+
+    close_request.short_description = _("Close aplication")
 
 
 @admin.register(PendingRegisterNGORequest)
