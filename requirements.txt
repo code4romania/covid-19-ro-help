@@ -16,3 +16,5 @@ pyOpenSSL>=19.1.0,<20.0.0
 django-file-resubmit>=0.5.2,<1.0.0
 django-extensions==2.2.8
 requests==2.23.0
+django-admin-rangefilter>=0.5.4,<1.0.0
+admin-totals>=1.0.1,<2.0.0

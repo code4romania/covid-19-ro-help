@@ -3,6 +3,8 @@ from django.contrib.auth.models import Group
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Sum
+from admin_totals.admin import ModelAdminTotals
 
 from .models import PaymentOrder, PaymentResponse
 from hub.models import (
@@ -30,12 +32,14 @@ class PaymentResponseInline(admin.TabularInline):
 
 
 @admin.register(PaymentOrder)
-class PaymentOrderAdmin(admin.ModelAdmin):
+class PaymentOrderAdmin(ModelAdminTotals):
     icon_name = "shopping_cart"
     list_display = ["date", "order_id", "ngo", "first_name", "last_name", "amount", "success"]
     search_fields = ["ngo__name"]
     list_filter = ["ngo", "date", "success"]
     inlines = [PaymentResponseInline]
+    list_totals = [('amount', Sum)]
+
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
