@@ -23,6 +23,14 @@
     "color": "#f5bcd6",
     "url": "https://datelazi.ro/"
   },
+    {
+    "app": "Diaspora Hub",
+    "call_to_action": "Ești în afara țării?",
+    "description": "",
+    "button_text": "Informează-te pe Diaspora Hub",
+    "color": "#38b6ff",
+    "url": "https://diasporahub.ro"
+  },
   {
     "app": "Extensie Chrome",
     "call_to_action": "Instalează-ți extensia de Chrome pentru a depista știrile false",
