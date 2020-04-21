@@ -8,7 +8,7 @@ from captcha.widgets import ReCaptchaV3
 
 
 class NGOHelperForm(forms.ModelForm):
-    captcha = ReCaptchaField(widget=ReCaptchaV3(attrs={"required_score": 0.85,}), label="")
+    captcha = ReCaptchaField(widget=ReCaptchaV3(attrs={"required_score": 0.3, "action": "help"}), label="")
 
     class Meta:
         model = models.NGOHelper
@@ -49,7 +49,7 @@ class NGOForm(forms.ModelForm):
 
 
 class NGORegisterRequestForm(forms.ModelForm):
-    captcha = ReCaptchaField(widget=ReCaptchaV3(attrs={"required_score": 0.85,}), label="")
+    captcha = ReCaptchaField(widget=ReCaptchaV3(attrs={"required_score": 0.3, "action": "register"}), label="")
 
     class Meta:
         model = models.RegisterNGORequest
