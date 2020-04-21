@@ -24,6 +24,14 @@
     "url": "https://datelazi.ro/"
   },
   {
+    "app": "Diaspora Hub",
+    "call_to_action": "Are you living abroad?",
+    "description": "",
+    "button_text": "Find out more at Diaspora Hub",
+    "color": "#38b6ff",
+    "url": "https://diasporahub.ro"
+  },
+  {
     "app": "Chrome Extension",
     "call_to_action": "Install the Chrome extension which can help you spot fake news",
     "description": "",
