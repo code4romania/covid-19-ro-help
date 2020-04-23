@@ -58,7 +58,7 @@ NGOS = (
             "avatar": "http://www.habitat.ro/wp-content/uploads/2014/11/logo.png",
         },
         {
-            "name": settings.RED_CROSS_NAME,
+            "name": "Crucea Roșie",
             "email": "matei@crucearosie.ro",
             "description": """
          Crucea Rosie Romana asista persoanele vulnerabile in situatii de dezastre si de criza. Prin programele si 
@@ -198,12 +198,12 @@ class Command(BaseCommand):
             tags.append(tag)
 
         NGO.objects.filter(
-            pk__in=NGO.objects.exclude(name__in=["Code4Romania", settings.RED_CROSS_NAME])
+            pk__in=NGO.objects.exclude(name__in=["Code4Romania", "Crucea Roșie"])
             .order_by("created")
             .values_list("pk")[100:]
         ).delete()
 
-        NGONeed.objects.filter(kind="money").exclude(ngo__name__in=["Code4Romania", settings.RED_CROSS_NAME]).delete()
+        NGONeed.objects.filter(kind="money").exclude(ngo__name__in=["Code4Romania", "Crucea Roșie"]).delete()
 
         for details in NGOS:
             ngo, _ = NGO.objects.get_or_create(**details)
