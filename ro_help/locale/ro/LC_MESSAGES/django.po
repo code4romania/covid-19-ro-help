@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 09:42+0000\n"
-"PO-Revision-Date: 2020-04-15 13:15+0300\n"
+"POT-Creation-Date: 2020-04-23 14:52+0000\n"
+"PO-Revision-Date: 2020-04-23 17:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -361,8 +361,6 @@ msgid "Vote history"
 msgstr "Istoric voturi"
 
 #: hub/models.py:448
-#, fuzzy
-#| msgid "Yes, I\\"
 msgid "Yes"
 msgstr "Da"
 
@@ -614,6 +612,7 @@ msgstr "Parteneri media"
 #: hub/templates/about.html:96 hub/templates/contact.html:47
 #: hub/templates/cookies.html:103 hub/templates/ngo/base.html:145
 #: hub/templates/rules.html:90 hub/templates/terms_and_conditions.html:122
+#: hub/templates/updates.html:64
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -639,11 +638,13 @@ msgstr "Deloghează-te"
 
 #: hub/templates/admin/change_form.html:36
 #: hub/templates/admin/change_list.html:38
+#: hub/templates/admin_totals/change_list_totals.html:34
 msgid "Please correct the error below."
 msgstr "Te rog corectează eroarea următoare."
 
 #: hub/templates/admin/change_form.html:36
 #: hub/templates/admin/change_list.html:38
+#: hub/templates/admin_totals/change_list_totals.html:34
 msgid "Please correct the errors below."
 msgstr "Te rog corectează erorile următoare."
 
@@ -656,6 +657,7 @@ msgid "Tools"
 msgstr "Instrumente"
 
 #: hub/templates/admin/change_list.html:69
+#: hub/templates/admin_totals/change_list_totals.html:65
 msgid "Filter"
 msgstr "Filtrează"
 
@@ -701,6 +703,19 @@ msgstr "Da, sunt"
 #: hub/templates/admin/vote_motivation.html:55
 msgid "Back"
 msgstr "Înapoi"
+
+#: hub/templates/admin_totals/change_list_results_totals.html:17
+msgid "Remove from sorting"
+msgstr ""
+
+#: hub/templates/admin_totals/change_list_results_totals.html:18
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr ""
+
+#: hub/templates/admin_totals/change_list_results_totals.html:19
+msgid "Toggle sorting"
+msgstr "Sortează"
 
 #: hub/templates/bulma/file.html:11
 msgid "Upload file"
@@ -1291,7 +1306,11 @@ msgstr "Termeni și condiții de utilizare"
 msgid "Cookie policy"
 msgstr "Politică de confidențialitate"
 
-#: hub/templates/footer.html:40
+#: hub/templates/footer.html:31
+msgid "Updates"
+msgstr "Înștiințări"
+
+#: hub/templates/footer.html:41
 msgid ""
 "An independent, non-partisan, non-political, non-govermental organization."
 msgstr ""
@@ -2361,7 +2380,7 @@ msgstr ""
 msgid "Thank you for your donation!"
 msgstr "Îți mulțumim pentru donație!"
 
-#: mobilpay/admin.py:22
+#: mobilpay/admin.py:24
 msgid "Responses"
 msgstr "Răspunsuri plată"
 
@@ -2434,11 +2453,11 @@ msgid ""
 "                    "
 msgstr ""
 
-#: ro_help/settings/base.py:210
+#: ro_help/settings/base.py:212
 msgid "COVID-19 RO HELP"
 msgstr "COVID-19 RO HELP"
 
-#: ro_help/settings/base.py:211
+#: ro_help/settings/base.py:213
 msgid "RO HELP"
 msgstr "RO HELP"
 
