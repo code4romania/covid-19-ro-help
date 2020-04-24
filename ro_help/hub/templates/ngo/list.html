@@ -181,12 +181,19 @@
 
 </div>
 
+<script>
+    window.onload = function () {
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0]
+        })
+    };
+</script>
 
 <div class="container">
     {% if page_obj %}
-    <div class="columns is-multiline">
+    <div class="columns is-multiline infinite-container">
         {% for need in page_obj %}
-        <div class="need is-flex container">
+        <div class="need is-flex container infinite-item">
             <div class="card-image need-logo is-hidden-mobile">
                 <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
             </div>
