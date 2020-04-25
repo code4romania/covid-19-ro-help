@@ -2,14 +2,39 @@
 
 PORT=${PORT:-"8000"}
 
+RUN_SEED=${RUN_SEED:-"yes"}
+RUN_MIGRATION=${RUN_MIGRATION:-"yes"}
+RUN_DEV_SERVER=${RUN_DEV_SERVER:-"yes"}
+RUN_COLLECT_STATIC=${RUN_COLLECT_STATIC:-"no"}
+RUN_CREATE_SUPER_USER=${RUN_CREATE_SUPER_USER:-"no"}
+
 echo "Checking..."
 python3 manage.py check
 
-echo "Migrating databse"
-python3 manage.py migrate --run-syncdb
+if [ "$RUN_MIGRATION" == "yes" ] ; then
+  echo "Migrating databse"
+  python3 manage.py migrate --run-syncdb
+fi
 
-echo "Seed"
-python3 manage.py seed
+if [ "$RUN_COLLECT_STATIC" == "yes" ] ; then
+  echo "Collect static"
+  mkdir -p static
+  python3 manage.py collectstatic --noinput
+fi
 
-echo "Start web server on $PORT"
-python3 manage.py runserver "0.0.0.0:$PORT"
+if [ "$RUN_SEED" == "yes" ] ; then
+  echo "Seed"
+  python3 manage.py seed
+fi
+
+if [ "$RUN_CREATE_USER_USER" == "yes" ] ; then
+  echo "Create superuser"
+  python3 manage.py createsuperuser --noinput
+fi
+
+if [ "$RUN_DEV_SERVER" == "yes" ] ; then
+  echo "Start web server on $PORT"
+  python3 manage.py runserver "0.0.0.0:$PORT"
+else
+   gunicorn ro_help.wsgi --bind "0.0.0.0:$PORT" --log-level info -k gevent -w 10
+fi
