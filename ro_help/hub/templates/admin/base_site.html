@@ -1,0 +1,46 @@
+{% extends "admin/base_site.html" %}
+{% load static i18n material %}
+
+{% block extrastyle %}
+{{block.super}}
+<link rel="stylesheet" href="{% static "css/admin/style.css" %}">
+{%endblock%}
+
+
+{% block userlinks %}
+    {% block welcome-msg %}{% endblock %}
+    {% if site_url %}
+        <a href="{{ site_url }}">{% trans 'View site' %}</a>
+    {% endif %}
+        {% if show_themes %}
+            <a href="{% url 'admin:themes' %}">{% trans 'Themes' %}</a>
+        {% endif %}
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
+        {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}">
+            {% trans 'Change password' %}
+        </a>
+    {% endif %}
+    <a href="{% url 'admin:logout' %}">
+        {% trans 'Log out' %}
+        <i class="material-icons">exit_to_app</i>
+    </a>
+    {% get_available_languages as LANGUAGES %}
+    {% get_current_language as LANGUAGE_CODE %}
+    <div class="lang-switch-wrapper">
+        <form class="" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}"/>
+              <select class="select" id="language" name="language" onchange="this.form.submit()">
+                {% for language in LANGUAGES %}
+                <option {% if language.0 == LANGUAGE_CODE %} selected {% endif %} name="language" value="{{language.0}}">{{language.0 | upper}}</option>
+                {% endfor %}
+              </select>
+        </form>
+    </div>
+{% endblock %}

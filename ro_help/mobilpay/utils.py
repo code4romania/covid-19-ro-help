@@ -51,7 +51,6 @@ def get_and_send_request(base_url, order):
 
         obj_pm_req_card.get_invoice().set_billing_address(billing_address)
 
-
         # shipping_address = Address("shipping")
         # # get_from_website
         # shipping_address.set_type("person")
@@ -64,7 +63,7 @@ def get_and_send_request(base_url, order):
         # obj_pm_req_card.get_invoice().set_shipping_address(shipping_address)
 
         """encoded data and env_key"""
-        obj_pm_req_card.encrypt(order.ngo.mobilpay_public_key.path)
+        obj_pm_req_card.encrypt(order.ngo.mobilpay_public_key.url)
         data = obj_pm_req_card.get_enc_data()
         env_key = obj_pm_req_card.get_env_key()
 

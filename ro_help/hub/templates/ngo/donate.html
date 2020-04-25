@@ -5,10 +5,12 @@
 
 
 {% block left-side-view %}
+{% block extra-header %}
+{% endblock %}
 {% block kind-kind-filters %}
 {% endblock%}
 
-<div class="container">
+<div id="donation-form" class="container">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 

@@ -1,31 +1,41 @@
 {% load spurl %}
 {% load i18n %}
 
+{% with page_parameter_name|default:"page" as page %}
+{% with kind|default:"" as kind %}
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
-        <a class="pagination-previous" href="{% spurl base='{{ request.get_full_path }}' set_query='page=1' %}">&laquo;
+        <a class="pagination-previous" href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}=1' set_query='kind={{kind}}' %}">&laquo;
             {% trans "first" %}</a>
         <a class="pagination-previous"
-            href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.previous_page_number }}' %}">{% trans "previous" %}</a>
+            href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}={{ page_obj.previous_page_number }}' set_query='kind={{kind}}' %}">{% trans "previous" %}</a>
+       {% else %}
+         <a class="pagination-next hidden"></a>
+         <a class="pagination-next hidden"></a>
         {% endif %}
     </span>
 
     <span class="current">
         {% blocktrans with page=page_obj.number no_pages=page_obj.paginator.num_pages %}
             Page {{ page }} of {{ no_pages }}
-            
         {% endblocktrans %}
     </span>
-    
+
     <span class="step-links">
         {% if page_obj.has_next %}
+        <a class="pagination-next infinite-more-link"
+            href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}={{ page_obj.next_page_number }}' set_query='kind={{kind}}' %}">{% trans "next" %}</a>
         <a class="pagination-next"
-            href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.next_page_number }}' %}">{% trans "next" %}</a>
-        <a class="pagination-next"
-            href="{% spurl base='{{ request.get_full_path }}' set_query='page={{ page_obj.paginator.num_pages }}' %}">{% trans "last" %}
+            href="{% spurl base='{{ request.get_full_path }}' set_query='{{ page }}={{ page_obj.paginator.num_pages }}' set_query='kind={{kind}}' %}">{% trans "last" %}
             &raquo;</a>
+        {% else %}
+         <a class="pagination-next hidden"></a>
+         <a class="pagination-next hidden"></a>
         {% endif %}
+
     </span>
 
 </nav>
+{% endwith %}
+{% endwith %}

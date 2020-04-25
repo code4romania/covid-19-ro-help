@@ -1,44 +1,50 @@
 [
   {
-    "app": "Știri oficiale add-on",
-    "call_to_action": "Install the browser add-on for official news",
+    "app": "Find out what you have to do",
+    "call_to_action": "Learn what to do to stay safe during the Covid-19 epidemic",
     "description": "",
-    "button_text": "Install the add-on",
-    "color": "#05d6c8"
+    "button_text": "What do I have to do?",
+    "color": "#ffdd57",
+    "url": "https://cemafac.ro/"
   },
   {
-    "app": "Știri oficiale",
-    "call_to_action": "Get your news from official sources",
-    "description": "Up to date official news",
-    "button_text": "Check out the news!",
-    "color": "#05d6c8"
-  },
-  {
-    "app": "Ce mă fac",
-    "call_to_action": "Find out what you're supposed to do",
+    "app": "Offical news",
+    "call_to_action": "Official news and up-to-date information",
     "description": "",
-    "button_text": "Let us be your guide!",
-    "color": "#ffdd57"
+    "button_text": "Latest Covid-19 government communication",
+    "color": "#05d6c8",
+    "url": "https://stirioficiale.ro/informatii"
   },
   {
-    "app": "Date la zi",
-    "call_to_action": "Really cool visuals",
-    "description": "Check out stats and breakdowns and other really cool pieces of information",
-    "button_text": "Take me there!",
-    "color": "#f5bcd6"
+    "app": "Daily data",
+    "call_to_action": "Daily data",
+    "description": "",
+    "button_text": "Daily Covid-19 data",
+    "color": "#f5bcd6",
+    "url": "https://datelazi.ro/"
   },
   {
     "app": "Diaspora Hub",
-    "call_to_action": "Are you living in the Diaspora?",
+    "call_to_action": "Are you living abroad?",
     "description": "",
-    "button_text": "Acces your app",
-    "color": "#38b6ff"
+    "button_text": "Find out more at Diaspora Hub",
+    "color": "#38b6ff",
+    "url": "https://diasporahub.ro"
   },
   {
-    "app": "Stăm acasă",
-    "call_to_action": "Are you in self-isolation?",
+    "app": "Chrome Extension",
+    "call_to_action": "Install the Chrome extension which can help you spot fake news",
     "description": "",
-    "button_text": "Access your app",
-    "color": "#ffbc57"
+    "button_text": "Install extension",
+    "color": "#05d6c8",
+    "url": "https://chrome.google.com/webstore/detail/covid-19-%C8%99tiri-oficiale/pdcpkplohipjhdfdchpmgekifmcdbnha"
+  },
+  {
+    "app": "Firefox extension",
+    "call_to_action": "Install the Chrome extension which can help you spot fake news",
+    "description": "",
+    "button_text": "Install extension",
+    "color": "#05d6c8",
+    "url": "https://addons.mozilla.org/en-US/firefox/addon/covid-19-%C8%99tiri-oficiale/"
   }
 ]

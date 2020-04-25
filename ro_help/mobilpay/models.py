@@ -30,12 +30,17 @@ class PaymentOrder(TimeStampedModel):
     success = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"[{self.ngo.name}] {self.first_name} {self.last_name} {self.amount}"
+        return f"{self.first_name} {self.last_name} {self.amount}"
 
     class Meta:
         verbose_name_plural = _("Payment Orders")
         verbose_name = _("Payment Order")
 
+    def is_pending(self):
+        confirmed_pending = self.responses.filter(action="confirmed_pending").exists()
+        paid_pending = self.responses.filter(action="paid_pending").exists()
+        canceled = self.responses.filter(action="canceled").exists()
+        return (confirmed_pending or paid_pending) and not canceled
 
 class PaymentResponse(TimeStampedModel):
     payment_order = models.ForeignKey(

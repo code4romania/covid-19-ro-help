@@ -21,15 +21,24 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
+from ro_help.views import StaticPageView
+
 
 urlpatterns = (
     i18n_patterns(
-        path("about/", TemplateView.as_view(template_name="about.html"), name="about"),
-        path("how-to/", TemplateView.as_view(template_name="how_to.html"), name="how-to"),
-        path("contact/", TemplateView.as_view(template_name="contact.html"), name="contact"),
+        path("about/", StaticPageView.as_view(template_name="about.html"), name="about"),
+        path("rules/", StaticPageView.as_view(template_name="rules.html"), name="rules"),
+        path("contact/", StaticPageView.as_view(template_name="contact.html"), name="contact"),
+        path("terms/", StaticPageView.as_view(template_name="terms_and_conditions.html"), name="terms"),
+        path("cookies/", StaticPageView.as_view(template_name="cookies.html"), name="cookies"),
+        path("updates/", StaticPageView.as_view(template_name="updates.html"), name="updates"),
         path("mobilpay/", include("mobilpay.urls", namespace="mobilpay")),
         path("admin/", admin.site.urls),
-        path("admin/password_reset/", auth_views.PasswordResetView.as_view(), name="admin_password_reset"),
+        path(
+            "admin/password_reset/",
+            auth_views.PasswordResetView.as_view(html_email_template_name="registration/password_reset_email.html"),
+            name="admin_password_reset",
+        ),
         path("admin/password_reset/done/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
         path(
             "admin/reset/<uidb64>/<token>/",
