@@ -252,6 +252,14 @@
     {% endif %}
     {% include "register-ngo.html" %}
 </div>
+
+<script>
+window.onload = function() {
+    const element = document.getElementById('backToTop');
+    element.classList.remove('hidden');
+};
+</script>
+
 {% endblock %}
 
 {% block content %}
@@ -259,3 +267,4 @@
 {{ block.super }}
 {% endwith %}
 {% endblock %}
+
