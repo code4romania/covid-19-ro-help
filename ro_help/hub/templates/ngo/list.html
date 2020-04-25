@@ -9,162 +9,193 @@
     <h2 class="ngo-list-title">
         {% trans "NGOs that manage" %}
         {% if current_kind == 'money' %}
-            {% trans "financial aid" %}
+        {% trans "financial aid" %}
         {% else %}
         {% if current_kind == 'resource' %}
-            {% trans "resource aid" %}
+        {% trans "resource aid" %}
         {% else %}
-            {% trans "volunteers" %}
+        {% trans "volunteers" %}
         {% endif %}
         {% endif %}
     </h2>
 </div>
 <div class="container filter-container">
     <div class="columns is-mobile">
-        <div class="column is-narrow filter-dropdown is-marginless">
-            <div class="dropdown is-hoverable">
-                <div class="dropdown-trigger">
-                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu1">
-                        {% if current_county %}
-                            <span>{{ current_county }}</span>
-                        {% else %}
-                            <span>{% trans "County" %}</span>
-                        {% endif %}
-                        <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </button>
-                </div>
-
-                <div class="dropdown-menu" id="dropdown-menu1" role="menu">
-                    <div class="dropdown-content">
-                        <div class="dropdown-item">
-                            <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' remove_query_param='page' %}"
-                                class="dropdown-item">
-                                -
-                            </a>
+        <div class="column">
+            <div class="columns">
+                <div class="column is-narrow filter-dropdown is-marginless">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu1">
+                                {% if current_county %}
+                                <span>{{ current_county }}</span>
+                                {% else %}
+                                <span>{% trans "County" %}</span>
+                                {% endif %}
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
                         </div>
-                        {% for county in counties %}
-                        <div class="dropdown-item">
-                            <a href="{% spurl base='{{ request.get_full_path }}' set_query='county={{ county }}' remove_query_param='city' remove_query_param='page' %}"
-                                class="dropdown-item {% if county == current_county %}is-active{% endif %}">
-                                {{ county }}
-                            </a>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="column is-narrow filter-dropdown is-marginless">
-            <div class="dropdown is-hoverable">
-                <div class="dropdown-trigger">
-                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                        {% if current_city %}
-                            <span>{{ current_city }}</span>
-                        {% else %}
-                            <span>{% trans "City" %}</span>
-                        {% endif %}
-                        <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </button>
-                </div>
-
-                <div class="dropdown-menu" id="dropdown-menu2" role="menu">
-                    <div class="dropdown-content">
-                        <div class="dropdown-item">
-                            <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' remove_query_param='page' %}"
-                                class="dropdown-item">
-                                -
-                            </a>
-                        </div>
-                        {% for city in cities %}
-                        <div class="dropdown-item">
-                            <a href="{% spurl base='{{ request.get_full_path }}' set_query='city={{ city }}' remove_query_param='page' %}"
-                                class="dropdown-item {% if city == current_city %}is-active{% endif %}">
-                                {{ city }}
-                            </a>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="column is-narrow filter-dropdown is-marginless">
-            <div class="dropdown is-hoverable">
-                <div class="dropdown-trigger">
-                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-                        {% if current_urgency %}
-                            <span>{{ current_urgency }}</span>
-                        {% else %}
-                            <span>{% trans "Urgency" %}</span>
-                        {% endif %}
-                        <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </button>
-                </div>
-
-                <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-                    <div class="dropdown-content">
-                        <div class="dropdown-item">
-                            <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='urgency' remove_query_param='page' %}"
-                               class="dropdown-item">
-                                -
-                            </a>
-                        </div>
-                        {% for urgency in urgencies %}
-                            <div class="dropdown-item">
-                                <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
-                                   class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
-                                    {{ urgency }}
-                                </a>
+                        <div class="dropdown-menu" id="dropdown-menu1" role="menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='county' remove_query_param='page' %}"
+                                        class="dropdown-item">
+                                        {% trans "All" %}
+                                    </a>
+                                </div>
+                                {% for county in counties %}
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='county={{ county }}' remove_query_param='city' remove_query_param='page' %}"
+                                        class="dropdown-item {% if county == current_county %}is-active{% endif %}">
+                                        {{ county }}
+                                    </a>
+                                </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                        </div>
                     </div>
+                </div>
+                <div class="column is-narrow filter-dropdown is-marginless">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+                                {% if current_city %}
+                                <span>{{ current_city }}</span>
+                                {% else %}
+                                <span>{% trans "City" %}</span>
+                                {% endif %}
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='city' remove_query_param='page' %}"
+                                        class="dropdown-item">
+                                        {% trans "All" %}
+                                    </a>
+                                </div>
+                                {% for city in cities %}
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='city={{ city }}' remove_query_param='page' %}"
+                                        class="dropdown-item {% if city == current_city %}is-active{% endif %}">
+                                        {{ city }}
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <div class="column is-hidden-mobile">
-            <a class="button" href="{% url 'ngos' %}">{% trans "Reset filters" %}</a>
+        <div class="column">
+            <div class="columns">
+                <div class="column is-narrow filter-dropdown is-marginless">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                                <span>{% trans "Urgency" %}</span>
+
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='urgency' remove_query_param='page' %}"
+                                        class="dropdown-item">
+                                        {% trans "All" %}
+                                    </a>
+                                </div>
+                                {% for urgency in urgencies %}
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' set_query='urgency={{ urgency }}' remove_query_param='page' %}"
+                                        class="dropdown-item {% if urgency == current_urgency %}is-active{% endif %}">
+                                        {% trans urgency|title %}
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-narrow filter-dropdown is-marginless">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                <span>{% trans "Tags" %}</span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='tag' remove_query_param='page' %}"
+                                        class="dropdown-item">
+                                        {% trans "All" %}
+                                    </a>
+                                </div>
+                                {% for tag in tags %}
+                                <div class="dropdown-item">
+                                    {% if tag in current_tags %}
+                                    <a href="{% spurl base='{{ request.get_full_path }}' remove_query_param='tag={{ tag }}' remove_query_param='page' %}"
+                                        class="dropdown-item {% if tag in current_tags %}is-active{% endif %}">
+                                        {{ tag }}
+                                    </a>
+                                    {% else %}
+                                    <a href="{% spurl base='{{ request.get_full_path }}' add_query='tag={{ tag }}' remove_query_param='page' %}"
+                                        class="dropdown-item {% if tag in current_tags %}is-active{% endif %}">
+                                        {{ tag }}
+                                    </a>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-hidden-mobile">
+                    <a class="button is-link is-outlined" href="{% url 'ngos' %}">{% trans "Reset filters" %}</a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <a class="button is-hidden-tablet" href="{% url 'ngos' %}">
+    <a class="button is-link is-outlined is-hidden-tablet" href="{% url 'ngos' %}">
         {% trans "Reset filters" %}
     </a>
 
 </div>
 
+<script>
+    window.onload = function () {
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0]
+        })
+    };
+</script>
 
 <div class="container">
-    {% include "shared/pagination.html" with page_obj=page_obj %}
-
-    <div class="columns is-multiline">
+    {% if page_obj %}
+    <div class="columns is-multiline infinite-container">
         {% for need in page_obj %}
-        <div class="need is-flex container">
-                {% if need.kind == "money" %}
-                    <div class="need-icon" style="background-color: #F5BCD6;">
-                        <i class="fas fa-dollar-sign icon"></i>
-                    </div>
-                {% else %}
-                    {% if need.kind == "resource" %}
-                        <div class="need-icon" style="background-color: #05d6c8">
-                            <i class="fas fa-box-open icon"></i>
-                        </div>
-                    {% else %}
-                        <span class="need-icon" style="background-color: #FFB800">
-                                <i class="fas fa-people-carry icon"></i>
-                        </span>
-                    {% endif %}
-                {% endif %}
-
+        <div class="need is-flex container infinite-item">
             <div class="card-image need-logo is-hidden-mobile">
-               <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
+                <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
             </div>
 
             <div class="card-info">
@@ -172,44 +203,59 @@
                     <div class="card-image need-logo is-hidden-tablet">
                         <img src="{{ need.ngo.get_avatar }}" alt="{{ need.ngo.name }}">
                     </div>
-                    <div class="need-title is-hidden-tablet">{{need.ngo.name}}</div>
+                    <div
+                        class="{% if current_kind != 'money' %} need-subtitle {% else %} need-title {% endif %} is-hidden-tablet">
+                        {{need.ngo.name}}</div>
                 </div>
-                <div class="need-title is-hidden-mobile">{{need.ngo.name}}</div>
-                <div class="need-subtitle">{{ need.title|truncatechars:50 }}</div>
+                <div
+                    class="{% if current_kind != 'money' %} need-subtitle {% else %} need-title {% endif %} is-hidden-mobile">
+                    <a class="has-text-black" href="{% url 'ngo-detail' need.ngo.pk %}">{{need.ngo.name}}</a>
+                </div>
+                {% if need.kind != "money" %}
+                <div class="{% if current_kind != 'money' %} need-title {% else %} need-subtitle {% endif %}">
+                    {{ need.title|truncatechars:50 }}</div>
+                {% endif %}
+                <div class="need-description">{{ need.description|truncatechars:400 }}</div>
                 {% if need.resource_tags.all  %}
-                    <div class="tag-bar">
-                        {% for tag in need.resource_tags.all %}
-                            <span class="tag">{{ tag }}</span>
-                        {% endfor%}
-                    </div>
+                <div class="tag-bar">
+                    {% for tag in need.resource_tags.all %}
+                    <span class="need-tag tag">{{ tag }}</span>
+                    {% endfor%}
+                </div>
                 {% endif %}
 
             </div>
-            <div class="vr"></div>
-            <hr class="is-hidden-tablet" style="margin: 0 10%;"/>
-            {% url 'ngo-helper-create' need.ngo.pk need.pk as base %}
+            {% url 'ngo-need' need.ngo.pk need.pk as base %}
 
             <div class="need-call2action">
                 <a class="button is-flex has-background-success has-text-weight-bold has-text-white"
-                   href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">
+                    href="{% spurl base='{{ base }}' set_query='kind={{ need.kind }}' %}">
                     {% if need.kind == "money" %}
-                        {% trans "Donate" %}
+                    {% trans "Donate" %}
                     {% else %}
-                        {% trans "I can help" %}
+                    {% trans "I can help" %}
                     {% endif %}
                 </a>
             </div>
 
         </div>
+        <hr class="is-hidden-tablet" style="margin: 0 10%;" />
+        <hr class="is-hidden-mobile half-width" />
         {% endfor %}
     </div>
-    {% include "shared/pagination.html" with page_obj=page_obj %}
+    {% include "shared/pagination.html" with page_obj=page_obj kind=current_kind %}
+
+    {% else %}
+    <div class="content is-medium">
+        <p style="text-align: center;">{% trans "No results matching query" %}</p>
+    </div>
+    {% endif %}
     {% include "register-ngo.html" %}
 </div>
 {% endblock %}
 
 {% block content %}
-    {% with current_url=request.get_full_path %}
-        {{ block.super }}
-    {% endwith %}
+{% with current_url=request.get_full_path %}
+{{ block.super }}
+{% endwith %}
 {% endblock %}

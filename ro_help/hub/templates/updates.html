@@ -1,0 +1,91 @@
+{% extends 'ngo/base.html' %}
+{% load social_share  %}
+{% load static %}
+{% load spurl %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="container">
+    <div class="columns">
+        <div class="column is-two-thirds">
+            {% block left-side-view %}
+            <div id="donate_safely" class="container content">
+                <h1>
+                    <span>
+                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                    </span>
+                    Precizare
+                </h1>
+
+                <p>
+                    Am luat la cunoștință de articolul “Conducerea de la Crucea Roșie și Antonel Tănase, secretar general al lui Orban, au decis ca Crucea Roșie să plătească postările de pe Facebook ale Guvernului” publicat în <a href="https://www.libertatea.ro/stiri/crucea-rosie-plateste-postarile-de-pe-facebook-ale-guvernului-2966688" target="_blank" rel="noopener noreferrer">Libertatea.ro</a> și întelegem îngrijorările legate de modul în care sunt administrate fondurile Societății Naționale de Cruce Roșie Română.
+                </p>
+                <p>
+                    Societatea Crucea Roșie România este una dintre cele 80 de organizații prezente în acest moment în platforma RoHelp.ro. 
+                </p>
+                {% static "data/acord_de_parteneriat.pdf" as the_url %}
+                <p>
+                    Prezența tuturor ONG-urilor pe platforma RoHelp.ro este rezultatul unui proces de eligibilitate care asigură că ONG-ul derulează activități pentru ameliorarea crizei generate de epidemia COVID-19 și că nu realizează activități și nu susține cauze de natură politică sau care discriminează pe considerente legate de etnie, rasă, sex, orientare sexuală, religie, capacități fizice sau psihice sau de apartenența la una sau mai multe categorii sociale sau economice. Prin Acordul de Parteneriat pe care ONG-ul înscris în platforma RoHelp îl semnează cu Code for Romania ca administrator al platformei, acesta are obligația de a declara și respecta destinația resurselor materiale și financiare colectate prin intermediul Platformei și obligația de a raporta cu privire la utilizarea acestora la cel târziu o lună de la activarea contului, apoi trimestrial, precum și la încetarea colaborării. Puteți consulta în întregimea sa atât <a href="{% url 'rules' %}" target="_blank">Regulamentul</a>, cât și  <a href="{{ the_url }}" target="_blank">Acordul de Parteneriat</a>.
+                </p>
+
+                <p>
+                    În cadrul Acordului de Parteneriat semnat de ambele părți, sunt specificate următoarele:
+                </p>
+                <p><i>
+                    3.9. În situația în care apar suspiciuni (inclusiv provenind din informații publice) cu privire la utilizarea de către Partener, în mod necorespunzător, a resurselor financiare și materiale colectate prin intermediul Platformei, acesta va depune, la cerere, în termen de maxim 3 zile, un raport detaliat cu privire la modalitatea în care a utilizat resursele obținute prin intermediul Platformei.
+                </i></p>
+                <p><i>[...]</i></p>
+                <p><i>
+                    3.12. În cazul în care există suspiciuni întemeiate cu privire la nerespectarea de către Partener a obligațiilor sale în baza acestui Acord, în special obligația de a folosi resursele colectate conform destinației declarate, Code for Romania va avea dreptul să blocheze temporar accesul Partenerului la Platforma RoHelp și solicita Partenerului furnizarea de informații suplimentare și explicații. Dacă ulterior se demonstrează că Partenerul nu și-a respectat obligațiile în baza acestui Acord, Code for Romania va rezilia unilateral acest Acord și proceda la ștergerea contului Partenerului.
+                </i></p>
+                <p>
+                    Întreg documentul poate fi consultat <a href="{% url 'rules' %}" target="_blank">aici</a>.
+                </p>
+                <p>
+                    Ca urmare a informațiilor publice menționate mai sus a fost înștiințat comitetul de validare alcătuit din reprezentanți ai Federației Fundațiilor Comunitare din România, Departamentul pentru Situații de Urgență și Code for Romania pentru a lua fi evaluată situația.
+                </p>
+                <p>
+                    În urma analizei situației, decizia Comitetului conform cu Acordului de  Parteneriat, art 3.9., a fost de a se solicita raport despre utilizarea resurselor colectate prin RoHelp.ro până la data de 23 aprilie 2020. 
+                </p>
+
+            </div>
+            {% endblock %}
+        </div>
+
+        <div id="right_sidebar" class="column is-one-third">
+            {% block right-side-view %}
+            <div class="container">
+
+                <h1 class="donate-title">
+                    <span>
+                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                    </span>
+                    {% trans "Useful instruments" %}
+                </h1>
+
+                {% for project in info %}
+                <div class="tool">
+                    <div class="is-flex">
+                        <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
+                        <h1 class="card-content" style="background-color: #f0f0f0;">
+                            {{ project.call_to_action }}</h1>
+                    </div>
+                    <div class="card-content" style="background-color: #fafafa;">
+                        {% if project.description %}
+                        <p class="call-to-action">{{project.description}}</p>
+                        {% endif %}
+                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold sidebar-btn"
+                            style="background-color: {{ project.color }};" href="{{project.url}}" rel="nofollow">
+                            {{ project.button_text }}
+                        </a>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

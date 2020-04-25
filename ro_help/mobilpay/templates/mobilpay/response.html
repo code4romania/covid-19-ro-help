@@ -6,10 +6,23 @@
 
 {% block content %}
 
-    <article class="message is-success">
+    <article class="message {% if order.success %}is-success {% elif order.is_pending %} is-warning {% else %} is-danger{% endif %}">
         <div class="message-body">
-            <h1>Plata pentru  {{order.ngo}} va fi procesata imediat.</h1>
-            Iti multumim!
+            {% if order.success %}
+                {% blocktrans with ngo=order.ngo %}
+                    Plata pentru {{ngo}} a fost confirmată! Îți mulțumim pentru sprijinul tău în această perioadă! Orice ajutor ne crește capacitatea de a face bine mai departe.
+                {% endblocktrans %}
+            {% else %}
+                {% if order.is_pending %}
+                    {% blocktrans with ngo=order.ngo %}
+                        Plata pentru {{ngo}} este în curs de procesare. Îți mulțumim pentru sprijinul tău în această perioadă! Orice ajutor ne crește capacitatea de a face bine mai departe.
+                    {% endblocktrans %}    
+                {% else %}
+                    {% blocktrans with ngo=order.ngo %}
+                        Plata pentru {{ngo}} nu a putut fi confirmată. Te rugăm să încerci din nou. Îți mulțumim pentru sprijin și răbdare.
+                    {% endblocktrans %}
+                {% endif %}
+            {% endif %}
         </div>    
     </article>
 

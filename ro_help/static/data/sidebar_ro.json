@@ -1,44 +1,50 @@
 [
   {
-    "app": "Știri oficiale add-on",
-    "call_to_action": "Instalează-ți add-on-ul de browser de depistat știri false",
+    "app": "Afla ce ai de facut",
+    "call_to_action": "Învață ce ai de făcut în timpul epidemiei Covid-19",
     "description": "",
-    "button_text": "Instalează-ți add-on-ul",
-    "color": "#05d6c8"
+    "button_text": "Ce trebuie să fac",
+    "color": "#ffdd57",
+    "url": "https://cemafac.ro/"
   },
   {
     "app": "Știri oficiale",
-    "call_to_action": "Ia-ți știrile de unde trebuie",
-    "description": "Știri pe surse, cum s-ar zice",
-    "button_text": "Hai la știri odată!",
-    "color": "#05d6c8"
-  },
-  {
-    "app": "Ce mă fac",
-    "call_to_action": "Află ce ai de făcut în orice situație ",
+    "call_to_action": "Știri oficiale și informații la zi",
     "description": "",
-    "button_text": "Ghiduri pentru cetățeni",
-    "color": "#ffdd57"
+    "button_text": "Cele mai noi informaţii oficiale",
+    "color": "#05d6c8",
+    "url": "https://stirioficiale.ro/informatii"
   },
   {
     "app": "Date la zi",
-    "call_to_action": "Really cool visuals",
-    "description": "Statistici șmechere care arată frumos și sunt responsive",
-    "button_text": "Vezi situația curentă",
-    "color": "#f5bcd6"
+    "call_to_action": "Date la zi",
+    "description": "",
+    "button_text": "Vezi aici date la zi",
+    "color": "#f5bcd6",
+    "url": "https://datelazi.ro/"
   },
-  {
+    {
     "app": "Diaspora Hub",
-    "call_to_action": "Locuiești în diaspora?",
+    "call_to_action": "Ești în afara țării?",
     "description": "",
-    "button_text": "Intră în aplicația ta",
-    "color": "#38b6ff"
+    "button_text": "Informează-te pe Diaspora Hub",
+    "color": "#38b6ff",
+    "url": "https://diasporahub.ro"
   },
   {
-    "app": "Stăm acasă",
-    "call_to_action": "Ești în auto-izolare?",
+    "app": "Extensie Chrome",
+    "call_to_action": "Instalează-ți extensia de Chrome pentru a depista știrile false",
     "description": "",
-    "button_text": "Intră-n aplicația ta",
-    "color": "#ffbc57"
+    "button_text": "Instalează extensie",
+    "color": "#05d6c8",
+    "url": "https://chrome.google.com/webstore/detail/covid-19-%C8%99tiri-oficiale/pdcpkplohipjhdfdchpmgekifmcdbnha"
+  },
+  {
+    "app": "Extensie Firefox",
+    "call_to_action": "Instalează-ți extensia de Firefox pentru a depista știrile false",
+    "description": "",
+    "button_text": "Instalează extensie",
+    "color": "#05d6c8",
+    "url": "https://addons.mozilla.org/en-US/firefox/addon/covid-19-%C8%99tiri-oficiale/"
   }
 ]

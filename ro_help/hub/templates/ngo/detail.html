@@ -1,11 +1,15 @@
 {% extends 'ngo/base.html' %}
+{% load social_share  %}
 {% load static %}
 {% load spurl %}
 {% load i18n %}
+{% load meta_tags %}
 
+{% block meta_tags %}{% with title=ngo.name image=ngo.avatar.url description=ngo.description %}{% meta_tags %}{% endwith %}{% endblock %}
 
 {% block left-side-view %}
-
+{% block extra-header %}
+{% endblock %}
 {% block kind-kind-filters %}
 {% endblock%}
 
@@ -25,11 +29,27 @@
 
 <hr/>
 
+{% with donations=ngo.get_total_funded %}
+    {% if donations.0 %}
+        <div class="columns">
+            <div class="column is-4">
+                <b>{{donations.0}}</b> {% trans "donations" %}
+            </div>
+            <div class="column is-5">
+            </div>
+            <div class="column is-3">
+                <b>{{donations.1}}</b> {% trans "RON donated" %}
+            </div>
+        </div>
+    {% endif %}
+{% endwith %}
 <div class="container detail-desc">
     <div class="detail-desc-title">{% trans "About the organization" %}</div>
     <p>{{ ngo.description }}</p>
 </div>
 
+{% social_buttons obj=ngo %}
+<br/>
 <div class="container">
     {% if money_page_obj or current_need.kind == 'money' %}
     <div class="card">
@@ -40,7 +60,7 @@
                 </span>
                 <span>{% trans "Donate money" %}</span>
             </div>
-            <a href="#donate-money" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+            <a href="#money-accordion" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                aria-label="more options">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -48,61 +68,70 @@
             </a>
         </header>
 
-        <div id="donate-money" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
+        <div id="money-accordion" class="is-collapsible {% if current_kind == 'money' %}is-active{%endif%}">
             <div class="card-content donation-card">
-
                 <div class="container">
-                    <div class="container donate-hero">
-                        <span class="donate-hero-img">
-                             <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
-                        </span>
-                        <div>
-                            <div class="title">
-                                {% trans "Donate via Netopia" %}:
-                            </div>
-                        </div>
+                    <div class="content">
+                        <p>{{ngo.donations_description}}</p>
                     </div>
+                </div>
 
-
-                    <form method="GET" action="{% url 'ngo-donate' ngo.pk %}">
-                        <div class="columns is-mobile">
-                            <div class="column is-two-thirds-desktop is-half-mobile">
-                                <div class="control">
-                                    <input class="input is-success" name="amount" type="text" placeholder="100 RON">
+                {% if ngo.accepts_mobilpay %}
+                    <div class="container">
+                        <div class="container donate-hero">
+                            <span class="donate-hero-img">
+                                 <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
+                            </span>
+                            <div>
+                                <div class="title">
+                                    {% trans "Card-based donations processed by Netopia Payments" %}:
                                 </div>
                             </div>
-                            <div class="column is-one-third-desktop is-half-mobile">
-                                <button class="button is-success is-fullwidth">{% trans "Donate" %}</button>
+                        </div>
+
+                        <form method="GET" action="{% url 'ngo-donate' ngo.pk %}#donation-form">
+                            <div class="columns is-mobile">
+                                <div class="column is-two-thirds-desktop is-half-mobile">
+                                    <div class="control">
+                                        <input class="input is-success" name="amount" type="text" placeholder="100 RON">
+                                    </div>
+                                </div>
+                                <div class="column is-one-third-desktop is-half-mobile">
+                                    <button class="button is-success is-fullwidth">{% trans "Donate" %}</button>
+                                </div>
+                            </div>
+                         </form>
+                    </div>
+                {% endif %}
+
+                {% if ngo.accepts_transfer %}
+                    <div class="container">
+                        <div class="container donate-hero">
+                            <span class="donate-hero-img">
+                                 <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
+                            </span>
+                            <div>
+                                <div class="title">
+                                    {% trans "Donate via transfer" %}:
+                                </div>
                             </div>
                         </div>
-                     </form>
-                </div>
 
-                <div class="container">
-                    <div class="container donate-hero">
-                        <span class="donate-hero-img">
-                             <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo">
-                        </span>
-                        <div>
-                            <div class="title">
-                                {% trans "Donate via transfer" %}:
-                            </div>
+                        <div class="content">
+                            <p>{% trans "Name" %}: {{ngo.name}}</p>
+                            <p>{% trans "Address" %}: {{ngo.address}}, {{ngo.city}}, {{ngo.county}}</p>
+                            {% if ngo.cif %}
+                            <p>{% trans "CIF" %}: {{ngo.cif}}</p>
+                            {% endif %}
+                            <p>{% trans "CUI" %}: {{ngo.cui}}</p>
+
+                            {% for account in ngo.accounts.all %}
+                                <p>{% trans "Currency" %} {{account.currency}}: {{account.iban}} ({% trans "Bank" %}: {{account.bank}}) </p>
+                            {% endfor %}
                         </div>
                     </div>
+                {% endif %}
 
-                    <div class="content">
-                        <p>Nume: Asociația Habitat for Humanity</p>
-                        <p>Sediu: Piata Unirii 16,Bucuresti</p>
-                        <p>CIF: RO22556447</p>
-                        <p>CUI: 323265</p>
-
-                        <p>Cont RON: RO38BTRLRONCRT0505050505</p>
-                        <p>Cont EUR: RO38BTRLRONCRT0505050505</p>
-                        <p>Cont USD: RO38BTRLRONCRT0505050505</p>
-
-                        <p>Banca: Raiffeisen Bank</p>
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -119,7 +148,7 @@
                 </span>
                 <span>{% trans "Donate resources" %}</span>
             </div>
-            <a href="#donate-resources" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+            <a href="#resource-accordion" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                aria-label="more options">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -127,12 +156,8 @@
             </a>
         </header>
 
-        <div id="donate-resources" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
+        <div id="resource-accordion" class="is-collapsible {% if current_kind == 'resource' %}is-active{%endif%}">
             <div class="card-content donation-card">
-                <div class="container">
-                    {% include "shared/pagination.html" with page_obj=resource_page_obj %}
-                </div>
-
                 {% if current_need.kind == 'resource' and resource_page_obj.number == 1%}
                 {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
                 {% endif %}
@@ -142,7 +167,9 @@
                     {% include "shared/need_form.html" with page=resource_page_obj.number %}
                 </div>
                 {% endfor %}
-
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=resource_page_obj page_parameter_name="resource_page" kind="resource"%}
+                </div>
             </div>
         </div>
     </div>
@@ -157,7 +184,7 @@
                 </span>
                 <span>{% trans "Join as volunteer" %}</span>
             </div>
-            <a href="#donate-volunteer" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+            <a href="#volunteer-accordion" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                aria-label="more options">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -165,15 +192,10 @@
             </a>
         </header>
 
-        <div id="donate-volunteer" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
+        <div id="volunteer-accordion" class="is-collapsible {% if current_kind == 'volunteer' %}is-active{%endif%}">
             <div class="card-content donation-card">
-
-                <div class="container">
-                    {% include "shared/pagination.html" with page_obj=resource_page_obj %}
-                </div>
-
-                {% if current_need.kind == 'volunteer' and resource_page_obj.number == 1%}
-                {% include "shared/need_form.html" with current_form=form page=resource_page_obj.number %}
+                {% if current_need.kind == 'volunteer' and volunteer_page_obj.number == 1%}
+                {% include "shared/need_form.html" with current_form=form page=volunteer_page_obj.number %}
                 {% endif %}
 
                 {% for need in volunteer_page_obj %}
@@ -181,6 +203,10 @@
                     {% include "shared/need_form.html" %}
                 </div>
                 {% endfor %}
+
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=volunteer_page_obj page_parameter_name="volunteer_page" kind="volunteer"%}
+                </div>
             </div>
         </div>
     </div>
@@ -192,7 +218,7 @@
                 <span class="small-card-icon" style="background-color: #281AC8;"></span>
                 <span>{% trans "Donations" %}</span>
             </div>
-            <a href="#donations" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+            <a href="#donations-accordion" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                aria-label="donations">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -200,8 +226,12 @@
             </a>
         </header>
 
-        <div id="donations" class="is-collapsible">
+        <div id="donations-accordion" class="is-collapsible {% if current_kind == 'donations' %}is-active{%endif%}">
             <div class="card-content donation-card">
+
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=donations_page_obj page_parameter_name="donations_page" kind="donations"%}
+                </div>
                 <table class="donations-table">
                     <thead>
                         <tr>
@@ -211,10 +241,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for order in ngo.get_funders %}
+                    {% for order in donations_page_obj %}
                         <tr>
-                            <td>{{order.first_name}}</td>
-                            <td>{{order.last_name}}</td>
+                            <td>
+                                {% if order.show_name %}
+                                    {{order.first_name}}
+                                {% else %}
+                                    {% trans "Anonymous" %}   
+                                {% endif %}
+                            </td>
+                            <td>{% if order.show_name %}
+                                    {{order.last_name}}
+                                {% else %}
+                                    {% trans "Anonymous" %}   
+                                {% endif %}</td>
                             <td>{{order.amount}}</td>
                         </tr>
                     {% endfor %}
@@ -230,7 +270,7 @@
                 <span class="small-card-icon" style="background-color: #281AC8;"></span>
                 <span>{% trans "Reporting" %}</span>
             </div>
-            <a href="#reporting" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
+            <a href="#report-accordion" data-action="collapse" class="card-header-icon is-hidden-fullscreen"
                aria-label="donations">
                 <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -238,8 +278,12 @@
             </a>
         </header>
 
-        <div id="reporting" class="is-collapsible">
+        <div id="report-accordion" class="is-collapsible {% if current_kind == 'report' %}is-active{%endif%}">
             <div class="card-content donation-card">
+
+                <div class="container">
+                    {% include "shared/pagination.html" with page_obj=report_items_page_obj page_parameter_name="report_items_page" kind="report"%}
+                </div>
                 <table class="donations-table">
                     <thead>
                         <tr>
@@ -249,7 +293,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for report in ngo.report_items.all %}
+                    {% for report in report_items_page_obj %}
                     <tr>
                         <td>{{report.date}}</td>
                         <td>{{report.title}}</td>
@@ -261,12 +305,39 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script>
-    // Return an array of bulmaCollapsible instances (empty if no DOM node found)
-    const bulmaCollapsibleInstances = bulmaCollapsible.attach('.is-collapsible');
+    window.onload = function () {
+        // Return an array of bulmaCollapsible instances (empty if no DOM node found)
+        const bulmaCollapsibleInstances = bulmaCollapsible.attach('.is-collapsible')
+        let target = null
+
+        {% if current_form %}
+            {% if messages %}
+                target = document.getElementById('message-div')
+            {% else %}
+                target = document.getElementById('need-form')
+            {% endif %}
+        {% else %}
+            {% if current_kind %}
+                target = document.getElementById('{{current_kind}}-accordion')
+            {% endif %}
+        {% endif %}
+
+        if ( target ){
+            const offset = 50
+            const bodyRect = document.body.getBoundingClientRect().top
+            const elementRect = target.getBoundingClientRect().top
+            const elementPosition = elementRect - bodyRect
+            const offsetPosition = elementPosition - offset
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+        }
+    };
 </script>
 
 {% endblock %}

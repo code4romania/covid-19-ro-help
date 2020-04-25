@@ -1,44 +1,34 @@
 [
   {
-    "app": "Știri oficiale add-on",
-    "call_to_action": "Install the browser add-on for official news",
+    "app": "Extensie Chrome",
+    "call_to_action": "Instalează-ți extensia de Chrome pentru a depista știrile false",
     "description": "",
-    "button_text": "Install the add-on",
-    "color": "#05d6c8"
+    "button_text": "Instalează extensie",
+    "color": "#05d6c8",
+    "url": "https://chrome.google.com/webstore/detail/covid-19-%C8%99tiri-oficiale/pdcpkplohipjhdfdchpmgekifmcdbnha"
   },
   {
-    "app": "Știri oficiale",
-    "call_to_action": "Get your news from official sources",
-    "description": "Up to date official news",
-    "button_text": "Check out the news!",
-    "color": "#05d6c8"
+    "app": "Extensie Firefox",
+    "call_to_action": "Instalează-ți extensia de Firefox pentru a depista știrile false",
+    "description": "",
+    "button_text": "Instalează extensie",
+    "color": "#05d6c8",
+    "url": "https://addons.mozilla.org/en-US/firefox/addon/covid-19-%C8%99tiri-oficiale/"
   },
   {
-    "app": "Ce mă fac",
-    "call_to_action": "Find out what you're supposed to do",
+    "app": "Afla ce ai de facut",
+    "call_to_action": "Află ce ai de făcut în orice situație",
     "description": "",
-    "button_text": "Let us be your guide!",
-    "color": "#ffdd57"
+    "button_text": "Ce trebuie să fac",
+    "color": "#ffdd57",
+    "url": "https://cemafac.ro/"
   },
   {
     "app": "Date la zi",
-    "call_to_action": "Really cool visuals",
-    "description": "Check out stats and breakdowns and other really cool pieces of information",
-    "button_text": "Take me there!",
-    "color": "#f5bcd6"
-  },
-  {
-    "app": "Diaspora Hub",
-    "call_to_action": "Are you living in the Diaspora?",
+    "call_to_action": "Date la zi",
     "description": "",
-    "button_text": "Acces your app",
-    "color": "#38b6ff"
-  },
-  {
-    "app": "Stăm acasă",
-    "call_to_action": "Are you in self-isolation?",
-    "description": "",
-    "button_text": "Access your app",
-    "color": "#ffbc57"
+    "button_text": "Vezi aici date la zi",
+    "color": "#f5bcd6",
+    "url": "https://datelazi.ro/"
   }
 ]

@@ -1,6 +1,74 @@
 {% extends "ngo/base.html" %}
+{% load static %}
+{% load spurl %}
+{% load i18n %}
 
 
 {% block content %}
-    Contact
+<div class="container">
+    <div class="columns">
+
+        <div class="column is-two-thirds">
+            {% block left-side-view %}
+            <div id="donate_safely" class="container content">
+                <h1>
+                    <span>
+                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                    </span>
+                    {% trans "Contact us" %}
+                </h1>
+                <p>
+                    {% url "ngos-register-request" as the_url %}
+                    {% blocktrans with class="has-background-warning" link="" target="_blank" %}
+                    <span class="{{ class }}">If you are an NGO representative</span>, and your NGO is legally registered in Romania while also directly participating in the COVID-19 relief response you can join RoHelp <a href="{{ the_url }}" target="{{ target }}">here</a>. If you meet all eligibility criteria and your organization is validated in accordance to the rules and terms of use of the platform you'll be able to access your NGO account on the platform and will be able to solicit support, be it financial, material or volunteer-based.
+                    {% endblocktrans %}
+                </p>
+                <p>
+                    {% blocktrans with class="has-background-warning" %}
+                    <span class="{{ class }}">If you want to help out</span>, you can use the platform to identify the most stringent needs and active NGOs in your area or at the national level, and help out in any way you can, by donations, material support or through your skillset, as a volunteer. Even any social media share of a NGO page or city page from the RoHelp platform helps in the COVID-19 relief effort.
+                    {% endblocktrans %}
+                </p>
+
+                <p>
+                    {% trans "If you encounter any technical difficulty, send us an e-mail: rohelp@code4.ro" %}
+                </p>
+            </div>
+            {% endblock %}
+        </div>
+
+        <div id="right_sidebar" class="column is-one-third">
+            {% block right-side-view %}
+            <div class="container">
+
+                <h1 class="donate-title">
+                    <span>
+                        <img src="{% static "images/covid-all.svg" %}" alt="Covid-19 logo" width="30" height="30">
+                    </span>
+                    {% trans "Useful instruments" %}
+                </h1>
+
+                {% for project in info %}
+                <div class="tool">
+                    <div class="is-flex">
+                        <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
+                        <h1 class="card-content" style="background-color: #f0f0f0;">
+                            {{ project.call_to_action }}</h1>
+                    </div>
+                    <div class="card-content" style="background-color: #fafafa;">
+                        {% if project.description %}
+                        <p class="call-to-action">{{project.description}}</p>
+                        {% endif %}
+                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold sidebar-btn"
+                            style="background-color: {{ project.color }};" href="{{project.url}}" rel="nofollow">
+                            {{ project.button_text }}
+                        </a>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -1,17 +1,20 @@
 version: '3'
 services:
   web:
+    stdin_open: true
+    tty: true
     build:
       context: .
       dockerfile: docker/web/Dockerfile
     command: dockerize -wait tcp://db:5432 -timeout 90s
     env_file:
       - .env
+    environment:
+      - "PYTHONUNBUFFERED=1"
     ports:
       - "8000:8000"
     volumes:
-      - ./:/opt/ro_help
-
+      - ./:/opt
   db:
     build:
       context: .

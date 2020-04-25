@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-25 15:03+0000\n"
+"POT-Creation-Date: 2020-04-12 17:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,274 +18,552 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: hub/admin.py:35
+#: hub/admin.py:42
 msgid "active"
 msgstr ""
 
-#: hub/admin.py:132 hub/admin.py:195
+#: hub/admin.py:68
+msgid "Bank Accounts"
+msgstr ""
+
+#: hub/admin.py:124
+msgid "To accept IBAN Transfers you need to add at least one account."
+msgstr ""
+
+#: hub/admin.py:182 hub/admin.py:251
 msgid "Helpers"
 msgstr ""
 
-#: hub/admin.py:203
+#: hub/admin.py:259
 msgid "Resolve need"
 msgstr ""
 
-#: hub/admin.py:211
+#: hub/admin.py:267
 msgid "Close need"
 msgstr ""
 
-#: hub/admin.py:224
+#: hub/admin.py:281
 msgid "Votes"
 msgstr ""
 
-#: hub/admin.py:260
+#: hub/admin.py:346 hub/admin.py:414
+msgid "Last balance"
+msgstr ""
+
+#: hub/admin.py:353 hub/admin.py:421
+msgid "Statute"
+msgstr ""
+
+#: hub/admin.py:360
+msgid "Avatar Preview"
+msgstr ""
+
+#: hub/admin.py:365
 msgid "Voters"
 msgstr ""
 
-#: hub/admin.py:272
+#: hub/admin.py:376
 msgid "Create account"
 msgstr ""
 
-#: hub/admin.py:305
-msgid "[RO HELP] {} voted for {} "
+#: hub/admin.py:462
+msgid "s"
 msgstr ""
 
-#: hub/admin.py:310
+#: hub/admin.py:461
 msgid "Vote succesfully registered. {} email{} sent to others admins"
 msgstr ""
 
-#: hub/admin.py:323 hub/models.py:398
-msgid "Vote"
+#: hub/admin.py:477
+msgid "Vote NGO"
 msgstr ""
 
-#: hub/models.py:129
+#: hub/forms.py:37 hub/forms.py:39 hub/forms.py:41 hub/forms.py:43
+msgid "To accept mobilpay donations this field is required."
+msgstr ""
+
+#: hub/forms.py:46 hub/forms.py:48
+msgid "To accept money transfer this field is required"
+msgstr ""
+
+#: hub/models.py:32
+msgid "low"
+msgstr ""
+
+#: hub/models.py:33
+msgid "medium"
+msgstr ""
+
+#: hub/models.py:34
+msgid "high"
+msgstr ""
+
+#: hub/models.py:35
+msgid "critical"
+msgstr ""
+
+#: hub/models.py:155
 msgid "YES"
 msgstr ""
 
-#: hub/models.py:130
+#: hub/models.py:156
 msgid "NO"
 msgstr ""
 
-#: hub/models.py:131
+#: hub/models.py:157
 msgid "ABSTENTION"
 msgstr ""
 
-#: hub/models.py:151 hub/models.py:193 hub/models.py:268 hub/models.py:286
-#: hub/models.py:303
+#: hub/models.py:177
+msgid "RON"
+msgstr ""
+
+#: hub/models.py:178
+msgid "EUR"
+msgstr ""
+
+#: hub/models.py:179
+msgid "USD"
+msgstr ""
+
+#: hub/models.py:204 hub/templates/ngo/detail.html:115
+msgid "Currency"
+msgstr ""
+
+#: hub/models.py:216 hub/models.py:278 hub/models.py:363 hub/models.py:381
+#: hub/models.py:398 hub/templates/ngo/detail.html:107
 msgid "Name"
 msgstr ""
 
-#: hub/models.py:153 hub/models.py:227 hub/models.py:293 hub/models.py:305
+#: hub/models.py:218 hub/models.py:321 hub/models.py:388 hub/models.py:400
 msgid "Description"
 msgstr ""
 
-#: hub/models.py:154 hub/models.py:269 hub/models.py:287 hub/models.py:308
-#: mobilpay/models.py:23
+#: hub/models.py:219 hub/models.py:412
+msgid "Contact person's name"
+msgstr ""
+
+#: hub/models.py:220 hub/models.py:364 hub/models.py:382 hub/models.py:413
+#: mobilpay/models.py:25
 msgid "Email"
 msgstr ""
 
-#: hub/models.py:155 hub/models.py:271 hub/models.py:288 mobilpay/models.py:22
+#: hub/models.py:221 hub/models.py:366 hub/models.py:383 mobilpay/models.py:24
 msgid "Phone"
 msgstr ""
 
-#: hub/models.py:156 hub/models.py:311
-msgid "Avatar"
-msgstr ""
-
-#: hub/models.py:157 hub/models.py:291 hub/models.py:312 mobilpay/models.py:24
+#: hub/models.py:222 hub/models.py:386 hub/models.py:416
+#: hub/templates/ngo/detail.html:108 mobilpay/models.py:26
 msgid "Address"
 msgstr ""
 
-#: hub/models.py:158 hub/models.py:232 hub/models.py:289 hub/models.py:313
-#: hub/templates/ngo/list.html:67
-msgid "City"
-msgstr ""
-
-#: hub/models.py:159 hub/models.py:233 hub/models.py:290 hub/models.py:314
+#: hub/models.py:225 hub/models.py:327 hub/models.py:385 hub/models.py:418
 #: hub/templates/ngo/list.html:31
 msgid "County"
 msgstr ""
 
-#: hub/models.py:164
-msgid "mobilpay Merchant identifier code"
+#: hub/models.py:226 hub/models.py:326 hub/models.py:384 hub/models.py:417
+#: hub/templates/ngo/list.html:66
+msgid "City"
 msgstr ""
 
-#: hub/models.py:168
-msgid "XXXX-XXXX-XXXX-XXXX-XXXX"
+#: hub/models.py:228
+msgid "Logo"
 msgstr ""
 
-#: hub/models.py:170
-msgid "mobilpay Public key"
+#: hub/models.py:230 hub/models.py:427
+msgid "First page of last balance sheet"
 msgstr ""
 
-#: hub/models.py:171
-msgid "mobilpay Private key"
+#: hub/models.py:233 hub/models.py:429
+msgid "NGO Statute"
 msgstr ""
 
-#: hub/models.py:188
-msgid "NGOs"
+#: hub/models.py:236
+msgid "Accepts mobilpay"
 msgstr ""
 
-#: hub/models.py:189 hub/models.py:224 mobilpay/models.py:13
-msgid "NGO"
-msgstr ""
-
-#: hub/models.py:196
-msgid "Resource tags"
-msgstr ""
-
-#: hub/models.py:197
-msgid "Resource tag"
-msgstr ""
-
-#: hub/models.py:226 hub/models.py:253 hub/templates/ngo/detail.html:247
-msgid "Title"
-msgstr ""
-
-#: hub/models.py:229 hub/models.py:295
-msgid "Kind"
-msgstr ""
-
-#: hub/models.py:230 hub/models.py:296 hub/templates/ngo/list.html:104
-msgid "Urgency"
-msgstr ""
-
-#: hub/models.py:237 hub/models.py:319
-msgid "Resolved on"
+#: hub/models.py:237
+msgid "Accepts transfers"
 msgstr ""
 
 #: hub/models.py:238
-msgid "Closed on"
+msgid "Donations description"
 msgstr ""
 
-#: hub/models.py:246
-msgid "NGO needs"
+#: hub/models.py:241
+msgid "mobilpay Merchant identifier code"
 msgstr ""
 
-#: hub/models.py:247
-msgid "NGO need"
+#: hub/models.py:245
+msgid "XXXX-XXXX-XXXX-XXXX-XXXX"
 msgstr ""
 
-#: hub/models.py:252 hub/models.py:402 hub/templates/ngo/detail.html:246
-msgid "Date"
+#: hub/models.py:248
+msgid "Mobilpay Public key"
 msgstr ""
 
-#: hub/models.py:254
-msgid "Receipt"
+#: hub/models.py:251
+msgid "Mobilpay Private key"
 msgstr ""
 
-#: hub/models.py:255
-msgid "Amount spent (RON)"
-msgstr ""
-
-#: hub/models.py:261
-msgid "NGO report items"
-msgstr ""
-
-#: hub/models.py:262
-msgid "NGO report item"
-msgstr ""
-
-#: hub/models.py:270
-msgid "Message"
+#: hub/models.py:272
+msgid "My organizations"
 msgstr ""
 
 #: hub/models.py:273
+msgid "My organization"
+msgstr ""
+
+#: hub/models.py:289 hub/models.py:409
+msgid "Resource tags"
+msgstr ""
+
+#: hub/models.py:290
+msgid "Resource tag"
+msgstr ""
+
+#: hub/models.py:318 mobilpay/models.py:13
+msgid "NGO"
+msgstr ""
+
+#: hub/models.py:320 hub/models.py:348 hub/templates/ngo/detail.html:277
+msgid "Title"
+msgstr ""
+
+#: hub/models.py:323 hub/models.py:390
+msgid "Kind"
+msgstr ""
+
+#: hub/models.py:324 hub/models.py:391 hub/templates/ngo/list.html:99
+msgid "Urgency"
+msgstr ""
+
+#: hub/models.py:331 hub/models.py:423
+msgid "Resolved on"
+msgstr ""
+
+#: hub/models.py:332
+msgid "Closed on"
+msgstr ""
+
+#: hub/models.py:340
+msgid "Manage needs"
+msgstr ""
+
+#: hub/models.py:341
+msgid "Manage need"
+msgstr ""
+
+#: hub/models.py:347 hub/models.py:529 hub/templates/ngo/detail.html:276
+msgid "Date"
+msgstr ""
+
+#: hub/models.py:349
+msgid "Receipt"
+msgstr ""
+
+#: hub/models.py:350
+msgid "Amount spent (RON)"
+msgstr ""
+
+#: hub/models.py:356 hub/models.py:357
+msgid "Report"
+msgstr ""
+
+#: hub/models.py:365
+msgid "Message"
+msgstr ""
+
+#: hub/models.py:368
 msgid "Read on"
 msgstr ""
 
-#: hub/models.py:279
+#: hub/models.py:374
 msgid "NGO Helper"
 msgstr ""
 
-#: hub/models.py:280
+#: hub/models.py:375
 msgid "NGO Helpers"
 msgstr ""
 
-#: hub/models.py:292
+#: hub/models.py:387
 msgid "Organization"
 msgstr ""
 
-#: hub/models.py:305
+#: hub/models.py:400
 msgid "Organization's short description - max 500 chars."
 msgstr ""
 
-#: hub/models.py:307
-msgid "Contact person's name"
-msgstr ""
-
-#: hub/models.py:309
-msgid "Contact person's phone"
-msgstr ""
-
-#: hub/models.py:310
-msgid "Has contract with Netopia"
-msgstr ""
-
-#: hub/models.py:316
-msgid "Link to website or Facebook"
-msgstr ""
-
-#: hub/models.py:318
-msgid "Active"
-msgstr ""
-
-#: hub/models.py:320 mobilpay/models.py:27 mobilpay/models.py:46
-msgid "Registered on"
-msgstr ""
-
-#: hub/models.py:323
-msgid "NGO register requests"
-msgstr ""
-
-#: hub/models.py:324
-msgid "NGO register request"
-msgstr ""
-
-#: hub/models.py:390
-msgid "NGO pending requests"
-msgstr ""
-
-#: hub/models.py:391
-msgid "NGO pending request"
-msgstr ""
-
-#: hub/models.py:400
-msgid "Motvation"
-msgstr ""
-
-#: hub/models.py:400
-msgid "Motivate your decision"
-msgstr ""
-
-#: hub/models.py:405
-msgid "NGO Register requests votes"
+#: hub/models.py:404
+msgid "Past actions"
 msgstr ""
 
 #: hub/models.py:406
-msgid "NGO Register requests vote"
+msgid "Description of past actions, with empahsis on COVID-19 related actions."
 msgstr ""
 
-#: hub/templates/admin/change_form.html:27
+#: hub/models.py:409
+msgid "The types of resources you anticipate you will need."
+msgstr ""
+
+#: hub/models.py:414
+msgid "Contact person's phone"
+msgstr ""
+
+#: hub/models.py:415
+msgid "Has contract with Netopia"
+msgstr ""
+
+#: hub/models.py:420
+msgid "Link to website or Facebook"
+msgstr ""
+
+#: hub/models.py:422
+msgid "Active"
+msgstr ""
+
+#: hub/models.py:425
+msgid "Avatar"
+msgstr ""
+
+#: hub/models.py:425
+msgid "Image should be 500x500px"
+msgstr ""
+
+#: hub/models.py:431 mobilpay/models.py:29 mobilpay/models.py:48
+msgid "Registered on"
+msgstr ""
+
+#: hub/models.py:434
+msgid "Votes history"
+msgstr ""
+
+#: hub/models.py:435
+msgid "Vote history"
+msgstr ""
+
+#: hub/models.py:517
+msgid "Pending NGOs"
+msgstr ""
+
+#: hub/models.py:518
+msgid "Pending NGO"
+msgstr ""
+
+#: hub/models.py:525
+msgid "Vote"
+msgstr ""
+
+#: hub/models.py:527
+msgid "Motivation"
+msgstr ""
+
+#: hub/models.py:527
+msgid "Motivate your decision"
+msgstr ""
+
+#: hub/models.py:532
+msgid "My votes"
+msgstr ""
+
+#: hub/models.py:533
+msgid "My vote"
+msgstr ""
+
+#: hub/password_validation.py:14
+msgid "Your new password must be different."
+msgstr ""
+
+#: hub/password_validation.py:17
+msgid ""
+"Please correct the error below. Your new password must be different. Please "
+"try again."
+msgstr ""
+
+#: hub/templates/about.html:17
+msgid "About RoHelp"
+msgstr ""
+
+#: hub/templates/about.html:20
+msgid ""
+"Right now we are in the midst of what is probably the biggest crisis of our "
+"lifetime, a crisis that we are all vulnerable to, regardless of where we are "
+"or our social context, a crisis whose effects will be felt for many months "
+"to come. Fortunately the NGO sector is on the front lines of the battle "
+"against the effects of the epidemic; from covering gaps in the health system "
+"to creating or supplementing response capacity for the public sector or "
+"offering support to those most vulnerable, Romanian NGOs, both small and "
+"large, have been vital in protecting each and everyone of us."
+msgstr ""
+
+#: hub/templates/about.html:22
+msgid ""
+"Despite consistent support from the business sector, NGO efforts that we "
+"depend upon can't go on as is in the months to come and can become "
+"sustainable only if we too contribute."
+msgstr ""
+
+#: hub/templates/about.html:24
+msgid ""
+"Code for Romania, through its volunteer community, had developed RoHelp.ro, "
+"a complete digital platform offered to NGOs actively involved in limiting "
+"the effects of the COVID-19 epidemic, by helping collect the resources they "
+"dearly need. By integrating the  Netopia payment processor with the "
+"platform, Rohelp.ro helps participating eligible organizations directly "
+"collect the resources they need, with no hidden fees or middlemen. NGOs can "
+"also request and receive material or volunteer resources directly through "
+"the platform. The needs of every organization on the platform can be seen "
+"according to how stringent the need is and where the organization is located."
+msgstr ""
+
+#: hub/templates/about.html:26
+msgid ""
+"RoHelp.ro is a platform built with the support of the Romanian American "
+"Foundation, ING Bank and The Vodafone Foundation Romania in partnership with "
+"the Romanian Government via the Authority for the Digitalization of Romania, "
+"the Emergency Services Department and the Romanian Community Foundations "
+"Federation. It is open to all associations and foundations legally "
+"registered in Romania that are implementing measures to help ease the "
+"COVID-19 crisis and are not political in nature nor discriminate on the "
+"basis of  race, ethnicity, gender, sexual orientation, religion, physical or "
+"mental ability or social/economic class."
+msgstr ""
+
+#: hub/templates/about.html:28
+msgid ""
+"To ensure that every donation is accounted for and used for its intended "
+"purpose Code for Romania in partnership with the Romanian Community "
+"Foundations Federation has developed a clear set of rules and a transparent "
+"validation and reporting system, that will help us ensure that the platform "
+"is administered to the benefit of all."
+msgstr ""
+
+#: hub/templates/about.html:31
+msgid "How RoHelp got started"
+msgstr ""
+
+#: hub/templates/about.html:33
+#, python-format
+msgid ""
+"\n"
+"                    “There is no uniform distribution of resources” is the "
+"19th issue identified in Code for Romania’s own <a href=\"%(link)s\" target="
+"\"%(target)s\" rel=\"%(rel)s\">2019-2020 Civic Labs year 1</a> research "
+"paper in the field of Emergency Preparedness and Disaster Management in the "
+"case of a major earthquake. In brief, starting from the analysis of the "
+"response in the case of Mexico or Italy, two countries that have had to "
+"manage response to a major earthquake recently (2017 and 2016, respectively) "
+"we realized that any fundraising effort during or after a major disaster "
+"comes together with a multitude of risks, including the sudden appearance of "
+"phantom organizations or focusing aid to just a few areas of intervention,, "
+"either thematic or geographical, according to the communication capacity of  "
+"NGOs in the field. \n"
+"                "
+msgstr ""
+
+#: hub/templates/about.html:38
+#, python-format
+msgid ""
+"\n"
+"                    The Code for Romania COVID-19 Task Force used the Civic "
+"Labs research program results in the field of\n"
+"                    emergency response, and adapted our <a href=\"%(link)s\" "
+"target=\"%(target)s\" rel=\"%(rel)s\">Aid Management Hub</a>\n"
+"                    prototype to the present situation, developing RoHelp.ro "
+"in record time.\n"
+"                "
+msgstr ""
+
+#: hub/templates/about.html:47
+msgid ""
+"RoHelp is a project done through the efforts of the Code for Romania "
+"volunteers and team. Code for Romania is an independent, unaffiliated and "
+"apolitical NGO. This project is developed as part of the Code for Romania "
+"Task Force, in partnership with the Romanian Community Foundations "
+"Federation, the Romanian Government via the Authority for the Digitalization "
+"of Romania and the Emergency Services Department."
+msgstr ""
+
+#: hub/templates/about.html:48
+msgid ""
+"The Code for Romania Task Force is a program supported by ING Bank, The "
+"Vodafone Foundation Romania and the Romanian American Foundation to which we "
+"owe our thanks."
+msgstr ""
+
+#: hub/templates/about.html:60
+msgid "Media partners"
+msgstr ""
+
+#: hub/templates/about.html:78 hub/templates/contact.html:45
+#: hub/templates/cookies.html:102 hub/templates/ngo/base.html:122
+#: hub/templates/rules.html:88 hub/templates/terms_and_conditions.html:122
+msgid "Useful instruments"
+msgstr ""
+
+#: hub/templates/admin/base_site.html:13
+msgid "View site"
+msgstr ""
+
+#: hub/templates/admin/base_site.html:16
+msgid "Themes"
+msgstr ""
+
+#: hub/templates/admin/base_site.html:21
+msgid "Documentation"
+msgstr ""
+
+#: hub/templates/admin/base_site.html:26
+msgid "Change password"
+msgstr ""
+
+#: hub/templates/admin/base_site.html:30
+msgid "Log out"
+msgstr ""
+
+#: hub/templates/admin/change_form.html:22
 #: hub/templates/admin/change_list.html:38
 msgid "Please correct the error below."
 msgstr ""
 
-#: hub/templates/admin/change_form.html:27
+#: hub/templates/admin/change_form.html:22
 #: hub/templates/admin/change_list.html:38
 msgid "Please correct the errors below."
 msgstr ""
 
-#: hub/templates/admin/change_form.html:68
+#: hub/templates/admin/change_form.html:63
 msgid "Minimize"
 msgstr ""
 
-#: hub/templates/admin/change_form.html:71
+#: hub/templates/admin/change_form.html:66
 msgid "Tools"
 msgstr ""
 
 #: hub/templates/admin/change_list.html:69
 msgid "Filter"
+msgstr ""
+
+#: hub/templates/admin/search_form.html:14
+msgid "Search"
+msgstr ""
+
+#: hub/templates/admin/search_form.html:18
+#, python-format
+msgid ""
+"%(counter)s\n"
+"        result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: hub/templates/admin/search_form.html:22
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: hub/templates/admin/search_form.html:23
+msgid "Show all"
 msgstr ""
 
 #: hub/templates/admin/submit_line.html:13
@@ -308,15 +586,416 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
+#: hub/templates/bulma/file.html:11
+msgid "Upload file"
+msgstr ""
+
+#: hub/templates/contact.html:17 hub/templates/footer.html:27
+msgid "Contact us"
+msgstr ""
+
+#: hub/templates/contact.html:20
+#, python-format
+msgid ""
+"\n"
+"                <span class=\"%(class)s\">If you are an NGO representative</"
+"span>, and your NGO is legally registered in Romania while also directly "
+"participating in the COVID-19 relief response you can join RoHelp here. If "
+"you meet all eligibility criteria and your organization is validated in "
+"accordance to the rules and terms of use of the platform you'll be able to "
+"access your NGO account on the platform and will be able to solicit support, "
+"be it financial, material or volunteer-based.\n"
+"                "
+msgstr ""
+
+#: hub/templates/contact.html:25
+#, python-format
+msgid ""
+"\n"
+"                <span class=\"%(class)s\">If you want to help out</span>, "
+"you can use the platform to identify the most stringent needs and active "
+"NGOs in your area or at the national level, and help out in any way you can, "
+"by donations, material support or through your skillset, as a volunteer. "
+"Even any social media share of a NGO page or city page from the RoHelp "
+"platform helps in the COVID-19 relief effort.\n"
+"                "
+msgstr ""
+
+#: hub/templates/contact.html:31
+msgid ""
+"If you encounter any technical difficulty, send us an e-mail: rohelp@code4.ro"
+msgstr ""
+
+#: hub/templates/cookies.html:17
+msgid "Confidentiality Policy"
+msgstr ""
+
+#: hub/templates/cookies.html:20
+msgid ""
+"This website uses cookies in order to provide users with a better browsing "
+"experience as well as services tailored to their needs and interests."
+msgstr ""
+
+#: hub/templates/cookies.html:21
+msgid ""
+"“Cookies” are used to facilitate access and delivery for the services "
+"required by Internet users such as personalizing settings (language, "
+"country, prices displayed in local currency etc.) “Cookies”, based on the "
+"information about users that they gather, help operators make their websites "
+"more effective so that they can be easier to access by users. They also make "
+"online advertising more effective and can help multimedia apps and content "
+"from other websites be more easily embedded, to make navigation easier."
+msgstr ""
+
+#: hub/templates/cookies.html:23
+msgid "What is a “Cookie”?"
+msgstr ""
+
+#: hub/templates/cookies.html:24
+msgid ""
+"Cookie (\"browser cookie\" or \"HTTP cookie\") is a small file, a succession "
+"of letters and numbers, that is stored on any terminal with Internet access "
+"(computers, mobile phones, tablets etc.) and is installed  upon a request "
+"from a server to a browser (ex: Internet Explorer, Chrome). “Cookies” do not "
+"contain any software programs, viruses or spyware and cannot access "
+"information on the user’s hard drive."
+msgstr ""
+
+#: hub/templates/cookies.html:25
+msgid ""
+"Cookie consists of a name and content, the length of its existence is "
+"limited, and it can be accessed again by the webserver when a user returns "
+"to the  website associated with that server."
+msgstr ""
+
+#: hub/templates/cookies.html:26
+msgid ""
+"Cookies do not request personal information nor do they personally identify "
+"internet users."
+msgstr ""
+
+#: hub/templates/cookies.html:27
+msgid ""
+"Session cookies - are cookies temporarily stored in the browser’s history "
+"where they are stored until the user leaves that website or closes the "
+"browser window."
+msgstr ""
+
+#: hub/templates/cookies.html:28
+msgid ""
+"Persistent Cookies - These are stored, for a predetermined length of time, "
+"on a computer hard drive or similar equipment. Persistent cookies include "
+"those placed by a different website than the one  the user is visiting at "
+"the time, so-called “third-party cookies”- that can be anonymously used to "
+"track a user’s interests - allowing them to receive ads more relevant to "
+"their interests."
+msgstr ""
+
+#: hub/templates/cookies.html:30
+msgid "What are the advantages of “Cookies”?"
+msgstr ""
+
+#: hub/templates/cookies.html:31
+msgid ""
+"A cookie contains information that connects users to a specific website. If "
+"a browser accesses the same server again it can read the information already "
+"stored in the cookie and react accordingly."
+msgstr ""
+
+#: hub/templates/cookies.html:33
+msgid "What is the average lifespan of a cookie?"
+msgstr ""
+
+#: hub/templates/cookies.html:34
+msgid ""
+"There are cookies that are exclusively used for a single session - these are "
+"no longer stored after the user has left the website. Permanent cookies are "
+"stored and reused every time the user returns to that website but can be "
+"deleted at any time by the user."
+msgstr ""
+
+#: hub/templates/cookies.html:36
+msgid "What are third party cookies?"
+msgstr ""
+
+#: hub/templates/cookies.html:37
+msgid ""
+"Some parts of the content or services on the accessed website can be placed "
+"there by third parties via banners, boxes or links - and all these "
+"instruments can contain cookies. These are called “third-party cookies” "
+"because they are not placed by the owner of the respective website, third "
+"party cookies do however have to abide by the law and by the site owner’s "
+"confidentiality policy."
+msgstr ""
+
+#: hub/templates/cookies.html:39
+msgid "How does this website use cookies?"
+msgstr ""
+
+#: hub/templates/cookies.html:40
+msgid "Upon visiting this website you may receive the following cookie types:"
+msgstr ""
+
+#: hub/templates/cookies.html:42 hub/templates/cookies.html:48
+msgid "Cookies used for finalizing your donation"
+msgstr ""
+
+#: hub/templates/cookies.html:43 hub/templates/cookies.html:51
+msgid "Cookies that are used to analyse general user data"
+msgstr ""
+
+#: hub/templates/cookies.html:44 hub/templates/cookies.html:54
+msgid "Registration cookies"
+msgstr ""
+
+#: hub/templates/cookies.html:46
+msgid "Some cookies can be third-party cookies."
+msgstr ""
+
+#: hub/templates/cookies.html:49
+msgid ""
+"Filling out the donation form consists of several steps. In order to follow "
+"up with a donor and offering them the needed documentation we will save a "
+"cookie that offers us a way to identify that donor (like a ticket). Every "
+"time the form is filled a new cookie is created or the existing one is "
+"overwritten."
+msgstr ""
+
+#: hub/templates/cookies.html:52
+msgid ""
+"Every time I use your visit this website the analytics software provided by "
+"a third-party generates a cookie used to analyze the user profile. Cookie "
+"tells us if you've ever visited this website before. The browser will let us "
+"know if you have this cookie installed, and if not, this cookie is "
+"generated. This allows us to Monitor the number of unique users visiting "
+"this website as well as how often they return. This cookie cannot be used to "
+"identify physical persons and it is only used for statistical purposes."
+msgstr ""
+
+#: hub/templates/cookies.html:55
+msgid ""
+"When registering to this website, we generate a cookie with your "
+"registration data. The cookie helps us in the next steps for communicating "
+"with the server. It is possible for this cookie to remain on your device if "
+"you do not follow through with all the registration steps.  However, this "
+"cookie will be overwritten the next time you attempt to register on this "
+"website."
+msgstr ""
+
+#: hub/templates/cookies.html:57
+msgid "Other third party cookies"
+msgstr ""
+
+#: hub/templates/cookies.html:58
+msgid ""
+"On some pages third parties can set up their own anonymous cookies for "
+"purposes of tracking an app’s success rate, or for customizing that app. Due "
+"to the way it is used, this website cannot access these cookies, just as "
+"third parties cannot access the cookies that belong to this website. For "
+"example when you share a page using a “share to social network” button on "
+"this website, that social network can track your activity."
+msgstr ""
+
+#: hub/templates/cookies.html:60
+msgid "What kind of information is stored and accessed through cookies?"
+msgstr ""
+
+#: hub/templates/cookies.html:61
+msgid ""
+"Cookies save information in a small text file allowing a website to "
+"recognize a browser. The web server will recognize the browser up until the "
+"cookie expires or is deleted. The cookie stores important information that "
+"improve the browsing experience (e.g. a serial number for your donation)"
+msgstr ""
+
+#: hub/templates/cookies.html:63
+msgid "Why are cookies important to the Internet?"
+msgstr ""
+
+#: hub/templates/cookies.html:64
+msgid ""
+"Cookies are one of the most important tools for a seamless, efficient "
+"Internet experience, helping to generate friendly browsing experiences "
+"tailored to the needs of every user. Refusing to accept cookies or "
+"deactivating them can make some websites impossible to use."
+msgstr ""
+
+#: hub/templates/cookies.html:65
+msgid ""
+"Refusing to accept cookies or deactivating them does not mean that you will "
+"no longer receive online ads, only that these ads will no longer take your "
+"interests or preferences into account as determined by your browsing "
+"behavior."
+msgstr ""
+
+#: hub/templates/cookies.html:67
+msgid "Security and confidentiality concerns"
+msgstr ""
+
+#: hub/templates/cookies.html:68
+msgid ""
+"Cookies are NOT viruses! They use plain text formats. They do not contain "
+"code strings and therefore cannot be triggered remotely nor can they "
+"activate themselves. They cannot duplicate or self-replicate across "
+"networks. As they cannot do any of the above that cannot be considered "
+"viruses."
+msgstr ""
+
+#: hub/templates/cookies.html:69
+msgid ""
+"However, some cookies can be used for bad purposes. As they can store user "
+"preferences and navigation history, both from a specific website and for a "
+"broad selection of sites, cookies can be used as a form of spyware. Many "
+"anti-spyware products know this and constantly mark cookies to be deleted as "
+"part of anti-virus or anti-spyware scans."
+msgstr ""
+
+#: hub/templates/cookies.html:70
+msgid ""
+"Most browsers have privacy settings allowing you to select the types of "
+"cookies to accept, their duration as well as auto-delete features that "
+"remove cookies once the user has visited a certain site."
+msgstr ""
+
+#: hub/templates/cookies.html:72
+msgid "Other Cookie security aspects"
+msgstr ""
+
+#: hub/templates/cookies.html:73
+msgid ""
+"As identity protection is very important and represents the right of every "
+"internet user, it is important for you to know what potential problems may "
+"be caused by cookies. Because cookies are used to constantly transmit "
+"information both ways between the browser and the website, unauthorised "
+"persons looking to compromise your security may intercept the information "
+"contained by cookies. Although this is very rare it can happen if your "
+"browser accesses the website by using an unencrypted network (e.g. an "
+"unsecured Wifi network)."
+msgstr ""
+
+#: hub/templates/cookies.html:74
+msgid ""
+"Other cookie-based attacks use wrong cookie settings on servers. If a "
+"website does not ask the browser to use encrypted channels only, attackers "
+"can use this vulnerability to trick browsers into  sending information via "
+"unencrypted channels. Attackers then use this information to access "
+"unauthorised websites. It is very important to take great care in choosing "
+"the right methods of protecting your personal information."
+msgstr ""
+
+#: hub/templates/cookies.html:76
+msgid "Advice for safe and responsible cookie-based browsing "
+msgstr ""
+
+#: hub/templates/cookies.html:77
+msgid ""
+"To the flexibility and the fact that the majority of the largest and most "
+"visited websites use cookies, they are inevitable. Deactivating cookies will "
+"no longer allow user access to some of the most important websites such as "
+"Youtube, Gmail, Yahoo and others. Here's some advice that can help you "
+"browse safely while retaining cookies:"
+msgstr ""
+
+#: hub/templates/cookies.html:79
+msgid ""
+"Customize your browser cookie settings to allow for a comfortable security "
+"level. If cookies are not a problem for you and you are the only person "
+"using that device you can set long cookie retention intervals in order to "
+"store your browsing history and your personal access data. If you share the "
+"device or computer you may want to set up the browser to delete your "
+"individual browsing data every time it is closed. This is one way to access "
+"websites that place cookies on your shared computer while deleting all your "
+"browsing data when closing the session."
+msgstr ""
+
+#: hub/templates/cookies.html:80
+msgid "install an anti-spyware app and keep it up-to-date"
+msgstr ""
+
+#: hub/templates/cookies.html:82
+msgid ""
+"Many anti-spyware apps include website attack detection. These apps prevent "
+"the browser from accessing websites that might exploit the browser’s "
+"vulnerabilities or download dangerous software. Ensure your browser is up-to-"
+"date. Many cookie-based attacks exploit the weak points of old browser "
+"versions."
+msgstr ""
+
+#: hub/templates/cookies.html:83
+msgid ""
+"Cookies are everywhere and cannot be avoided if you wish to access some of "
+"the largest and best websites on the internet, either local or "
+"international. The clear understanding of the way cookies work and the "
+"benefits they bring you can take the necessary security measures so that you "
+"always have a safe and satisfactory browsing experience."
+msgstr ""
+
+#: hub/templates/cookies.html:85
+msgid "How can I turn cookies off?"
+msgstr ""
+
+#: hub/templates/cookies.html:86
+msgid ""
+"Refusing to accept cookies or deactivating them can make some websites "
+"difficult or impossible to navigate or use. Refusing to accept cookies also "
+"does not mean that you will no longer receive online ads."
+msgstr ""
+
+#: hub/templates/cookies.html:87
+msgid ""
+"You can set up your browser to reject cookies automatically or you can "
+"select only some websites where cookies are enabled. But, for example, if "
+"you turn off cookies on this website you can not follow through with the "
+"next steps in filling out the form."
+msgstr ""
+
+#: hub/templates/cookies.html:88
+msgid ""
+"Modern browsers offer the ability to change cookie settings. You can usually "
+"find cookie settings under the “options” tab or the “preferences” menu of "
+"your browser."
+msgstr ""
+
+#: hub/templates/cookies.html:89
+msgid ""
+"For third-party cookies settings and for more information about online ad "
+"confidentiality, IAB Romania offers the following website: http://www."
+"youronlinechoices.com/ro/"
+msgstr ""
+
 #: hub/templates/developed-by.html:7
 msgid "A project developed by"
 msgstr ""
 
 #: hub/templates/developed-by.html:15
-msgid "Partnership with"
+msgid "in partnership with"
 msgstr ""
 
-#: hub/templates/footer.html:27
+#: hub/templates/django/forms/widgets/clearable_file_input.html:5
+msgid "Upload document"
+msgstr ""
+
+#: hub/templates/footer.html:10
+msgid "Romanian Government"
+msgstr ""
+
+#: hub/templates/footer.html:14
+msgid "Department for Emergency Situations"
+msgstr ""
+
+#: hub/templates/footer.html:17
+msgid "Ministry of Health"
+msgstr ""
+
+#: hub/templates/footer.html:23
+msgid "Terms and conditions"
+msgstr ""
+
+#: hub/templates/footer.html:25
+msgid "Cookie policy"
+msgstr ""
+
+#: hub/templates/footer.html:37
 msgid ""
 "An independent, non-partisan, non-political, non-govermental organization."
 msgstr ""
@@ -325,95 +1004,144 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: hub/templates/header.html:25 hub/templates/header.html:29
-#: hub/templates/header.html:33
-msgid "Link"
+#: hub/templates/header.html:25
+msgid "General rules"
+msgstr ""
+
+#: hub/templates/header.html:29
+msgid "Contact"
+msgstr ""
+
+#: hub/templates/header.html:34
+msgid "Admin Panel"
+msgstr ""
+
+#: hub/templates/header.html:38
+msgid "Logout"
+msgstr ""
+
+#: hub/templates/header.html:42
+msgid "Login"
+msgstr ""
+
+#: hub/templates/header.html:45
+msgid "Register"
 msgstr ""
 
 #: hub/templates/incubated-by.html:7
-msgid "Project incubated by"
+msgid "Project developed in the program"
 msgstr ""
 
-#: hub/templates/ngo/base.html:13
+#: hub/templates/ngo/base.html:11
 msgid "Search..."
 msgstr ""
 
-#: hub/templates/ngo/base.html:14
-msgid "Search"
+#: hub/templates/ngo/base.html:27
+msgid "Welcome to RoHelp"
 msgstr ""
 
-#: hub/templates/ngo/base.html:21
-msgid "Donate safely"
-msgstr ""
-
-#: hub/templates/ngo/base.html:24
+#: hub/templates/ngo/base.html:30
 msgid ""
-"Direct your aid towards one of the verified organizations below. They will "
-"manage the aid and resources you provide them with so that the people most "
-"in need receive them."
+"RoHelp is a fully-featured digital platform which lends itself to be used by "
+"all organizations which are actively involved in halting the spread of "
+"Covid-19. The main purpose of the paltform is to help organizations collect "
+"the resources they need. As a user, the platform will help you find the most "
+"pressing needs that organizations face across the country. As a result, it "
+"makes it easy for you to chose the cause you donate to, or the efforts you "
+"contribute to."
 msgstr ""
 
-#: hub/templates/ngo/base.html:53
-msgid "I want to help with money"
+#: hub/templates/ngo/base.html:44 hub/templates/ngo/base.html:46
+msgid "Red Cross"
 msgstr ""
 
-#: hub/templates/ngo/base.html:66
-msgid "I want to help with resources"
+#: hub/templates/ngo/base.html:48
+msgid ""
+"\n"
+"                        Societatea Națională de Cruce Roșie Română "
+"reprezintă punctul principal de colectare la nivel național, atât pentru "
+"donații financiare care vor fi utilizate în vederea achiziționarii de "
+"echipamente și materiale sanitare, respectiv produse și bunuri materiale "
+"care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe "
+"teritoriul național.\n"
+"                    "
 msgstr ""
 
-#: hub/templates/ngo/base.html:79
-msgid "I want to volunteer"
-msgstr ""
-
-#: hub/templates/ngo/base.html:102
-msgid "Useful instruments"
-msgstr ""
-
-#: hub/templates/ngo/detail.html:29
-msgid "About the organization"
-msgstr ""
-
-#: hub/templates/ngo/detail.html:41
-msgid "Donate money"
-msgstr ""
-
-#: hub/templates/ngo/detail.html:61
-msgid "Donate via Netopia"
-msgstr ""
-
-#: hub/templates/ngo/detail.html:75 hub/templates/ngo/donate.html:25
+#: hub/templates/ngo/base.html:56 hub/templates/ngo/base.html:58
+#: hub/templates/ngo/detail.html:86 hub/templates/ngo/donate.html:26
+#: hub/templates/ngo/list.html:217
 msgid "Donate"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:88
+#: hub/templates/ngo/base.html:75
+msgid "I want to help with money"
+msgstr ""
+
+#: hub/templates/ngo/base.html:87
+msgid "I want to help with resources"
+msgstr ""
+
+#: hub/templates/ngo/base.html:99
+msgid "I want to volunteer"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:33
+msgid "About the organization"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:47
+msgid "Donate money"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:73
+msgid "Donate via Netopia"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:101
 msgid "Donate via transfer"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:120
+#: hub/templates/ngo/detail.html:110
+msgid "CIF"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:112
+msgid "CUI"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:115
+msgid "Bank"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:135
 msgid "Donate resources"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:158
+#: hub/templates/ngo/detail.html:171
 msgid "Join as volunteer"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:193
+#: hub/templates/ngo/detail.html:205
 msgid "Donations"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:208
+#: hub/templates/ngo/detail.html:224
 msgid "Firstname"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:209
+#: hub/templates/ngo/detail.html:225
 msgid "Lastname"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:210 hub/templates/ngo/detail.html:248
+#: hub/templates/ngo/detail.html:226 hub/templates/ngo/detail.html:278
 msgid "Sum (RON)"
 msgstr ""
 
-#: hub/templates/ngo/detail.html:231
+#: hub/templates/ngo/detail.html:236 hub/templates/ngo/detail.html:242
+msgid "Anonymous"
+msgstr ""
+
+#: hub/templates/ngo/detail.html:257
 msgid "Reporting"
 msgstr ""
 
@@ -433,23 +1161,36 @@ msgstr ""
 msgid "volunteers"
 msgstr ""
 
-#: hub/templates/ngo/list.html:133 hub/templates/ngo/list.html:138
+#: hub/templates/ngo/list.html:44 hub/templates/ngo/list.html:79
+#: hub/templates/ngo/list.html:112 hub/templates/ngo/list.html:144
+msgid "All"
+msgstr ""
+
+#: hub/templates/ngo/list.html:132
+msgid "Tags"
+msgstr ""
+
+#: hub/templates/ngo/list.html:168 hub/templates/ngo/list.html:173
 msgid "Reset filters"
 msgstr ""
 
-#: hub/templates/ngo/list.html:194 hub/templates/shared/need_form.html:43
+#: hub/templates/ngo/list.html:219 hub/templates/shared/need_form.html:55
 msgid "I can help"
 msgstr ""
 
-#: hub/templates/register-ngo.html:11
+#: hub/templates/ngo/list.html:233
+msgid "No results matching query"
+msgstr ""
+
+#: hub/templates/register-ngo.html:7
 msgid "Do you represent a NGO or a Fund and could help?"
 msgstr ""
 
-#: hub/templates/register-ngo.html:14
+#: hub/templates/register-ngo.html:10
 msgid "Sign up to the platform and make it easy for those that want to help."
 msgstr ""
 
-#: hub/templates/register-ngo.html:19
+#: hub/templates/register-ngo.html:15
 msgid "I want my organisation to join!"
 msgstr ""
 
@@ -471,91 +1212,643 @@ msgid ""
 "used. Please request a new password reset."
 msgstr ""
 
-#: hub/templates/shared/pagination.html:8
-msgid "first"
+#: hub/templates/rules.html:17
+msgid ""
+"General Rules for associations and foundations accessing the RoHelp Platform"
+msgstr ""
+
+#: hub/templates/rules.html:19
+msgid ""
+"RoHelp is a relief management platform developed by the Code for Romania "
+"Association in partnership with the Romanian Government through the "
+"Authority for the Digitalization of Romania and administered by Code for "
+"Romania."
+msgstr ""
+
+#: hub/templates/rules.html:20
+msgid ""
+"RoHelp centralizes all the associations and foundations that are actively "
+"working to ameliorate the crisis generated by the COVID-19 epidemic by "
+"offering them a platform through which they can collect all the necessary "
+"financial and material resources necessary in their activities (e.g. monney, "
+"material aid, volunteer labor etc)."
+msgstr ""
+
+#: hub/templates/rules.html:21
+msgid ""
+"Financial Resources are collected by the associations and foundations that "
+"have registered an account with the Platform directly, through their "
+"allotted account, on the basis of a contract signed with the payment "
+"operator Netopia."
+msgstr ""
+
+#: hub/templates/rules.html:22
+msgid ""
+"The following types of entities are eligible for enrollment on the RoHelp "
+"Platform:"
+msgstr ""
+
+#: hub/templates/rules.html:26
+msgid ""
+"\n"
+"                    <b>active associations and foundations that are directly "
+"implementing support programs</b> in response to the COVID-19 crisis\n"
+"                    "
+msgstr ""
+
+#: hub/templates/rules.html:31
+msgid ""
+"\n"
+"                    <b>Associations and foundations that collect financial "
+"or material resources</b> in order to distribute them towards host "
+"organizations or other compatible initiatives (grant managers)\n"
+"                    "
+msgstr ""
+
+#: hub/templates/rules.html:36
+msgid ""
+"\n"
+"                    <b>The Red Cross</b>\n"
+"                    "
+msgstr ""
+
+#: hub/templates/rules.html:43
+msgid ""
+"\n"
+"                All associations and foundations that will use the RoHelp "
+"Platform for collecting financial or material resources <b>have to "
+"explicitly declare the destination for said resources as well as the way "
+"they will be used.</b>\n"
+"                "
+msgstr ""
+
+#: hub/templates/rules.html:47
+msgid ""
+"In order to enroll in and use the RoHelp Platform, associations and "
+"foundations have to submit a written request form, a request that will be "
+"analysed by a committee in order to establish if they are eligible."
+msgstr ""
+
+#: hub/templates/rules.html:48
+msgid ""
+"The  written request must include a description of the main activities that "
+"the association or foundation has been undergoing, with a focus on any "
+"programs or actions taken in the context of the crisis caused by the "
+"COVID-19 epidemic. The association or foundation must also include in the "
+"written request the types of resources that it anticipates as necessary for "
+"combatting the effects if the current epidemic. The request must be "
+"submitted along with electronic copies of the following documents: the first "
+"page of the last organizational yearly balance sheet (with the exception of "
+"organizations founded in the last 12 months), the statute of the association "
+"or foundation, with any confidential data blocked out as well as documents "
+"verifying that the asociation is in the national Associations and "
+"Foundations Registry."
+msgstr ""
+
+#: hub/templates/rules.html:49
+msgid ""
+"The eligibility criteria for enrolling in the platform are the following:"
+msgstr ""
+
+#: hub/templates/rules.html:52
+msgid "Filling out the enrollment form (in Romanian),"
+msgstr ""
+
+#: hub/templates/rules.html:53
+msgid "Submitting all required paperwork (see above)"
+msgstr ""
+
+#: hub/templates/rules.html:54
+msgid ""
+"The enrolling organization is involved in actions to solve or ameliorate the "
+"effects gof the COVID-19 epidemic crisis,"
+msgstr ""
+
+#: hub/templates/rules.html:55
+msgid ""
+"The enrolling organization is not involved in actions nor does it support "
+"causes of a political nature or that discriminate on the basis of ethnic "
+"background, race, gender, sexual orientation, religion, physical or mental "
+"ability or social/economic class, and the management of the organisation is "
+"not politically involved"
+msgstr ""
+
+#: hub/templates/rules.html:58
+msgid ""
+"An applicant’s eligibility will be determined by a committee formed by the "
+"following three members: a Code for Romania Representative, an Emergency "
+"Services Department (DSU) representative and a representative of the "
+"Community Foundations of Romania Federation."
+msgstr ""
+
+#: hub/templates/rules.html:59
+msgid ""
+"The committee members will ensure that there is no conflict of interest to "
+"hinder them from participating in this evaluatory capacity and, therefore, "
+"have no direct or indirect interes of a  financial, personal or any other "
+"nature that would prevent them from being impartial and independent."
+msgstr ""
+
+#: hub/templates/rules.html:60
+msgid ""
+"The committee will analyse the documents submitted by applicants and can ask "
+"for further documents or information. The decision regarding the applicant’s "
+"eligibility will be relayed to the applicant with a full explanation of the "
+"motives for said decision."
+msgstr ""
+
+#: hub/templates/rules.html:61
+msgid ""
+"If an applicant is refused access to the Platform they have the right to "
+"ask, a single time, for a re-evaluation, by transmitting setra documents and "
+"information."
+msgstr ""
+
+#: hub/templates/rules.html:64
+msgid ""
+"\n"
+"                Any applicant deemed eligible will sign a Partnership "
+"Agreement with Code for Romania, agreement that will detail each party’s "
+"rights and obligations regarding the use of the RoHelp Platform, "
+"<b>including the obligation of the association or foundation to declare and "
+"respect the destination of the material and financial resources collected "
+"through the Platform and the obligation to report how said resources are "
+"being used.</b>\n"
+"                "
+msgstr ""
+
+#: hub/templates/rules.html:69
+msgid ""
+"The reporting regarding the usage of resources collected through the "
+"Platform must be done after the first month of Platform use and every "
+"quarter afterwards, as well as at the end of collaboration. The reports will "
+"be analysed and validated by a committee with a similar makeup to the one "
+"validating the enrollments. The reporting will be done directly, via the "
+"platform, with each organization having the obligation to give out all "
+"requested information."
+msgstr ""
+
+#: hub/templates/rules.html:70
+msgid "The committee members are as follows"
+msgstr ""
+
+#: hub/templates/rules.html:72
+msgid ""
+"Romanian Community Foundations Federation: Cristina Vaileanu, Luiza Zamora, "
+"Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
+msgstr ""
+
+#: hub/templates/rules.html:73
+msgid "The Department for Emergency Situations: George Manea"
+msgstr ""
+
+#: hub/templates/rules.html:74
+msgid "Code for Romania: Septimius Pârvu, Raul Ritea"
+msgstr ""
+
+#: hub/templates/shared/need_form.html:47
+msgid "Send"
 msgstr ""
 
 #: hub/templates/shared/pagination.html:10
+msgid "first"
+msgstr ""
+
+#: hub/templates/shared/pagination.html:12
 msgid "previous"
 msgstr ""
 
-#: hub/templates/shared/pagination.html:15
+#: hub/templates/shared/pagination.html:20
 #, python-format
 msgid ""
 "\n"
 "            Page %(page)s of %(no_pages)s\n"
-"            \n"
 "        "
 msgstr ""
 
-#: hub/templates/shared/pagination.html:24
+#: hub/templates/shared/pagination.html:28
 msgid "next"
 msgstr ""
 
-#: hub/templates/shared/pagination.html:26
+#: hub/templates/shared/pagination.html:30
 msgid "last"
 msgstr ""
 
-#: hub/views.py:147 hub/views.py:212 hub/views.py:241
-msgid "TODO: add a success message"
+#: hub/templates/terms_and_conditions.html:18
+msgid "Terms and Conditions of use"
 msgstr ""
 
-#: hub/views.py:181
+#: hub/templates/terms_and_conditions.html:21
+msgid ""
+"The present document establishes general terms and conditions of use for the "
+"rohelp.ro website for its potential users or beneficiaries."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:22
+msgid ""
+"\"Rohelp.ro\" (henceforth referred to as \"the website\", \"the site\",  "
+"\"the Platform\", \"rohelp.ro\") is a complete digital platform that helps "
+"NGOs collect funds and manage their needs throughout the crisis generated by "
+"the COVID-19 pandemic, developed by the Code for Romania Association "
+"(henceforth, \"Code for Romania\") in partnership with the Romanian "
+"Government through the Authority for the Digitalization of Romania."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:23
+msgid ""
+"The Code for Romania Association is a legal entity, headquartered in "
+"Bucharest, Alba Iulia Place no. 7, I6 building, 1st floor, apt. 6, inscribed "
+"in the special registry of Associations and Foundations, part A, section I "
+"67/06.07.2016"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:25
+msgid "1. Purpose of the platform"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:27
+msgid ""
+"The main purpose of rohelp.ro is to transmit financial and in kind donations "
+"and facilitate access to volunteers for NGOs enrolled and validated on the "
+"platform, for the length of the COVID-19 crisis."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:29
+msgid ""
+"The site allo ws NGOs to enroll and create online profiles that showcases "
+"their work."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:30
+msgid ""
+"rohelp.ro also offers users of the platform who wish to support an NGO a "
+"form that collects their personal data, further detailed in article 2 of the "
+"present terms and conditions document"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:31
+msgid ""
+"The data collected via this form is used to send a message to the NGO been "
+"contacted or to make a donation as part of the platform via the Netopia "
+"payment processor."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:32
+msgid ""
+"The site also allows members of the general public to subscribe to our "
+"newsletter service, managed via the Mailchimp email platform. The data in "
+"the newsletter form are exclusively used to facilitate the transfer of "
+"information towards the users who want to access the newsletter service."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:35
+msgid ""
+"If the user does not want to fill any data in the platform he or she can"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:37
+#: hub/templates/terms_and_conditions.html:56
+msgid ""
+"independently donate to an organisation with a profile on the site, using "
+"the financial data that each NGO lists on its profile page or,"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:38
+#: hub/templates/terms_and_conditions.html:57
+msgid ""
+"independently contact an organisation in order to send a message or an offer "
+"of help using the contact data that each NGO lists on its profile page."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:41
+msgid ""
+"RoHelp facilitates collecting funds, resources and volunteers by the "
+"registered organisations. All the donations processed through this platform "
+"are managed by each organisation and they have the obligation of mentioning "
+"- on their dedicated pages - the purpose of their fundraising, as well as to "
+"report, on a monthly basis, on the final destination of the funds in the "
+"dedicated reporting section."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:43
+msgid "2. Use of Personal Data"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:44
+msgid ""
+"By filling in the forms available on the profile pages of each end you "
+"selected, we can collect the following personal data (henceforth referred to "
+"as “personal data”)"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:46
+msgid "name and surname"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:47
+msgid "e-mail"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:48
+msgid "phone number"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:51
+msgid "3. Grounds for data processing"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:52
+msgid ""
+"Code for Romania uses personal data for the sole purpose of helping users of "
+"the site interact with one or more organisations registered on rohelp.ro."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:53
+msgid ""
+"Code for Romania uses your personal data in order to allow  contacted NGOs "
+"to get back to you after your message has been sent."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:54
+msgid "Should you not want your personal data used you can:"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:60
+msgid ""
+"These personal data are directly sent to the NGO, they cannot be used in "
+"anyway by Code for Romania."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:62
+msgid "4. Length of data storage"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:63
+msgid ""
+"Personal data is temporarily stored for the duration of rohelp.ro’s "
+"functioning, as part of the COVID-19 pandemic response"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:65
+msgid "5. Submittal of personal data to third parties"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:66
+msgid ""
+"Code for Romania will only supply your personal data to the NGOs of your "
+"choice. Submitting a message to an organisation registered in the platform "
+"constitutes  expressed consent for that organisation to contact you in "
+"return. The organisation agrees to confidentiality, guaranteeing that your "
+"personal data is kept safe"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:67
+msgid ""
+"Data can also be supplied to institutions or authorities as well as to other "
+"accredited state bodies, on the basis and within the bounds of the law, only "
+"as part of an express request by said authorities."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:69
+msgid "6. Your Rights"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:70
+msgid ""
+"As a user of rohelp.ro, in accordance with Law no. 679/2016 as well as, "
+"beginning with the 25th of May 2018, in accordance with the General Data "
+"Protection Regulation, you have the following rights:"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:72
+msgid ""
+"the right to be informed about the use of your personal data by Code for "
+"Romania;"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:73
+msgid ""
+"the right to access your personal data, on demand and for free for one "
+"request per annum;"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:74
+msgid ""
+"the right to intervene in, rectify, delete or transfer your personal data on "
+"demand and for free;"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:75
+msgid ""
+"the right to contact the National Authority for the Oversight of the Use of "
+"Personal Data (headquartered in Bucharest, Sector 1, General Ghe. Magheru "
+"Boulevard, www.dataprotection.ro) or to recourse to the justice system, in "
+"order to defend your rights as guaranteed by law;"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:76
+msgid "the right to oppose and to the individual automated decisional process;"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:77
+msgid ""
+"from the 25th of May 2018, in accordance with the General Data Protection "
+"Regulation, the right to restrict the use of your data."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:80
+msgid "7. Security and confidentiality"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:81
+msgid ""
+"The protection of your personal data while it is being used is a main and "
+"major concern for Code for Romania, which is why all personal data collected "
+"as part of your browsing rohelp.ro is processed according to Romanian legal "
+"provisions on data protection. Code for Romania uses cutting edge technology "
+"and takes all the reasonable technical measures to ensure that your personal "
+"data is kept and transmitted securely and confidentially."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:82
+msgid ""
+"All personal data used on this site is stored and processed on servers "
+"situated within the European Union, falling under EU personal data "
+"protection legislation. No information offered on this website leaves "
+"European Union territory."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:83
+msgid ""
+"Code for Romania will not reveal personal data regarding your visits to this "
+"website, with the sole exception of proper legal requests by the authorities "
+"or situations mentioned as part of this Terms and Conditions document."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:84
+msgid ""
+"If we are to discover an incident regarding personal data security that "
+"presents a risk to the rights and liberties of our users, we will notify the "
+"National Authority for the Oversight of the Use of Personal Data within 72 "
+"hours. If the security incident is of such a nature as to present a high "
+"risk to your rights and liberties, you will be notified as well."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:86
+msgid "8. Trademark and Copyright"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:87
+msgid ""
+"The copyright for all information on this website belongs to Code for "
+"Romania. No material present on this website can be reproduced, wholly or in "
+"part, or modified without the express approval of Code for Romania, the "
+"copyright holder."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:89
+msgid "All rights reserved."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:90
+msgid ""
+"The use of this site for the purpose of destroying or altering it, its "
+"security or its contents ior for discrediting or harrassin rohelp.ro or Code "
+"for Romania is strictly forbidden."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:91
+msgid ""
+"Code for Romania will apply all technical and organisational security "
+"measures in order to protect the data under its control against any and all "
+"attempts, accidental or intentional, to manipulate, lose or destroy them as "
+"well as to prevent the access of unauthorised persons."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:94
+msgid "9. Changes to the general Terms and Conditions for using the Site"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:95
+msgid ""
+"“The General Terms and Conditions” document constitutes, in its entirety, an "
+"agreement between yourself and Code for Romania for the use of rohelp.ro."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:96
+msgid ""
+"Code for Romania reserves the right to revise and update “The General Terms "
+"and Conditions” at any time, with no prior notification or need for user "
+"consent."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:97
+msgid ""
+"For any further questions regarding the information on this page please "
+"write to rohelp@code4.ro."
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:99
+msgid "10. About Code for Romania"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:101
+#, python-format
+msgid ""
+"\n"
+"                Code for Romania is an independent, unaffiliated and "
+"apolitical NGO, founded in 2016, whose main purpose is to mobilise young IT "
+"professionals to create digital tools that help solve social problems. Code "
+"for Romania was founded and operates in accordance to  Romanian law, its "
+"constitutive documents, its statute and its <a href=\"%(link)s\" target="
+"\"%(target)s\">code of conduct</a>.\n"
+"                "
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:106
+msgid "11. Contact Code for Romania"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:107
+msgid ""
+"For any questions or issues, as well as to ensure your rights in regards to "
+"the processing of personal data by Code for Romania, you can contact us at:"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:108
+msgid ""
+"Alba Iulia Place no. 7, I6 building, 1st floor, apt. 6, Bucharest, Romania"
+msgstr ""
+
+#: hub/templates/terms_and_conditions.html:109
+msgid "rohelp@code4.ro"
+msgstr ""
+
+#: hub/views.py:232
+msgid "Thank you for your help!"
+msgstr ""
+
+#: hub/views.py:266
 msgid "Missing or invalid NGO need."
 msgstr ""
 
-#: hub/views.py:202
-msgid "[RO HELP] New message for {} "
+#: hub/views.py:302
+msgid ""
+"Thank you for registering your ONG. An email was sent with the next steps."
 msgstr ""
 
-#: hub/views.py:231
-msgid "[RO HELP] New NGO"
+#: hub/views.py:323
+msgid "Thank you for your donation!"
+msgstr ""
+
+#: mobilpay/admin.py:22
+msgid "Responses"
 msgstr ""
 
 #: mobilpay/models.py:17
 msgid "Order ID"
 msgstr ""
 
-#: mobilpay/models.py:20
+#: mobilpay/models.py:19
 msgid "First name"
 msgstr ""
 
-#: mobilpay/models.py:21
+#: mobilpay/models.py:20
 msgid "Last name"
 msgstr ""
 
-#: mobilpay/models.py:25
+#: mobilpay/models.py:27
 msgid "Details"
 msgstr ""
 
-#: mobilpay/models.py:26
+#: mobilpay/models.py:28
 msgid "Amount"
 msgstr ""
 
-#: mobilpay/models.py:34
+#: mobilpay/models.py:36
 msgid "Payment Orders"
 msgstr ""
 
-#: mobilpay/models.py:35
+#: mobilpay/models.py:37
 msgid "Payment Order"
 msgstr ""
 
-#: mobilpay/models.py:52
+#: mobilpay/models.py:54
 msgid "Payment responses"
 msgstr ""
 
-#: mobilpay/models.py:53
+#: mobilpay/models.py:55
 msgid "Payment response"
 msgstr ""
 
-#: mobilpay/templates/mobilpay/initialize_payment.html:8
+#: mobilpay/templates/mobilpay/initialize_payment.html:10
 msgid "You are being redirected to payment website"
 msgstr ""
 
-#: ro_help/settings/base.py:178
+#: ro_help/settings/base.py:208
 msgid "COVID-19 RO HELP"
 msgstr ""
 
-#: ro_help/settings/base.py:179
+#: ro_help/settings/base.py:209
 msgid "RO HELP"
 msgstr ""

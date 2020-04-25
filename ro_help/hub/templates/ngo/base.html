@@ -3,98 +3,71 @@
 {% load spurl %}
 {% load i18n %}
 
-
 {% block content %}
-<div class="container is-flex" style="justify-content: flex-end;">
+<div class="search-wrapper container is-flex">
     <form action="{% url 'ngos' %}" method="GET">
         <div class="field border-b">
             <p class="control has-icons-right ">
                 <input class="input search-input" type="text" name="q" value="{{ current_search }}" placeholder="{% trans 'Search...' %}">
-                <span class="icon is-small is-right">
-                    <i class="fas fa-search"></i>
-                </span>
+                <label class="search-icon">
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="submit" style="display: none;"/>
+                </label>
             </p>
         </div>
     </form>
 </div>
 
 <div class="container">
-    <div id="donate_safely" class="container">
-        <h1 class="donate-title">
-            {% trans "Donate safely" %}
-        </h1>
-        <p class="donate-subtitle">
-            {% trans "Direct your aid towards one of the verified organizations below. They will manage the aid and resources you provide them with so that the people most in need receive them." %}
-        </p>
-    </div>
-
-    <div id="redcross-banner" class="container is-flex">
-        <div class="card-image is-hidden-mobile" style="min-width:115px;">
-            <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+    {% block extra-header %}
+        <div id="donate_safely" class="container">
+            <h1 class="donate-title">
+                {% trans "Welcome to RoHelp" %}
+            </h1>
+            <p class="donate-subtitle">
+                {% trans "RoHelp is a fully-featured digital platform which lends itself to be used by all organizations which are actively involved in halting the spread of Covid-19. The main purpose of the paltform is to help organizations collect the resources they need. As a user, the platform will help you find the most pressing needs that organizations face across the country. As a result, it makes it easy for you to chose the cause you donate to, or the efforts you contribute to." %}
+            </p>
         </div>
-        <div class="card-info">
-            <div class="flex-align-center">
-                <div class="card-image is-hidden-tablet">
-                    <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
-                </div>
-                <div class="need-title is-hidden-tablet">{% trans "Red Cross" %}</div>
-            </div>
-            <div class="need-title is-hidden-mobile">{% trans "Red Cross" %}</div>
-            <div class="redcross-text">
-                {% blocktrans %}
-                    Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
-                {% endblocktrans %}
-            </div>
-        </div>
-        <div class="need-call2action"><a class="button is-success">{% trans "Donate" %}</a></div>
-    </div>
 
-
-    {% if messages %}
-    <article class="message is-success">
-        {% for message in messages %}
-            <div class="message-body">
-                {{ message }}
-            </div>    
-        {% endfor %}
-    </article>
-    {% endif %}
-
+    {% endblock %}
 
     {% block kind-kind-filters %}
+
     <div id="aid_types" class="container">
         <div class="columns is-multiline">
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
-                    <span class="call-to-action" style="background-color: #bfd1e3;">
-                        <i class="far fa-check-circle"></i>
-                    </span>
+                <div class="{% if current_kind == 'money' %}card-active{% else%}card{% endif %}">
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=money' remove_query_param='page' %}"
-                       class="has-text-black">
+                       class="has-text-black is-flex">
+                        <span class="call-to-action" style="background-color: #bfd1e3;">
+                            <i class="far fa-check-circle"></i>
+                        </span>
                         <div class="card-content">{% trans "I want to help with money" %}</div>
                     </a>
                 </div>
             </div>
 
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
-                    <span class="call-to-action" style="background-color: #bfd1e3;">
-                        <i class="far fa-check-circle"></i>
-                    </span>
+                <div class="{% if current_kind == 'resource' %}card-active{% else%}card{% endif %}">
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=resource' remove_query_param='page' %}"
-                       class="has-text-black">
+                       class="is-flex has-text-black">
+                        <span class="call-to-action" style="background-color: #bfd1e3;">
+                         <i class="far fa-check-circle"></i>
+                        </span>
                         <div class="card-content">{% trans "I want to help with resources" %}</div>
                     </a>
                 </div>
             </div>
 
             <div class="column is-4 filter">
-                <div class="has-text-centered is-flex {% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
-                    <span class="call-to-action" style="background-color: #bfd1e3;">
-                        <i class="far fa-check-circle"></i>
-                    </span>
+                <div class="{% if current_kind == 'volunteer' %}card-active{% else%}card{% endif %}">
                     <a href="{% spurl base='{{ current_url }}' set_query='kind=volunteer' remove_query_param='page' %}"
-                       class="has-text-black">
+                       class="is-flex has-text-black">
+                         <span class="call-to-action" style="background-color: #bfd1e3;">
+                            <i class="far fa-check-circle"></i>
+                         </span>
                         <div class="card-content">{% trans "I want to volunteer" %}</div>
                     </a>
                 </div>
@@ -113,6 +86,31 @@
         <div id="right_sidebar" class="column is-one-third">
             {% block right-side-view %}
             <div class="container">
+                {% if red_cross_need %}
+                <div id="redcross-banner" class="container is-hidden-mobile">
+                    <div class="card-info">
+                        <div class="flex-align-center">
+                            <div class="card-image">
+                                <img src="{% static "images/crucearosie_logo.svg" %}" alt="Crucea Rosie logo">
+                            </div>
+                            <div class="need-title">{% trans "Red Cross" %}</div>
+                        </div>
+                        <div class="redcross-text">
+                            {% blocktrans %}
+                            Societatea Națională de Cruce Roșie Română reprezintă punctul principal de colectare la nivel național, atât pentru donații financiare care vor fi utilizate în vederea achiziționarii de echipamente și materiale sanitare, respectiv produse și bunuri materiale care vor fi distribuite - în funcție de nevoi și/sau solicitări - pe teritoriul național.
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+
+                    {% url 'ngo-need' red_cross_need.ngo.id red_cross_need.pk as base %}
+                    <div class="need-call2action">
+                        <a href="{% spurl base='{{ base }}' set_query='kind={{ red_cross_need.kind }}' %}" class="button is-success is-block">
+                            {% trans "Donate" %}
+                        </a>
+                    </div>
+
+                </div>
+                {% endif %}
 
                 <h1 class="donate-title">
                     <span>
@@ -125,16 +123,18 @@
                 <div class="tool">
                     <div class="is-flex">
                         <span style="border-left: 1rem solid; border-left-color: {{ project.color }};"></span>
-                        <h1 class="card-content is-size-5" style="background-color: #f0f0f0;">
+                        <h1 class="card-content" style="background-color: #f0f0f0;">
                             {{ project.call_to_action }}</h1>
                     </div>
                     <div class="card-content" style="background-color: #fafafa;">
                         {% if project.description %}
                         <p class="call-to-action">{{project.description}}</p>
                         {% endif %}
-                        <button class="button is-fullwidth is-white has-text-centered has-text-weight-bold"
-                                style="background-color: {{ project.color }};">{{ project.button_text }}
-                        </button>
+                        <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold sidebar-btn"
+                           style="background-color: {{ project.color }};" href="{{project.url}}"
+                           rel="nofollow">
+                            {{ project.button_text }}
+                        </a>
                     </div>
                 </div>
 

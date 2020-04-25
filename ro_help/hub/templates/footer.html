@@ -6,8 +6,6 @@
         <div class="container footer-content">
             <div class="is-flex" style="justify-content: space-between;">
                 <ul class="useful-links" style="margin-right: 20px;">
-                    <li class="footer-links-header">{% trans "Link-uri utile" %}</li>
-                    <li><a href="/despre">{% trans "About the project" %}</a></li>
                     <li><a href="https://www.gov.ro/ro/" target="_blank" rel="noopener noreferrer">
                         {% trans "Romanian Government" %}</a>
                     </li>
@@ -20,21 +18,17 @@
                     </li>
                 </ul>
                 <ul class="useful-links" style="margin-left: 20px;">
-                    <li class="footer-links-header">{% trans "Link-uri utile" %}</li>
-                    <li>
-                        <a href="https://stirioficiale.ro/informatii" target="_blank" rel="noopener noreferrer">
-                        Știri Oficiale</a>
-                    </li>
-                    <li>
-                        <a href="https://stirioficiale.ro/informatii" target="_blank" rel="noopener noreferrer">
-                            Ce trebuie sa fac?
-                        </a>
-                    </li>
                     <li><a href="https://www.code4.ro/" target="_blank" rel="noopener noreferrer">Code for Romania</a>
                     </li>
-                    <li><a href="#">{% trans "Privacy policy" %}</a>
+                    <li><a href="https://github.com/code4romania/ro-help/", target="_blank" rel="noreferrer noopener">{% trans "GitHub repository" %}</a>
                     </li>
-                    <li><a href="#">{% trans "How to" %}</a></li>
+                    </li>
+                    <li><a href="{% url 'terms'%}">{% trans "Terms and conditions" %}</a>
+                    </li>
+                    <li><a href="{% url 'cookies'%}">{% trans "Cookie policy" %}</a>
+                    </li>
+                    <li><a href="{% url 'contact'%}">{% trans "Contact us" %}</a></li>
+                    <li><a href="{% url 'updates'%}">{% trans "Updates" %}</a></li>
 
                 </ul>
             </div>
@@ -45,6 +39,7 @@
                 </a>
                 <p>© 2020 Code for Romania.</p>
                 <p>{% trans "An independent, non-partisan, non-political, non-govermental organization." %}</p>
+                <img src="{% static "images/netopia_banner_blue.png" %}" alt="Netopia logo" width=200" style="padding-top:50px">
             </div>
         </div>
     </div>

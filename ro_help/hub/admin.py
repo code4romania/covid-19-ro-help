@@ -1,19 +1,27 @@
 from admin_auto_filters.filters import AutocompleteFilter
+
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter, helpers
-from django.shortcuts import render
 from django.contrib.auth.models import Group, User
+from django.db import models, transaction
+from django.db.models import Count
+from django.shortcuts import render
 from django.template.defaultfilters import pluralize
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import activate
+from django.utils.translation import ugettext_lazy as _
+
 from hub import utils
-from .forms import RegisterNGORequestVoteForm
+
+from .forms import RegisterNGORequestVoteForm, NGOForm
 from .models import (
     NGO,
+    KIND,
     NGOReportItem,
     NGONeed,
+    NGOAccount,
     NGOHelper,
     ResourceTag,
     RegisterNGORequest,
@@ -53,17 +61,28 @@ class ActiveNGONeedFilter(SimpleListFilter):
         return queryset
 
 
+class NGOAccountInline(admin.TabularInline):
+    model = NGOAccount
+    fields = ("currency", "bank", "iban")
+    can_delete = True
+    can_add = True
+    verbose_name_plural = _("Bank Accounts")
+    extra = 1
+
+
 @admin.register(NGO)
 class NGOAdmin(admin.ModelAdmin):
     icon_name = "home_work"
     list_per_page = 25
+    form = NGOForm
 
-    list_display = ("name", "email", "phone", "city", "county", "created")
+    list_display = ("name", "contact_name", "county", "city", "accepts_transfer", "accepts_mobilpay", "created")
     list_filter = (
         "city",
         "county",
     )
     search_fields = ("name", "email")
+    inlines = [NGOAccountInline]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -83,6 +102,39 @@ class NGOAdmin(admin.ModelAdmin):
             return ["users"]
 
         return []
+
+    def has_accounts(self, request, no_accounts):
+        for account_idx in range(no_accounts):
+            if f"accounts-{account_idx}-DELETE" in request:
+                continue
+
+            if request.get(f"accounts-{account_idx}-iban") and request.get(f"accounts-{account_idx}-bank"):
+                return True
+
+        return False
+
+    @transaction.atomic
+    def save_model(self, request, ngo, form, change):
+        super().save_model(request, ngo, form, change)
+
+        if ngo.accepts_transfer:
+            no_accounts = request.POST.get("accounts-TOTAL_FORMS", 0)
+
+            if not self.has_accounts(request.POST, int(no_accounts)):
+                self.message_user(
+                    request, _("To accept IBAN Transfers you need to add at least one account."), level=messages.ERROR,
+                )
+                ngo.accepts_transfer = False
+                ngo.save()
+
+        NGONeed.objects.filter(ngo=ngo, kind=KIND.MONEY).delete()
+        if ngo.accepts_transfer or ngo.accepts_mobilpay:
+            need, created = NGONeed.objects.get_or_create(
+                ngo=ngo, title=ngo.name, kind=KIND.MONEY, city=ngo.city, county=ngo.county,
+            )
+            need.description = ngo.donations_description
+            need.save()
+        
 
 
 @admin.register(NGOReportItem)
@@ -147,6 +199,9 @@ class NGONeedAdmin(admin.ModelAdmin):
     inlines = [NGOHelperInline]
     actions = ["resolve_need", "close_need"]
     search_fields = (
+        "title",
+        "resource_tags__name",
+        "kind",
         "ngo__name",
         "ngo__email",
     )
@@ -156,10 +211,11 @@ class NGONeedAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
+        qs = qs.select_related("ngo").prefetch_related("helpers")
 
         user = request.user
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
-            return qs.filter(ngo__users__in=[user])
+            return qs.filter(ngo__users__in=[user]).exclude(kind=KIND.MONEY)
 
         return qs
 
@@ -170,9 +226,9 @@ class NGONeedAdmin(admin.ModelAdmin):
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
             try:
                 form.base_fields["ngo"].queryset = user.ngos
+                form.base_fields["kind"].choices = [(KIND.RESOURCE, KIND.RESOURCE), (KIND.VOLUNTEER, KIND.VOLUNTEER)]
             except NGO.DoesNotExist:
                 pass
-
         return form
 
     def get_changeform_initial_data(self, request):
@@ -181,13 +237,15 @@ class NGONeedAdmin(admin.ModelAdmin):
             return {"ngo": user.ngos.first().pk}
 
     def responses(self, obj):
-        all_helpers = obj.helpers.count()
-        new_helpers = obj.helpers.filter(read=False).count()
+        all_helpers = list(obj.helpers.all())
+        new_helpers = [helper for helper in all_helpers if not helper.read]
+
+        need_url = reverse("admin:hub_ngoneed_change", args=[obj.pk])
 
         if new_helpers:
-            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{all_helpers} ({new_helpers} new)</a></span>"
+            html = f"<span><a href='{need_url}'>{len(all_helpers)} ({len(new_helpers)} new)</a></span>"
         else:
-            html = f"<span><a href='/admin/hub/ngoneed/{obj.pk}/change/'>{all_helpers}</a></span>"
+            html = f"<span><a href='{need_url}'>{len(all_helpers)}</a></span>"
 
         return format_html(html)
 
@@ -213,6 +271,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 @admin.register(ResourceTag)
 class ResourceTagAdmin(admin.ModelAdmin):
     icon_name = "filter_vintage"
+    search_fields = ("name",)
 
 
 class RegisterNGORequestVoteInline(admin.TabularInline):
@@ -257,15 +316,27 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         "yes",
         "no",
         "abstention",
+        "votes_count",
         "active",
         "registered_on",
         "resolved_on",
         "get_last_balance_sheet",
         "get_statute",
     ]
-    actions = ["create_account"]
+    actions = ["create_account", "close_request"]
     readonly_fields = ["active", "resolved_on", "registered_on", "get_avatar"]
+    list_filter = ("city", "county", "registered_on", "closed")
     inlines = [RegisterNGORequestVoteInline]
+    search_fields = ("name",)
+
+    def votes_count(self, obj):
+        return obj.votes_count
+
+    votes_count.admin_order_field = "votes_count"
+    votes_count.short_description = _("Votes Count")
+
+    def get_queryset(self, request):
+        return self.model.objects.annotate(votes_count=Count("votes")).order_by("-votes_count")
 
     def get_changeform_initial_data(self, request):
         user = request.user
@@ -276,18 +347,28 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         actions = super().get_actions(request)
         if not "Admin" in request.user.groups.values_list("name", flat=True):
             del actions["create_account"]
+            del actions["close_request"]
         return actions
+
+
+    def changelist_view(self, request, extra_context=None):
+        q = request.GET.copy()
+        if not "closed__exact" in request.GET.keys():
+            q["closed__exact"] = "0"
+        request.GET = q
+        request.META["QUERY_STRING"] = request.GET.urlencode()
+        return super().changelist_view(request, extra_context=extra_context)
 
     def get_last_balance_sheet(self, obj):
         if obj.last_balance_sheet:
-            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.last_balance_sheet.url}'>Vezi</a>")
+            return format_html(f"<a class='' href='{obj.last_balance_sheet.url}'>{_('Open')}</a>")
         return "-"
 
     get_last_balance_sheet.short_description = _("Last balance")
 
     def get_statute(self, obj):
         if obj.statute:
-            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.statute.url}'>Vezi</a>")
+            return format_html(f"<a class='' href='{obj.statute.url}'>{_('Open')}</a>")
         return "-"
 
     get_statute.short_description = _("Statute")
@@ -305,7 +386,6 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
     voters.short_description = _("Voters")
 
     def create_account(self, request, queryset):
-        # queryset = queryset.filter(resolved_on=None)
         ngo_group = Group.objects.get(name=NGO_GROUP_NAME)
 
         for register_request in queryset:
@@ -315,6 +395,17 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         return self.message_user(request, user_msg, level=messages.INFO)
 
     create_account.short_description = _("Create account")
+
+    def close_request(self, request, queryset):
+
+        for register_request in queryset:
+            register_request.closed = True
+            register_request.save()
+
+        user_msg = f"{queryset.count()} request{pluralize(queryset.count(), 's')} closed"
+        return self.message_user(request, user_msg, level=messages.INFO)
+
+    close_request.short_description = _("Close aplication")
 
 
 @admin.register(PendingRegisterNGORequest)
@@ -338,20 +429,25 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
         "resolved_on",
         "get_avatar",
     )
-
+    list_filter = ("city", "county", "registered_on")
+    readonly_fields = ["get_avatar", "resolved_on"]
+    search_fields = ("name",)
     actions = ["vote"]
     inlines = [RegisterNGORequestVoteInline]
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
     def get_last_balance_sheet(self, obj):
         if obj.last_balance_sheet:
-            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.last_balance_sheet.url}'>Vezi</a>")
+            return format_html(f"<a class='' href='{obj.last_balance_sheet.url}'>{_('Open')}</a>")
         return "-"
 
     get_last_balance_sheet.short_description = _("Last balance")
 
     def get_statute(self, obj):
         if obj.statute:
-            return format_html(f"<a class='' href='http://local.rohelp.ro:8000{obj.statute.url}'>Vezi</a>")
+            return format_html(f"<a class='' href='{obj.statute.url}'>{_('Open')}</a>")
         return "-"
 
     get_statute.short_description = _("Statute")
@@ -424,26 +520,21 @@ class PendingRegisterNGORequestAdmin(admin.ModelAdmin):
 @admin.register(RegisterNGORequestVote)
 class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
     icon_name = "how_to_vote"
-    list_display = ["ngo_request", "user", "vote", "motivation", "date"]
+    list_display = ["ngo_request", "user", "entity", "vote", "motivation", "date"]
+    search_fields = ["ngo_request__name"]
+    list_filter = ["user", "entity", "vote", "date"]
 
     def get_queryset(self, request):
         user = request.user
-        user_groups = user.groups.values_list("name", flat=True)
-        if "Admin" not in user_groups:
+
+        if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
+            user_groups = user.groups.values_list("name", flat=True)
             return self.model.objects.filter(entity__in=user_groups)
+
         return self.model.objects.all()
 
     def has_change_permission(self, request, obj=None):
         return False
-
-    def get_form(self, request, obj=None, **kwargs):
-        user = request.user
-        form = super().get_form(request, obj, **kwargs)
-
-        if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
-            form.base_fields["user"].queryset = User.objects.filter(pk=user.pk)
-
-        return form
 
     def get_changeform_initial_data(self, request):
         user = request.user
