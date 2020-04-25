@@ -8,7 +8,7 @@ Check out the [prototype](https://www.figma.com/file/wSzl4a7eScXwV9Yu0RLF1V/CoVi
 
 Ro Help is a platform meant to help NGOs during an emergency situation. The NGOs can ask for donations, resources or volunteers, and users can browse the needs that various NGOs have. Initially prototyped with an earthquake in mind, this project was pushed at the forefront of our [Tech for Social Good](https://tfsg.code4.ro/ro/) development program during the COVID-19 pandemic.
 
-[See the project live](https://dev.rohelp.ro/)
+[See the project live](http://dev.rohelp.ro/)
 
 Objective: Safe and coherent collection of aid.
 
@@ -24,7 +24,7 @@ This project is built by amazing volunteers and you can be one of them! Here's a
 
 If you want to make any change to this repository, please **make a fork first**.
 
-Help us out by testing this project in the [staging environment](https://dev.rohelp.ro/). If you see something that doesn't quite work the way you expect it to, open an Issue. Make sure to describe what you _expect to happen_ and _what is actually happening_ in detail.
+Help us out by testing this project in the [staging environment](http://dev.rohelp.ro/). If you see something that doesn't quite work the way you expect it to, open an Issue. Make sure to describe what you _expect to happen_ and _what is actually happening_ in detail.
 
 If you would like to suggest new functionality, open an Issue and mark it as a __[Feature request]__. Please be specific about why you think this functionality will be of use. If you can, please include some visual description of what you would like the UI to look like, if you are suggesting new UI elements. 
 
@@ -58,7 +58,7 @@ black --line-length 120 --target-version py37
 before a commit will do the trick.
 
 ## Deployment
-The deployment process is fully automated using AWS CodeBuild and ECS. Each time a PR is merged on master, a new docker image build is trigger and if it's successful, [the staging environment](https://dev.rohelp.ro/) will point to your latest changes.
+The deployment process is fully automated using AWS CodeBuild and ECS. Each time a PR is merged on master, a new docker image build is trigger and if it's successful, [the staging environment](http://dev.rohelp.ro/) will point to your latest changes.
 
 The production environment is closely monitored by [Sentry](https://sentry.io).
 
