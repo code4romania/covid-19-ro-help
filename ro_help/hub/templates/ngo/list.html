@@ -184,7 +184,18 @@
 <script>
     window.onload = function () {
         var infinite = new Waypoint.Infinite({
-            element: $('.infinite-container')[0]
+            element: $('.infinite-container')[0],
+            onAfterPageLoad: function(items) {
+                var more_link = $('.infinite-more-link')[0];
+                if (more_link === undefined) {
+                    // Waypoint.Infinite removes the anchor with the above class
+                    // after performing the last request.
+                    //
+                    // so at this point, we know there are no more items that can be loaded,
+                    // so we remove the pagination nav
+                    $('nav.pagination').remove()
+                }
+            }
         })
     };
 </script>
