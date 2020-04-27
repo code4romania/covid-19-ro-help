@@ -406,6 +406,25 @@ footer {
     margin: 1em;
 }
 
+.back-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    position: sticky;
+    z-index: 5;
+    margin-left: calc(100% - 60px);
+    cursor: pointer;
+    opacity: .5;
+}
+
+.back-to-top:hover {
+    opacity: 1;
+}
+
+.back-to-top.hidden {
+    display: none;
+}
+
 @media (min-width: 768px) {
     .need {
         flex-direction: row;
