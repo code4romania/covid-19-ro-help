@@ -60,28 +60,8 @@
         {% endblock %}
     </div>
 
-    <!--
-    Hidden by default.
-    Dynamically remove the hidden class for pages that need scrolling to the top
-    -->
-    <img id="backToTop"
-         class="hidden back-to-top"
-         src="{% static 'images/circle-up.svg' %}"
-         alt="SUS"
-         onclick="goTop()">
-
     {% include "incubated-by.html" %}
     {% include "footer.html" %}
 </body>
-
-<script>
-function goTop() {
-    window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-    });
-}
-</script>
 
 </html>
