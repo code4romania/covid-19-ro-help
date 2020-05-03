@@ -1,11 +1,16 @@
+import csv
+import io
+
 from admin_auto_filters.filters import AutocompleteFilter
 
+from django.conf import settings
+from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter, helpers
-from django.contrib.auth.models import Group, User
-from django.db import models, transaction
+from django.contrib.auth.models import Group
+from django.db import transaction
 from django.db.models import Count
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.defaultfilters import pluralize
 from django.urls import reverse
 from django.utils import timezone
@@ -15,7 +20,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from hub import utils
 
-from .forms import RegisterNGORequestVoteForm, NGOForm
+from .forms import RegisterNGORequestVoteForm, NGOForm, ImportCitiesForm
 from .models import (
     NGO,
     KIND,
@@ -31,6 +36,9 @@ from .models import (
     NGO_GROUP_NAME,
     DSU_GROUP_NAME,
     FFC_GROUP_NAME,
+    City,
+    COUNTY_RESIDENCE,
+    COUNTIES,
 )
 
 
@@ -134,7 +142,6 @@ class NGOAdmin(admin.ModelAdmin):
             )
             need.description = ngo.donations_description
             need.save()
-        
 
 
 @admin.register(NGOReportItem)
@@ -345,15 +352,14 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
 
     def get_actions(self, request):
         actions = super().get_actions(request)
-        if not "Admin" in request.user.groups.values_list("name", flat=True):
+        if "Admin" not in request.user.groups.values_list("name", flat=True):
             del actions["create_account"]
             del actions["close_request"]
         return actions
 
-
     def changelist_view(self, request, extra_context=None):
         q = request.GET.copy()
-        if not "closed__exact" in request.GET.keys():
+        if "closed__exact" not in request.GET.keys():
             q["closed__exact"] = "0"
         request.GET = q
         request.META["QUERY_STRING"] = request.GET.urlencode()
@@ -540,3 +546,81 @@ class RegisterNGORequestVoteAdmin(admin.ModelAdmin):
         user = request.user
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
             return {"user": user.pk}
+
+
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    """ City admin page
+
+    At this moment, only the superadmin is allowed to import new cities and
+    change existing ones.
+    """
+    list_display = ["city", "county"]
+    list_filter = ["county", "is_county_residence"]
+    search_fields = ["city"]
+
+    def get_urls(self):
+        urls = super().get_urls()
+        urls += [
+            url("import-cities", self.import_cities, name="import_cities"),
+        ]
+        return urls
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        return False
+
+    def import_cities(self, request):
+        if request.method == "POST":
+            form = ImportCitiesForm(request.POST, request.FILES)
+            if not form.is_valid():
+                self.message_user(request, f"ERROR - {form.errors.as_text()}", level=messages.ERROR)
+                return redirect(".")
+
+            csv_file = io.StringIO(request.FILES["csv_file"].read().decode("utf-8"))
+            reader = csv.DictReader(csv_file)
+
+            batch_size = 1000
+            batch = []
+
+            for row in reader:
+                if row["Judet"].upper() not in COUNTIES:
+                    continue
+
+                is_county_residence = False
+                if (row["Judet"], row["Localitate"]) in COUNTY_RESIDENCE:
+                    is_county_residence = True
+
+                city = City(
+                    city=row["Localitate"],
+                    county=row["Judet"],
+                    is_county_residence=is_county_residence
+                )
+                batch.append(city)
+
+                if len(batch) == batch_size:
+                    City.objects.bulk_create(batch, batch_size=batch_size, ignore_conflicts=True)
+                    batch = []
+
+            # Create the remaining items in the batch
+            if len(batch):
+                City.objects.bulk_create(batch, batch_size=len(batch), ignore_conflicts=True)
+
+            self.message_user(request, _("CSV file imported"), level=messages.INFO)
+            return redirect(".")
+
+        form = ImportCitiesForm()
+        context = {
+            "site_header": settings.MATERIAL_ADMIN_SITE["HEADER"],
+            "site_title": settings.MATERIAL_ADMIN_SITE["TITLE"],
+            "title": _("Import Cities"),
+            "form": form,
+        }
+        return render(request, "admin/hub/city/import_cities.html", context)
