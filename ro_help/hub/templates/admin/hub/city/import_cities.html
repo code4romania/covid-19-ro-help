@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div id="content-main">
+
+    <div>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% trans "Upload CSV file and add new cities" %}" class="default" style="float:left;">
+      </form>
+      <br class="clear">
+    </div>
+
+  </div>
+{% endblock %}
