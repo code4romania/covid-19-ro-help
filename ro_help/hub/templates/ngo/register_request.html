@@ -3,7 +3,6 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-
 {% block kind-kind-filters %}
 {% endblock kind-kind-filters %}
 
@@ -19,7 +18,7 @@
             {% for message in messages %}
                 {{ message }}
             {% endfor %}
-        </div>    
+        </div>
         </article>
     {% else %}
         <form method="post" enctype="multipart/form-data" >
@@ -38,5 +37,5 @@
         </form>
     {% endif %}
 </div>
-{% endblock %}
 
+{% endblock %}

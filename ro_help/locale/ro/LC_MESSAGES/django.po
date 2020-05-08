@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-03 11:24+0000\n"
+"POT-Creation-Date: 2020-05-08 10:33+0000\n"
 "PO-Revision-Date: 2020-04-23 17:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,91 +27,91 @@ msgstr "activ"
 msgid "Bank Accounts"
 msgstr "Conturi bancare"
 
-#: hub/admin.py:133
+#: hub/admin.py:134
 msgid "To accept IBAN Transfers you need to add at least one account."
 msgstr ""
 "Pentru a accepta donații prin transfer bancar trebuie să adaugi cel puțin un "
 "cont bancar al organizației."
 
-#: hub/admin.py:190 hub/admin.py:259
+#: hub/admin.py:191 hub/admin.py:261
 msgid "Helpers"
 msgstr "Voluntari"
 
-#: hub/admin.py:267
+#: hub/admin.py:269
 msgid "Resolve need"
 msgstr "Rezolvă nevoia"
 
-#: hub/admin.py:275
+#: hub/admin.py:277
 msgid "Close need"
 msgstr "Închide nevoia"
 
-#: hub/admin.py:289
+#: hub/admin.py:291
 msgid "Votes"
 msgstr "Voturi"
 
-#: hub/admin.py:343
+#: hub/admin.py:346
 msgid "Votes Count"
 msgstr "Număr voturi"
 
-#: hub/admin.py:373 hub/admin.py:452
+#: hub/admin.py:376 hub/admin.py:455
 msgid "Last balance"
 msgstr "Ultimul bilanț"
 
-#: hub/admin.py:380 hub/admin.py:459
+#: hub/admin.py:383 hub/admin.py:462
 msgid "Statute"
 msgstr "Statut"
 
-#: hub/admin.py:387
+#: hub/admin.py:390
 msgid "Avatar Preview"
 msgstr "Logo"
 
-#: hub/admin.py:392
+#: hub/admin.py:395
 msgid "Voters"
 msgstr "Decidenți"
 
-#: hub/admin.py:403
+#: hub/admin.py:406
 msgid "Create account"
 msgstr "Crează cont"
 
-#: hub/admin.py:414
+#: hub/admin.py:417
 msgid "Close aplication"
 msgstr "Închide aplicație"
 
-#: hub/admin.py:500
+#: hub/admin.py:503
 msgid "s"
 msgstr "uri"
 
-#: hub/admin.py:499
+#: hub/admin.py:502
 msgid "Vote succesfully registered. {} email{} sent to others admins"
 msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:515
+#: hub/admin.py:518
 msgid "Vote NGO"
 msgstr "Votează"
 
-#: hub/admin.py:616
+#: hub/admin.py:619
 msgid "CSV file imported"
 msgstr "Fișier CSV încărcat"
 
-#: hub/admin.py:623
+#: hub/admin.py:626
 msgid "Import Cities"
 msgstr "Încarcă Orase"
 
-#: hub/forms.py:38 hub/forms.py:40 hub/forms.py:42 hub/forms.py:44
+#: hub/forms.py:40 hub/forms.py:42 hub/forms.py:44 hub/forms.py:46
 msgid "To accept mobilpay donations this field is required."
 msgstr "Pentru a accepta donații prin Mobilpay acest câmp este obligatoriu."
 
-#: hub/forms.py:47 hub/forms.py:49
+#: hub/forms.py:49 hub/forms.py:51
 msgid "To accept money transfer this field is required"
 msgstr "Pentru a accepta transfer în bani, acest câmpt este obligatoriu"
 
-#: hub/forms.py:90
+#: hub/forms.py:98
 msgid "CSV file"
 msgstr "Fișier CSV"
 
-#: hub/forms.py:95
+#: hub/forms.py:103
 msgid "Uploaded file is not a CSV file"
 msgstr "Fișierul încarcat nu este de tip CSV"
 
@@ -155,13 +155,14 @@ msgstr ""
 msgid "USD"
 msgstr ""
 
-#: hub/models.py:193 hub/models.py:240 hub/models.py:349 hub/models.py:407
-#: hub/models.py:440 hub/templates/ngo/list.html:68
+#: hub/models.py:193 hub/models.py:198 hub/models.py:241 hub/models.py:242
+#: hub/models.py:359 hub/models.py:360 hub/models.py:426 hub/models.py:427
+#: hub/models.py:468 hub/models.py:469 hub/templates/ngo/list.html:68
 msgid "City"
 msgstr "Oraș"
 
-#: hub/models.py:194 hub/models.py:239 hub/models.py:350 hub/models.py:408
-#: hub/models.py:441 hub/templates/ngo/list.html:33
+#: hub/models.py:194 hub/models.py:240 hub/models.py:361 hub/models.py:428
+#: hub/models.py:470 hub/templates/ngo/list.html:33
 msgid "County"
 msgstr "Județ"
 
@@ -169,258 +170,258 @@ msgstr "Județ"
 msgid "Is county residence"
 msgstr "Este reședință de județ"
 
-#: hub/models.py:198
+#: hub/models.py:199
 msgid "cities"
 msgstr "orașe"
 
-#: hub/models.py:218 hub/templates/ngo/detail.html:129
+#: hub/models.py:219 hub/templates/ngo/detail.html:129
 msgid "Currency"
 msgstr "Monedă"
 
-#: hub/models.py:230 hub/models.py:301 hub/models.py:386 hub/models.py:404
-#: hub/models.py:421 hub/templates/ngo/detail.html:121
+#: hub/models.py:231 hub/models.py:311 hub/models.py:405 hub/models.py:423
+#: hub/models.py:449 hub/templates/ngo/detail.html:121
 msgid "Name"
 msgstr "Nume"
 
-#: hub/models.py:232 hub/models.py:344 hub/models.py:411 hub/models.py:423
+#: hub/models.py:233 hub/models.py:354 hub/models.py:431 hub/models.py:451
 msgid "Description"
 msgstr "Descriere"
 
-#: hub/models.py:233 hub/models.py:435
+#: hub/models.py:234 hub/models.py:463
 msgid "Contact person's name"
 msgstr "Numele persoanei de contact"
 
-#: hub/models.py:234 hub/models.py:387 hub/models.py:405 hub/models.py:436
+#: hub/models.py:235 hub/models.py:406 hub/models.py:424 hub/models.py:464
 #: mobilpay/models.py:25
 msgid "Email"
 msgstr "Email"
 
-#: hub/models.py:235 hub/models.py:389 hub/models.py:406 mobilpay/models.py:24
+#: hub/models.py:236 hub/models.py:408 hub/models.py:425 mobilpay/models.py:24
 msgid "Phone"
 msgstr "Telefon"
 
-#: hub/models.py:236 hub/models.py:409 hub/models.py:439
+#: hub/models.py:237 hub/models.py:429 hub/models.py:467
 #: hub/templates/ngo/detail.html:122 mobilpay/models.py:26
 msgid "Address"
 msgstr "Adresa"
 
-#: hub/models.py:242
+#: hub/models.py:244
 msgid "Logo"
 msgstr "Logo"
 
-#: hub/models.py:244 hub/models.py:450
+#: hub/models.py:246 hub/models.py:479
 msgid "First page of last balance sheet"
 msgstr "Prima pagină a ultimului bilanț contabil"
 
-#: hub/models.py:247 hub/models.py:452
+#: hub/models.py:249 hub/models.py:481
 msgid "NGO Statute"
 msgstr "Statutul Asociației"
 
-#: hub/models.py:250
+#: hub/models.py:252
 msgid "Accepts mobilpay"
 msgstr "Acceptă donații prin Mobilpay"
 
-#: hub/models.py:251
+#: hub/models.py:253
 msgid "Accepts transfers"
 msgstr "Acceptă donații prin transfer bancar"
 
-#: hub/models.py:252
+#: hub/models.py:254
 msgid "Donations description"
 msgstr "Descrierea donațiilor"
 
-#: hub/models.py:255
+#: hub/models.py:257
 msgid "mobilpay Merchant identifier code"
 msgstr "cod de identificare comerciant mobilpay"
 
-#: hub/models.py:259
+#: hub/models.py:261
 msgid "XXXX-XXXX-XXXX-XXXX-XXXX"
 msgstr "XXXX-XXXX-XXXX-XXXX-XXXX"
 
-#: hub/models.py:262
+#: hub/models.py:264
 msgid "Mobilpay Public key"
 msgstr "Cheie publică Mobilpay"
 
-#: hub/models.py:265
+#: hub/models.py:267
 msgid "Mobilpay Private key"
 msgstr "Cheie privată Mobilpay"
 
-#: hub/models.py:294
+#: hub/models.py:304
 msgid "My organizations"
 msgstr "Organizațiile mele"
 
-#: hub/models.py:295
+#: hub/models.py:305
 msgid "My organization"
 msgstr "Organizația mea"
 
-#: hub/models.py:312 hub/models.py:432
+#: hub/models.py:322 hub/models.py:460
 msgid "Resource tags"
 msgstr "Tag-uri resurse"
 
-#: hub/models.py:313
+#: hub/models.py:323
 msgid "Resource tag"
 msgstr "Tag resurse"
 
-#: hub/models.py:341 mobilpay/models.py:13
+#: hub/models.py:351 mobilpay/models.py:13
 msgid "NGO"
 msgstr "ONG"
 
-#: hub/models.py:343 hub/models.py:371 hub/templates/ngo/detail.html:291
+#: hub/models.py:353 hub/models.py:390 hub/templates/ngo/detail.html:291
 msgid "Title"
 msgstr "Titlu"
 
-#: hub/models.py:346 hub/models.py:413
+#: hub/models.py:356 hub/models.py:433
 msgid "Kind"
 msgstr "Tip"
 
-#: hub/models.py:347 hub/models.py:414 hub/templates/ngo/list.html:105
+#: hub/models.py:357 hub/models.py:434 hub/templates/ngo/list.html:105
 msgid "Urgency"
 msgstr "Urgență"
 
-#: hub/models.py:354 hub/models.py:446
+#: hub/models.py:365 hub/models.py:475
 msgid "Resolved on"
 msgstr "Rezolvat la"
 
-#: hub/models.py:355
+#: hub/models.py:366
 msgid "Closed on"
 msgstr "Închis la"
 
-#: hub/models.py:363
+#: hub/models.py:382
 msgid "Manage needs"
 msgstr "Administrare nevoi"
 
-#: hub/models.py:364
+#: hub/models.py:383
 msgid "Manage need"
 msgstr "Administrare nevoie"
 
-#: hub/models.py:370 hub/models.py:545 hub/templates/ngo/detail.html:290
+#: hub/models.py:389 hub/models.py:582 hub/templates/ngo/detail.html:290
 msgid "Date"
 msgstr "Dată"
 
-#: hub/models.py:372
+#: hub/models.py:391
 msgid "Receipt"
 msgstr "Document justificativ (factură, chitanță, referat, OP)"
 
-#: hub/models.py:373
+#: hub/models.py:392
 msgid "Amount spent (RON)"
 msgstr "Suma cheltuită (RON)"
 
-#: hub/models.py:379 hub/models.py:380
+#: hub/models.py:398 hub/models.py:399
 msgid "Report"
 msgstr "Raportare"
 
-#: hub/models.py:388
+#: hub/models.py:407
 msgid "Message"
 msgstr "Mesaj"
 
-#: hub/models.py:391
+#: hub/models.py:410
 msgid "Read on"
 msgstr "Citit la"
 
-#: hub/models.py:397
+#: hub/models.py:416
 msgid "NGO Helper"
 msgstr "Ajutor ONG"
 
-#: hub/models.py:398
+#: hub/models.py:417
 msgid "NGO Helpers"
 msgstr "Ajutoare ONG"
 
-#: hub/models.py:410
+#: hub/models.py:430
 msgid "Organization"
 msgstr "Organizație"
 
-#: hub/models.py:423
+#: hub/models.py:451
 msgid "Organization's short description - max 500 chars."
 msgstr "Descriere scurtă a organizației - max 500 caractere."
 
-#: hub/models.py:427
+#: hub/models.py:455
 msgid "Past actions"
 msgstr "Scurt istoric"
 
-#: hub/models.py:429
+#: hub/models.py:457
 msgid "Description of past actions, with empahsis on COVID-19 related actions."
 msgstr ""
 "Scurtă descriere a istoricului organizației cu focus pe activitatea derulată "
 "în perioada de criză COVID-19."
 
-#: hub/models.py:432
+#: hub/models.py:460
 msgid "The types of resources you anticipate you will need."
 msgstr ""
 "Tipul de resurse de care anticipezi că vei avea nevoie. Te rugăm să separi "
 "tag-urile prin virgulă."
 
-#: hub/models.py:437
+#: hub/models.py:465
 msgid "Contact person's phone"
 msgstr "Telefonul persoanei de contact"
 
-#: hub/models.py:438
+#: hub/models.py:466
 msgid "Has contract with Netopia"
 msgstr "Are contract cu Netopia"
 
-#: hub/models.py:443
+#: hub/models.py:472
 msgid "Link to website or Facebook"
 msgstr "Link către site sau Facebook"
 
-#: hub/models.py:445
+#: hub/models.py:474
 msgid "Active"
 msgstr "Activ"
 
-#: hub/models.py:448
+#: hub/models.py:477
 msgid "Avatar"
 msgstr "Avatar"
 
-#: hub/models.py:448
+#: hub/models.py:477
 msgid "Image should be 500x500px"
 msgstr ""
 
-#: hub/models.py:454 mobilpay/models.py:29 mobilpay/models.py:53
+#: hub/models.py:483 mobilpay/models.py:29 mobilpay/models.py:53
 msgid "Registered on"
 msgstr "Înregistrare"
 
-#: hub/models.py:459
+#: hub/models.py:488
 msgid "Votes history"
 msgstr "Istoric voturi"
 
-#: hub/models.py:460
+#: hub/models.py:489
 msgid "Vote history"
 msgstr "Istoric voturi"
 
-#: hub/models.py:464
+#: hub/models.py:493
 msgid "Yes"
 msgstr "Da"
 
-#: hub/models.py:468
+#: hub/models.py:497
 msgid "No"
 msgstr "Nu"
 
-#: hub/models.py:472
+#: hub/models.py:501
 msgid "Abstention"
 msgstr "Abţinere"
 
-#: hub/models.py:533
+#: hub/models.py:570
 msgid "Pending NGOs"
 msgstr "Organizații în așteptare"
 
-#: hub/models.py:534
+#: hub/models.py:571
 msgid "Pending NGO"
 msgstr "Organizație în așteptare"
 
-#: hub/models.py:541
+#: hub/models.py:578
 msgid "Vote"
 msgstr "Vot"
 
-#: hub/models.py:543
+#: hub/models.py:580
 msgid "Motivation"
 msgstr "Motivația"
 
-#: hub/models.py:543
+#: hub/models.py:580
 msgid "Motivate your decision"
 msgstr "Motivează decizia"
 
-#: hub/models.py:548
+#: hub/models.py:585
 msgid "My votes"
 msgstr "Voturile mele "
 
-#: hub/models.py:549
+#: hub/models.py:586
 msgid "My vote"
 msgstr "Votul meu"
 
@@ -436,11 +437,11 @@ msgstr ""
 "Te rog corectează următoarea eroare. Parola nouă trebuie să fie diferită. Te "
 "rog încearcă din nou."
 
-#: hub/templates/about.html:18
+#: hub/templates/about.html:19
 msgid "About RoHelp"
 msgstr "Despre RoHelp"
 
-#: hub/templates/about.html:21
+#: hub/templates/about.html:22
 msgid ""
 "Right now we are in the midst of what is probably the biggest crisis of our "
 "lifetime, a crisis that we are all vulnerable to, regardless of where we are "
@@ -460,7 +461,7 @@ msgstr ""
 "și la sprijinul oferit celor vulnerabili în această perioada, ONG-urile mici "
 "și mari din România au fost vitale în a ne proteja pe fiecare dintre noi.  "
 
-#: hub/templates/about.html:23
+#: hub/templates/about.html:24
 msgid ""
 "Despite consistent support from the business sector, NGO efforts that we "
 "depend upon can't go on as is in the months to come and can become "
@@ -471,7 +472,7 @@ msgstr ""
 "urmează și pot deveni sustenabile doar prin contribuția noastră, "
 "individuală. "
 
-#: hub/templates/about.html:25
+#: hub/templates/about.html:26
 msgid ""
 "Code for Romania, through its volunteer community, had developed RoHelp.ro, "
 "a complete digital platform offered to NGOs actively involved in limiting "
@@ -495,7 +496,7 @@ msgstr ""
 "tuturor organizațiilor prezente în platformă pot fi vizualizate în funcție "
 "de urgență și locația geografică."
 
-#: hub/templates/about.html:27
+#: hub/templates/about.html:28
 msgid ""
 "RoHelp.ro is a platform built with the support of the Romanian American "
 "Foundation, ING Bank and The Vodafone Foundation Romania in partnership with "
@@ -519,7 +520,7 @@ msgstr ""
 "sau psihice sau de apartenență la una sau mai multe categorii sociale sau "
 "economice. "
 
-#: hub/templates/about.html:29
+#: hub/templates/about.html:30
 msgid ""
 "To ensure that every donation is accounted for and used for its intended "
 "purpose Code for Romania in partnership with the Romanian Community "
@@ -533,11 +534,11 @@ msgstr ""
 "și un sistem de validare și raportare transparent și ne vom asigura că "
 "platforma este administrată în beneficiul societății."
 
-#: hub/templates/about.html:32
+#: hub/templates/about.html:33
 msgid "How RoHelp got started"
 msgstr "De unde a pornit RoHelp"
 
-#: hub/templates/about.html:34
+#: hub/templates/about.html:35
 #, python-format
 msgid ""
 "\n"
@@ -570,7 +571,7 @@ msgstr ""
 "activează în respectivul domeniu.  \n"
 "                "
 
-#: hub/templates/about.html:39
+#: hub/templates/about.html:40
 #, python-format
 msgid ""
 "\n"
@@ -590,7 +591,7 @@ msgstr ""
 "rel=\"%(rel)s\">Aid Management Hub</a>\n"
 "                "
 
-#: hub/templates/about.html:48
+#: hub/templates/about.html:49
 msgid ""
 "RoHelp is a project done through the efforts of the Code for Romania "
 "volunteers and team. Code for Romania is an independent, unaffiliated and "
@@ -606,7 +607,7 @@ msgstr ""
 "României prin Autoritatea pentru Digitalizarea României și Departamentul "
 "pentru Situații de Urgență."
 
-#: hub/templates/about.html:50
+#: hub/templates/about.html:51
 #, python-format
 msgid ""
 "\n"
@@ -619,7 +620,7 @@ msgstr ""
 "\">Întrebări și răspunsuri</a> despre proiectul RoHelp.ro.\n"
 "                "
 
-#: hub/templates/about.html:54
+#: hub/templates/about.html:55
 msgid ""
 "The Code for Romania Task Force is a program supported by ING Bank, The "
 "Vodafone Foundation Romania and the Romanian American Foundation to which we "
@@ -629,14 +630,14 @@ msgstr ""
 "de ING Bank, Fundația Vodafone România și Romanian American Foundation, "
 "cărora le mulțumim."
 
-#: hub/templates/about.html:66
+#: hub/templates/about.html:67
 msgid "Media partners"
 msgstr "Parteneri media"
 
-#: hub/templates/about.html:96 hub/templates/contact.html:47
-#: hub/templates/cookies.html:103 hub/templates/ngo/base.html:119
-#: hub/templates/rules.html:90 hub/templates/terms_and_conditions.html:122
-#: hub/templates/updates.html:64
+#: hub/templates/about.html:103 hub/templates/contact.html:50
+#: hub/templates/cookies.html:106 hub/templates/ngo/base.html:120
+#: hub/templates/rules.html:93 hub/templates/terms_and_conditions.html:125
+#: hub/templates/updates.html:67
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -1417,11 +1418,11 @@ msgstr "Vreau să ajut cu resurse"
 msgid "I want to volunteer"
 msgstr "Vreau să devin voluntar"
 
-#: hub/templates/ngo/base.html:96
+#: hub/templates/ngo/base.html:97
 msgid "Red Cross"
 msgstr "Crucea Roșie"
 
-#: hub/templates/ngo/base.html:99
+#: hub/templates/ngo/base.html:100
 msgid ""
 "\n"
 "                            Societatea Națională de Cruce Roșie Română "
@@ -1433,8 +1434,8 @@ msgid ""
 "                            "
 msgstr ""
 
-#: hub/templates/ngo/base.html:108 hub/templates/ngo/detail.html:100
-#: hub/templates/ngo/donate.html:26 hub/templates/ngo/list.html:234
+#: hub/templates/ngo/base.html:109 hub/templates/ngo/detail.html:100
+#: hub/templates/ngo/donate.html:26 hub/templates/ngo/list.html:245
 msgid "Donate"
 msgstr "Donează"
 
@@ -1535,11 +1536,11 @@ msgstr "Etichete"
 msgid "Reset filters"
 msgstr "Resetează filtrele"
 
-#: hub/templates/ngo/list.html:236 hub/templates/shared/need_form.html:55
+#: hub/templates/ngo/list.html:247 hub/templates/shared/need_form.html:55
 msgid "I can help"
 msgstr "Pot să ajut eu!"
 
-#: hub/templates/ngo/list.html:250
+#: hub/templates/ngo/list.html:261
 msgid "No results matching query"
 msgstr "Nu există nici un rezultat"
 
@@ -2179,7 +2180,7 @@ msgid ""
 "order to defend your rights as guaranteed by law;"
 msgstr ""
 "Dreptul de a te adresa Autorității Naționale de Supraveghere privind "
-"Prelucrarea Datelor cu Caracter Personal (cu sediul în Bucureşti, sector 1, "
+"Prelucrarea Datelor cu Caracter Personal (cu sediul în București, sector 1, "
 "B-dul G-ral. Gheorghe Magheru, www.dataprotection.ro) sau justiției, pentru "
 "apărarea oricăror drepturi garantate de lege;"
 
@@ -2384,7 +2385,7 @@ msgstr "Mulțumim pentru ajutor!"
 msgid "Missing or invalid NGO need."
 msgstr "Nevoie ONG lipsă sau invalidă."
 
-#: hub/views.py:295
+#: hub/views.py:305
 msgid ""
 "Thank you for signing up! The form you filled in has reached us. Someone "
 "from the RoHelp team will reach out to you as soon as your organization is "
@@ -2395,7 +2396,7 @@ msgstr ""
 "Dacă ai întrebări suplimentare ne poți scrie un e-mail la adresa "
 "rohelp@code4.ro."
 
-#: hub/views.py:316
+#: hub/views.py:326
 msgid "Thank you for your donation!"
 msgstr "Îți mulțumim pentru donație!"
 
@@ -2472,11 +2473,11 @@ msgid ""
 "                    "
 msgstr ""
 
-#: ro_help/settings/base.py:212
+#: ro_help/settings/base.py:213
 msgid "COVID-19 RO HELP"
 msgstr "COVID-19 RO HELP"
 
-#: ro_help/settings/base.py:213
+#: ro_help/settings/base.py:214
 msgid "RO HELP"
 msgstr "RO HELP"
 

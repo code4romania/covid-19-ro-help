@@ -23,6 +23,7 @@ from hub.models import (
     DSU_GROUP_NAME,
     FFC_GROUP_NAME,
     NGOReportItem,
+    City,
 )
 from mobilpay.models import PaymentOrder
 
@@ -51,9 +52,9 @@ NGOS = (
         din toate păturile sociale, rasele, religiile și naționalitățile pentru a elimina locuirea precară.
         """,
             "phone": "+40722644394",
-            "address": "Str. Naum Râmniceanu, nr. 45 A, et.1, ap. 3, sector 1, Bucureşti 011616",
-            "city": "Bucureşti",
-            "county": "BUCURESTI",
+            "address": "Str. Naum Râmniceanu, nr. 45 A, et.1, ap. 3, sector 1, Bucuresti 011616",
+            "city": "Bucuresti",
+            "county": "Bucuresti",
             "avatar": "http://www.habitat.ro/wp-content/uploads/2014/11/logo.png",
         },
         {
@@ -68,7 +69,7 @@ NGOS = (
             "phone": "+40213176006",
             "address": "Strada Biserica Amzei, nr. 29, Sector 1, Bucuresti",
             "city": "Bucuresti",
-            "county": "BUCURESTI",
+            "county": "Bucuresti",
             "avatar": "https://crucearosie.ro/themes/redcross/images/emblema_crr_desktop.png",
             "accepts_transfer": True,
             "donations_description": "Monedă RON: RO44BRDE410SV20462054100 (Banca: BRD - Piata Romana)",
@@ -89,7 +90,7 @@ NGOS = (
             "phone": "+40213176006",
             "address": "Str. Popa Petre, Nr. 23, Sector 2, 020802, Bucharest, Romania.",
             "city": "Bucuresti",
-            "county": "BUCURESTI",
+            "county": "Bucuresti",
             "avatar": "http://mkbt.ro/wp-content/uploads/2015/08/MKBT-logo-alb.png",
         },
     ]
@@ -101,7 +102,7 @@ NGOS = (
             "phone": fake.phone_number(),
             "address": fake.address(),
             "city": ["Arad", "Timisoara", "Oradea", "Cluj-Napoca", "Bucuresti"][i],
-            "county": ["ARAD", "TIMIS", "BIHOR", "CLUJ", "BUCURESTI"][i],
+            "county": ["Arad", "Timis", "Bihor", "Cluj", "Bucuresti"][i],
             "avatar": random_avatar(),
         }
         for i in range(5)
@@ -204,7 +205,20 @@ class Command(BaseCommand):
 
         NGONeed.objects.filter(kind="money").exclude(ngo__name__in=["Code4Romania", "Crucea Roșie"]).delete()
 
+        cities = [
+            {"city": "Arad", "county": "Arad"},
+            {"city": "Timisoara", "county": "Timis"},
+            {"city": "Oradea", "county": "Bihor"},
+            {"city": "Cluj-Napoca", "county": "Cluj"},
+            {"city": "Bucuresti", "county": "Bucuresti"},
+        ]
+        for city_data in cities:
+            City.objects.get_or_create(**city_data)
+
         for details in NGOS:
+            details['city'] = City.objects.get(city=details['city'], county=details['county'])
+            details['county'] = details['county'].upper()
+
             ngo, _ = NGO.objects.get_or_create(**details)
 
             owner = random.choice([ngo_user, admin_user, None])
@@ -213,7 +227,7 @@ class Command(BaseCommand):
                 ngo.save()
 
             for _ in range(20):
-                c_index = random.randint(0, 4)
+                random_city = City.objects.order_by("?").first()
                 need = NGONeed.objects.create(
                     **{
                         "ngo": ngo,
@@ -222,8 +236,8 @@ class Command(BaseCommand):
                         "description": fake.text(),
                         "title": fake.text(),
                         "resolved_on": random.choice([None, timezone.now()]),
-                        "city": ["Arad", "Timisoara", "Oradea", "Cluj-Napoca", "Bucuresti"][c_index],
-                        "county": ["ARAD", "TIMIS", "BIHOR", "CLUJ", "BUCURESTI"][c_index],
+                        "city": random_city,
+                        "county": random_city.county.upper(),
                     }
                 )
 

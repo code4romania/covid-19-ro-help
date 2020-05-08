@@ -1,15 +1,15 @@
 import json
 
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.postgres.search import SearchVector, TrigramSimilarity, SearchRank, SearchQuery
 from django.core import paginator
 from django.db.models import Q
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import gettext as _
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
 
 from hub import utils
@@ -21,9 +21,9 @@ from hub.models import (
     NGO,
     NGOHelper,
     NGONeed,
-    NGO_GROUP_NAME,
     RegisterNGORequest,
     URGENCY,
+    City,
 )
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.forms import PaymentOrderForm
@@ -286,6 +286,16 @@ class NGOHelperCreateView(
             )
 
         return super().get_success_message(cleaned_data)
+
+
+class CityAutocomplete(View):
+    def get(self, request):
+        response = []
+        q = request.GET.get("q")
+        if q and len(q) > 2:
+            rows = City.objects.filter(city__istartswith=q).values_list("id", "city", named=True)
+            response = [{"value": row.id, "text": row.city} for row in rows]
+        return JsonResponse(response, safe=False)
 
 
 class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, CreateView):

@@ -195,11 +195,12 @@ class City(models.Model):
     is_county_residence = models.BooleanField(_("Is county residence"), default=False)
 
     class Meta:
+        verbose_name = _("City")
         verbose_name_plural = _("cities")
         unique_together = ["city", "county"]
 
     def __str__(self):
-        return self.city
+        return f"{self.city} ({self.county})"
 
     def save(self, *args, **kwargs):
         self.is_county_residence = False
@@ -237,7 +238,8 @@ class NGO(TimeStampedModel):
     cif = models.CharField("CIF", max_length=20, null=True, blank=True)
     cui = models.CharField("CUI", max_length=20, null=True, blank=True)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
-    city = models.CharField(_("City"), max_length=100)
+    city = models.ForeignKey("City", on_delete=models.PROTECT, null=True, verbose_name=_("City"))
+    city_old = models.CharField(_("City"), max_length=100)
 
     avatar = models.ImageField(_("Logo"), max_length=300, storage=PublicMediaStorageClass())
     last_balance_sheet = models.FileField(
@@ -289,6 +291,14 @@ class NGO(TimeStampedModel):
             return f"{self.avatar.url}"
         else:
             return None
+
+    def save(self, *args, **kwargs):
+        if self.city:
+            self.county = self.city.county.upper()
+        else:
+            self.county = ""
+
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = _("My organizations")
@@ -346,7 +356,8 @@ class NGONeed(TimeStampedModel):
     kind = models.CharField(_("Kind"), choices=KIND.to_choices(), default=KIND.default(), max_length=10)
     urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
 
-    city = models.CharField(_("City"), max_length=100)
+    city = models.ForeignKey("City", on_delete=models.PROTECT, null=True, verbose_name=_("City"))
+    city_old = models.CharField(_("City"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
 
     resource_tags = models.ManyToManyField("ResourceTag", blank=True, related_name="needs")
@@ -358,6 +369,14 @@ class NGONeed(TimeStampedModel):
 
     def __str__(self):
         return f"{self.ngo.name}: {self.urgency} {self.kind}"
+
+    def save(self, *args, **kwargs):
+        if self.city:
+            self.county = self.city.county.upper()
+        else:
+            self.county = ""
+
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = _("Manage needs")
@@ -404,7 +423,8 @@ class PersonalRequest(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=254,)
     email = models.EmailField(_("Email"), null=True, blank=True)
     phone = models.CharField(_("Phone"), max_length=15)
-    city = models.CharField(_("City"), max_length=100)
+    city = models.ForeignKey("City", on_delete=models.PROTECT, null=True, verbose_name=_("City"))
+    city_old = models.CharField(_("City"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
     address = models.CharField(_("Address"), max_length=400, null=True, blank=True)
     organization = models.CharField(_("Organization"), max_length=400, null=True, blank=True)
@@ -415,6 +435,14 @@ class PersonalRequest(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.city:
+            self.county = self.city.county.upper()
+        else:
+            self.county = ""
+
+        super().save(*args, **kwargs)
 
 
 class RegisterNGORequest(TimeStampedModel):
@@ -437,7 +465,8 @@ class RegisterNGORequest(TimeStampedModel):
     contact_phone = models.CharField(_("Contact person's phone"), max_length=15)
     has_netopia_contract = models.BooleanField(_("Has contract with Netopia"), default=False)
     address = models.CharField(_("Address"), max_length=400)
-    city = models.CharField(_("City"), max_length=100)
+    city = models.ForeignKey("City", on_delete=models.PROTECT, null=True, verbose_name=_("City"))
+    city_old = models.CharField(_("City"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
 
     social_link = models.CharField(_("Link to website or Facebook"), max_length=512, null=True, blank=True)
@@ -522,6 +551,14 @@ class RegisterNGORequest(TimeStampedModel):
         self.resolved_on = timezone.now()
         self.active = True
         self.save()
+
+    def save(self, *args, **kwargs):
+        if self.city:
+            self.county = self.city.county.upper()
+        else:
+            self.county = ""
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
