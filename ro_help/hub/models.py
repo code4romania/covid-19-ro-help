@@ -16,6 +16,53 @@ NGO_GROUP_NAME = "ONG"
 DSU_GROUP_NAME = "DSU"
 FFC_GROUP_NAME = "FFC"
 
+COUNTY_RESIDENCE = [
+    ("Alba", "Alba Iulia"),
+    ("Arad", "Arad"),
+    ("Arges", "Pitesti"),
+    ("Bacau", "Bacau"),
+    ("Bihor", "Oradea"),
+    ("Bistrita-Nasaud", "Bistrita"),
+    ("Botosani", "Botosani"),
+    ("Braila", "Braila"),
+    ("Brasov", "Brasov"),
+    ("Bucuresti", "Bucuresti"),
+    ("Buzau", "Buzau"),
+    ("Caras-Severin", "Resita"),
+    ("Calarasi", "Calarasi"),
+    ("Cluj", "Cluj-Napoca"),
+    ("Constanta", "Constanta"),
+    ("Covasna", "Sfantu Gheorghe"),
+    ("Dambovita", "Targoviste"),
+    ("Dolj", "Craiova"),
+    ("Galati", "Galati"),
+    ("Giurgiu", "Giurgiu"),
+    ("Gorj", "Targu Jiu"),
+    ("Harghita", "Miercurea Ciuc"),
+    ("Hunedoara", "Deva"),
+    ("Ialomita", "Slobozia"),
+    ("Iasi", "Iasi"),
+    ("Ilfov", "Buftea"),
+    ("Maramures", "Baia Mare"),
+    ("Mehedinti", "Drobeta-Turnu Severin"),
+    ("Mures", "Targu Mures"),
+    ("Neamt", "Piatra Neamt"),
+    ("Olt", "Slatina"),
+    ("Prahova", "Ploiesti"),
+    ("Satu Mare", "Satu Mare"),
+    ("Salaj", "Zalau"),
+    ("Sibiu", "Sibiu"),
+    ("Suceava", "Suceava"),
+    ("Teleorman", "Alexandria"),
+    ("Timis", "Timisoara"),
+    ("Tulcea", "Tulcea"),
+    ("Vaslui", "Vaslui"),
+    ("Valcea", "Ramnicu Valcea"),
+    ("Vrancea", "Focsani"),
+]
+# NOTE: We make all counties here uppercase to maintain backwards compatibility
+COUNTIES = [x[0].upper() for x in COUNTY_RESIDENCE]
+
 PrivateMediaStorageClass = get_storage_class(settings.PRIVATE_FILE_STORAGE)
 PublicMediaStorageClass = get_storage_class(settings.DEFAULT_FILE_STORAGE)
 
@@ -85,68 +132,17 @@ class KIND:
 
 
 class COUNTY:
-    counties = [
-        "ALBA",
-        "ARGES",
-        "ARAD",
-        "BACAU",
-        "BIHOR",
-        "BISTRITA-NASAUD",
-        "BRAILA",
-        "BRASOV",
-        "BOTOSANI",
-        "BUCURESTI",
-        "BUZAU",
-        "CLUJ",
-        "CALARASI",
-        "CARAS-SEVERIN",
-        "CONSTANTA",
-        "COVASNA",
-        "DAMBOVITA",
-        "DOLJ",
-        "GORJ",
-        "GALATI",
-        "GIURGIU",
-        "HUNEDOARA",
-        "HARGHITA",
-        "IALOMITA",
-        "IASI",
-        "ILFOV",
-        "MEHEDINTI",
-        "MARAMURES",
-        "MURES",
-        "NEAMT",
-        "OLT",
-        "PRAHOVA",
-        "SIBIU",
-        "SALAJ",
-        "SATU-MARE",
-        "SECTOR 1",
-        "SECTOR 2",
-        "SECTOR 3",
-        "SECTOR 4",
-        "SECTOR 5",
-        "SECTOR 6",
-        "SUCEAVA",
-        "TULCEA",
-        "TIMIS",
-        "TELEORMAN",
-        "VALCEA",
-        "VRANCEA",
-        "VASLUI",
-    ]
-
     @classmethod
     def to_choices(cls):
-        return [(x, x) for x in cls.counties]
+        return [(x, x) for x in COUNTIES]
 
     @classmethod
     def default(cls):
-        return cls.counties[0]
+        return COUNTIES[0]
 
     @classmethod
     def to_list(cls):
-        return cls.counties
+        return COUNTIES
 
 
 class VOTE:
@@ -193,6 +189,26 @@ class CURRENCY:
         return [CURRENCY.RON, CURRENCY.EUR, CURRENCY.USD]
 
 
+class City(models.Model):
+    city = models.CharField(_("City"), max_length=100)
+    county = models.CharField(_("County"), max_length=50)
+    is_county_residence = models.BooleanField(_("Is county residence"), default=False)
+
+    class Meta:
+        verbose_name_plural = _("cities")
+        unique_together = ["city", "county"]
+
+    def __str__(self):
+        return self.city
+
+    def save(self, *args, **kwargs):
+        self.is_county_residence = False
+        if (self.county, self.city) in COUNTY_RESIDENCE:
+            self.is_county_residence = True
+
+        super().save(*args, **kwargs)
+
+
 class NGOAccount(models.Model):
     """
     Description: Model Description
@@ -203,7 +219,7 @@ class NGOAccount(models.Model):
     iban = models.CharField(max_length=40)
     bank = models.CharField(max_length=50)
 
-    def str(self):
+    def __str__(self):
         return f"{self.bank} ({self.currency})"
 
     class Meta:

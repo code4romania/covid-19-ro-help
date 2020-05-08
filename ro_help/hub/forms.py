@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django_crispy_bulma.widgets import EmailInput, FileUploadInput
+from django.core.exceptions import ValidationError
+from django_crispy_bulma.widgets import EmailInput
 
 from hub import models
 from captcha.fields import ReCaptchaField
@@ -83,3 +84,12 @@ class RegisterNGORequestVoteForm(forms.ModelForm):
     class Meta:
         model = models.RegisterNGORequestVote
         fields = ("vote", "motivation")
+
+
+class ImportCitiesForm(forms.Form):
+    csv_file = forms.FileField(label=_("CSV file"))
+
+    def clean_csv_file(self):
+        f = self.cleaned_data["csv_file"]
+        if not f.name.lower().endswith(".csv"):
+            raise ValidationError(_("Uploaded file is not a CSV file"))
