@@ -47,9 +47,9 @@ class PaymentResponse(TimeStampedModel):
         PaymentOrder, null=True, blank=True, related_name="responses", on_delete=models.SET_NULL
     )
     action = models.CharField(max_length=100, null=True, blank=True)
-    error_code = models.CharField(max_length=100, null=True, blank=True)
-    error_type = models.CharField(max_length=100, null=True, blank=True)
-    error_message = models.CharField(max_length=100, null=True, blank=True)
+    error_code = models.CharField(max_length=255, null=True, blank=True)
+    error_type = models.CharField(max_length=255, null=True, blank=True)
+    error_message = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateTimeField(_("Registered on"), auto_now_add=True)
 
     def __str__(self):
