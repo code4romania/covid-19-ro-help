@@ -239,7 +239,7 @@ class NGO(TimeStampedModel):
     cui = models.CharField("CUI", max_length=20, null=True, blank=True)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
     city = models.ForeignKey("City", on_delete=models.PROTECT, null=True, verbose_name=_("City"))
-    city_old = models.CharField(_("City"), max_length=100)
+    city_old = models.CharField(_("City (legacy)"), max_length=100)
 
     avatar = models.ImageField(_("Logo"), max_length=300, storage=PublicMediaStorageClass())
     last_balance_sheet = models.FileField(
@@ -357,7 +357,7 @@ class NGONeed(TimeStampedModel):
     urgency = models.CharField(_("Urgency"), choices=URGENCY.to_choices(), default=URGENCY.default(), max_length=10)
 
     city = models.ForeignKey("City", on_delete=models.PROTECT, null=True, verbose_name=_("City"))
-    city_old = models.CharField(_("City"), max_length=100)
+    city_old = models.CharField(_("City (legacy)"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
 
     resource_tags = models.ManyToManyField("ResourceTag", blank=True, related_name="needs")
@@ -424,7 +424,7 @@ class PersonalRequest(TimeStampedModel):
     email = models.EmailField(_("Email"), null=True, blank=True)
     phone = models.CharField(_("Phone"), max_length=15)
     city = models.ForeignKey("City", on_delete=models.PROTECT, null=True, verbose_name=_("City"))
-    city_old = models.CharField(_("City"), max_length=100)
+    city_old = models.CharField(_("City (legacy)"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
     address = models.CharField(_("Address"), max_length=400, null=True, blank=True)
     organization = models.CharField(_("Organization"), max_length=400, null=True, blank=True)
@@ -466,7 +466,7 @@ class RegisterNGORequest(TimeStampedModel):
     has_netopia_contract = models.BooleanField(_("Has contract with Netopia"), default=False)
     address = models.CharField(_("Address"), max_length=400)
     city = models.ForeignKey("City", on_delete=models.PROTECT, null=True, verbose_name=_("City"))
-    city_old = models.CharField(_("City"), max_length=100)
+    city_old = models.CharField(_("City (legacy)"), max_length=100)
     county = models.CharField(_("County"), choices=COUNTY.to_choices(), max_length=50)
 
     social_link = models.CharField(_("Link to website or Facebook"), max_length=512, null=True, blank=True)

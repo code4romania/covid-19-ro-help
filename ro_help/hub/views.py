@@ -294,7 +294,7 @@ class CityAutocomplete(View):
         q = request.GET.get("q")
         if q and len(q) > 2:
             rows = City.objects.filter(city__istartswith=q).values_list("id", "city", named=True)
-            response = [{"value": row.id, "text": row.city} for row in rows]
+            response = [{"v": row.id, "t": row.city} for row in rows]
         return JsonResponse(response, safe=False)
 
 
