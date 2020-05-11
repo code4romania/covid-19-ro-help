@@ -89,19 +89,31 @@ class Migration(migrations.Migration):
         ),
         # data migration
         migrations.RunPython(map_city_field_to_city_model),
-        migrations.RenameField(model_name="ngo", old_name="city", new_name="city_old", verbose_name="City (legacy)",),
+        migrations.RenameField(model_name="ngo", old_name="city", new_name="city_old",),
         migrations.RenameField(model_name="ngo", old_name="city_fk", new_name="city",),
-        migrations.RenameField(
-            model_name="ngoneed", old_name="city", new_name="city_old", verbose_name="City (legacy)",
-        ),
+        migrations.RenameField(model_name="ngoneed", old_name="city", new_name="city_old",),
         migrations.RenameField(model_name="ngoneed", old_name="city_fk", new_name="city",),
-        migrations.RenameField(
-            model_name="personalrequest", old_name="city", new_name="city_old", verbose_name="City (legacy)",
-        ),
+        migrations.RenameField(model_name="personalrequest", old_name="city", new_name="city_old",),
         migrations.RenameField(model_name="personalrequest", old_name="city_fk", new_name="city",),
-        migrations.RenameField(
-            model_name="registerngorequest", old_name="city", new_name="city_old", verbose_name="City (legacy)",
-        ),
+        migrations.RenameField(model_name="registerngorequest", old_name="city", new_name="city_old",),
         migrations.RenameField(model_name="registerngorequest", old_name="city_fk", new_name="city",),
         migrations.AlterModelOptions(name="city", options={"verbose_name": "City", "verbose_name_plural": "cities"},),
+        migrations.AlterField(
+            model_name="ngo", name="city_old", field=models.CharField(max_length=100, verbose_name="City (legacy)"),
+        ),
+        migrations.AlterField(
+            model_name="ngoneed",
+            name="city_old",
+            field=models.CharField(max_length=100, verbose_name="City (legacy)"),
+        ),
+        migrations.AlterField(
+            model_name="personalrequest",
+            name="city_old",
+            field=models.CharField(max_length=100, verbose_name="City (legacy)"),
+        ),
+        migrations.AlterField(
+            model_name="registerngorequest",
+            name="city_old",
+            field=models.CharField(max_length=100, verbose_name="City (legacy)"),
+        ),
     ]
