@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-08 10:33+0000\n"
-"PO-Revision-Date: 2020-04-23 17:54+0300\n"
+"PO-Revision-Date: 2020-05-08 20:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -1461,7 +1461,7 @@ msgstr "Donații cu card procesate prin Netopia Payments"
 
 #: hub/templates/ngo/detail.html:115
 msgid "Donate via transfer"
-msgstr "Doneaza via transfer bancar"
+msgstr "Donează via transfer bancar"
 
 #: hub/templates/ngo/detail.html:124
 msgid "CIF"
