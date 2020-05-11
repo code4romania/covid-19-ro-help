@@ -8,7 +8,7 @@ ALLOWED_HOSTS += ["localhost", "192.168.99.100", "local.rohelp.ro", "dev.rohelp.
 
 AUTH_PASSWORD_VALIDATORS = []
 
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Add debug toolbar
 if DEBUG and env("ENABLE_DEBUG_TOOLBAR"):

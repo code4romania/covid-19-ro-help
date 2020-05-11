@@ -58,7 +58,6 @@ class NGORegisterRequestForm(forms.ModelForm):
         model = models.RegisterNGORequest
         fields = [
             "name",
-            # "county",
             "city",
             "address",
             "email",
@@ -75,7 +74,7 @@ class NGORegisterRequestForm(forms.ModelForm):
         ]
         widgets = {
             "email": EmailInput(),
-            "city": forms.Select(
+            "city": forms.TextInput(
                 attrs={
                     "class": "selectAutoComplete",
                     "data-url": reverse_lazy("city-autocomplete"),
