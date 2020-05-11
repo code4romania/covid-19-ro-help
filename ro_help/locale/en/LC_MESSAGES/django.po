@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-08 10:33+0000\n"
+"POT-Creation-Date: 2020-05-11 08:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,9 +150,8 @@ msgstr ""
 msgid "USD"
 msgstr ""
 
-#: hub/models.py:193 hub/models.py:198 hub/models.py:241 hub/models.py:242
-#: hub/models.py:359 hub/models.py:360 hub/models.py:426 hub/models.py:427
-#: hub/models.py:468 hub/models.py:469 hub/templates/ngo/list.html:68
+#: hub/models.py:193 hub/models.py:198 hub/models.py:241 hub/models.py:359
+#: hub/models.py:426 hub/models.py:468 hub/templates/ngo/list.html:68
 msgid "City"
 msgstr ""
 
@@ -198,6 +197,10 @@ msgstr ""
 #: hub/models.py:237 hub/models.py:429 hub/models.py:467
 #: hub/templates/ngo/detail.html:122 mobilpay/models.py:26
 msgid "Address"
+msgstr ""
+
+#: hub/models.py:242 hub/models.py:360 hub/models.py:427 hub/models.py:469
+msgid "City (legacy)"
 msgstr ""
 
 #: hub/models.py:244
