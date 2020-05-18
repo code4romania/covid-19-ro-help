@@ -20,12 +20,13 @@ import environ
 root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False),
+    DEBUG=(bool, True),
     ENABLE_DEBUG_TOOLBAR=(bool, False),
     USE_S3=(bool, False),
     ALLOWED_HOSTS=(list, []),
     RECAPTCHA_PUBLIC_KEY=(str, ""),
     RECAPTCHA_PRIVATE_KEY=(str, ""),
+    SENTRY_DSN=(str, ""),
 )
 environ.Env.read_env(f"{root}/.env")  # reading .env file
 
@@ -42,7 +43,7 @@ WEBROOT_DIR = env.str("WEBROOT_DIR", os.path.join(PROJECT_ROOT, "webroot/"))
 SECRET_KEY = "v*2$eed@gagp7f%kvb=zl%30c-(*gl9qppn0vv%sku#q7o&p64"
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = True
+DEBUG = TEMPLATE_DEBUG = env.bool("DEBUG", True)
 
 ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com", "dev.rohelp.ro", "rohelp.ro", "prod.rohelp.ro"]
 
@@ -259,3 +260,15 @@ if env("RECAPTCHA_PUBLIC_KEY"):
     RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 else:
     SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
+
+if env("SENTRY_DSN"):
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(
+        dsn=env("SENTRY_DSN"),
+        integrations=[DjangoIntegration()],
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+    )
