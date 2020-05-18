@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = TEMPLATE_DEBUG = True
+DEBUG = TEMPLATE_DEBUG = False
 
 INTERNAL_IPS = ["127.0.0.1", "localhost", "local.rohelp.ro", "192.168.99.100"]
 
