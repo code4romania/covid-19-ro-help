@@ -1,7 +1,5 @@
 from .base import *
 
-DEBUG = TEMPLATE_DEBUG = True
-
 INTERNAL_IPS = ["127.0.0.1", "localhost", "local.rohelp.ro", "192.168.99.100"]
 
 ALLOWED_HOSTS += ["localhost", "192.168.99.100", "local.rohelp.ro", "dev.rohelp.ro"]
