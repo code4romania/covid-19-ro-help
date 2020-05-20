@@ -565,10 +565,10 @@ class CityAdmin(admin.ModelAdmin):
 
     def get_urls(self):
         urls = super().get_urls()
-        urls += [
+        custom_url = [
             url("import-cities", self.import_cities, name="import_cities"),
         ]
-        return urls
+        return custom_url + urls
 
     def has_add_permission(self, request):
         return False
@@ -614,7 +614,7 @@ class CityAdmin(admin.ModelAdmin):
                 City.objects.bulk_create(batch, batch_size=len(batch), ignore_conflicts=True)
 
             self.message_user(request, _("CSV file imported"), level=messages.INFO)
-            return redirect(".")
+            return redirect("..")
 
         form = ImportCitiesForm()
         context = {
