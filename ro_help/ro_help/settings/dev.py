@@ -23,3 +23,10 @@ if DEBUG and env("ENABLE_DEBUG_TOOLBAR"):
 
 # TODO: read it from env or generate a new one
 SECRET_KEY = "https://uploads.skyhighnetworks.com/wp-content/uploads/2015/08/06195203/Bart-Chalkboard-for-Blog-Post.png"
+
+
+if not DEBUG:
+    MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
+
+    STATIC_ROOT = os.path.join(BASE_DIR, "../", "static")
+    STATICFILES_DIRS = []
