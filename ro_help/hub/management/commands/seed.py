@@ -216,8 +216,8 @@ class Command(BaseCommand):
             City.objects.get_or_create(**city_data)
 
         for details in NGOS:
-            details['city'] = City.objects.get(city=details['city'], county=details['county'])
-            details['county'] = details['county'].upper()
+            details["city"] = City.objects.get(city=details["city"], county=details["county"])
+            details["county"] = details["county"].upper()
 
             ngo, _ = NGO.objects.get_or_create(**details)
 

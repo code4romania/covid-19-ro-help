@@ -201,7 +201,13 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if self.request.GET.get("county"):
             needs = needs.filter(county=self.request.GET.get("county"))
 
-        context["cities"] = set(needs.values_list("city", flat=True))
+        if self.request.GET.get("city"):
+            try:
+                context["current_city_name"] = City.objects.get(id=self.request.GET.get("city")).city
+            except City.DoesNotExist:
+                context["current_city_name"] = "-"
+
+        context["cities"] = set(needs.values_list("city__id", "city__city"))
         context["urgencies"] = [
             urgency for urgency, _ in sorted(URGENCY.ORDER.items(), key=lambda item: item[1], reverse=True)
         ]
@@ -291,10 +297,14 @@ class NGOHelperCreateView(
 class CityAutocomplete(View):
     def get(self, request):
         response = []
+
+        county = request.GET.get("county")
         q = request.GET.get("q")
-        if q and len(q) > 2:
-            rows = City.objects.filter(city__istartswith=q).values_list("id", "city", named=True)
+
+        if county and q and len(q) > 0:
+            rows = City.objects.filter(county__iexact=county, city__istartswith=q).values_list("id", "city", named=True)
             response = [{"v": row.id, "t": row.city} for row in rows]
+
         return JsonResponse(response, safe=False)
 
 
@@ -302,7 +312,9 @@ class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, Create
     template_name = "ngo/register_request.html"
     model = RegisterNGORequest
     form_class = NGORegisterRequestForm
-    success_message = _("Thank you for signing up! The form you filled in has reached us. Someone from the RoHelp team will reach out to you as soon as your organization is validated. If you have any further questions, e-mail us at rohelp@code4.ro")
+    success_message = _(
+        "Thank you for signing up! The form you filled in has reached us. Someone from the RoHelp team will reach out to you as soon as your organization is validated. If you have any further questions, e-mail us at rohelp@code4.ro"
+    )
 
     def get_success_url(self):
         return reverse("ngos-register-request")
