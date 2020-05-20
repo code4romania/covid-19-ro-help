@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 08:54+0000\n"
+"POT-Creation-Date: 2020-05-20 19:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,11 +86,11 @@ msgstr ""
 msgid "Vote NGO"
 msgstr ""
 
-#: hub/admin.py:619
+#: hub/admin.py:616
 msgid "CSV file imported"
 msgstr ""
 
-#: hub/admin.py:626
+#: hub/admin.py:623
 msgid "Import Cities"
 msgstr ""
 
@@ -102,11 +102,11 @@ msgstr ""
 msgid "To accept money transfer this field is required"
 msgstr ""
 
-#: hub/forms.py:98
+#: hub/forms.py:95
 msgid "CSV file"
 msgstr ""
 
-#: hub/forms.py:103
+#: hub/forms.py:100
 msgid "Uploaded file is not a CSV file"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgstr ""
 msgid "Manage need"
 msgstr ""
 
-#: hub/models.py:389 hub/models.py:582 hub/templates/ngo/detail.html:290
+#: hub/models.py:389 hub/models.py:585 hub/templates/ngo/detail.html:290
 msgid "Date"
 msgstr ""
 
@@ -379,43 +379,43 @@ msgstr ""
 msgid "Vote history"
 msgstr ""
 
-#: hub/models.py:493
+#: hub/models.py:494
 msgid "Yes"
 msgstr ""
 
-#: hub/models.py:497
+#: hub/models.py:499
 msgid "No"
 msgstr ""
 
-#: hub/models.py:501
+#: hub/models.py:504
 msgid "Abstention"
 msgstr ""
 
-#: hub/models.py:570
+#: hub/models.py:573
 msgid "Pending NGOs"
 msgstr ""
 
-#: hub/models.py:571
+#: hub/models.py:574
 msgid "Pending NGO"
 msgstr ""
 
-#: hub/models.py:578
+#: hub/models.py:581
 msgid "Vote"
 msgstr ""
 
-#: hub/models.py:580
+#: hub/models.py:583
 msgid "Motivation"
 msgstr ""
 
-#: hub/models.py:580
+#: hub/models.py:583
 msgid "Motivate your decision"
 msgstr ""
 
-#: hub/models.py:585
+#: hub/models.py:588
 msgid "My votes"
 msgstr ""
 
-#: hub/models.py:586
+#: hub/models.py:589
 msgid "My vote"
 msgstr ""
 
@@ -555,8 +555,8 @@ msgstr ""
 
 #: hub/templates/about.html:103 hub/templates/contact.html:50
 #: hub/templates/cookies.html:106 hub/templates/ngo/base.html:120
-#: hub/templates/rules.html:93 hub/templates/terms_and_conditions.html:125
-#: hub/templates/updates.html:67
+#: hub/templates/rules.html:93 hub/templates/terms_and_conditions.html:128
+#: hub/templates/updates.html:93
 msgid "Useful instruments"
 msgstr ""
 
@@ -1493,8 +1493,8 @@ msgstr ""
 
 #: hub/templates/rules.html:74
 msgid ""
-"Romanian Community Foundations Federation: Cristina Vaileanu, Luiza Zamora, "
-"Marian Dobre, Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
+"Romanian Community Foundations Federation: Cristina Vaileanu, Marian Dobre, "
+"Doris Cojocaru, Teodora Albiter, Gianina Ozturk"
 msgstr ""
 
 #: hub/templates/rules.html:75
@@ -1572,27 +1572,32 @@ msgid ""
 "platform, for the length of the COVID-19 crisis."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:29
+#: hub/templates/terms_and_conditions.html:30
+#, python-format
 msgid ""
-"The site allo ws NGOs to enroll and create online profiles that showcases "
-"their work."
+"\n"
+"                    <li>The site allows any NGO that follows and adheres to "
+"the rules for eligibility, as stated in the <a href=\"%(the_url)s\" target="
+"\"%(target)s\">general rules</a>, to create online profiles that showcase "
+"their work.</li>\n"
+"                "
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:30
+#: hub/templates/terms_and_conditions.html:33
 msgid ""
 "rohelp.ro also offers users of the platform who wish to support an NGO a "
 "form that collects their personal data, further detailed in article 2 of the "
 "present terms and conditions document"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:31
+#: hub/templates/terms_and_conditions.html:34
 msgid ""
 "The data collected via this form is used to send a message to the NGO been "
 "contacted or to make a donation as part of the platform via the Netopia "
 "payment processor."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:32
+#: hub/templates/terms_and_conditions.html:35
 msgid ""
 "The site also allows members of the general public to subscribe to our "
 "newsletter service, managed via the Mailchimp email platform. The data in "
@@ -1600,26 +1605,26 @@ msgid ""
 "information towards the users who want to access the newsletter service."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:35
+#: hub/templates/terms_and_conditions.html:38
 msgid ""
 "If the user does not want to fill any data in the platform he or she can"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:37
-#: hub/templates/terms_and_conditions.html:56
+#: hub/templates/terms_and_conditions.html:40
+#: hub/templates/terms_and_conditions.html:59
 msgid ""
 "independently donate to an organisation with a profile on the site, using "
 "the financial data that each NGO lists on its profile page or,"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:38
-#: hub/templates/terms_and_conditions.html:57
+#: hub/templates/terms_and_conditions.html:41
+#: hub/templates/terms_and_conditions.html:60
 msgid ""
 "independently contact an organisation in order to send a message or an offer "
 "of help using the contact data that each NGO lists on its profile page."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:41
+#: hub/templates/terms_and_conditions.html:44
 msgid ""
 "RoHelp facilitates collecting funds, resources and volunteers by the "
 "registered organisations. All the donations processed through this platform "
@@ -1629,70 +1634,70 @@ msgid ""
 "dedicated reporting section."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:43
+#: hub/templates/terms_and_conditions.html:46
 msgid "2. Use of Personal Data"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:44
+#: hub/templates/terms_and_conditions.html:47
 msgid ""
 "By filling in the forms available on the profile pages of each end you "
 "selected, we can collect the following personal data (henceforth referred to "
 "as “personal data”)"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:46
+#: hub/templates/terms_and_conditions.html:49
 msgid "name and surname"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:47
+#: hub/templates/terms_and_conditions.html:50
 msgid "e-mail"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:48
+#: hub/templates/terms_and_conditions.html:51
 msgid "phone number"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:51
+#: hub/templates/terms_and_conditions.html:54
 msgid "3. Grounds for data processing"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:52
+#: hub/templates/terms_and_conditions.html:55
 msgid ""
 "Code for Romania uses personal data for the sole purpose of helping users of "
 "the site interact with one or more organisations registered on rohelp.ro."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:53
+#: hub/templates/terms_and_conditions.html:56
 msgid ""
 "Code for Romania uses your personal data in order to allow  contacted NGOs "
 "to get back to you after your message has been sent."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:54
+#: hub/templates/terms_and_conditions.html:57
 msgid "Should you not want your personal data used you can:"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:60
+#: hub/templates/terms_and_conditions.html:63
 msgid ""
 "These personal data are directly sent to the NGO, they cannot be used in "
 "anyway by Code for Romania."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:62
+#: hub/templates/terms_and_conditions.html:65
 msgid "4. Length of data storage"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:63
+#: hub/templates/terms_and_conditions.html:66
 msgid ""
 "Personal data is temporarily stored for the duration of rohelp.ro’s "
 "functioning, as part of the COVID-19 pandemic response"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:65
+#: hub/templates/terms_and_conditions.html:68
 msgid "5. Submittal of personal data to third parties"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:66
+#: hub/templates/terms_and_conditions.html:69
 msgid ""
 "Code for Romania will only supply your personal data to the NGOs of your "
 "choice. Submitting a message to an organisation registered in the platform "
@@ -1701,43 +1706,43 @@ msgid ""
 "personal data is kept safe"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:67
+#: hub/templates/terms_and_conditions.html:70
 msgid ""
 "Data can also be supplied to institutions or authorities as well as to other "
 "accredited state bodies, on the basis and within the bounds of the law, only "
 "as part of an express request by said authorities."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:69
+#: hub/templates/terms_and_conditions.html:72
 msgid "6. Your Rights"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:70
+#: hub/templates/terms_and_conditions.html:73
 msgid ""
 "As a user of rohelp.ro, in accordance with Law no. 679/2016 as well as, "
 "beginning with the 25th of May 2018, in accordance with the General Data "
 "Protection Regulation, you have the following rights:"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:72
+#: hub/templates/terms_and_conditions.html:75
 msgid ""
 "the right to be informed about the use of your personal data by Code for "
 "Romania;"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:73
+#: hub/templates/terms_and_conditions.html:76
 msgid ""
 "the right to access your personal data, on demand and for free for one "
 "request per annum;"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:74
+#: hub/templates/terms_and_conditions.html:77
 msgid ""
 "the right to intervene in, rectify, delete or transfer your personal data on "
 "demand and for free;"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:75
+#: hub/templates/terms_and_conditions.html:78
 msgid ""
 "the right to contact the National Authority for the Oversight of the Use of "
 "Personal Data (headquartered in Bucharest, Sector 1, General Ghe. Magheru "
@@ -1745,21 +1750,21 @@ msgid ""
 "order to defend your rights as guaranteed by law;"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:76
+#: hub/templates/terms_and_conditions.html:79
 msgid "the right to oppose and to the individual automated decisional process;"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:77
+#: hub/templates/terms_and_conditions.html:80
 msgid ""
 "from the 25th of May 2018, in accordance with the General Data Protection "
 "Regulation, the right to restrict the use of your data."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:80
+#: hub/templates/terms_and_conditions.html:83
 msgid "7. Security and confidentiality"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:81
+#: hub/templates/terms_and_conditions.html:84
 msgid ""
 "The protection of your personal data while it is being used is a main and "
 "major concern for Code for Romania, which is why all personal data collected "
@@ -1769,7 +1774,7 @@ msgid ""
 "data is kept and transmitted securely and confidentially."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:82
+#: hub/templates/terms_and_conditions.html:85
 msgid ""
 "All personal data used on this site is stored and processed on servers "
 "situated within the European Union, falling under EU personal data "
@@ -1777,14 +1782,14 @@ msgid ""
 "European Union territory."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:83
+#: hub/templates/terms_and_conditions.html:86
 msgid ""
 "Code for Romania will not reveal personal data regarding your visits to this "
 "website, with the sole exception of proper legal requests by the authorities "
 "or situations mentioned as part of this Terms and Conditions document."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:84
+#: hub/templates/terms_and_conditions.html:87
 msgid ""
 "If we are to discover an incident regarding personal data security that "
 "presents a risk to the rights and liberties of our users, we will notify the "
@@ -1793,11 +1798,11 @@ msgid ""
 "risk to your rights and liberties, you will be notified as well."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:86
+#: hub/templates/terms_and_conditions.html:89
 msgid "8. Trademark and Copyright"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:87
+#: hub/templates/terms_and_conditions.html:90
 msgid ""
 "The copyright for all information on this website belongs to Code for "
 "Romania. No material present on this website can be reproduced, wholly or in "
@@ -1805,18 +1810,18 @@ msgid ""
 "copyright holder."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:89
+#: hub/templates/terms_and_conditions.html:92
 msgid "All rights reserved."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:90
+#: hub/templates/terms_and_conditions.html:93
 msgid ""
 "The use of this site for the purpose of destroying or altering it, its "
 "security or its contents ior for discrediting or harrassin rohelp.ro or Code "
 "for Romania is strictly forbidden."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:91
+#: hub/templates/terms_and_conditions.html:94
 msgid ""
 "Code for Romania will apply all technical and organisational security "
 "measures in order to protect the data under its control against any and all "
@@ -1824,34 +1829,34 @@ msgid ""
 "well as to prevent the access of unauthorised persons."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:94
+#: hub/templates/terms_and_conditions.html:97
 msgid "9. Changes to the general Terms and Conditions for using the Site"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:95
+#: hub/templates/terms_and_conditions.html:98
 msgid ""
 "“The General Terms and Conditions” document constitutes, in its entirety, an "
 "agreement between yourself and Code for Romania for the use of rohelp.ro."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:96
+#: hub/templates/terms_and_conditions.html:99
 msgid ""
 "Code for Romania reserves the right to revise and update “The General Terms "
 "and Conditions” at any time, with no prior notification or need for user "
 "consent."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:97
+#: hub/templates/terms_and_conditions.html:100
 msgid ""
 "For any further questions regarding the information on this page please "
 "write to rohelp@code4.ro."
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:99
+#: hub/templates/terms_and_conditions.html:102
 msgid "10. About Code for Romania"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:101
+#: hub/templates/terms_and_conditions.html:104
 #, python-format
 msgid ""
 "\n"
@@ -1864,41 +1869,41 @@ msgid ""
 "                "
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:106
+#: hub/templates/terms_and_conditions.html:109
 msgid "11. Contact Code for Romania"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:107
+#: hub/templates/terms_and_conditions.html:110
 msgid ""
 "For any questions or issues, as well as to ensure your rights in regards to "
 "the processing of personal data by Code for Romania, you can contact us at:"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:108
+#: hub/templates/terms_and_conditions.html:111
 msgid ""
 "Alba Iulia Place no. 7, I6 building, 1st floor, apt. 6, Bucharest, Romania"
 msgstr ""
 
-#: hub/templates/terms_and_conditions.html:109
+#: hub/templates/terms_and_conditions.html:112
 msgid "rohelp@code4.ro"
 msgstr ""
 
-#: hub/views.py:225
+#: hub/views.py:231
 msgid "Thank you for your help!"
 msgstr ""
 
-#: hub/views.py:259
+#: hub/views.py:265
 msgid "Missing or invalid NGO need."
 msgstr ""
 
-#: hub/views.py:305
+#: hub/views.py:316
 msgid ""
 "Thank you for signing up! The form you filled in has reached us. Someone "
 "from the RoHelp team will reach out to you as soon as your organization is "
 "validated. If you have any further questions, e-mail us at rohelp@code4.ro"
 msgstr ""
 
-#: hub/views.py:326
+#: hub/views.py:338
 msgid "Thank you for your donation!"
 msgstr ""
 
@@ -1975,10 +1980,10 @@ msgid ""
 "                    "
 msgstr ""
 
-#: ro_help/settings/base.py:213
+#: ro_help/settings/base.py:214
 msgid "COVID-19 RO HELP"
 msgstr ""
 
-#: ro_help/settings/base.py:214
+#: ro_help/settings/base.py:215
 msgid "RO HELP"
 msgstr ""

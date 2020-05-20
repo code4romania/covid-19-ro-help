@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-20 09:14+0000\n"
+"POT-Creation-Date: 2020-05-20 19:47+0000\n"
 "PO-Revision-Date: 2020-05-20 12:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -91,11 +91,11 @@ msgstr ""
 msgid "Vote NGO"
 msgstr "Votează"
 
-#: hub/admin.py:619
+#: hub/admin.py:616
 msgid "CSV file imported"
 msgstr "Fișier CSV încărcat"
 
-#: hub/admin.py:626
+#: hub/admin.py:623
 msgid "Import Cities"
 msgstr "Încarcă Orase"
 
@@ -107,11 +107,11 @@ msgstr "Pentru a accepta donații prin Mobilpay acest câmp este obligatoriu."
 msgid "To accept money transfer this field is required"
 msgstr "Pentru a accepta transfer în bani, acest câmpt este obligatoriu"
 
-#: hub/forms.py:98
+#: hub/forms.py:95
 msgid "CSV file"
 msgstr "Fișier CSV"
 
-#: hub/forms.py:103
+#: hub/forms.py:100
 msgid "Uploaded file is not a CSV file"
 msgstr "Fișierul încarcat nu este de tip CSV"
 
@@ -296,7 +296,7 @@ msgstr "Administrare nevoi"
 msgid "Manage need"
 msgstr "Administrare nevoie"
 
-#: hub/models.py:389 hub/models.py:582 hub/templates/ngo/detail.html:290
+#: hub/models.py:389 hub/models.py:585 hub/templates/ngo/detail.html:290
 msgid "Date"
 msgstr "Dată"
 
@@ -388,43 +388,43 @@ msgstr "Istoric voturi"
 msgid "Vote history"
 msgstr "Istoric voturi"
 
-#: hub/models.py:493
+#: hub/models.py:494
 msgid "Yes"
 msgstr "Da"
 
-#: hub/models.py:497
+#: hub/models.py:499
 msgid "No"
 msgstr "Nu"
 
-#: hub/models.py:501
+#: hub/models.py:504
 msgid "Abstention"
 msgstr "Abţinere"
 
-#: hub/models.py:570
+#: hub/models.py:573
 msgid "Pending NGOs"
 msgstr "Organizații în așteptare"
 
-#: hub/models.py:571
+#: hub/models.py:574
 msgid "Pending NGO"
 msgstr "Organizație în așteptare"
 
-#: hub/models.py:578
+#: hub/models.py:581
 msgid "Vote"
 msgstr "Vot"
 
-#: hub/models.py:580
+#: hub/models.py:583
 msgid "Motivation"
 msgstr "Motivația"
 
-#: hub/models.py:580
+#: hub/models.py:583
 msgid "Motivate your decision"
 msgstr "Motivează decizia"
 
-#: hub/models.py:585
+#: hub/models.py:588
 msgid "My votes"
 msgstr "Voturile mele "
 
-#: hub/models.py:586
+#: hub/models.py:589
 msgid "My vote"
 msgstr "Votul meu"
 
@@ -640,7 +640,7 @@ msgstr "Parteneri media"
 #: hub/templates/about.html:103 hub/templates/contact.html:50
 #: hub/templates/cookies.html:106 hub/templates/ngo/base.html:120
 #: hub/templates/rules.html:93 hub/templates/terms_and_conditions.html:128
-#: hub/templates/updates.html:67
+#: hub/templates/updates.html:93
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -2389,15 +2389,15 @@ msgstr ""
 msgid "rohelp@code4.ro"
 msgstr "E-mail: rohelp@code4.ro"
 
-#: hub/views.py:225
+#: hub/views.py:231
 msgid "Thank you for your help!"
 msgstr "Mulțumim pentru ajutor!"
 
-#: hub/views.py:259
+#: hub/views.py:265
 msgid "Missing or invalid NGO need."
 msgstr "Nevoie ONG lipsă sau invalidă."
 
-#: hub/views.py:305
+#: hub/views.py:316
 msgid ""
 "Thank you for signing up! The form you filled in has reached us. Someone "
 "from the RoHelp team will reach out to you as soon as your organization is "
@@ -2408,7 +2408,7 @@ msgstr ""
 "Dacă ai întrebări suplimentare ne poți scrie un e-mail la adresa "
 "rohelp@code4.ro."
 
-#: hub/views.py:326
+#: hub/views.py:338
 msgid "Thank you for your donation!"
 msgstr "Îți mulțumim pentru donație!"
 
@@ -2485,11 +2485,11 @@ msgid ""
 "                    "
 msgstr ""
 
-#: ro_help/settings/base.py:213
+#: ro_help/settings/base.py:214
 msgid "COVID-19 RO HELP"
 msgstr "COVID-19 RO HELP"
 
-#: ro_help/settings/base.py:214
+#: ro_help/settings/base.py:215
 msgid "RO HELP"
 msgstr "RO HELP"
 
