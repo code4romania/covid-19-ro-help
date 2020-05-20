@@ -26,7 +26,10 @@
 
             <p>{% trans "The main purpose of rohelp.ro is to transmit financial and in kind donations and facilitate access to volunteers for NGOs enrolled and validated on the platform, for the length of the COVID-19 crisis." %}</p>
             <ul>
-                <li>{% trans "The site allo ws NGOs to enroll and create online profiles that showcases their work." %}</li>
+                {% url "rules" as the_url %}
+                {% blocktrans with target="_blank" %}
+                    <li>The site allows any NGO that follows and adheres to the rules for eligibility, as stated in the <a href="{{ the_url }}" target="{{ target }}">general rules</a>, to create online profiles that showcase their work.</li>
+                {% endblocktrans %}
                 <li>{% trans "rohelp.ro also offers users of the platform who wish to support an NGO a form that collects their personal data, further detailed in article 2 of the present terms and conditions document" %}</li>
                 <li>{% trans "The data collected via this form is used to send a message to the NGO been contacted or to make a donation as part of the platform via the Netopia payment processor." %}</li>
                 <li>{% trans "The site also allows members of the general public to subscribe to our newsletter service, managed via the Mailchimp email platform. The data in the newsletter form are exclusively used to facilitate the transfer of information towards the users who want to access the newsletter service." %}</li>

@@ -1,7 +1,5 @@
 from .base import *
 
-DEBUG = True
-
 INTERNAL_IPS = ["127.0.0.1", "localhost", "local.rohelp.ro", "192.168.99.100"]
 
 ALLOWED_HOSTS += ["localhost", "192.168.99.100", "local.rohelp.ro", "dev.rohelp.ro"]
@@ -9,6 +7,9 @@ ALLOWED_HOSTS += ["localhost", "192.168.99.100", "local.rohelp.ro", "dev.rohelp.
 AUTH_PASSWORD_VALIDATORS = []
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# No Google/Facebook trackers in the dev env
+ANALYTICS_ENABLED = False
 
 # Add debug toolbar
 if DEBUG and env("ENABLE_DEBUG_TOOLBAR"):
@@ -22,8 +23,8 @@ if DEBUG and env("ENABLE_DEBUG_TOOLBAR"):
         "SHOW_TOOLBAR_CALLBACK": show_toolbar,
     }
 
+if not DEBUG:
+    MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
 
-# TODO: read it from env or generate a new one
-SECRET_KEY = "https://uploads.skyhighnetworks.com/wp-content/uploads/2015/08/06195203/Bart-Chalkboard-for-Blog-Post.png"
-
-ANALYTICS_ENABLED = False
+    STATIC_ROOT = os.path.join(BASE_DIR, "../", "static")
+    STATICFILES_DIRS = []
