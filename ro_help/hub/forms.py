@@ -75,8 +75,12 @@ class NGORegisterRequestForm(forms.ModelForm):
         ]
         widgets = {
             "email": EmailInput(),
-            "city": forms.TextInput(
-                attrs={"class": "cityAutoComplete", "data-url": reverse_lazy("city-autocomplete"),}
+            "city": forms.Select(
+                attrs={
+                    "class": "cityAutoComplete", 
+                    "disabled": "true", 
+                    "data-url": reverse_lazy("city-autocomplete")
+                }
             ),
             # # "has_netopia_contract": forms.CheckboxInput(),
             # "avatar": AdminResubmitImageWidget,

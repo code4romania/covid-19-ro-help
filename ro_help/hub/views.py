@@ -299,11 +299,10 @@ class CityAutocomplete(View):
         response = []
 
         county = request.GET.get("county")
-        q = request.GET.get("q")
 
-        if county and q and len(q) > 0:
-            rows = City.objects.filter(county__iexact=county, city__istartswith=q).values_list("id", "city", named=True)
-            response = [{"v": row.id, "t": row.city} for row in rows]
+        if county:
+            rows = City.objects.filter(county__iexact=county).values_list("id", "city", named=True)
+            response = [{"id": row.id, "city": row.city} for row in rows]
 
         return JsonResponse(response, safe=False)
 
