@@ -75,14 +75,29 @@ class NGORegisterRequestForm(forms.ModelForm):
         ]
         widgets = {
             "email": EmailInput(),
-            "city": forms.TextInput(
-                attrs={"class": "cityAutoComplete", "data-url": reverse_lazy("city-autocomplete"),}
+            "city": forms.Select(
+                attrs={
+                    "style": "width:200px;height:40px;",
+                    "disabled": "true",
+                    "data-ajax--url": reverse_lazy("city-autocomplete"),
+                }
             ),
             # # "has_netopia_contract": forms.CheckboxInput(),
             # "avatar": AdminResubmitImageWidget,
             # "last_balance_sheet": AdminResubmitFileWidget,
             # "statute": AdminResubmitFileWidget,
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["city"].queryset = models.City.objects.none()
+
+        if "county" in self.data:
+            try:
+                county = self.data.get("county")
+                self.fields["city"].queryset = models.City.objects.filter(county__iexact=county)
+            except (ValueError, TypeError):
+                pass  # invalid input, fallback to empty queryset
 
 
 class RegisterNGORequestVoteForm(forms.ModelForm):
