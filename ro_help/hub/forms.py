@@ -75,13 +75,7 @@ class NGORegisterRequestForm(forms.ModelForm):
         ]
         widgets = {
             "email": EmailInput(),
-            "city": forms.Select(
-                attrs={
-                    "style": "width:200px;height:40px;",
-                    "disabled": "true",
-                    "data-ajax--url": reverse_lazy("city-autocomplete"),
-                }
-            ),
+            "city": forms.Select(attrs={"data-url": reverse_lazy("city-autocomplete"),}),
             # # "has_netopia_contract": forms.CheckboxInput(),
             # "avatar": AdminResubmitImageWidget,
             # "last_balance_sheet": AdminResubmitFileWidget,
@@ -91,6 +85,9 @@ class NGORegisterRequestForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["city"].queryset = models.City.objects.none()
+
+        if "city" not in self.data:
+            self.fields["city"].widget.attrs.update({"disabled": "true"})
 
         if "county" in self.data:
             try:

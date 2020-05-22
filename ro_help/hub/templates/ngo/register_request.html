@@ -6,20 +6,6 @@
 {% block kind-kind-filters %}
 {% endblock kind-kind-filters %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" integrity="sha256-FdatTf20PQr/rWg+cAKfl6j4/IY3oohFAJ7gVC3M34E=" crossorigin="anonymous" />
-<style>
-.select2-container .select2-selection--single {
-  height: 40px !important;
-}
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-  line-height: 40px !important;
-}
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js" integrity="sha256-wfVTTtJ2oeqlexBsfa3MmUoB77wDNRPqT1Q1WA2MMn4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/i18n/ro.js" integrity="sha256-J9X0vuDY5YuPxnyG7l+q73fpH94JY2tJibkac3gUJBY=" crossorigin="anonymous"></script>
-{% endblock %}
-
 {% block extra-header %}
 {% endblock extra-header %}
 
@@ -51,35 +37,5 @@
         </form>
     {% endif %}
 </div>
-
-<script>
-$(document).ready(function () {
-  $( "#id_county" ).on(
-    "change",
-    function() {
-      var county = this.value;
-      var current_lang = $("#language").val();
-      if ( county === "" ) {
-        $( "#id_city" ).prop( "disabled", true ).val( null ).trigger('change');
-      } else {
-        $( "#id_city" ).prop( "disabled", false ).val( null ).trigger('change').select2({
-          minimumInputLength: 2,
-          ajax: {
-            dataType: "json",
-            data: function (params) {
-              var query = {
-                c: county,
-                q: params.term
-              }
-              return query;
-            }
-          },
-          language: current_lang
-        });
-      }
-    }
-  );
-});
-</script>
 
 {% endblock %}

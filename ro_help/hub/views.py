@@ -296,18 +296,11 @@ class NGOHelperCreateView(
 
 class CityAutocomplete(View):
     def get(self, request):
-        response = {"results": []}
-
-        county = request.GET.get("c")
-        q = request.GET.get("q")
-
-        if county and q and len(q) > 1:
-            cities = City.objects.filter(county__iexact=county, city__istartswith=q,).values_list(
-                "id", "city", named=True
-            )
-
-            response["results"] = [{"id": item.id, "text": item.city} for item in cities]
-
+        response = []
+        county = request.GET.get("county")
+        if county:
+            cities = City.objects.filter(county__iexact=county).values_list("id", "city", named=True)
+            response = [{"id": item.id, "city": item.city} for item in cities]
         return JsonResponse(response, safe=False)
 
 
