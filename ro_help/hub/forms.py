@@ -89,8 +89,9 @@ class NGORegisterRequestForm(forms.ModelForm):
         im = Image.open(avatar)
         thumb_io = BytesIO()
 
-        im.thumbnail((200, 200), Image.ANTIALIAS)
+        im.thumbnail((200, 200), Image.LANCZOS)
         im.save(thumb_io, avatar.content_type.split("/")[-1].upper())
+        self.add_error("name", '{} {}'.format(avatar.content_type, avatar.content_type.split("/")[-1].upper()))
 
         file = InMemoryUploadedFile(
             thumb_io, "avatar", str(avatar), avatar.content_type, thumb_io.getbuffer().nbytes, None,
