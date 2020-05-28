@@ -571,6 +571,7 @@ class CityAdmin(admin.ModelAdmin):
     At this moment, only the superadmin is allowed to import new cities and
     change existing ones.
     """
+
     list_display = ["city", "county"]
     list_filter = ["county", "is_county_residence"]
     search_fields = ["city"]
@@ -614,11 +615,7 @@ class CityAdmin(admin.ModelAdmin):
                 if (row["Judet"], row["Localitate"]) in COUNTY_RESIDENCE:
                     is_county_residence = True
 
-                city = City(
-                    city=row["Localitate"],
-                    county=row["Judet"],
-                    is_county_residence=is_county_residence
-                )
+                city = City(city=row["Localitate"], county=row["Judet"], is_county_residence=is_county_residence)
                 batch.append(city)
 
                 if len(batch) == batch_size:
