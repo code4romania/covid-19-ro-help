@@ -9,7 +9,7 @@ from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter, helpers
 from django.contrib.auth.models import Group
 from django.db import transaction
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import pluralize
 from django.urls import reverse
@@ -84,7 +84,16 @@ class NGOAdmin(admin.ModelAdmin):
     list_per_page = 25
     form = NGOForm
 
-    list_display = ("name", "contact_name", "county", "city", "accepts_transfer", "accepts_mobilpay", "created")
+    list_display = (
+        "name",
+        "contact_name",
+        "county",
+        "city",
+        "accepts_transfer",
+        "accepts_mobilpay",
+        "totals",
+        "created",
+    )
     list_filter = (
         "city",
         "county",
@@ -120,6 +129,13 @@ class NGOAdmin(admin.ModelAdmin):
                 return True
 
         return False
+
+    def totals(self, obj):
+        totals = obj.payment_orders.filter(success=True).annotate(total=Sum("amount")).values_list("total", flat=True)
+        totals = totals[0] if len(totals) > 0 else 0.0
+        return round(totals, 2)
+
+    totals.short_description = _("Total Netopia donations")
 
     @transaction.atomic
     def save_model(self, request, ngo, form, change):
