@@ -18,3 +18,7 @@ django-extensions==2.2.8
 requests==2.23.0
 django-admin-rangefilter>=0.5.4,<1.0.0
 admin-totals>=1.0.1,<2.0.0
+gunicorn==20.0.4
+gevent==1.4.0
+whitenoise==5.0.1
+sentry-sdk==0.14.3
