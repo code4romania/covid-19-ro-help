@@ -60,6 +60,8 @@
                     <div class="card-content" style="background-color: #fafafa;">
                         {% if project.description %}
                         <p class="call-to-action">{{project.description}}</p>
+                        {% elif project.image %}
+                        <img src="{% static project.image %}" >
                         {% endif %}
                         <a class="button is-fullwidth is-white has-text-centered has-text-weight-bold sidebar-btn"
                             style="background-color: {{ project.color }};" href="{{project.url}}" rel="nofollow">

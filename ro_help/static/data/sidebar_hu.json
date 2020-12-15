@@ -8,6 +8,14 @@
     "url": "https://chrome.google.com/webstore/detail/covid-19-%C8%99tiri-oficiale/pdcpkplohipjhdfdchpmgekifmcdbnha"
   },
   {
+    "app": "#RoVaccinare",
+    "call_to_action": "#RoVaccinare",
+    "image": "images/rovaccinare.jpg",
+    "button_text": "Află detalii",
+    "color": "#05d6c8",
+    "url": "https://vaccinare-covid.gov.ro/"
+  },
+  {
     "app": "Extensie Firefox",
     "call_to_action": "Instalează-ți extensia de Firefox pentru a depista știrile false",
     "description": "",

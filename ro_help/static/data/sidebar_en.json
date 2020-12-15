@@ -8,6 +8,14 @@
     "url": "https://cemafac.ro/"
   },
   {
+    "app": "#RoVaccinare",
+    "call_to_action": "#RoVaccinare",
+    "image": "images/rovaccinare.jpg",
+    "button_text": "Find out more",
+    "color": "#05d6c8",
+    "url": "https://vaccinare-covid.gov.ro/"
+  },
+  {
     "app": "Offical news",
     "call_to_action": "Official news and up-to-date information",
     "description": "",
