@@ -1,7 +1,11 @@
+from io import BytesIO
+
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 from django_crispy_bulma.widgets import EmailInput
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from PIL import Image
 
 from hub import models
 from captcha.fields import ReCaptchaField
@@ -78,6 +82,21 @@ class NGORegisterRequestForm(forms.ModelForm):
             # "last_balance_sheet": AdminResubmitFileWidget,
             # "statute": AdminResubmitFileWidget,
         }
+
+    def clean_avatar(self):
+        avatar = self.cleaned_data["avatar"]
+
+        im = Image.open(avatar)
+        thumb_io = BytesIO()
+
+        im.thumbnail((200, 200), Image.LANCZOS)
+        im.save(thumb_io, avatar.content_type.split("/")[-1].upper())
+
+        file = InMemoryUploadedFile(
+            thumb_io, "avatar", str(avatar), avatar.content_type, thumb_io.getbuffer().nbytes, None,
+        )
+
+        return file
 
 
 class RegisterNGORequestVoteForm(forms.ModelForm):
