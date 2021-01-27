@@ -75,7 +75,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "ro_help.middleware.force_default_language_middleware",
-    
+
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -99,6 +99,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "hub.context_processors.hub_settings",
             ],
         },
     },
@@ -260,6 +261,9 @@ if env("RECAPTCHA_PUBLIC_KEY"):
     RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 else:
     SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
+
+# Toggles the loading of Google/Facebook tracking scripts in base.html
+ANALYTICS_ENABLED = True
 
 if env("SENTRY_DSN"):
     import sentry_sdk

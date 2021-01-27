@@ -6,3 +6,4 @@ django-debug-toolbar==2.2
 Faker==4.0.2
 
 pytest==5.4.1
+ipython==7.14.0

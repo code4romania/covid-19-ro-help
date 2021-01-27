@@ -85,11 +85,9 @@ class NGOAdmin(admin.ModelAdmin):
     form = NGOForm
 
     list_display = ("name", "contact_name", "county", "city", "accepts_transfer", "accepts_mobilpay", "created")
-    list_filter = (
-        "city",
-        "county",
-    )
+    list_filter = ("county",)
     search_fields = ("name", "email")
+    autocomplete_fields = ["city"]
     inlines = [NGOAccountInline]
 
     def get_queryset(self, request):
@@ -102,14 +100,17 @@ class NGOAdmin(admin.ModelAdmin):
         return qs
 
     def get_readonly_fields(self, request, obj=None):
+        readonly_fields = []
         if not obj:
-            return []
+            return readonly_fields
 
         user = request.user
         if not user.groups.filter(name=ADMIN_GROUP_NAME).exists():
-            return ["users"]
+            readonly_fields.append("users")
 
-        return []
+        readonly_fields.extend(["city_old", "county"])
+
+        return readonly_fields
 
     def has_accounts(self, request, no_accounts):
         for account_idx in range(no_accounts):
@@ -202,7 +203,7 @@ class NGONeedAdmin(admin.ModelAdmin):
 
     list_display = ("title", "ngo", "urgency", "kind", "created", "responses", "resolved_on", "closed_on")
     list_filter = (NGOFilter, ActiveNGONeedFilter, "urgency", "kind", "ngo__city", "ngo__county")
-    readonly_fields = ["resolved_on", "closed_on"]
+    readonly_fields = ["resolved_on", "closed_on", "city_old", "county"]
     inlines = [NGOHelperInline]
     actions = ["resolve_need", "close_need"]
     search_fields = (
@@ -212,6 +213,7 @@ class NGONeedAdmin(admin.ModelAdmin):
         "ngo__name",
         "ngo__email",
     )
+    autocomplete_fields = ["city"]
 
     class Media:
         pass
@@ -331,10 +333,11 @@ class RegisterNGORequestAdmin(admin.ModelAdmin):
         "get_statute",
     ]
     actions = ["create_account", "close_request"]
-    readonly_fields = ["active", "resolved_on", "registered_on", "get_avatar"]
+    readonly_fields = ["active", "resolved_on", "registered_on", "get_avatar", "city_old", "county"]
     list_filter = ("city", "county", "registered_on", "closed")
     inlines = [RegisterNGORequestVoteInline]
     search_fields = ("name",)
+    autocomplete_fields = ["city"]
 
     def votes_count(self, obj):
         return obj.votes_count
@@ -555,16 +558,17 @@ class CityAdmin(admin.ModelAdmin):
     At this moment, only the superadmin is allowed to import new cities and
     change existing ones.
     """
+
     list_display = ["city", "county"]
     list_filter = ["county", "is_county_residence"]
     search_fields = ["city"]
 
     def get_urls(self):
         urls = super().get_urls()
-        urls += [
+        custom_url = [
             url("import-cities", self.import_cities, name="import_cities"),
         ]
-        return urls
+        return custom_url + urls
 
     def has_add_permission(self, request):
         return False
@@ -598,11 +602,7 @@ class CityAdmin(admin.ModelAdmin):
                 if (row["Judet"], row["Localitate"]) in COUNTY_RESIDENCE:
                     is_county_residence = True
 
-                city = City(
-                    city=row["Localitate"],
-                    county=row["Judet"],
-                    is_county_residence=is_county_residence
-                )
+                city = City(city=row["Localitate"], county=row["Judet"], is_county_residence=is_county_residence)
                 batch.append(city)
 
                 if len(batch) == batch_size:
@@ -614,7 +614,7 @@ class CityAdmin(admin.ModelAdmin):
                 City.objects.bulk_create(batch, batch_size=len(batch), ignore_conflicts=True)
 
             self.message_user(request, _("CSV file imported"), level=messages.INFO)
-            return redirect(".")
+            return redirect("..")
 
         form = ImportCitiesForm()
         context = {
