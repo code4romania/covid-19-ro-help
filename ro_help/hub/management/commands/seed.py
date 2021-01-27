@@ -241,7 +241,7 @@ class Command(BaseCommand):
                     email=fake.email(),
                     address=fake.address(),
                     details="ddd",
-                    amount=random.choice([100, 200, 300, 400, 500, 150]),
+                    amount=random.choice([100.99, 201.99, 301.23, 400.42, 505.0000005, 150.000000001]),
                     date=fake.date_between(start_date="-30y", end_date="today"),
                     success=True,
                 )

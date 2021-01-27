@@ -42,6 +42,7 @@ class PaymentOrder(TimeStampedModel):
         canceled = self.responses.filter(action="canceled").exists()
         return (confirmed_pending or paid_pending) and not canceled
 
+
 class PaymentResponse(TimeStampedModel):
     payment_order = models.ForeignKey(
         PaymentOrder, null=True, blank=True, related_name="responses", on_delete=models.SET_NULL

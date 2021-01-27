@@ -1,18 +1,18 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group
-from django.utils import timezone
-from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Sum
+
 from admin_totals.admin import ModelAdminTotals
 
-from .models import PaymentOrder, PaymentResponse
 from hub.models import (
     ADMIN_GROUP_NAME,
     NGO_GROUP_NAME,
     DSU_GROUP_NAME,
     FFC_GROUP_NAME,
 )
+from ro_help.utils import Round
+
+from .models import PaymentOrder, PaymentResponse
 
 
 class PaymentResponseInline(admin.TabularInline):
@@ -38,8 +38,7 @@ class PaymentOrderAdmin(ModelAdminTotals):
     search_fields = ["ngo__name"]
     list_filter = ["ngo", "date", "success"]
     inlines = [PaymentResponseInline]
-    list_totals = [('amount', Sum)]
-
+    list_totals = [("amount", lambda field: Round(Sum(field), 2))]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

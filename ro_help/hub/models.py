@@ -277,7 +277,7 @@ class NGO(TimeStampedModel):
     def get_total_funded(self):
         num_funders = self.payment_orders.filter(success=True).count()
         if num_funders:
-            sum_funded = int(self.payment_orders.filter(success=True).aggregate(models.Sum('amount'))['amount__sum'])
+            sum_funded = int(self.payment_orders.filter(success=True).aggregate(models.Sum("amount"))["amount__sum"])
         else:
             sum_funded = 0
         return num_funders, sum_funded
@@ -461,14 +461,17 @@ class RegisterNGORequest(TimeStampedModel):
 
     def yes(self):
         return self.votes.filter(vote="YES").count()
+
     yes.short_description = _("Yes")
 
     def no(self):
         return self.votes.filter(vote="NO").count()
+
     no.short_description = _("No")
 
     def abstention(self):
         return self.votes.filter(vote="ABSTENTION").count()
+
     abstention.short_description = _("Abstention")
 
     def create_ngo_owner(self, request, ngo_group):

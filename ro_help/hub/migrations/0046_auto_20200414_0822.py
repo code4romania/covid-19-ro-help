@@ -6,18 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hub', '0045_auto_20200410_1029'),
+        ("hub", "0045_auto_20200410_1029"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ngoneed',
-            name='urgency',
-            field=models.CharField(choices=[('low', 'low'), ('medium', 'medium'), ('high', 'high'), ('critical', 'critical')], default='low', max_length=10, verbose_name='Urgency'),
+            model_name="ngoneed",
+            name="urgency",
+            field=models.CharField(
+                choices=[("low", "low"), ("medium", "medium"), ("high", "high"), ("critical", "critical")],
+                default="low",
+                max_length=10,
+                verbose_name="Urgency",
+            ),
         ),
         migrations.AlterField(
-            model_name='personalrequest',
-            name='urgency',
-            field=models.CharField(choices=[('low', 'low'), ('medium', 'medium'), ('high', 'high'), ('critical', 'critical')], default='low', max_length=10, verbose_name='Urgency'),
+            model_name="personalrequest",
+            name="urgency",
+            field=models.CharField(
+                choices=[("low", "low"), ("medium", "medium"), ("high", "high"), ("critical", "critical")],
+                default="low",
+                max_length=10,
+                verbose_name="Urgency",
+            ),
         ),
     ]
