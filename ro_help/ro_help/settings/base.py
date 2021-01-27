@@ -44,7 +44,6 @@ SECRET_KEY = "v*2$eed@gagp7f%kvb=zl%30c-(*gl9qppn0vv%sku#q7o&p64"
 
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = TEMPLATE_DEBUG = env.bool("DEBUG", True)
-
 ALLOWED_HOSTS = [".rohelp-102801068.eu-central-1.elb.amazonaws.com", "dev.rohelp.ro", "rohelp.ro", "prod.rohelp.ro"]
 
 # TODO: should be replaced with ALLOWED_HOSTS once we go live
@@ -71,6 +70,7 @@ INSTALLED_APPS = [
     "file_resubmit",
     "rangefilter",
     "admin_totals",
+    "compressor"
 ]
 
 MIDDLEWARE = [
@@ -198,6 +198,7 @@ STATIC_ROOT = env.str("STATIC_ROOT", os.path.join(WEBROOT_DIR, "static/"))
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
 ]
 
 # SMTP
