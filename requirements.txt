@@ -1,4 +1,4 @@
-Django==3.0.4
+Django==3.0.14
 django-environ==0.4.5
 django-material>=1.6.3,<2.0.0
 django-material-admin>=1.6.44,<2.0.0
