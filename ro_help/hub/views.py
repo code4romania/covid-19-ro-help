@@ -121,6 +121,14 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
 
     template_name = "ngo/list.html"
 
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+
+        if self.request.GET.get("q"):
+            response["X-Robots-Tag"] = "noindex"
+
+        return response
+
     def get_needs(self):
         if hasattr(self, "needs"):
             return self.needs
