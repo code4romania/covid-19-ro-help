@@ -13,6 +13,12 @@ RUN \
 			d=pki/${side}-rsa${size} ; \
 			mkdir -p $d ; \
 			openssl genrsa -out $d/private.pem $size ; \
+			openssl req \
+				-x509 \
+				-key $d/private.pem \
+				-out $d/public.pem \
+				-subj "/OU=test/CN=$side" \
+				-days 36525 ; \
 		done ; \
 	done
 
