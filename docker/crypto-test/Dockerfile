@@ -24,5 +24,4 @@ RUN \
 
 
 ADD ro_help/mobilpay mobilpay/
-# just verify imports
-RUN python3 mobilpay/mobilpay/util/encrypt_data.py
+RUN python3 -m mobilpay.mobilpay.test -v
