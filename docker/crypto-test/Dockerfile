@@ -7,6 +7,16 @@ ADD requirements-crypto*.txt ./
 RUN pip install --upgrade pip \
 	&& pip install -r requirements-crypto-test.txt
 
+RUN \
+	for size in 1024 ; do \
+		for side in us them ; do \
+			d=pki/${side}-rsa${size} ; \
+			mkdir -p $d ; \
+			openssl genrsa -out $d/private.pem $size ; \
+		done ; \
+	done
+
+
 ADD ro_help ro_help/
 # just verify imports
 RUN python3 ro_help/mobilpay/mobilpay/util/encrypt_data.py
