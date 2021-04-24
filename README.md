@@ -57,6 +57,13 @@ black --line-length 120 --target-version py37
 ```
 before a commit will do the trick.
 
+
+To run the crypto unit tests, one can invoke
+```bash
+docker build -f docker/crypto-test/Dockerfile .
+```
+The unit-tests are run from the Dockerfile, if `docker build` succeeds, the tests have passed.
+
 ## Deployment
 The deployment process is fully automated using AWS CodeBuild and ECS. Each time a PR is merged on master, a new docker image build is trigger and if it's successful, [the staging environment](http://dev.rohelp.ro/) will point to your latest changes.
 
