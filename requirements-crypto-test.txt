@@ -1,0 +1,2 @@
+-r requirements-crypto.txt
+requests==2.23.0
