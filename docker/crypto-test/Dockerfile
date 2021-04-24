@@ -23,6 +23,6 @@ RUN \
 	done
 
 
-ADD ro_help ro_help/
+ADD ro_help/mobilpay mobilpay/
 # just verify imports
-RUN python3 ro_help/mobilpay/mobilpay/util/encrypt_data.py
+RUN python3 mobilpay/mobilpay/util/encrypt_data.py
