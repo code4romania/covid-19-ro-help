@@ -11,4 +11,4 @@ ADD docker/crypto-test/gen_testdata.sh .
 RUN ./gen_testdata.sh
 
 ADD ro_help/mobilpay mobilpay/
-RUN python3 -m mobilpay.mobilpay.test -v
+RUN pytest mobilpay/mobilpay/test.py -v
