@@ -1,15 +1,15 @@
 import json
 
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.postgres.search import SearchVector, TrigramSimilarity, SearchRank, SearchQuery
 from django.core import paginator
 from django.db.models import Q
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import gettext as _
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
 
 from hub import utils
@@ -21,9 +21,9 @@ from hub.models import (
     NGO,
     NGOHelper,
     NGONeed,
-    NGO_GROUP_NAME,
     RegisterNGORequest,
     URGENCY,
+    City,
 )
 from hub.forms import NGOHelperForm, NGORegisterRequestForm
 from mobilpay.forms import PaymentOrderForm
@@ -209,7 +209,13 @@ class NGONeedListView(InfoContextMixin, NGOKindFilterMixin, ListView):
         if self.request.GET.get("county"):
             needs = needs.filter(county=self.request.GET.get("county"))
 
-        context["cities"] = set(needs.values_list("city", flat=True))
+        if self.request.GET.get("city"):
+            try:
+                context["current_city_name"] = City.objects.get(id=self.request.GET.get("city")).city
+            except City.DoesNotExist:
+                context["current_city_name"] = "-"
+
+        context["cities"] = set(needs.values_list("city__id", "city__city"))
         context["urgencies"] = [
             urgency for urgency, _ in sorted(URGENCY.ORDER.items(), key=lambda item: item[1], reverse=True)
         ]
@@ -296,11 +302,23 @@ class NGOHelperCreateView(
         return super().get_success_message(cleaned_data)
 
 
+class CityAutocomplete(View):
+    def get(self, request):
+        response = []
+        county = request.GET.get("county")
+        if county:
+            cities = City.objects.filter(county__iexact=county).values_list("id", "city", named=True)
+            response = [{"id": item.id, "city": item.city} for item in cities]
+        return JsonResponse(response, safe=False)
+
+
 class NGORegisterRequestCreateView(SuccessMessageMixin, InfoContextMixin, CreateView):
     template_name = "ngo/register_request.html"
     model = RegisterNGORequest
     form_class = NGORegisterRequestForm
-    success_message = _("Thank you for signing up! The form you filled in has reached us. Someone from the RoHelp team will reach out to you as soon as your organization is validated. If you have any further questions, e-mail us at rohelp@code4.ro")
+    success_message = _(
+        "Thank you for signing up! The form you filled in has reached us. Someone from the RoHelp team will reach out to you as soon as your organization is validated. If you have any further questions, e-mail us at rohelp@code4.ro"
+    )
 
     def get_success_url(self):
         return reverse("ngos-register-request")

@@ -3,7 +3,6 @@ import random
 import requests
 from faker import Faker
 
-from django.conf import settings
 from django.contrib.auth.models import User, Group, Permission
 from django.core.management.base import BaseCommand
 from django.utils import timezone
@@ -24,6 +23,7 @@ from hub.models import (
     DSU_GROUP_NAME,
     FFC_GROUP_NAME,
     NGOReportItem,
+    City,
 )
 from mobilpay.models import PaymentOrder
 
@@ -35,7 +35,7 @@ def random_avatar():
     try:
         image = requests.get("https://source.unsplash.com/random", allow_redirects=False)
         return image.headers["Location"]
-    except:
+    except Exception:
         return "https://source.unsplash.com/random"
 
 
@@ -45,31 +45,31 @@ NGOS = (
             "name": "Habitat for Humanity",
             "email": "habitat@habitat.ro",
             "description": """
-        O locuință decentă poate rupe cercul sărăciei. Credem cu tărie în acest lucru din 1976, de când lucrăm pentru 
+        O locuință decentă poate rupe cercul sărăciei. Credem cu tărie în acest lucru din 1976, de când lucrăm pentru
         viziunea noastră: o lume în care toți oamenii au posibilitatea să locuiască decent. Cu sprijinul nostru,
         peste 6 milioane de oameni din peste 70 de țări au un loc mai bun în care să trăiască, o casă nouă sau una
-        complet renovată.Suntem o asociație creștină, non-profit, ce lucrăm alături de oameni de pretutindeni, 
+        complet renovată.Suntem o asociație creștină, non-profit, ce lucrăm alături de oameni de pretutindeni,
         din toate păturile sociale, rasele, religiile și naționalitățile pentru a elimina locuirea precară.
         """,
             "phone": "+40722644394",
-            "address": "Str. Naum Râmniceanu, nr. 45 A, et.1, ap. 3, sector 1, Bucureşti 011616",
-            "city": "Bucureşti",
-            "county": "Sector 1",
+            "address": "Str. Naum Râmniceanu, nr. 45 A, et.1, ap. 3, sector 1, Bucuresti 011616",
+            "city": "Bucuresti",
+            "county": "Bucuresti",
             "avatar": "http://www.habitat.ro/wp-content/uploads/2014/11/logo.png",
         },
         {
             "name": "Crucea Roșie",
             "email": "matei@crucearosie.ro",
             "description": """
-         Crucea Rosie Romana asista persoanele vulnerabile in situatii de dezastre si de criza. Prin programele si 
+         Crucea Rosie Romana asista persoanele vulnerabile in situatii de dezastre si de criza. Prin programele si
          activitatile sale in beneficiul societatii, contribuie la prevenirea si alinarea suferintei sub toate formele,
-          protejeaza sanatatea si viata, promoveaza respectul fata de demnitatea umana, fara nicio discriminare bazata 
+          protejeaza sanatatea si viata, promoveaza respectul fata de demnitatea umana, fara nicio discriminare bazata
           pe nationalitate, rasa, sex, religie, varsta, apartenenta sociala sau politica.
         """,
             "phone": "+40213176006",
             "address": "Strada Biserica Amzei, nr. 29, Sector 1, Bucuresti",
             "city": "Bucuresti",
-            "county": "Sector 1",
+            "county": "Bucuresti",
             "avatar": "https://crucearosie.ro/themes/redcross/images/emblema_crr_desktop.png",
             "accepts_transfer": True,
             "donations_description": "Monedă RON: RO44BRDE410SV20462054100 (Banca: BRD - Piata Romana)",
@@ -78,19 +78,19 @@ NGOS = (
             "name": "MKBT: Make Better",
             "email": "contact@mkbt.ro",
             "description": """
-        MKBT: Make Better has been working for urban development and regeneration in Romania since April 2014. 
-        That is to say that we are drafting, validating and coordinating processes for local development and urban 
+        MKBT: Make Better has been working for urban development and regeneration in Romania since April 2014.
+        That is to say that we are drafting, validating and coordinating processes for local development and urban
         regeneration in order to help as many cities become their best possible version and the best home for their inhabitants.
         As a local development advisor, we assist both public and private entities.
-        We substantiate our work on a thorough understanding of local needs and specificities of the communities we 
-        work with. We acknowledge, at the same time, the global inter-connectivity of local challenges. Our proposed 
+        We substantiate our work on a thorough understanding of local needs and specificities of the communities we
+        work with. We acknowledge, at the same time, the global inter-connectivity of local challenges. Our proposed
         solutions are therefore grounded in international best practice, while at the same time capitalizing – in a
          sustainable and harmonious manner – on local know how and resources.
         """,
             "phone": "+40213176006",
             "address": "Str. Popa Petre, Nr. 23, Sector 2, 020802, Bucharest, Romania.",
             "city": "Bucuresti",
-            "county": "Sector 2",
+            "county": "Bucuresti",
             "avatar": "http://mkbt.ro/wp-content/uploads/2015/08/MKBT-logo-alb.png",
         },
     ]
@@ -101,11 +101,11 @@ NGOS = (
             "description": fake.text(),
             "phone": fake.phone_number(),
             "address": fake.address(),
-            "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
-            "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
+            "city": ["Arad", "Timisoara", "Oradea", "Cluj-Napoca", "Bucuresti"][i],
+            "county": ["Arad", "Timis", "Bihor", "Cluj", "Bucuresti"][i],
             "avatar": random_avatar(),
         }
-        for _ in range(2)
+        for i in range(5)
     ]
 )
 
@@ -205,7 +205,20 @@ class Command(BaseCommand):
 
         NGONeed.objects.filter(kind="money").exclude(ngo__name__in=["Code4Romania", "Crucea Roșie"]).delete()
 
+        cities = [
+            {"city": "Arad", "county": "Arad"},
+            {"city": "Timisoara", "county": "Timis"},
+            {"city": "Oradea", "county": "Bihor"},
+            {"city": "Cluj-Napoca", "county": "Cluj"},
+            {"city": "Bucuresti", "county": "Bucuresti"},
+        ]
+        for city_data in cities:
+            City.objects.get_or_create(**city_data)
+
         for details in NGOS:
+            details["city"] = City.objects.get(city=details["city"], county=details["county"])
+            details["county"] = details["county"].upper()
+
             ngo, _ = NGO.objects.get_or_create(**details)
 
             owner = random.choice([ngo_user, admin_user, None])
@@ -214,6 +227,7 @@ class Command(BaseCommand):
                 ngo.save()
 
             for _ in range(20):
+                random_city = City.objects.order_by("?").first()
                 need = NGONeed.objects.create(
                     **{
                         "ngo": ngo,
@@ -222,8 +236,8 @@ class Command(BaseCommand):
                         "description": fake.text(),
                         "title": fake.text(),
                         "resolved_on": random.choice([None, timezone.now()]),
-                        "city": random.choice(["Arad", "Timisoara", "Oradea", "Cluj", "Bucuresti"]),
-                        "county": random.choice(["ARAD", "TIMIS", "BIHOR", "CLUJ", "SECTOR 1", "SECTOR 2"]),
+                        "city": random_city,
+                        "county": random_city.county.upper(),
                     }
                 )
 
