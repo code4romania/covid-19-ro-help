@@ -75,7 +75,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "ro_help.middleware.force_default_language_middleware",
-    
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

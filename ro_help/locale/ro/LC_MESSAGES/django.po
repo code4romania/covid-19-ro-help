@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-20 09:14+0000\n"
+"POT-Creation-Date: 2020-05-28 18:24+0000\n"
 "PO-Revision-Date: 2020-05-20 12:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,75 +27,79 @@ msgstr "activ"
 msgid "Bank Accounts"
 msgstr "Conturi bancare"
 
-#: hub/admin.py:133
+#: hub/admin.py:138
+msgid "Total Netopia donations"
+msgstr "Total donații Netopia"
+
+#: hub/admin.py:149
 msgid "To accept IBAN Transfers you need to add at least one account."
 msgstr ""
 "Pentru a accepta donații prin transfer bancar trebuie să adaugi cel puțin un "
 "cont bancar al organizației."
 
-#: hub/admin.py:190 hub/admin.py:259
+#: hub/admin.py:206 hub/admin.py:275
 msgid "Helpers"
 msgstr "Voluntari"
 
-#: hub/admin.py:267
+#: hub/admin.py:283
 msgid "Resolve need"
 msgstr "Rezolvă nevoia"
 
-#: hub/admin.py:275
+#: hub/admin.py:291
 msgid "Close need"
 msgstr "Închide nevoia"
 
-#: hub/admin.py:289
+#: hub/admin.py:305
 msgid "Votes"
 msgstr "Voturi"
 
-#: hub/admin.py:343
+#: hub/admin.py:359
 msgid "Votes Count"
 msgstr "Număr voturi"
 
-#: hub/admin.py:373 hub/admin.py:452
+#: hub/admin.py:389 hub/admin.py:468
 msgid "Last balance"
 msgstr "Ultimul bilanț"
 
-#: hub/admin.py:380 hub/admin.py:459
+#: hub/admin.py:396 hub/admin.py:475
 msgid "Statute"
 msgstr "Statut"
 
-#: hub/admin.py:387
+#: hub/admin.py:403
 msgid "Avatar Preview"
 msgstr "Logo"
 
-#: hub/admin.py:392
+#: hub/admin.py:408
 msgid "Voters"
 msgstr "Decidenți"
 
-#: hub/admin.py:403
+#: hub/admin.py:419
 msgid "Create account"
 msgstr "Crează cont"
 
-#: hub/admin.py:414
+#: hub/admin.py:430
 msgid "Close aplication"
 msgstr "Închide aplicație"
 
-#: hub/admin.py:500
+#: hub/admin.py:516
 msgid "s"
 msgstr "uri"
 
-#: hub/admin.py:499
+#: hub/admin.py:515
 msgid "Vote succesfully registered. {} email{} sent to others admins"
 msgstr ""
 "Votul a fost înregistrat cu succes. {} email{} au fost trimise la ceilalți "
 "decidenți"
 
-#: hub/admin.py:515
+#: hub/admin.py:531
 msgid "Vote NGO"
 msgstr "Votează"
 
-#: hub/admin.py:616
+#: hub/admin.py:629
 msgid "CSV file imported"
 msgstr "Fișier CSV încărcat"
 
-#: hub/admin.py:623
+#: hub/admin.py:636
 msgid "Import Cities"
 msgstr "Încarcă Orase"
 
@@ -292,7 +296,7 @@ msgstr "Administrare nevoi"
 msgid "Manage need"
 msgstr "Administrare nevoie"
 
-#: hub/models.py:370 hub/models.py:545 hub/templates/ngo/detail.html:290
+#: hub/models.py:370 hub/models.py:548 hub/templates/ngo/detail.html:290
 msgid "Date"
 msgstr "Dată"
 
@@ -372,7 +376,7 @@ msgstr "Avatar"
 msgid "Image should be 500x500px"
 msgstr ""
 
-#: hub/models.py:454 mobilpay/models.py:29 mobilpay/models.py:53
+#: hub/models.py:454 mobilpay/models.py:29 mobilpay/models.py:54
 msgid "Registered on"
 msgstr "Înregistrare"
 
@@ -384,43 +388,43 @@ msgstr "Istoric voturi"
 msgid "Vote history"
 msgstr "Istoric voturi"
 
-#: hub/models.py:464
+#: hub/models.py:465
 msgid "Yes"
 msgstr "Da"
 
-#: hub/models.py:468
+#: hub/models.py:470
 msgid "No"
 msgstr "Nu"
 
-#: hub/models.py:472
+#: hub/models.py:475
 msgid "Abstention"
 msgstr "Abţinere"
 
-#: hub/models.py:533
+#: hub/models.py:536
 msgid "Pending NGOs"
 msgstr "Organizații în așteptare"
 
-#: hub/models.py:534
+#: hub/models.py:537
 msgid "Pending NGO"
 msgstr "Organizație în așteptare"
 
-#: hub/models.py:541
+#: hub/models.py:544
 msgid "Vote"
 msgstr "Vot"
 
-#: hub/models.py:543
+#: hub/models.py:546
 msgid "Motivation"
 msgstr "Motivația"
 
-#: hub/models.py:543
+#: hub/models.py:546
 msgid "Motivate your decision"
 msgstr "Motivează decizia"
 
-#: hub/models.py:548
+#: hub/models.py:551
 msgid "My votes"
 msgstr "Voturile mele "
 
-#: hub/models.py:549
+#: hub/models.py:552
 msgid "My vote"
 msgstr "Votul meu"
 
@@ -636,7 +640,7 @@ msgstr "Parteneri media"
 #: hub/templates/about.html:103 hub/templates/contact.html:50
 #: hub/templates/cookies.html:106 hub/templates/ngo/base.html:120
 #: hub/templates/rules.html:93 hub/templates/terms_and_conditions.html:128
-#: hub/templates/updates.html:67
+#: hub/templates/updates.html:93
 msgid "Useful instruments"
 msgstr "Instrumente utile"
 
@@ -2393,7 +2397,7 @@ msgstr "Mulțumim pentru ajutor!"
 msgid "Missing or invalid NGO need."
 msgstr "Nevoie ONG lipsă sau invalidă."
 
-#: hub/views.py:295
+#: hub/views.py:296
 msgid ""
 "Thank you for signing up! The form you filled in has reached us. Someone "
 "from the RoHelp team will reach out to you as soon as your organization is "
@@ -2404,7 +2408,7 @@ msgstr ""
 "Dacă ai întrebări suplimentare ne poți scrie un e-mail la adresa "
 "rohelp@code4.ro."
 
-#: hub/views.py:316
+#: hub/views.py:318
 msgid "Thank you for your donation!"
 msgstr "Îți mulțumim pentru donație!"
 
@@ -2440,11 +2444,11 @@ msgstr "Ordine de plată"
 msgid "Payment Order"
 msgstr "Ordin de plată"
 
-#: mobilpay/models.py:59
+#: mobilpay/models.py:60
 msgid "Payment responses"
 msgstr "Răspunsuri plată"
 
-#: mobilpay/models.py:60
+#: mobilpay/models.py:61
 msgid "Payment response"
 msgstr "Răspuns plată"
 
@@ -2481,11 +2485,11 @@ msgid ""
 "                    "
 msgstr ""
 
-#: ro_help/settings/base.py:213
+#: ro_help/settings/base.py:212
 msgid "COVID-19 RO HELP"
 msgstr "COVID-19 RO HELP"
 
-#: ro_help/settings/base.py:214
+#: ro_help/settings/base.py:213
 msgid "RO HELP"
 msgstr "RO HELP"
 
